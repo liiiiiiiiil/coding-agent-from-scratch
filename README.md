@@ -65,70 +65,70 @@ python -m mini_agent "帮我算一下 123 * 456"
     <tr><th colspan="3"><a id="stage-1"></a>阶段一 · 理解 Agent Loop</th></tr>
     <tr><td><strong>v0.01</strong></td><td><a href="./docs/tutorials/01-minimal-loop.md">最简 agent loop</a></td><td>建立最小对话循环，理解请求、回复与结束条件。</td></tr>
     <tr><th colspan="3"><a id="stage-2"></a>阶段二 · 工具与安全</th></tr>
-    <tr><td><strong>v0.02</strong></td><td><a href="./docs/tutorials/02-first-tool.md">第一个工具</a></td><td>接入 calculate，跑通 function calling 基本协议。</td></tr>
+    <tr><td><strong>v0.02</strong></td><td><a href="./docs/tutorials/02-first-tool.md">第一个工具</a></td><td>接入计算工具，理解模型如何请求工具并使用执行结果。</td></tr>
     <tr><td><strong>v0.03</strong></td><td><a href="./docs/tutorials/03-file-tools.md">文件读写工具</a></td><td>让 Agent 读取和写入真实项目文件。</td></tr>
-    <tr><td><strong>v0.04</strong></td><td><a href="./docs/tutorials/04-permission-gate.md">权限闸门</a></td><td>为有副作用的工具加入 allow、deny、ask 三态授权。</td></tr>
+    <tr><td><strong>v0.04</strong></td><td><a href="./docs/tutorials/04-permission-gate.md">权限闸门</a></td><td>为工具调用加入允许、拒绝和询问三种授权方式。</td></tr>
     <tr><th colspan="3"><a id="stage-3"></a>阶段三 · Mini Agent 里程碑</th></tr>
-    <tr><td><strong>v0.05</strong></td><td><a href="./docs/tutorials/05-streaming.md">流式输出</a></td><td>逐块接收并显示 LLM 回复，改善交互反馈。</td></tr>
-    <tr><td><strong>v0.06</strong>（补丁 <code>v0.06.1</code>）</td><td><a href="./docs/tutorials/06-concurrent-tool-calls.md">并发 tool_calls</a></td><td>并发执行同一轮的多个工具调用，减少等待时间；补丁修正多轮上下文状态契约。</td></tr>
-    <tr><td><strong>v0.07</strong></td><td><a href="./docs/tutorials/07-system-prompt.md">系统提示词工程化</a></td><td>分层组织身份、规则和环境信息，稳定 Agent 行为。</td></tr>
-    <tr><td><strong>v0.08</strong></td><td><a href="./docs/tutorials/08-file-operations.md">文件操作补全</a></td><td>补齐目录列举、精确编辑和正则搜索能力。</td></tr>
-    <tr><td><strong>v0.09</strong></td><td><a href="./docs/tutorials/09-permission-upgrade.md">权限系统升级</a></td><td>按工具和路径或命令模式细粒度匹配权限规则。</td></tr>
-    <tr><td><strong>v0.10</strong></td><td><a href="./docs/tutorials/10-shell-execution.md">shell 执行</a></td><td>执行命令并处理超时、输出截断和命令级授权。</td></tr>
+    <tr><td><strong>v0.05</strong></td><td><a href="./docs/tutorials/05-streaming.md">流式输出</a></td><td>逐块接收并显示模型回复，改善等待时的交互体验。</td></tr>
+    <tr><td><strong>v0.06</strong>（补丁 <code>v0.06.1</code>）</td><td><a href="./docs/tutorials/06-concurrent-tool-calls.md">并发 tool_calls</a></td><td>并发执行同一轮的多个独立工具调用，减少等待时间。</td></tr>
+    <tr><td><strong>v0.07</strong></td><td><a href="./docs/tutorials/07-system-prompt.md">系统提示词工程化</a></td><td>分层组织身份、规则和环境信息，明确 Agent 的工作方式。</td></tr>
+    <tr><td><strong>v0.08</strong></td><td><a href="./docs/tutorials/08-file-operations.md">文件操作补全</a></td><td>补齐目录浏览、内容搜索和精确编辑能力。</td></tr>
+    <tr><td><strong>v0.09</strong></td><td><a href="./docs/tutorials/09-permission-upgrade.md">权限系统升级</a></td><td>按文件路径和命令内容细化工具权限。</td></tr>
+    <tr><td><strong>v0.10</strong></td><td><a href="./docs/tutorials/10-shell-execution.md">shell 执行</a></td><td>让 Agent 执行命令和测试，并处理超时与过长输出。</td></tr>
     <tr><th colspan="3"><a id="stage-4"></a>阶段四 · 上下文管理</th></tr>
-    <tr><td><strong>v0.11</strong></td><td><a href="./docs/tutorials/11-context-architecture.md">上下文架构</a></td><td>将持久执行状态与可裁剪的对话上下文分离。</td></tr>
-    <tr><td><strong>v0.12</strong></td><td><a href="./docs/tutorials/12-token-budget-trimming.md">预算与裁剪</a></td><td>估算 token，并按完整对话轮次安全裁剪历史。</td></tr>
-    <tr><td><strong>v0.13</strong>（补丁 <code>v0.13.1</code>、<code>v0.13.2</code>）</td><td><a href="./docs/tutorials/13-context-compaction.md">上下文压缩</a></td><td>用历史摘要和结构化状态降低长任务遗忘；补丁增加可观测性与任务边界隔离。</td></tr>
+    <tr><td><strong>v0.11</strong></td><td><a href="./docs/tutorials/11-context-architecture.md">上下文架构</a></td><td>分离任务状态与对话上下文，避免裁剪历史时丢失执行事实。</td></tr>
+    <tr><td><strong>v0.12</strong></td><td><a href="./docs/tutorials/12-token-budget-trimming.md">预算与裁剪</a></td><td>估算上下文用量，按完整对话轮次裁剪超长历史。</td></tr>
+    <tr><td><strong>v0.13</strong>（补丁 <code>v0.13.1</code>、<code>v0.13.2</code>）</td><td><a href="./docs/tutorials/13-context-compaction.md">上下文压缩</a></td><td>用摘要压缩旧对话，在有限上下文中保留关键信息。</td></tr>
     <tr><th colspan="3"><a id="stage-5"></a>阶段五 · 项目感知与任务编排</th></tr>
-    <tr><td><strong>v0.14</strong></td><td><a href="./docs/tutorials/14-project-instructions.md">项目级指令</a></td><td>自动发现并注入适用的 <code>AGENTS.md</code> 指令。</td></tr>
-    <tr><td><strong>v0.15</strong></td><td><a href="./docs/tutorials/15-task-state.md">任务清单与状态</a></td><td>用结构化任务清单与显式状态跟踪多步任务进度。</td></tr>
-    <tr><td><strong>v0.16</strong>（补丁 <code>v0.16.1</code>）</td><td><a href="./docs/tutorials/16-plan-driven-execution.md">计划驱动执行</a></td><td>通过计划、执行、观察、重排和验证形成闭环；补丁收窄完成提醒的重开规则。</td></tr>
+    <tr><td><strong>v0.14</strong></td><td><a href="./docs/tutorials/14-project-instructions.md">项目级指令</a></td><td>读取项目中的 AGENTS.md，让 Agent 遵循项目规则。</td></tr>
+    <tr><td><strong>v0.15</strong></td><td><a href="./docs/tutorials/15-task-state.md">任务清单与状态</a></td><td>用独立的任务清单记录计划和步骤进度。</td></tr>
+    <tr><td><strong>v0.16</strong>（补丁 <code>v0.16.1</code>）</td><td><a href="./docs/tutorials/16-plan-driven-execution.md">计划驱动执行</a></td><td>把计划、执行和验证串成闭环，检查任务是否真正完成。</td></tr>
     <tr><th colspan="3"><a id="stage-6"></a>阶段六 · 可靠执行</th></tr>
-    <tr><td><strong>v0.17</strong></td><td><a href="./docs/tutorials/17-failure-model.md">失败模型</a></td><td>记录 generation、执行尝试与可审计失败事实。</td></tr>
-    <tr><td><strong>v0.18</strong>（补丁 <code>v0.18.1</code>）</td><td><a href="./docs/tutorials/18-recovery-policy.md">受限恢复策略</a></td><td>用受限动作恢复失败并隔离 generation；补丁修正边界一致性。</td></tr>
-    <tr><td><strong>v0.19</strong></td><td><a href="./docs/tutorials/19-checkpoint-rollback.md">单文件检查点与回滚</a></td><td>为单文件写入保存前镜像，在冲突检测下原子恢复，并保持恢复状态可见、可验证。</td></tr>
-    <tr><td><strong>v0.20</strong></td><td><a href="./docs/tutorials/20-repair-loop.md">修复循环</a></td><td>把失败、诊断、受限恢复和独立验证串成有上限的阶段化循环。</td></tr>
-    <tr><td><strong>v0.21</strong></td><td><a href="./docs/tutorials/21-trace-replay.md">任务轨迹回放</a></td><td>按 generation 只读回放 Todo、执行、失败、恢复、验证和终态的因果链。</td></tr>
+    <tr><td><strong>v0.17</strong></td><td><a href="./docs/tutorials/17-failure-model.md">失败模型</a></td><td>记录工具执行失败的原因和过程，为诊断与恢复提供依据。</td></tr>
+    <tr><td><strong>v0.18</strong>（补丁 <code>v0.18.1</code>）</td><td><a href="./docs/tutorials/18-recovery-policy.md">受限恢复策略</a></td><td>根据失败事实选择重试、调整或求助，并重新验证结果。</td></tr>
+    <tr><td><strong>v0.19</strong></td><td><a href="./docs/tutorials/19-checkpoint-rollback.md">单文件检查点与回滚</a></td><td>保存单个文件修改前的内容，检查冲突后恢复原状。</td></tr>
+    <tr><td><strong>v0.20</strong></td><td><a href="./docs/tutorials/20-repair-loop.md">修复循环</a></td><td>把失败诊断、受限恢复和独立验证组成有次数上限的修复循环。</td></tr>
+    <tr><td><strong>v0.21</strong></td><td><a href="./docs/tutorials/21-trace-replay.md">任务轨迹回放</a></td><td>只读回放任务的执行、失败、恢复和验证过程。</td></tr>
     <tr><th colspan="3"><a id="stage-7"></a>阶段七 · 结构化计划</th></tr>
-    <tr><td><strong>v0.22</strong></td><td><a href="./docs/tutorials/22-plan-contract.md">Plan Contract（结构化计划）</a></td><td>用不可变 revision 保存计划结构，用独立 progress event 推进步骤状态，并把计划执行视图注入上下文。</td></tr>
-    <tr><td><strong>v0.23</strong></td><td><a href="./docs/tutorials/23-plan-mode-handoff.md">只读规划与用户交接</a></td><td>复杂任务先只读调查；计划模式提交后等待用户决定，批准仍不绕过工具授权。</td></tr>
-    <tr><td><strong>v0.24</strong></td><td><a href="./docs/tutorials/24-replanning-policy.md">证据驱动重规划与停滞收口</a></td><td>执行中引用真实 failure 或观察修订计划；重复工具回合先提醒，再有界阻塞。</td></tr>
-    <tr><td><strong>v0.25</strong></td><td><a href="./docs/tutorials/25-plan-trace-evaluation.md">计划轨迹回放与验收</a></td><td>按顺序事件连接 generation、revision、触发事实、用户决定、执行与独立验证。</td></tr>
+    <tr><td><strong>v0.22</strong></td><td><a href="./docs/tutorials/22-plan-contract.md">Plan Contract（结构化计划）</a></td><td>用结构化计划明确目标和步骤，分别记录计划修订与执行进度。</td></tr>
+    <tr><td><strong>v0.23</strong></td><td><a href="./docs/tutorials/23-plan-mode-handoff.md">只读规划与用户交接</a></td><td>先只读调查，再提交计划供用户审批，获准后按权限执行。</td></tr>
+    <tr><td><strong>v0.24</strong></td><td><a href="./docs/tutorials/24-replanning-policy.md">证据驱动重规划与停滞收口</a></td><td>根据新证据调整计划，并在重复操作无法推进时停止。</td></tr>
+    <tr><td><strong>v0.25</strong></td><td><a href="./docs/tutorials/25-plan-trace-evaluation.md">计划轨迹回放与验收</a></td><td>串联计划变更与执行证据，回看任务如何推进并检查记录完整性。</td></tr>
     <tr><th colspan="3"><a id="stage-8"></a>阶段八 · 后台进程与任务边界</th></tr>
-    <tr><td><strong>v0.26</strong></td><td><a href="./docs/tutorials/26-background-process-boundaries.md">后台进程启动与任务边界</a></td><td>启动长期命令后继续工作，排空有界输出，按任务归属同步退出，并在交接和任务切换时清理进程。</td></tr>
-    <tr><td><strong>v0.27</strong></td><td><a href="./docs/tutorials/27-process-observation.md">观察后台进程</a></td><td>跨轮次查询状态、读取新增输出，并在没有新消息时有界等待和交接。</td></tr>
-    <tr><td><strong>v0.28</strong></td><td><a href="./docs/tutorials/28-process-control.md">控制后台进程</a></td><td>按任务授权终止或强制结束进程，确认退出后重新验证。</td></tr>
-    <tr><td><strong>v0.29</strong></td><td><a href="./docs/tutorials/29-interactive-process.md">驱动等待输入的后台进程</a></td><td>显式开启有界管道 stdin，写入少量 UTF-8 文本并发送 EOF，同时保持授权、脱敏、清理和独立验证边界。</td></tr>
+    <tr><td><strong>v0.26</strong></td><td><a href="./docs/tutorials/26-background-process-boundaries.md">后台进程启动与任务边界</a></td><td>启动后台长时间任务，让 Agent 继续工作并在退出时清理进程。</td></tr>
+    <tr><td><strong>v0.27</strong></td><td><a href="./docs/tutorials/27-process-observation.md">观察后台进程</a></td><td>查询后台进程状态、读取新增输出，并等待运行结果。</td></tr>
+    <tr><td><strong>v0.28</strong></td><td><a href="./docs/tutorials/28-process-control.md">控制后台进程</a></td><td>让 Agent 按权限终止后台进程，并确认进程已经退出。</td></tr>
+    <tr><td><strong>v0.29</strong></td><td><a href="./docs/tutorials/29-interactive-process.md">驱动等待输入的后台进程</a></td><td>通过文本管道向后台进程发送输入，完成简单交互。</td></tr>
     <tr><th colspan="3"><a id="stage-9"></a>阶段九 · 会话持久化与安全交接</th></tr>
-    <tr><td><strong>v0.30</strong></td><td><a href="./docs/tutorials/30-session-persistence.md">会话持久化与安全点</a></td><td>通过 /save 显式开启本地保存，在完整安全点原子更新 active 会话，退出或任务切换时在进程清理后提交 clean；本版只能校验文件，不能恢复任务。</td></tr>
-    <tr><td><strong>v0.31</strong></td><td><a href="./docs/tutorials/31-safe-resume.md">从完整安全点恢复会话</a></td><td>用 --resume 检查 schema 2、工作区清单和 clean 交接，在新进程重建运行时；旧验证、进程句柄和 checkpoint 回滚资格不会被继承。</td></tr>
-    <tr><td><strong>v0.32</strong></td><td><a href="./docs/tutorials/32-durable-tool-boundaries.md">持久化工具执行边界</a></td><td>在同一 schema 3 session 文件中按 handler 准入、单 call 结果和整轮 complete 提交 State 与 Context；半轮只用于诊断，暂不续跑。</td></tr>
-    <tr><td><strong>v0.33</strong></td><td><a href="./docs/tutorials/33-crash-recovery.md">崩溃恢复与不确定副作用交接</a></td><td>从 active pending 边界派生新 session，逐项区分未执行与不确定事实；不自动重放，先只读调查并由用户决定继续或阻塞。</td></tr>
+    <tr><td><strong>v0.30</strong></td><td><a href="./docs/tutorials/30-session-persistence.md">会话持久化与安全点</a></td><td>在安全时机保存任务状态和对话，为后续恢复留下可靠记录。</td></tr>
+    <tr><td><strong>v0.31</strong></td><td><a href="./docs/tutorials/31-safe-resume.md">从完整安全点恢复会话</a></td><td>检查保存记录和工作区变化，在新进程中安全恢复会话。</td></tr>
+    <tr><td><strong>v0.32</strong></td><td><a href="./docs/tutorials/32-durable-tool-boundaries.md">持久化工具执行边界</a></td><td>持久记录工具执行前后的状态，明确中断发生的位置。</td></tr>
+    <tr><td><strong>v0.33</strong></td><td><a href="./docs/tutorials/33-crash-recovery.md">崩溃恢复与不确定副作用交接</a></td><td>区分崩溃后未执行和执行结果不明的调用，由用户决定后续处理。</td></tr>
     <tr><th colspan="3"><a id="stage-10"></a>阶段十 · 受控子代理委派</th></tr>
-    <tr><td><strong>v0.34</strong></td><td><a href="./docs/tutorials/34-minimal-delegation.md">最小受控子代理委派</a></td><td>父 Agent 同步委派单个、单层、只读 Subagent；用隔离 Context、能力过滤、scope 和结构化结果合同收集调查材料。</td></tr>
-    <tr><td><strong>v0.35</strong></td><td><a href="./docs/tutorials/35-shared-agent-runtime.md">共享父子运行循环</a></td><td>父 Agent 与只读 Subagent 共用唯一的 AgentRuntime.run() 协议骨架，差异由策略、Context、工具面和预算表达。</td></tr>
-    <tr><td><strong>v0.36</strong></td><td><a href="./docs/tutorials/36-multi-provider.md">多 provider 与统一协议适配</a></td><td>用本地 profile 绑定父子模型，接入 OpenAI-compatible Chat Completions 与 Anthropic Messages，并把 provider 差异收进适配层。</td></tr>
-    <tr><td><strong>v0.37</strong></td><td><a href="./docs/tutorials/37-subagent-lifecycle-budget.md">子代理生命周期与聚合预算</a></td><td>记录委派交付状态，按父任务聚合预算预留与结算，并用协作式取消收束同步子代理。</td></tr>
-    <tr><td><strong>v0.38</strong></td><td><a href="./docs/tutorials/38-parallel-delegation.md">有界并行子代理</a></td><td>在固定并发上限下运行多个只读调查，并按模型 tool-call 顺序提交父结果。</td></tr>
-    <tr><td><strong>v0.39</strong></td><td><a href="./docs/tutorials/39-durable-delegation.md">持久委派交付</a></td><td>先保存已校验的子结果，再按父调用顺序原子交付并支持跨进程恢复。</td></tr>
+    <tr><td><strong>v0.34</strong></td><td><a href="./docs/tutorials/34-minimal-delegation.md">最小受控子代理委派</a></td><td>把明确的只读调查交给独立子代理，并收集调查报告。</td></tr>
+    <tr><td><strong>v0.35</strong></td><td><a href="./docs/tutorials/35-shared-agent-runtime.md">共享父子运行循环</a></td><td>让父子 Agent 共用运行循环，同时保持各自的状态和权限独立。</td></tr>
+    <tr><td><strong>v0.36</strong></td><td><a href="./docs/tutorials/36-multi-provider.md">多 provider 与统一协议适配</a></td><td>为父子 Agent 配置不同模型服务，并统一不同协议的调用方式。</td></tr>
+    <tr><td><strong>v0.37</strong></td><td><a href="./docs/tutorials/37-subagent-lifecycle-budget.md">子代理生命周期与聚合预算</a></td><td>跟踪子代理的运行状态，管理总预算和取消请求。</td></tr>
+    <tr><td><strong>v0.38</strong></td><td><a href="./docs/tutorials/38-parallel-delegation.md">有界并行子代理</a></td><td>限制并发数量，让多个只读子代理同时调查并有序返回结果。</td></tr>
+    <tr><td><strong>v0.39</strong></td><td><a href="./docs/tutorials/39-durable-delegation.md">持久委派交付</a></td><td>先保存子代理报告，再可靠交付给父 Agent，避免中断后丢失结果。</td></tr>
     <tr><th colspan="3"><a id="stage-11"></a>阶段十一 · 工作区 Memory &amp; References</th></tr>
-    <tr><td><strong>v0.40</strong></td><td><a href="./docs/tutorials/40-persistent-memory.md">轻量持久 Memory</a></td><td>由父 Agent 显式查看、保存、修订和遗忘工作区记忆，支持分页、工作区外存储和不确定提交核查，并通过权限、revision、原子存储和恢复边界保持可核查。</td></tr>
-    <tr><td><strong>v0.41</strong></td><td><a href="./docs/tutorials/41-memory-retrieval.md">相关记忆检索</a></td><td>用标准库词法检索找回少量相关候选，并把不可信摘要按 Context 预算临时注入父 Agent；显式搜索与自动检索都不改变 Memory、State 或 session。</td></tr>
-    <tr><td><strong>v0.42</strong></td><td><a href="./docs/tutorials/42-local-references.md">具名本地 References</a></td><td>通过稳定 alias 发现、搜索和按行读取工作区外的本地资料；每次访问重新检查权限、符号链接和敏感目录，References 不进入自动 Context 或子代理。</td></tr>
+    <tr><td><strong>v0.40</strong></td><td><a href="./docs/tutorials/40-persistent-memory.md">轻量持久 Memory</a></td><td>让 Agent 显式保存、查阅、修订和删除工作区的长期记忆。</td></tr>
+    <tr><td><strong>v0.41</strong></td><td><a href="./docs/tutorials/41-memory-retrieval.md">相关记忆检索</a></td><td>检索与当前任务相关的记忆，将少量摘要补入模型上下文。</td></tr>
+    <tr><td><strong>v0.42</strong></td><td><a href="./docs/tutorials/42-local-references.md">具名本地 References</a></td><td>通过配置的名称搜索和读取工作区外的本地参考资料。</td></tr>
     <tr><th colspan="3"><a id="stage-12"></a>阶段十二 · MCP &amp; Skills</th></tr>
-    <tr><td><strong>v0.43</strong></td><td><a href="./docs/tutorials/43-stdio-mcp-client.md">最小 stdio MCP 客户端</a></td><td>用独立命令连接本地 MCP Server，完成固定生命周期、分页列工具和逐次确认的手动调用；MCP Tool 仍不进入 Agent。</td></tr>
-    <tr><td><strong>v0.44</strong></td><td><a href="./docs/tutorials/44-mcp-tools-runtime.md">MCP Tool 接入父 Agent Runtime</a></td><td>让显式启用的本地 MCP Tool 经过统一 Registry、权限、计划、持久工具边界和恢复流程；严格校验参数、区分失败结果，并保持 Subagent 隔离。</td></tr>
-    <tr><td><strong>v0.45</strong></td><td><a href="./docs/tutorials/45-local-skills.md">本地 Skills 发现与按需加载</a></td><td>只展示固定目录中的 Skill 元数据，获准后按需读取正文；Skill 只指导现有工具的工作流，不授予权限、不自动执行命令，并保持正文与 State/Trace 隔离。</td></tr>
-    <tr><td><strong>v0.46</strong></td><td><a href="./docs/tutorials/46-mcp-http-resources-prompts.md">受限 HTTP MCP、文本 Resource 与 Prompt</a></td><td>接入仅返回 JSON 的远程 MCP，按分页冻结 Resource/Prompt 目录，并由父 CLI 在权限、预览和不可信内容边界内选择资料或模板。</td></tr>
+    <tr><td><strong>v0.43</strong></td><td><a href="./docs/tutorials/43-stdio-mcp-client.md">最小 stdio MCP 客户端</a></td><td>用独立客户端连接本地 MCP 服务，发现工具并经用户确认后调用。</td></tr>
+    <tr><td><strong>v0.44</strong></td><td><a href="./docs/tutorials/44-mcp-tools-runtime.md">MCP Tool 接入父 Agent Runtime</a></td><td>把外部 MCP 工具接入 Agent，并沿用现有的权限和执行流程。</td></tr>
+    <tr><td><strong>v0.45</strong></td><td><a href="./docs/tutorials/45-local-skills.md">本地 Skills 发现与按需加载</a></td><td>发现并按需加载本地技能说明，为 Agent 提供任务指导。</td></tr>
+    <tr><td><strong>v0.46</strong></td><td><a href="./docs/tutorials/46-mcp-http-resources-prompts.md">受限 HTTP MCP、文本 Resource 与 Prompt</a></td><td>连接 HTTP MCP 服务，并由用户选择参考资料和预览提示模板。</td></tr>
     <tr><th colspan="3"><a id="stage-13"></a>阶段十三 · 轻量 Agent 协作</th></tr>
-    <tr><td><strong>v0.47</strong></td><td><a href="./docs/tutorials/47-agent-profiles.md">具名子代理角色</a></td><td>为同步只读委派选择冻结的角色提示、工具子集、模型别名与父侧预授权 Skill；tester 只能分析并建议测试。</td></tr>
-    <tr><td><strong>v0.48</strong></td><td><a href="./docs/tutorials/48-background-subagents.md">进程内后台子代理</a></td><td>父 Agent 启动具名只读调查后继续模型轮次，通过状态查询与显式领取接收结果；整轮持久提交前不启动 worker，活动或未领取任务不能安全保存或完成。</td></tr>
-    <tr><td><strong>v0.49</strong></td><td><a href="./docs/tutorials/49-resumable-child-session.md">可续接子会话</a></td><td>用原 child ID 为已领取成功结果追加完整调查合同；schema 4 安全点原子保存有界子历史，恢复时重核角色、模型和 Skill 身份，并保留累计预算。</td></tr>
+    <tr><td><strong>v0.47</strong></td><td><a href="./docs/tutorials/47-agent-profiles.md">具名子代理角色</a></td><td>为只读子代理配置角色，明确工具范围、模型和可用技能。</td></tr>
+    <tr><td><strong>v0.48</strong></td><td><a href="./docs/tutorials/48-background-subagents.md">进程内后台子代理</a></td><td>让子代理在后台只读调查，父 Agent 继续工作并随后领取报告。</td></tr>
+    <tr><td><strong>v0.49</strong></td><td><a href="./docs/tutorials/49-resumable-child-session.md">可续接子会话</a></td><td>续接已完成并领取结果的子调查，并支持保存和恢复子会话。</td></tr>
     <tr><th colspan="3"><a id="stage-14"></a>阶段十四 · Agent 任务评测</th></tr>
-    <tr><td><strong>v0.50</strong></td><td><a href="./docs/tutorials/50-evaluation-harness.md">独立评测链路</a></td><td>从固定题目复制干净工作区，运行受限 Agent，再由独立 grader 验收；保存单次结果并分开汇总真实调用与离线自测。</td></tr>
-    <tr><td><strong>v0.51</strong></td><td><a href="./docs/tutorials/51-coding-benchmark.md">重复运行编码基准</a></td><td>冻结四道编码题和独立 grader，按固定顺序保留 12 个 live trial 与原始证据；suite 1.0 争议成绩保留，suite 1.1 真实基线未完成。</td></tr>
-    <tr><td><strong>v0.52</strong></td><td><a href="./docs/tutorials/52-reliability-evaluation.md">故障注入与恢复评测</a></td><td>冻结 18 类故障并分开评分不变量与恢复；suite 1.5 修复后的两批 live 均未形成恢复分母，第一批全为 HTTP 503，第二批有 20 个连接类错误，基线未完成。</td></tr>
-    <tr><td><strong>v0.53</strong></td><td><a href="./docs/tutorials/53-regression-comparison.md">回归比较与能力收益验证</a></td><td>冻结 v0.52/v0.53 与 Memory 自动检索三组、36 个配对槽位和可重建报告；离线完成，live 尚待用户审阅清单并明确启动。</td></tr>
+    <tr><td><strong>v0.50</strong></td><td><a href="./docs/tutorials/50-evaluation-harness.md">独立评测链路</a></td><td>在隔离工作区运行 Agent 任务，通过独立检查评分并保存过程记录。</td></tr>
+    <tr><td><strong>v0.51</strong></td><td><a href="./docs/tutorials/51-coding-benchmark.md">重复运行编码基准</a></td><td>重复运行固定编码任务，通过独立测试评估 Agent 的稳定表现。</td></tr>
+    <tr><td><strong>v0.52</strong></td><td><a href="./docs/tutorials/52-reliability-evaluation.md">故障注入与恢复评测</a></td><td>主动注入故障，分别检验 Agent 的安全边界和任务恢复能力。</td></tr>
+    <tr><td><strong>v0.53</strong></td><td><a href="./docs/tutorials/53-regression-comparison.md">回归比较与能力收益验证</a></td><td>对比不同版本和记忆检索开关，判断是否出现退步或带来收益。</td></tr>
   </tbody>
 </table>
 
