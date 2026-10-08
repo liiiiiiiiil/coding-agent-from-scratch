@@ -34,6 +34,22 @@ Memory 文件放在 trial workspace 外，且每个 trial 使用新的 workspace
 
 报告按题展示通过数、分母、百分点差异、用量和耗时差异，并为每个配对槽位提供结果及相对证据路径。来源、权限、预算、题集、grader 或槽位不匹配时，报告列出具体不可比较原因，不能缩小分母后仍声称原比较完成。
 
+## 评分资格与连接诊断（报告规则 2）
+
+原始 grader 是否返回、是否通过，与 trial 能否用于能力比较分别记录。Provider 连接、超时、HTTP/协议失败，以及 worker、grader 或清理故障排除在能力分母之外；Agent 自身代码异常、执行超时、权限拒绝和预算耗尽仍作为任务失败保留。基础设施错误每个槽位只计一次。
+
+组汇总分别给出原始 grader 计数、有效能力样本和排除原因。配对差异只用双方均有效的样本；缺少有效配对时差异为 `null`。`batch_complete` 只表示全部槽位已有终态，`comparison_complete` 还要求全部预声明配对有效且合同条件一致。原始 token 和失败耗时继续显示用于诊断；保守估算不代表已发生用量或正常模型运行代价。
+
+新结果的可选 `agent.error_diagnostic` 只含白名单类别、底层异常类别、整数 errno 与 TLS 校验码；异常原因链最多读取四层，不保存异常消息、URL、认证头或正文。旧结果缺失诊断时继续保持未知。该诊断不会改变 HTTP 传输、代理支持或重试行为。
+
+对旧批次生成独立修正版报告，使用源归档外的全新目录：
+
+```bash
+PYTHONPATH=src python -m mini_agent.evaluation report-comparison <run-dir> --output <new-derived-dir>
+```
+
+派生报告携带报告规则版本、源 run ID 和输入证据摘要。已有目标目录会被拒绝；原 trial、账本及报告保持原样。没有 `--output` 时仍在原 run 目录重建派生报告，沿用已有命令行为。比较未完成或发现回归返回 1，配置/证据错误返回 2；输出报告不代表启动了新试验。
+
 ## 命令
 
 命令示例使用 Bash/zsh。模板中的当前 revision、模型 profile alias 与价格是占位值；先复制模板并填入审阅后的本地条件。价格若无法确认，应填写 `null`，并明确快照来源。真实 endpoint、model ID 和 API key 只留在本地配置。

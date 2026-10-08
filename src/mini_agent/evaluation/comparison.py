@@ -21,6 +21,7 @@ from dataclasses import replace
 from typing import Any
 
 from mini_agent.evaluation import benchmark
+from mini_agent.evaluation.comparison_schema import validate_error_diagnostic
 from mini_agent.evaluation.comparison_schema import (
     COMPARISON_SCHEMA_VERSION, MAX_COMPARISON_RUN_BYTES, MAX_COMPARISON_SPEC_BYTES,
     MAX_COMPARISON_TRIAL_BYTES, PINNED_V052_REVISION, ComparisonSpec,
@@ -555,7 +556,9 @@ def _invoke_trial(
                 result_payload = json.loads(text) if text.strip() else None
                 if not isinstance(result_payload, dict):
                     result_payload = None
-            except (UnicodeError, json.JSONDecodeError):
+                elif "error_diagnostic" in result_payload:
+                    validate_error_diagnostic(result_payload["error_diagnostic"])
+            except (UnicodeError, ValueError):
                 result_payload = None
         agent_log_payload = {
             "worker_returncode": worker_info.get("returncode"),
@@ -648,6 +651,8 @@ def _invoke_trial(
         "invalid_repeat_count": result_payload.get("invalid_repeat_count") if result_payload else None,
         "subagent_calls": result_payload.get("subagent_calls", 0) if result_payload else 0,
     }
+    if result_payload is not None and "error_diagnostic" in result_payload:
+        agent["error_diagnostic"] = validate_error_diagnostic(result_payload["error_diagnostic"])
     if (worker_info is not None and worker_info.get("timed_out")):
         agent.update({"llm_calls": None, "successful_responses": None, "tool_calls": None, "permission_denials": None, "input_tokens": None, "output_tokens": None, "invalid_repeat_count": None})
     if workspace_error:

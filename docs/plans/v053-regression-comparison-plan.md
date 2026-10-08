@@ -45,6 +45,15 @@ PYTHONPATH=src python -m mini_agent.evaluation report-comparison <run-dir>
 - [x] CLI、比较说明、基线状态、教程和版本文档同步。
 - [x] 专项测试、完整测试和固定响应离线矩阵验收通过；完整 pytest 为 849 passed，36/36 fixture trial 均可评分且 grader 通过，两个声明比较边均可比较。固定响应使 Agent 状态为 `blocked`，严格任务成功为 0/36；这些结果只验证 harness，不作为能力成绩。详细记录见 `evaluation-regression-plan.md`。
 - [ ] 教程事实脚本要求的 v0.53 tag 由维护者手动创建；助手不执行 tag 操作。
-- [ ] 用户审阅已冻结的 36 槽审阅计划并明确启动 live；本计划本身不授予付费调用。
+- [x] 用户明确启动已冻结的 36 槽 live 批次；36/36 槽位有终态，原始证据和重建报告归档于 `docs/evaluation/baselines/v0.53/live-20261008-01/`。
+- [ ] Live 能力验收：本批 36 次模型请求全部为 `ProviderConnectionError`，没有成功响应或工具调用，不能据此判断版本回归或 Memory 收益。若要重新取得能力样本，须调查连接失败后另行冻结新 run ID；不得续跑或替换本批槽位。
 
-阶段十四仍未整体完成：v0.51 suite 1.1 live 编码基线和 v0.52 suite 1.6 live 可靠性基线继续单列，v0.53 live 比较尚未运行。
+阶段十四仍未整体完成：v0.51 suite 1.1 live 编码基线和 v0.52 suite 1.6 live 可靠性基线继续单列；v0.53 已有完整记录的正式 live 批次，但能力比较结论无效，live 验收仍未完成。
+
+## 2026-10-08 live 后评分与诊断修复
+
+已统一组汇总和配对报告的评分资格：provider/worker/grader/清理失败排除能力分母，原始 grader 事实仍保留；Agent 异常、执行超时、拒绝和预算耗尽不被隐藏。槽位终态、合同一致、有效配对和比较完成分别报告，基础设施错误按槽位去重。报告规则 2 独立于历史冻结合同规则 1，历史 spec/plan/trial 不改写。
+
+外部 worker 新增最多四层的脱敏原因链诊断，schema 1 允许可选诊断字段；新旧结果兼容。`report-comparison --output` 将修正版写入全新独立目录。正式批次的修正版见 [report.md](../evaluation/baselines/v0.53/live-20261008-01-report-corrected/report.md)：36 槽终态、36 个基础设施失败、0 个有效能力样本和有效配对，比较未完成；原归档 150 文件哈希未变。本轮不发送模型请求，不做网络探针，不声称连接根因已解决。
+
+修复验收：定向比较回归 37 passed；完整离线 pytest 871 passed。教程结构、README 和 `git diff --check` 通过；教程事实检查仅缺少用户手动创建的 `v0.53` tag。首次沙箱内全量为 26 failed、841 passed、3 skipped，失败来自回环端口绑定限制；获准在沙箱外运行的最终全量全部通过。未发送付费模型请求。

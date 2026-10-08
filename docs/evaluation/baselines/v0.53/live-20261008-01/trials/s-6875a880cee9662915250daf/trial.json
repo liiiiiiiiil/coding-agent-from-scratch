@@ -1,0 +1,82 @@
+{
+  "agent": {
+    "duration_ms": 5,
+    "error_kind": "ProviderConnectionError",
+    "input_tokens": 5722,
+    "invalid_repeat_count": 0,
+    "llm_calls": 1,
+    "output_tokens": 1024,
+    "permission_denials": 0,
+    "started": true,
+    "state_status": "running",
+    "stop_reason": "agent_error",
+    "subagent_calls": 0,
+    "successful_responses": 0,
+    "token_source": "estimated",
+    "tool_calls": 0,
+    "tool_outcomes": {
+      "denied": 0,
+      "failed": 0,
+      "invalid": 0,
+      "succeeded": 0,
+      "timeout": 0
+    }
+  },
+  "case_id": "orders-discount-receipt",
+  "cleanup": {
+    "complete": true,
+    "issue": null
+  },
+  "evidence": {
+    "artifacts": {
+      "agent_log": {
+        "path": "trials/s-6875a880cee9662915250daf/agent.log",
+        "sha256": "4ec7d981b10fc5cf4167a41432d4d4bc97460668becb3ffd6ee70cb2cd32506d",
+        "size_bytes": 72
+      },
+      "diff": {
+        "path": "trials/s-6875a880cee9662915250daf/diff.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "grader_log": {
+        "path": "trials/s-6875a880cee9662915250daf/grader.log",
+        "sha256": "e6c0a7e68572db558f27565ccf1c71582b18da09e518fc8e66d05ee7a8b3134a",
+        "size_bytes": 2469
+      }
+    }
+  },
+  "grader": {
+    "duration_ms": 39,
+    "error_kind": null,
+    "exit_code": 0,
+    "passed": false,
+    "result": {
+      "detail": "FF.F\n======================================================================\nFAIL: test_discount_and_receipt_are_consistent (__main__.OrderReceiptBehavior.test_discount_and_receipt_are_consistent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/l2/b2m3pxks37qfyhprp7qjp0c40000gn/T/mini-agent-comparison-trial-mhqdqybn/grader.py\", line 20, in test_discount_and_receipt_are_consistent\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        render_receipt(1235, 15),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"Subtotal: $12.35\\nDiscount (15%): -$1.85\\nAmount due: $10.50\\n\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: 'Subtotal: $12.35\\nAmount due: $12.35\\n' != 'Subtotal: $12.35\\nDiscount (15%): -$1.85\\nAmount due: $10.50\\n'\n  Subtotal: $12.35\n+ Discount (15%): -$1.85\n- Amount due: $12.35\n?               ^ -\n+ Amount due: $10.50\n?               ^  +\n\n\n======================================================================\nFAIL: test_discount_rounds_half_up_to_cents (__main__.OrderReceiptBehavior.test_discount_rounds_half_up_to_cents)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/l2/b2m3pxks37qfyhprp7qjp0c40000gn/T/mini-agent-comparison-trial-mhqdqybn/grader.py\", line 15, in test_discount_rounds_half_up_to_cents\n    self.assertEqual(calculate_discount_cents(130, 15), 20)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 19 != 20\n\n======================================================================\nFAIL: test_receipt_uses_integer_cents (__main__.OrderReceiptBehavior.test_receipt_uses_integer_cents)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/l2/b2m3pxks37qfyhprp7qjp0c40000gn/T/mini-agent-comparison-trial-mhqdqybn/grader.py\", line 27, in test_receipt_uses_integer_cents\n    self.assertIn(\"Amount due: $1.10\\n\", render_receipt(130, 15))\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Amount due: $1.10\\n' not found in 'Subtotal: $1.30\\nAmount due: $1.30\\n'\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nFAILED (failures=3)\n",
+      "passed": false
+    }
+  },
+  "group_id": "current-on",
+  "memory_evidence": {
+    "failure_categories": [],
+    "material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+    "retrieval_attempts": 1,
+    "retrieval_occurred": true
+  },
+  "memory_material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+  "memory_retrieval_enabled": true,
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 1,
+  "run_id": "67583764-8595-4c68-ad4d-8f2254f23bdf",
+  "schema_version": 1,
+  "slot_id": "s-6875a880cee9662915250daf",
+  "source_fingerprint": "410d086ffc5a2d9c26dc08a462d5d85146ef5960e710f4f819fe3a848c172bf7",
+  "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5",
+  "suite_sha256": "73f9d068d7dc19e482a74ab2f674921c4dd2e5467516c4f3a95736cafcd21469",
+  "trial_id": "4a962baa-057c-4a21-8293-6672b79d239e"
+}

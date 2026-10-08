@@ -1,0 +1,85 @@
+{
+  "budget": {
+    "max_tool_calls": 48,
+    "max_total_tokens": 64000
+  },
+  "comparison_id": "coding-benchmark-v053-main",
+  "edges": [
+    {
+      "allowed_changes": [
+        "source_revision"
+      ],
+      "baseline_group": "old-off",
+      "experiment_group": "current-off"
+    },
+    {
+      "allowed_changes": [
+        "memory_retrieval_enabled"
+      ],
+      "baseline_group": "current-off",
+      "experiment_group": "current-on"
+    }
+  ],
+  "groups": [
+    {
+      "group_id": "old-off",
+      "memory_material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+      "memory_retrieval_enabled": false,
+      "model_profile": "legacy-default",
+      "source_revision": "9d498f91f7ca21caa7f4f842fba0a49075754f20"
+    },
+    {
+      "group_id": "current-off",
+      "memory_material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+      "memory_retrieval_enabled": false,
+      "model_profile": "legacy-default",
+      "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5"
+    },
+    {
+      "group_id": "current-on",
+      "memory_material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+      "memory_retrieval_enabled": true,
+      "model_profile": "legacy-default",
+      "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5"
+    }
+  ],
+  "memory_materials": [
+    {
+      "case_id": "pagination-boundary",
+      "path": "tests/fixtures/evaluation/comparison/memories/pagination-boundary.json",
+      "semantic_sha256": "994567141cabfa9fc7ffad932c41150a04aff3600957e36497ffe8ea367b3136"
+    },
+    {
+      "case_id": "orders-discount-receipt",
+      "path": "tests/fixtures/evaluation/comparison/memories/orders-discount-receipt.json",
+      "semantic_sha256": "361faf7f85615f82597dcb2cc3d70e92fc1708ed031cf09cfb83be202342c4ec"
+    },
+    {
+      "case_id": "cache-expiry-regression",
+      "path": "tests/fixtures/evaluation/comparison/memories/cache-expiry-regression.json",
+      "semantic_sha256": "bdcc7098ad52573c4b7c658609a73cf0265916e306b0156d5aeb5b5a00ac7143"
+    },
+    {
+      "case_id": "config-priority-investigation",
+      "path": "tests/fixtures/evaluation/comparison/memories/config-priority-investigation.json",
+      "semantic_sha256": "61902c21a70a2b39f73bb370e6962aac86f6b44d019da856f9286edaead34b74"
+    }
+  ],
+  "metrics_rules_version": "1",
+  "price_snapshot": {
+    "currency": "USD",
+    "effective_date": "2026-10-08",
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "source": "No reviewed price rates were supplied; leave cost unavailable"
+  },
+  "repeats": 3,
+  "schema_version": 1,
+  "suite": {
+    "path": "tests/fixtures/evaluation/benchmark/suite.json",
+    "sha256": "73f9d068d7dc19e482a74ab2f674921c4dd2e5467516c4f3a95736cafcd21469",
+    "suite_id": "coding-benchmark",
+    "version": "1.1"
+  },
+  "version": "1.0"
+}

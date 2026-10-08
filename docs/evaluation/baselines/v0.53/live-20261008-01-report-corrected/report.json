@@ -1,0 +1,2197 @@
+{
+  "batch_complete": true,
+  "comparison_complete": false,
+  "comparison_id": "coding-benchmark-v053-main",
+  "comparison_version": "1.0",
+  "edges": [
+    {
+      "allowed_changes": [
+        "source_revision"
+      ],
+      "baseline_group": "old-off",
+      "comparable": false,
+      "conditions_match": true,
+      "covered_pairs": 12,
+      "edge_id": "old-off->current-off",
+      "experiment_group": "current-off",
+      "grader_improvements": [],
+      "grader_regressions": [],
+      "incomparability_reasons": [
+        "one_or_more_paired_samples_not_scorable"
+      ],
+      "interpretation_limit": "三次重复只作为观察结果；不宣称统计显著性或推及其他题集、模型与记忆学习。",
+      "paired_slots": [
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-f6c44f412c3e7a26ad5dc5c7/agent.log",
+              "diff": "trials/s-f6c44f412c3e7a26ad5dc5c7/diff.patch",
+              "grader_log": "trials/s-f6c44f412c3e7a26ad5dc5c7/grader.log"
+            },
+            "slot_id": "s-f6c44f412c3e7a26ad5dc5c7"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-f6c44f412c3e7a26ad5dc5c7",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e51bb9f84bfc975eb2967f61/agent.log",
+              "diff": "trials/s-e51bb9f84bfc975eb2967f61/diff.patch",
+              "grader_log": "trials/s-e51bb9f84bfc975eb2967f61/grader.log"
+            },
+            "slot_id": "s-e51bb9f84bfc975eb2967f61"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-e51bb9f84bfc975eb2967f61",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-14d3ea0db383aeda28fb70a6/agent.log",
+              "diff": "trials/s-14d3ea0db383aeda28fb70a6/diff.patch",
+              "grader_log": "trials/s-14d3ea0db383aeda28fb70a6/grader.log"
+            },
+            "slot_id": "s-14d3ea0db383aeda28fb70a6"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-14d3ea0db383aeda28fb70a6",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-3041fa98adb10bc302adef20/agent.log",
+              "diff": "trials/s-3041fa98adb10bc302adef20/diff.patch",
+              "grader_log": "trials/s-3041fa98adb10bc302adef20/grader.log"
+            },
+            "slot_id": "s-3041fa98adb10bc302adef20"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-3041fa98adb10bc302adef20",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-042d77d65bd947a3ce214fd1/agent.log",
+              "diff": "trials/s-042d77d65bd947a3ce214fd1/diff.patch",
+              "grader_log": "trials/s-042d77d65bd947a3ce214fd1/grader.log"
+            },
+            "slot_id": "s-042d77d65bd947a3ce214fd1"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-042d77d65bd947a3ce214fd1",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-d1cbb51c1490c6bda1b719bb/agent.log",
+              "diff": "trials/s-d1cbb51c1490c6bda1b719bb/diff.patch",
+              "grader_log": "trials/s-d1cbb51c1490c6bda1b719bb/grader.log"
+            },
+            "slot_id": "s-d1cbb51c1490c6bda1b719bb"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-d1cbb51c1490c6bda1b719bb",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-7600f2e1ebe37ab3a1825fb1/agent.log",
+              "diff": "trials/s-7600f2e1ebe37ab3a1825fb1/diff.patch",
+              "grader_log": "trials/s-7600f2e1ebe37ab3a1825fb1/grader.log"
+            },
+            "slot_id": "s-7600f2e1ebe37ab3a1825fb1"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-7600f2e1ebe37ab3a1825fb1",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/agent.log",
+              "diff": "trials/s-9e2ba9d8f6b9df7ec99962fa/diff.patch",
+              "grader_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/grader.log"
+            },
+            "slot_id": "s-9e2ba9d8f6b9df7ec99962fa"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-9e2ba9d8f6b9df7ec99962fa",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-08c0b32f4c2118fb473ff67d/agent.log",
+              "diff": "trials/s-08c0b32f4c2118fb473ff67d/diff.patch",
+              "grader_log": "trials/s-08c0b32f4c2118fb473ff67d/grader.log"
+            },
+            "slot_id": "s-08c0b32f4c2118fb473ff67d"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-08c0b32f4c2118fb473ff67d",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-948b586cc181f28c0e9ba0ba/agent.log",
+              "diff": "trials/s-948b586cc181f28c0e9ba0ba/diff.patch",
+              "grader_log": "trials/s-948b586cc181f28c0e9ba0ba/grader.log"
+            },
+            "slot_id": "s-948b586cc181f28c0e9ba0ba"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-948b586cc181f28c0e9ba0ba",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e8ddce8e88d67916bb8e41f4/agent.log",
+              "diff": "trials/s-e8ddce8e88d67916bb8e41f4/diff.patch",
+              "grader_log": "trials/s-e8ddce8e88d67916bb8e41f4/grader.log"
+            },
+            "slot_id": "s-e8ddce8e88d67916bb8e41f4"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-e8ddce8e88d67916bb8e41f4",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-9bd859ccddd6f4c671f3dd72/agent.log",
+              "diff": "trials/s-9bd859ccddd6f4c671f3dd72/diff.patch",
+              "grader_log": "trials/s-9bd859ccddd6f4c671f3dd72/grader.log"
+            },
+            "slot_id": "s-9bd859ccddd6f4c671f3dd72"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-9bd859ccddd6f4c671f3dd72",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-1b312f9bcdadc35f9a6a127b/agent.log",
+              "diff": "trials/s-1b312f9bcdadc35f9a6a127b/diff.patch",
+              "grader_log": "trials/s-1b312f9bcdadc35f9a6a127b/grader.log"
+            },
+            "slot_id": "s-1b312f9bcdadc35f9a6a127b"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-1b312f9bcdadc35f9a6a127b",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-2e846357942d853e412eaecc/agent.log",
+              "diff": "trials/s-2e846357942d853e412eaecc/diff.patch",
+              "grader_log": "trials/s-2e846357942d853e412eaecc/grader.log"
+            },
+            "slot_id": "s-2e846357942d853e412eaecc"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-2e846357942d853e412eaecc",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-0eefb02d76092806dec7c187/agent.log",
+              "diff": "trials/s-0eefb02d76092806dec7c187/diff.patch",
+              "grader_log": "trials/s-0eefb02d76092806dec7c187/grader.log"
+            },
+            "slot_id": "s-0eefb02d76092806dec7c187"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-0eefb02d76092806dec7c187",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-d5972d5235cc81d6b4749e37/agent.log",
+              "diff": "trials/s-d5972d5235cc81d6b4749e37/diff.patch",
+              "grader_log": "trials/s-d5972d5235cc81d6b4749e37/grader.log"
+            },
+            "slot_id": "s-d5972d5235cc81d6b4749e37"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-d5972d5235cc81d6b4749e37",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-0d8cb1006054cc7787441b80/agent.log",
+              "diff": "trials/s-0d8cb1006054cc7787441b80/diff.patch",
+              "grader_log": "trials/s-0d8cb1006054cc7787441b80/grader.log"
+            },
+            "slot_id": "s-0d8cb1006054cc7787441b80"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-0d8cb1006054cc7787441b80",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-c2a396316e14d27840f5f64f/agent.log",
+              "diff": "trials/s-c2a396316e14d27840f5f64f/diff.patch",
+              "grader_log": "trials/s-c2a396316e14d27840f5f64f/grader.log"
+            },
+            "slot_id": "s-c2a396316e14d27840f5f64f"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-c2a396316e14d27840f5f64f",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-c0ee593deb638f15de4bb48d/agent.log",
+              "diff": "trials/s-c0ee593deb638f15de4bb48d/diff.patch",
+              "grader_log": "trials/s-c0ee593deb638f15de4bb48d/grader.log"
+            },
+            "slot_id": "s-c0ee593deb638f15de4bb48d"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-c0ee593deb638f15de4bb48d",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-98753b0f0ed5d982e94f7bb7/agent.log",
+              "diff": "trials/s-98753b0f0ed5d982e94f7bb7/diff.patch",
+              "grader_log": "trials/s-98753b0f0ed5d982e94f7bb7/grader.log"
+            },
+            "slot_id": "s-98753b0f0ed5d982e94f7bb7"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-98753b0f0ed5d982e94f7bb7",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-5ca9ae2e75818e91d18383db/agent.log",
+              "diff": "trials/s-5ca9ae2e75818e91d18383db/diff.patch",
+              "grader_log": "trials/s-5ca9ae2e75818e91d18383db/grader.log"
+            },
+            "slot_id": "s-5ca9ae2e75818e91d18383db"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-5ca9ae2e75818e91d18383db",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-794e14e671555b9e19a2ac51/agent.log",
+              "diff": "trials/s-794e14e671555b9e19a2ac51/diff.patch",
+              "grader_log": "trials/s-794e14e671555b9e19a2ac51/grader.log"
+            },
+            "slot_id": "s-794e14e671555b9e19a2ac51"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-794e14e671555b9e19a2ac51",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-5cf40d51c89e08e20ee3f1ec/agent.log",
+              "diff": "trials/s-5cf40d51c89e08e20ee3f1ec/diff.patch",
+              "grader_log": "trials/s-5cf40d51c89e08e20ee3f1ec/grader.log"
+            },
+            "slot_id": "s-5cf40d51c89e08e20ee3f1ec"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-5cf40d51c89e08e20ee3f1ec",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e9ef119a329d6ae4cf191131/agent.log",
+              "diff": "trials/s-e9ef119a329d6ae4cf191131/diff.patch",
+              "grader_log": "trials/s-e9ef119a329d6ae4cf191131/grader.log"
+            },
+            "slot_id": "s-e9ef119a329d6ae4cf191131"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-e9ef119a329d6ae4cf191131",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        }
+      ],
+      "per_case": {
+        "cache-expiry-regression": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "config-priority-investigation": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "orders-discount-receipt": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "pagination-boundary": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        }
+      },
+      "planned_pairs": 12,
+      "scorable_pairs": 0
+    },
+    {
+      "allowed_changes": [
+        "memory_retrieval_enabled"
+      ],
+      "baseline_group": "current-off",
+      "comparable": false,
+      "conditions_match": true,
+      "covered_pairs": 12,
+      "edge_id": "current-off->current-on",
+      "experiment_group": "current-on",
+      "grader_improvements": [],
+      "grader_regressions": [],
+      "incomparability_reasons": [
+        "one_or_more_paired_samples_not_scorable"
+      ],
+      "interpretation_limit": "三次重复只作为观察结果；不宣称统计显著性或推及其他题集、模型与记忆学习。",
+      "paired_slots": [
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e51bb9f84bfc975eb2967f61/agent.log",
+              "diff": "trials/s-e51bb9f84bfc975eb2967f61/diff.patch",
+              "grader_log": "trials/s-e51bb9f84bfc975eb2967f61/grader.log"
+            },
+            "slot_id": "s-e51bb9f84bfc975eb2967f61"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-e51bb9f84bfc975eb2967f61",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-8fbfbd3399f858eed112dab9/agent.log",
+              "diff": "trials/s-8fbfbd3399f858eed112dab9/diff.patch",
+              "grader_log": "trials/s-8fbfbd3399f858eed112dab9/grader.log"
+            },
+            "slot_id": "s-8fbfbd3399f858eed112dab9"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-8fbfbd3399f858eed112dab9",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-3041fa98adb10bc302adef20/agent.log",
+              "diff": "trials/s-3041fa98adb10bc302adef20/diff.patch",
+              "grader_log": "trials/s-3041fa98adb10bc302adef20/grader.log"
+            },
+            "slot_id": "s-3041fa98adb10bc302adef20"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-3041fa98adb10bc302adef20",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-6c2b268dffe33493953f4199/agent.log",
+              "diff": "trials/s-6c2b268dffe33493953f4199/diff.patch",
+              "grader_log": "trials/s-6c2b268dffe33493953f4199/grader.log"
+            },
+            "slot_id": "s-6c2b268dffe33493953f4199"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-6c2b268dffe33493953f4199",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-d1cbb51c1490c6bda1b719bb/agent.log",
+              "diff": "trials/s-d1cbb51c1490c6bda1b719bb/diff.patch",
+              "grader_log": "trials/s-d1cbb51c1490c6bda1b719bb/grader.log"
+            },
+            "slot_id": "s-d1cbb51c1490c6bda1b719bb"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-d1cbb51c1490c6bda1b719bb",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "pagination-boundary",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-8b2c27738559d14e51feba37/agent.log",
+              "diff": "trials/s-8b2c27738559d14e51feba37/diff.patch",
+              "grader_log": "trials/s-8b2c27738559d14e51feba37/grader.log"
+            },
+            "slot_id": "s-8b2c27738559d14e51feba37"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-8b2c27738559d14e51feba37",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/agent.log",
+              "diff": "trials/s-9e2ba9d8f6b9df7ec99962fa/diff.patch",
+              "grader_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/grader.log"
+            },
+            "slot_id": "s-9e2ba9d8f6b9df7ec99962fa"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-9e2ba9d8f6b9df7ec99962fa",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-6875a880cee9662915250daf/agent.log",
+              "diff": "trials/s-6875a880cee9662915250daf/diff.patch",
+              "grader_log": "trials/s-6875a880cee9662915250daf/grader.log"
+            },
+            "slot_id": "s-6875a880cee9662915250daf"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-6875a880cee9662915250daf",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-948b586cc181f28c0e9ba0ba/agent.log",
+              "diff": "trials/s-948b586cc181f28c0e9ba0ba/diff.patch",
+              "grader_log": "trials/s-948b586cc181f28c0e9ba0ba/grader.log"
+            },
+            "slot_id": "s-948b586cc181f28c0e9ba0ba"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-948b586cc181f28c0e9ba0ba",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-714ae45ea143610f2fb2ea54/agent.log",
+              "diff": "trials/s-714ae45ea143610f2fb2ea54/diff.patch",
+              "grader_log": "trials/s-714ae45ea143610f2fb2ea54/grader.log"
+            },
+            "slot_id": "s-714ae45ea143610f2fb2ea54"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-714ae45ea143610f2fb2ea54",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-9bd859ccddd6f4c671f3dd72/agent.log",
+              "diff": "trials/s-9bd859ccddd6f4c671f3dd72/diff.patch",
+              "grader_log": "trials/s-9bd859ccddd6f4c671f3dd72/grader.log"
+            },
+            "slot_id": "s-9bd859ccddd6f4c671f3dd72"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-9bd859ccddd6f4c671f3dd72",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "orders-discount-receipt",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-2cd4ba2502efca142fd07368/agent.log",
+              "diff": "trials/s-2cd4ba2502efca142fd07368/diff.patch",
+              "grader_log": "trials/s-2cd4ba2502efca142fd07368/grader.log"
+            },
+            "slot_id": "s-2cd4ba2502efca142fd07368"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-2cd4ba2502efca142fd07368",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-2e846357942d853e412eaecc/agent.log",
+              "diff": "trials/s-2e846357942d853e412eaecc/diff.patch",
+              "grader_log": "trials/s-2e846357942d853e412eaecc/grader.log"
+            },
+            "slot_id": "s-2e846357942d853e412eaecc"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-2e846357942d853e412eaecc",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e1b7251d25e68d3b95103acc/agent.log",
+              "diff": "trials/s-e1b7251d25e68d3b95103acc/diff.patch",
+              "grader_log": "trials/s-e1b7251d25e68d3b95103acc/grader.log"
+            },
+            "slot_id": "s-e1b7251d25e68d3b95103acc"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-e1b7251d25e68d3b95103acc",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-d5972d5235cc81d6b4749e37/agent.log",
+              "diff": "trials/s-d5972d5235cc81d6b4749e37/diff.patch",
+              "grader_log": "trials/s-d5972d5235cc81d6b4749e37/grader.log"
+            },
+            "slot_id": "s-d5972d5235cc81d6b4749e37"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-d5972d5235cc81d6b4749e37",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-0cddd863a4df1e793c08297a/agent.log",
+              "diff": "trials/s-0cddd863a4df1e793c08297a/diff.patch",
+              "grader_log": "trials/s-0cddd863a4df1e793c08297a/grader.log"
+            },
+            "slot_id": "s-0cddd863a4df1e793c08297a"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-0cddd863a4df1e793c08297a",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-c2a396316e14d27840f5f64f/agent.log",
+              "diff": "trials/s-c2a396316e14d27840f5f64f/diff.patch",
+              "grader_log": "trials/s-c2a396316e14d27840f5f64f/grader.log"
+            },
+            "slot_id": "s-c2a396316e14d27840f5f64f"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-c2a396316e14d27840f5f64f",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "cache-expiry-regression",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-906f4f68d4c4de673f90a9f8/agent.log",
+              "diff": "trials/s-906f4f68d4c4de673f90a9f8/diff.patch",
+              "grader_log": "trials/s-906f4f68d4c4de673f90a9f8/grader.log"
+            },
+            "slot_id": "s-906f4f68d4c4de673f90a9f8"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-906f4f68d4c4de673f90a9f8",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-98753b0f0ed5d982e94f7bb7/agent.log",
+              "diff": "trials/s-98753b0f0ed5d982e94f7bb7/diff.patch",
+              "grader_log": "trials/s-98753b0f0ed5d982e94f7bb7/grader.log"
+            },
+            "slot_id": "s-98753b0f0ed5d982e94f7bb7"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-98753b0f0ed5d982e94f7bb7",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-c98da8f80943f27e9acf50e6/agent.log",
+              "diff": "trials/s-c98da8f80943f27e9acf50e6/diff.patch",
+              "grader_log": "trials/s-c98da8f80943f27e9acf50e6/grader.log"
+            },
+            "slot_id": "s-c98da8f80943f27e9acf50e6"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-c98da8f80943f27e9acf50e6",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 1
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-794e14e671555b9e19a2ac51/agent.log",
+              "diff": "trials/s-794e14e671555b9e19a2ac51/diff.patch",
+              "grader_log": "trials/s-794e14e671555b9e19a2ac51/grader.log"
+            },
+            "slot_id": "s-794e14e671555b9e19a2ac51"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-794e14e671555b9e19a2ac51",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-c1ddda5db0a100b66bf2ce67/agent.log",
+              "diff": "trials/s-c1ddda5db0a100b66bf2ce67/diff.patch",
+              "grader_log": "trials/s-c1ddda5db0a100b66bf2ce67/grader.log"
+            },
+            "slot_id": "s-c1ddda5db0a100b66bf2ce67"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-c1ddda5db0a100b66bf2ce67",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 2
+        },
+        {
+          "baseline_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-e9ef119a329d6ae4cf191131/agent.log",
+              "diff": "trials/s-e9ef119a329d6ae4cf191131/diff.patch",
+              "grader_log": "trials/s-e9ef119a329d6ae4cf191131/grader.log"
+            },
+            "slot_id": "s-e9ef119a329d6ae4cf191131"
+          },
+          "baseline_exclusion_reason": "provider_failure",
+          "baseline_grader_passed": null,
+          "baseline_slot": "s-e9ef119a329d6ae4cf191131",
+          "baseline_slot_status": "completed",
+          "baseline_strict_success": null,
+          "case_id": "config-priority-investigation",
+          "experiment_evidence": {
+            "artifacts": {
+              "agent_log": "trials/s-bff0af1ab2a3b19a19e9f989/agent.log",
+              "diff": "trials/s-bff0af1ab2a3b19a19e9f989/diff.patch",
+              "grader_log": "trials/s-bff0af1ab2a3b19a19e9f989/grader.log"
+            },
+            "slot_id": "s-bff0af1ab2a3b19a19e9f989"
+          },
+          "experiment_exclusion_reason": "provider_failure",
+          "experiment_grader_passed": null,
+          "experiment_slot": "s-bff0af1ab2a3b19a19e9f989",
+          "experiment_slot_status": "completed",
+          "experiment_strict_success": null,
+          "repetition": 3
+        }
+      ],
+      "per_case": {
+        "cache-expiry-regression": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "config-priority-investigation": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "orders-discount-receipt": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        },
+        "pagination-boundary": {
+          "agent_median_duration_ms": {
+            "baseline": null,
+            "delta": null,
+            "experiment": null
+          },
+          "baseline_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "cost_delta_usd": null,
+          "experiment_grader": {
+            "denominator": 0,
+            "passed": 0,
+            "planned": 3
+          },
+          "grader_median_duration_ms": {
+            "baseline": null,
+            "experiment": null
+          },
+          "input_token_delta": null,
+          "output_token_delta": null,
+          "pass_rate_percentage_point_delta": null
+        }
+      },
+      "planned_pairs": 12,
+      "scorable_pairs": 0
+    }
+  ],
+  "frozen_metrics_rules_version": "1",
+  "groups": {
+    "current-off": {
+      "agent_duration_ms": {
+        "median": 5.0,
+        "observed_trials": 12,
+        "p95": 5.0
+      },
+      "agent_llm_calls": {
+        "observed_trials": 12,
+        "total": 12
+      },
+      "agent_stop_reasons": {
+        "agent_error": 12
+      },
+      "agent_terminal_states": {
+        "awaiting_process": 0,
+        "awaiting_subagents": 0,
+        "blocked": 0,
+        "done": 0,
+        "failed": 0,
+        "running": 12
+      },
+      "cases": {
+        "cache-expiry-regression": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 10704
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "config-priority-investigation": {
+          "agent_duration_ms": {
+            "median": 4,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 39,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 11376
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "orders-discount-receipt": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 12444
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "pagination-boundary": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 10506
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        }
+      },
+      "cost_note": "原始失败尝试的 token 可能包含保守预算估算，不代表已发生用量；按冻结价格快照和 Decimal 计算；缺价或缺用量时总成本为 null，不表示精确账单。",
+      "cost_observed_trials": 0,
+      "cost_usd": null,
+      "exclusion_reasons": {
+        "provider_failure": 12
+      },
+      "grader_duration_ms": {
+        "median": 40.0,
+        "observed_trials": 12,
+        "p95": 40.0
+      },
+      "independent_acceptance": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "infrastructure_errors": 12,
+      "input_tokens": {
+        "observed_trials": 12,
+        "total": 45030
+      },
+      "invalid_repeats": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "memory_retrieval_enabled": false,
+      "model_profile": "legacy-default",
+      "output_tokens": {
+        "observed_trials": 12,
+        "total": 12288
+      },
+      "permission_denials": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "planned_slots": 12,
+      "raw_grader": {
+        "denominator": 12,
+        "passed": 0
+      },
+      "run_trials": 12,
+      "scorable_trials": 0,
+      "slot_status_counts": {
+        "completed": 12
+      },
+      "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5",
+      "strict_task_success": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "subagent_calls": 0,
+      "successful_model_responses": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "token_sources": {
+        "estimated": 12
+      },
+      "tool_calls": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "tool_outcomes": {
+        "denied": 0,
+        "failed": 0,
+        "invalid": 0,
+        "succeeded": 0,
+        "timeout": 0
+      },
+      "unrun_slots": 0
+    },
+    "current-on": {
+      "agent_duration_ms": {
+        "median": 5.5,
+        "observed_trials": 12,
+        "p95": 6.0
+      },
+      "agent_llm_calls": {
+        "observed_trials": 12,
+        "total": 12
+      },
+      "agent_stop_reasons": {
+        "agent_error": 12
+      },
+      "agent_terminal_states": {
+        "awaiting_process": 0,
+        "awaiting_subagents": 0,
+        "blocked": 0,
+        "done": 0,
+        "failed": 0,
+        "running": 12
+      },
+      "cases": {
+        "cache-expiry-regression": {
+          "agent_duration_ms": {
+            "median": 6,
+            "observed_trials": 3,
+            "p95": 6.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 41.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 14382
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "config-priority-investigation": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 6.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 16146
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "orders-discount-receipt": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 6.0
+          },
+          "grader_duration_ms": {
+            "median": 39,
+            "observed_trials": 3,
+            "p95": 39.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 17166
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "pagination-boundary": {
+          "agent_duration_ms": {
+            "median": 6,
+            "observed_trials": 3,
+            "p95": 6.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 14154
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        }
+      },
+      "cost_note": "原始失败尝试的 token 可能包含保守预算估算，不代表已发生用量；按冻结价格快照和 Decimal 计算；缺价或缺用量时总成本为 null，不表示精确账单。",
+      "cost_observed_trials": 0,
+      "cost_usd": null,
+      "exclusion_reasons": {
+        "provider_failure": 12
+      },
+      "grader_duration_ms": {
+        "median": 40.0,
+        "observed_trials": 12,
+        "p95": 41.0
+      },
+      "independent_acceptance": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "infrastructure_errors": 12,
+      "input_tokens": {
+        "observed_trials": 12,
+        "total": 61848
+      },
+      "invalid_repeats": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "memory_retrieval_enabled": true,
+      "model_profile": "legacy-default",
+      "output_tokens": {
+        "observed_trials": 12,
+        "total": 12288
+      },
+      "permission_denials": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "planned_slots": 12,
+      "raw_grader": {
+        "denominator": 12,
+        "passed": 0
+      },
+      "run_trials": 12,
+      "scorable_trials": 0,
+      "slot_status_counts": {
+        "completed": 12
+      },
+      "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5",
+      "strict_task_success": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "subagent_calls": 0,
+      "successful_model_responses": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "token_sources": {
+        "estimated": 12
+      },
+      "tool_calls": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "tool_outcomes": {
+        "denied": 0,
+        "failed": 0,
+        "invalid": 0,
+        "succeeded": 0,
+        "timeout": 0
+      },
+      "unrun_slots": 0
+    },
+    "old-off": {
+      "agent_duration_ms": {
+        "median": 5.0,
+        "observed_trials": 12,
+        "p95": 11.0
+      },
+      "agent_llm_calls": {
+        "observed_trials": 12,
+        "total": 12
+      },
+      "agent_stop_reasons": {
+        "agent_error": 12
+      },
+      "agent_terminal_states": {
+        "awaiting_process": 0,
+        "awaiting_subagents": 0,
+        "blocked": 0,
+        "done": 0,
+        "failed": 0,
+        "running": 12
+      },
+      "cases": {
+        "cache-expiry-regression": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 10704
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "config-priority-investigation": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 39,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 11376
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "orders-discount-receipt": {
+          "agent_duration_ms": {
+            "median": 4,
+            "observed_trials": 3,
+            "p95": 5.0
+          },
+          "grader_duration_ms": {
+            "median": 39,
+            "observed_trials": 3,
+            "p95": 40.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 12444
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        },
+        "pagination-boundary": {
+          "agent_duration_ms": {
+            "median": 5,
+            "observed_trials": 3,
+            "p95": 11.0
+          },
+          "grader_duration_ms": {
+            "median": 40,
+            "observed_trials": 3,
+            "p95": 78.0
+          },
+          "grader_pass_rate": null,
+          "grader_passed": 0,
+          "input_tokens": {
+            "observed_trials": 3,
+            "total": 10506
+          },
+          "output_tokens": {
+            "observed_trials": 3,
+            "total": 3072
+          },
+          "planned": 3,
+          "scorable": 0,
+          "strict_successes": 0,
+          "terminal_slots": 3
+        }
+      },
+      "cost_note": "原始失败尝试的 token 可能包含保守预算估算，不代表已发生用量；按冻结价格快照和 Decimal 计算；缺价或缺用量时总成本为 null，不表示精确账单。",
+      "cost_observed_trials": 0,
+      "cost_usd": null,
+      "exclusion_reasons": {
+        "provider_failure": 12
+      },
+      "grader_duration_ms": {
+        "median": 39.5,
+        "observed_trials": 12,
+        "p95": 78.0
+      },
+      "independent_acceptance": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "infrastructure_errors": 12,
+      "input_tokens": {
+        "observed_trials": 12,
+        "total": 45030
+      },
+      "invalid_repeats": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "memory_retrieval_enabled": false,
+      "model_profile": "legacy-default",
+      "output_tokens": {
+        "observed_trials": 12,
+        "total": 12288
+      },
+      "permission_denials": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "planned_slots": 12,
+      "raw_grader": {
+        "denominator": 12,
+        "passed": 0
+      },
+      "run_trials": 12,
+      "scorable_trials": 0,
+      "slot_status_counts": {
+        "completed": 12
+      },
+      "source_revision": "9d498f91f7ca21caa7f4f842fba0a49075754f20",
+      "strict_task_success": {
+        "denominator": 0,
+        "passed": 0,
+        "rate": null
+      },
+      "subagent_calls": 0,
+      "successful_model_responses": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "token_sources": {
+        "estimated": 12
+      },
+      "tool_calls": {
+        "observed_trials": 12,
+        "total": 0
+      },
+      "tool_outcomes": {
+        "denied": 0,
+        "failed": 0,
+        "invalid": 0,
+        "succeeded": 0,
+        "timeout": 0
+      },
+      "unrun_slots": 0
+    }
+  },
+  "limitations": [
+    "固定 coding-benchmark@1.1 四题与本次模型绑定。",
+    "Memory 结论仅适用于冻结语义种子的自动摘要检索，不代表跨任务学习或其他记忆能力。",
+    "所有原始样本均保留；基础设施失败只排除能力分母，不删除证据。",
+    "组用量与耗时含失败尝试，仅作原始观测；能力差异只使用双方均可评分的配对。",
+    "缺失值保持 null；价格估算不代表 provider 的精确账单。",
+    "每题三次重复仅形成描述性观察，不宣称统计显著。"
+  ],
+  "manual_review_queue": [
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-f6c44f412c3e7a26ad5dc5c7/agent.log",
+          "diff": "trials/s-f6c44f412c3e7a26ad5dc5c7/diff.patch",
+          "grader_log": "trials/s-f6c44f412c3e7a26ad5dc5c7/grader.log"
+        },
+        "slot_id": "s-f6c44f412c3e7a26ad5dc5c7"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-f6c44f412c3e7a26ad5dc5c7"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-e51bb9f84bfc975eb2967f61/agent.log",
+          "diff": "trials/s-e51bb9f84bfc975eb2967f61/diff.patch",
+          "grader_log": "trials/s-e51bb9f84bfc975eb2967f61/grader.log"
+        },
+        "slot_id": "s-e51bb9f84bfc975eb2967f61"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-e51bb9f84bfc975eb2967f61"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-8fbfbd3399f858eed112dab9/agent.log",
+          "diff": "trials/s-8fbfbd3399f858eed112dab9/diff.patch",
+          "grader_log": "trials/s-8fbfbd3399f858eed112dab9/grader.log"
+        },
+        "slot_id": "s-8fbfbd3399f858eed112dab9"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-8fbfbd3399f858eed112dab9"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/agent.log",
+          "diff": "trials/s-9e2ba9d8f6b9df7ec99962fa/diff.patch",
+          "grader_log": "trials/s-9e2ba9d8f6b9df7ec99962fa/grader.log"
+        },
+        "slot_id": "s-9e2ba9d8f6b9df7ec99962fa"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-9e2ba9d8f6b9df7ec99962fa"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-6875a880cee9662915250daf/agent.log",
+          "diff": "trials/s-6875a880cee9662915250daf/diff.patch",
+          "grader_log": "trials/s-6875a880cee9662915250daf/grader.log"
+        },
+        "slot_id": "s-6875a880cee9662915250daf"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-6875a880cee9662915250daf"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-7600f2e1ebe37ab3a1825fb1/agent.log",
+          "diff": "trials/s-7600f2e1ebe37ab3a1825fb1/diff.patch",
+          "grader_log": "trials/s-7600f2e1ebe37ab3a1825fb1/grader.log"
+        },
+        "slot_id": "s-7600f2e1ebe37ab3a1825fb1"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-7600f2e1ebe37ab3a1825fb1"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-e1b7251d25e68d3b95103acc/agent.log",
+          "diff": "trials/s-e1b7251d25e68d3b95103acc/diff.patch",
+          "grader_log": "trials/s-e1b7251d25e68d3b95103acc/grader.log"
+        },
+        "slot_id": "s-e1b7251d25e68d3b95103acc"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-e1b7251d25e68d3b95103acc"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-1b312f9bcdadc35f9a6a127b/agent.log",
+          "diff": "trials/s-1b312f9bcdadc35f9a6a127b/diff.patch",
+          "grader_log": "trials/s-1b312f9bcdadc35f9a6a127b/grader.log"
+        },
+        "slot_id": "s-1b312f9bcdadc35f9a6a127b"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-1b312f9bcdadc35f9a6a127b"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-2e846357942d853e412eaecc/agent.log",
+          "diff": "trials/s-2e846357942d853e412eaecc/diff.patch",
+          "grader_log": "trials/s-2e846357942d853e412eaecc/grader.log"
+        },
+        "slot_id": "s-2e846357942d853e412eaecc"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-2e846357942d853e412eaecc"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-c0ee593deb638f15de4bb48d/agent.log",
+          "diff": "trials/s-c0ee593deb638f15de4bb48d/diff.patch",
+          "grader_log": "trials/s-c0ee593deb638f15de4bb48d/grader.log"
+        },
+        "slot_id": "s-c0ee593deb638f15de4bb48d"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-c0ee593deb638f15de4bb48d"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-98753b0f0ed5d982e94f7bb7/agent.log",
+          "diff": "trials/s-98753b0f0ed5d982e94f7bb7/diff.patch",
+          "grader_log": "trials/s-98753b0f0ed5d982e94f7bb7/grader.log"
+        },
+        "slot_id": "s-98753b0f0ed5d982e94f7bb7"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-98753b0f0ed5d982e94f7bb7"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-c98da8f80943f27e9acf50e6/agent.log",
+          "diff": "trials/s-c98da8f80943f27e9acf50e6/diff.patch",
+          "grader_log": "trials/s-c98da8f80943f27e9acf50e6/grader.log"
+        },
+        "slot_id": "s-c98da8f80943f27e9acf50e6"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-c98da8f80943f27e9acf50e6"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-3041fa98adb10bc302adef20/agent.log",
+          "diff": "trials/s-3041fa98adb10bc302adef20/diff.patch",
+          "grader_log": "trials/s-3041fa98adb10bc302adef20/grader.log"
+        },
+        "slot_id": "s-3041fa98adb10bc302adef20"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-3041fa98adb10bc302adef20"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-6c2b268dffe33493953f4199/agent.log",
+          "diff": "trials/s-6c2b268dffe33493953f4199/diff.patch",
+          "grader_log": "trials/s-6c2b268dffe33493953f4199/grader.log"
+        },
+        "slot_id": "s-6c2b268dffe33493953f4199"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-6c2b268dffe33493953f4199"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-14d3ea0db383aeda28fb70a6/agent.log",
+          "diff": "trials/s-14d3ea0db383aeda28fb70a6/diff.patch",
+          "grader_log": "trials/s-14d3ea0db383aeda28fb70a6/grader.log"
+        },
+        "slot_id": "s-14d3ea0db383aeda28fb70a6"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-14d3ea0db383aeda28fb70a6"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-714ae45ea143610f2fb2ea54/agent.log",
+          "diff": "trials/s-714ae45ea143610f2fb2ea54/diff.patch",
+          "grader_log": "trials/s-714ae45ea143610f2fb2ea54/grader.log"
+        },
+        "slot_id": "s-714ae45ea143610f2fb2ea54"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-714ae45ea143610f2fb2ea54"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-08c0b32f4c2118fb473ff67d/agent.log",
+          "diff": "trials/s-08c0b32f4c2118fb473ff67d/diff.patch",
+          "grader_log": "trials/s-08c0b32f4c2118fb473ff67d/grader.log"
+        },
+        "slot_id": "s-08c0b32f4c2118fb473ff67d"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-08c0b32f4c2118fb473ff67d"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-948b586cc181f28c0e9ba0ba/agent.log",
+          "diff": "trials/s-948b586cc181f28c0e9ba0ba/diff.patch",
+          "grader_log": "trials/s-948b586cc181f28c0e9ba0ba/grader.log"
+        },
+        "slot_id": "s-948b586cc181f28c0e9ba0ba"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-948b586cc181f28c0e9ba0ba"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-0eefb02d76092806dec7c187/agent.log",
+          "diff": "trials/s-0eefb02d76092806dec7c187/diff.patch",
+          "grader_log": "trials/s-0eefb02d76092806dec7c187/grader.log"
+        },
+        "slot_id": "s-0eefb02d76092806dec7c187"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-0eefb02d76092806dec7c187"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-d5972d5235cc81d6b4749e37/agent.log",
+          "diff": "trials/s-d5972d5235cc81d6b4749e37/diff.patch",
+          "grader_log": "trials/s-d5972d5235cc81d6b4749e37/grader.log"
+        },
+        "slot_id": "s-d5972d5235cc81d6b4749e37"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-d5972d5235cc81d6b4749e37"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-0cddd863a4df1e793c08297a/agent.log",
+          "diff": "trials/s-0cddd863a4df1e793c08297a/diff.patch",
+          "grader_log": "trials/s-0cddd863a4df1e793c08297a/grader.log"
+        },
+        "slot_id": "s-0cddd863a4df1e793c08297a"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-0cddd863a4df1e793c08297a"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-794e14e671555b9e19a2ac51/agent.log",
+          "diff": "trials/s-794e14e671555b9e19a2ac51/diff.patch",
+          "grader_log": "trials/s-794e14e671555b9e19a2ac51/grader.log"
+        },
+        "slot_id": "s-794e14e671555b9e19a2ac51"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-794e14e671555b9e19a2ac51"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-c1ddda5db0a100b66bf2ce67/agent.log",
+          "diff": "trials/s-c1ddda5db0a100b66bf2ce67/diff.patch",
+          "grader_log": "trials/s-c1ddda5db0a100b66bf2ce67/grader.log"
+        },
+        "slot_id": "s-c1ddda5db0a100b66bf2ce67"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-c1ddda5db0a100b66bf2ce67"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-5ca9ae2e75818e91d18383db/agent.log",
+          "diff": "trials/s-5ca9ae2e75818e91d18383db/diff.patch",
+          "grader_log": "trials/s-5ca9ae2e75818e91d18383db/grader.log"
+        },
+        "slot_id": "s-5ca9ae2e75818e91d18383db"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-5ca9ae2e75818e91d18383db"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-8b2c27738559d14e51feba37/agent.log",
+          "diff": "trials/s-8b2c27738559d14e51feba37/diff.patch",
+          "grader_log": "trials/s-8b2c27738559d14e51feba37/grader.log"
+        },
+        "slot_id": "s-8b2c27738559d14e51feba37"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-8b2c27738559d14e51feba37"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-042d77d65bd947a3ce214fd1/agent.log",
+          "diff": "trials/s-042d77d65bd947a3ce214fd1/diff.patch",
+          "grader_log": "trials/s-042d77d65bd947a3ce214fd1/grader.log"
+        },
+        "slot_id": "s-042d77d65bd947a3ce214fd1"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-042d77d65bd947a3ce214fd1"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-d1cbb51c1490c6bda1b719bb/agent.log",
+          "diff": "trials/s-d1cbb51c1490c6bda1b719bb/diff.patch",
+          "grader_log": "trials/s-d1cbb51c1490c6bda1b719bb/grader.log"
+        },
+        "slot_id": "s-d1cbb51c1490c6bda1b719bb"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-d1cbb51c1490c6bda1b719bb"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-e8ddce8e88d67916bb8e41f4/agent.log",
+          "diff": "trials/s-e8ddce8e88d67916bb8e41f4/diff.patch",
+          "grader_log": "trials/s-e8ddce8e88d67916bb8e41f4/grader.log"
+        },
+        "slot_id": "s-e8ddce8e88d67916bb8e41f4"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-e8ddce8e88d67916bb8e41f4"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-9bd859ccddd6f4c671f3dd72/agent.log",
+          "diff": "trials/s-9bd859ccddd6f4c671f3dd72/diff.patch",
+          "grader_log": "trials/s-9bd859ccddd6f4c671f3dd72/grader.log"
+        },
+        "slot_id": "s-9bd859ccddd6f4c671f3dd72"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-9bd859ccddd6f4c671f3dd72"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-2cd4ba2502efca142fd07368/agent.log",
+          "diff": "trials/s-2cd4ba2502efca142fd07368/diff.patch",
+          "grader_log": "trials/s-2cd4ba2502efca142fd07368/grader.log"
+        },
+        "slot_id": "s-2cd4ba2502efca142fd07368"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-2cd4ba2502efca142fd07368"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-c2a396316e14d27840f5f64f/agent.log",
+          "diff": "trials/s-c2a396316e14d27840f5f64f/diff.patch",
+          "grader_log": "trials/s-c2a396316e14d27840f5f64f/grader.log"
+        },
+        "slot_id": "s-c2a396316e14d27840f5f64f"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-c2a396316e14d27840f5f64f"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-906f4f68d4c4de673f90a9f8/agent.log",
+          "diff": "trials/s-906f4f68d4c4de673f90a9f8/diff.patch",
+          "grader_log": "trials/s-906f4f68d4c4de673f90a9f8/grader.log"
+        },
+        "slot_id": "s-906f4f68d4c4de673f90a9f8"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-906f4f68d4c4de673f90a9f8"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-0d8cb1006054cc7787441b80/agent.log",
+          "diff": "trials/s-0d8cb1006054cc7787441b80/diff.patch",
+          "grader_log": "trials/s-0d8cb1006054cc7787441b80/grader.log"
+        },
+        "slot_id": "s-0d8cb1006054cc7787441b80"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-0d8cb1006054cc7787441b80"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-bff0af1ab2a3b19a19e9f989/agent.log",
+          "diff": "trials/s-bff0af1ab2a3b19a19e9f989/diff.patch",
+          "grader_log": "trials/s-bff0af1ab2a3b19a19e9f989/grader.log"
+        },
+        "slot_id": "s-bff0af1ab2a3b19a19e9f989"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-bff0af1ab2a3b19a19e9f989"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-5cf40d51c89e08e20ee3f1ec/agent.log",
+          "diff": "trials/s-5cf40d51c89e08e20ee3f1ec/diff.patch",
+          "grader_log": "trials/s-5cf40d51c89e08e20ee3f1ec/grader.log"
+        },
+        "slot_id": "s-5cf40d51c89e08e20ee3f1ec"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-5cf40d51c89e08e20ee3f1ec"
+    },
+    {
+      "evidence": {
+        "artifacts": {
+          "agent_log": "trials/s-e9ef119a329d6ae4cf191131/agent.log",
+          "diff": "trials/s-e9ef119a329d6ae4cf191131/diff.patch",
+          "grader_log": "trials/s-e9ef119a329d6ae4cf191131/grader.log"
+        },
+        "slot_id": "s-e9ef119a329d6ae4cf191131"
+      },
+      "kind": "excluded_capability_sample",
+      "reason": "provider_failure",
+      "slot_id": "s-e9ef119a329d6ae4cf191131"
+    }
+  ],
+  "planned_slots": 36,
+  "price_snapshot": {
+    "currency": "USD",
+    "effective_date": "2026-10-08",
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "source": "No reviewed price rates were supplied; leave cost unavailable"
+  },
+  "recovery_note": "编码比较不适用；可靠性历史结果单独引用，不在本比较中重算。",
+  "recovery_success_rate": null,
+  "report_rules_version": "2",
+  "run_id": "67583764-8595-4c68-ad4d-8f2254f23bdf",
+  "run_kind": "live",
+  "run_status": "completed",
+  "schema_version": 1,
+  "source_evidence": {
+    "files": {
+      "comparison-plan.json": "50fbc9f54109009538d52fdf8d2050fcab6944019bb7cf4cce30f0f9f0dee8a2",
+      "comparison-run.json": "376a9abe7a51079c1e77e10a3e2bca69329a59844b81e9947547f56b8e9b942e",
+      "comparison-spec.json": "8f7aeb2e4acc71b5b31ffca7525d8a9a46e7f9f59e453df0e0a5e1df4f81e306",
+      "suite.json": "7e4d4638b376e4c32f50aa335b8765d859945892c9f89a62684fb110c4db0361"
+    },
+    "relative_directory": "../live-20261008-01",
+    "run_id": "67583764-8595-4c68-ad4d-8f2254f23bdf"
+  },
+  "suite": {
+    "cases": [
+      {
+        "agent_timeout_seconds": 120,
+        "allowed_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "authorized_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "case_id": "pagination-boundary",
+        "case_version": "1.0",
+        "grader_sha256": "60c70f7cc2716a92324322ba543e6945bd2ec91d141319d27c6ca12bba6a1e69",
+        "grader_timeout_seconds": 30,
+        "initial_sha256": "20fd1da78089a4a97126cdeca06e8f01fcb45cdc767f13c61f5d9ab12d740fcf",
+        "known_good_sha256": "23f4fd5e8fe18d2d6e3d874fae54d8ee387a0b2282c99a4e810f89dd564b1894",
+        "max_rounds": 16,
+        "task": "修复分页函数遗漏末页的问题。请保证空集合返回空分页；对 6 条记录按每页 3 条分页时返回两页且第二页是最后 3 条；对 7 条记录仍返回三页且末页只有 1 条。page_size 小于 1 必须抛出 ValueError。请保持公开函数的参数和返回类型兼容。",
+        "task_sha256": "07c5b9071b4b18f05b848bdb815ccd1400c11fc83c6b9bb02fa9e704b82d644f"
+      },
+      {
+        "agent_timeout_seconds": 120,
+        "allowed_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "authorized_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "case_id": "orders-discount-receipt",
+        "case_version": "1.1",
+        "grader_sha256": "157c3a8ad564317d3360c9bd11c07c66294569cdae6c5b75f27f9e6b8a588aab",
+        "grader_timeout_seconds": 30,
+        "initial_sha256": "f0b133ee8255c4d7a317f1decb6cf87a192392d77bfb317650336e76a838f3e8",
+        "known_good_sha256": "3312510e4bbda8e3b5cef79f1c4a9ee6039b465a815a7616f3442d93ddf0ae7f",
+        "max_rounds": 18,
+        "task": "修复订单折扣和收据展示。折扣按订单小计（整数分）计算，折扣百分比为整数，折扣金额按四舍五入规则 half-up 舍入到分；应付金额等于小计减折扣。收据必须准确展示小计、折扣百分比与金额、应付金额，并用两位小数格式化美元金额。折扣计算和收据展示都要正确，保留现有公开函数参数。 收据的精确格式为三行：Subtotal: $<金额>\\nDiscount (<百分比>%): -$<金额>\\nAmount due: $<金额>\\n，末尾保留换行。例如小计 1235 分、折扣 15 时必须返回 \"Subtotal: $12.35\\nDiscount (15%): -$1.85\\nAmount due: $10.50\\n\"。保留对负小计和不在 0 到 100 范围内的折扣百分比抛出 ValueError 的行为。",
+        "task_sha256": "6640a26cc46877f2e018609b10d556b66979a602fb8331c441894dfe5a5c6bea"
+      },
+      {
+        "agent_timeout_seconds": 120,
+        "allowed_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "authorized_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "case_id": "cache-expiry-regression",
+        "case_version": "1.0",
+        "grader_sha256": "eb45e877fc24f626993513a3bf6a88a624e7cf37092a795c0fc3b9ad4b132335",
+        "grader_timeout_seconds": 30,
+        "initial_sha256": "131195d4c85e9d28e830a9511c8a891765d55b5fe103786e82fd4c5bb8de4f32",
+        "known_good_sha256": "4e2e3696265c1109815b0ed7d0362138b0a9b28ff0436bd7e9df01fbcff6979a",
+        "max_rounds": 18,
+        "task": "修复缓存过期边界错误：条目存活时间达到 ttl_seconds 时就已经过期，读取应返回 None；过期前仍返回原值。请在 tests/test_cache_expiry.py 新增标准库 unittest 回归测试，使用可控时钟验证过期前和恰好到期两个时刻。新测试必须在当前实现通过，并能在原始错误实现上失败。",
+        "task_sha256": "f741df8c4dc3f6b9ef82e8369886e9648c9a79e640e3b37716938a322efabf60"
+      },
+      {
+        "agent_timeout_seconds": 120,
+        "allowed_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "authorized_tools": [
+          "read_file",
+          "list_dir",
+          "grep",
+          "write_file",
+          "edit_file",
+          "calculate"
+        ],
+        "case_id": "config-priority-investigation",
+        "case_version": "1.0",
+        "grader_sha256": "c7092ef7d112465743d53f20670e93db0cb9f37bd364284c6dee588da31f7eb0",
+        "grader_timeout_seconds": 30,
+        "initial_sha256": "daea38f8b3f098f17df40434f9900868366ad157c35e0bc81b65e574ddff82d2",
+        "known_good_sha256": "1ccd38f796efe77d504b5bf29f7f83e310d43c7f21477f5b9d623df0bc9bb4f0",
+        "max_rounds": 20,
+        "task": "调查并修复配置来源优先级问题。约定优先级从低到高为：内置默认值、项目配置、环境变量；同一设置在多个来源出现时，最终值必须来自最高优先级来源，其他设置仍保留。复现时默认值为 APP_MODE=development、APP_RETRIES=3，项目值为 APP_MODE=staging、APP_RETRIES=5，环境变量为 APP_MODE=production、APP_TIMEOUT=7。请修复后保证结果为 APP_MODE=production、APP_RETRIES=5、APP_TIMEOUT=7，并保留现有公开入口。",
+        "task_sha256": "4baefb8e2b0c72c89d86de3457a87086ea4512bccd61592bffd39734b9b25b5f"
+      }
+    ],
+    "sha256": "73f9d068d7dc19e482a74ab2f674921c4dd2e5467516c4f3a95736cafcd21469",
+    "suite_id": "coding-benchmark",
+    "version": "1.1"
+  },
+  "terminal_slots": 36
+}

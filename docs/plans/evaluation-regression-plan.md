@@ -5,6 +5,12 @@
 > 能力前置：阶段十三轻量 Agent Collaboration（`v0.47`–`v0.49`）及此前的执行、验证、恢复、Memory、MCP 与 Skills
 > 关联计划：`agent-collaboration-plan.md`、`reliable-execution-plan.md`、`session-persistence-resume-plan.md`、`adaptive-planning-plan.md`
 
+## 2026-10-08 v0.53 比较评分修正
+
+v0.53 正式批次 `67583764-8595-4c68-ad4d-8f2254f23bdf` 的 36 次请求全部连接失败。原报告误将 grader 布尔结果视为能力资格，错误标记比较完成。现使用统一资格判断和独立报告规则 2，保留原始 grader 0/36；有效能力样本为 0，比较未完成，能力差异为 null。[修正版报告](../evaluation/baselines/v0.53/live-20261008-01-report-corrected/report.md) 独立保存，原归档 150 文件未修改。
+
+新 worker 支持有界、白名单的连接原因链诊断，但历史批次不能追补未知原因。本次只修复评分与诊断缺口，没有网络探针、付费请求或新 live 批次；v0.53 live 验收仍未完成。
+
 ## 2026-10-08 已观测失败的修复
 
 用户授权修复。当前可执行候选升级为 suite 1.6，旧 1.5 继续只读重建。已定位 `SessionValidationError`：非法 `recover.caused_by_failure_id` 被拒后仍写成因果引用，导致 State 导出失败。拒绝记录现仅保留存在的引用，未知编号记为 null，且只允许 rejected 记录无因果 failure；不伪造失败、不推进 generation。
@@ -301,7 +307,7 @@
 - [x] `v0.50` 有可离线自测、可显式 live 运行的统一 harness，结果 schema 与评分边界稳定。
 - [ ] `v0.51` 有冻结且可重跑的编码任务集，真实 Agent 基线和独立验收报告可复核。
 - [ ] `v0.52` 有可控故障矩阵，明确区分运行时安全不变量与 Agent 恢复能力。
-- [x] `v0.53` 的回归比较与 Memory 检索消融实现和离线验收完成；36 槽 live 对比仍待用户审阅清单并明确启动，完成真实结果报告后再结项。
+- [x] `v0.53` 的回归比较与 Memory 检索消融实现和离线验收完成；正式 36 槽 live 批次已经运行并可重建，但 36 次模型请求全部为 provider 连接错误，不能形成能力比较结论，live 验收仍未完成。
 - [ ] 用户审定代表性任务与成功标准；争议样本人工复核有记录，无需逐次手工验收。
 - [ ] 文档、教程、变更记录与三项完整验证完成；live 评测实际执行，未执行项明确列为未完成。
 
@@ -314,7 +320,7 @@
 - 新增 ComparisonSpec / ComparisonRun / ComparisonTrial、目标版本归档与 Runtime 接口预检、隔离 worker、顺序账本、独立 grader 共享入口、指标与报告重建 CLI。
 - 四份 Memory 种子只包含接口、背景和调查方法；trial 使用目标版本 MemoryStore 和 MemoryRetriever，workspace、HOME、Memory 与临时目录彼此隔离。证据不保存注入正文。
 - 固定响应自测运行实际目标版本 AgentRuntime，不请求 provider；另覆盖失败工具、权限拒绝、无效重复、证据损坏和旧 runner/benchmark 兼容性。
-- Live 比较状态：未运行、36 槽全部未启动。审阅清单已生成于 `/private/tmp/mini-agent-v053-review-20261008-02/`；实现、离线验收和清单生成都不授权付费调用，须由用户审阅并明确启动。
+- Live 比较状态：正式批次 `67583764-8595-4c68-ad4d-8f2254f23bdf` 已于 2026-10-08 按用户审阅后的清单运行；冻结当前源码为 `807b95bf7b1e51cc6d622a8a519b447c77c7fbb5`。36/36 槽位均有终态且清理完整，无重试、补跑或替换。36 次模型请求均为 `ProviderConnectionError`，成功响应和工具调用为 0；grader 对未修改 workspace 运行 36 次、0 次通过。因此批次链路有完整记录，但不能回答版本回归或 Memory 收益，v0.53 live 能力验收仍未完成。脱敏证据只保存错误类别，不含更细的连接异常原因；价格缺项，成本为 `null`。完整原始账本、trial 和报告归档见[正式 live 基线](../evaluation/baselines/v0.53/README.md)。
 - v0.51 `coding-benchmark@1.1` live 基线、v0.52 `reliability-boundaries@1.6` live 基线继续各自未完成；阶段十四整体不能因 v0.53 离线交付而标为完成。
 - 最终实现 revision `34ef871`；比较自测使用目标 commit checkout 和固定响应，目录 `/private/tmp/mini-agent-v053-comparison-offline-20261008-03/`。36/36 trial 有终态且独立 grader 36/36 通过，两条边都通过可比性校验；三个组的严格任务成功均为 0/12，因为 fixture 回复触发了 `blocked` 终态。这是 harness 结构与证据检查，不是 Agent 能力成绩。固定边界探针分别记录 1 次工具失败、1 次权限拒绝和 1 次无效重复。此前失败自测 `/private/tmp/mini-agent-v053-comparison-offline-20261008-02/` 保留；问题为要求测试文件的题目缺少空 `tests/` 目录，修复后在全新目录重新运行。
 - 完整 pytest：849 passed；`validate-suite` 确认 `coding-benchmark@1.1` 四题的原始实现均被 grader 拒绝、四份 known_good 均通过。教程结构检查、README 检查和 `git diff --check` 通过；教程事实检查全部源码映射通过，唯一失败是用户尚未创建 `v0.53` tag，助手不执行 tag 操作。

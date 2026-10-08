@@ -12,7 +12,9 @@ import tempfile
 from typing import Any
 
 from mini_agent.evaluation.benchmark import validate_suite
-from mini_agent.evaluation.comparison_metrics import METRICS_RULES_VERSION, group_metrics
+from mini_agent.evaluation.comparison_metrics import (
+    METRICS_RULES_VERSION, REPORT_RULES_VERSION, group_metrics, is_scorable, trial_eligibility, paired_cost_delta,
+)
 from mini_agent.evaluation.comparison_schema import (
     MAX_COMPARISON_RUN_BYTES, MAX_COMPARISON_SPEC_BYTES, MAX_COMPARISON_TRIAL_BYTES,
     canonical_json, comparison_execution_order, sha256_bytes, sha256_json, validate_comparison_run,
@@ -193,22 +195,16 @@ def _valid_factor_edge(spec: dict[str, Any], edge: dict[str, Any]) -> list[str]:
 
 
 def _strict_success(trial: dict[str, Any] | None) -> bool | None:
-    if trial is None:
+    if not is_scorable(trial):
         return None
     return bool(
-        trial["agent"]["stop_reason"] == "text"
+        (trial["agent"]["successful_responses"] or 0) > 0
+        and trial["agent"]["stop_reason"] == "text"
         and trial["agent"]["state_status"] == "done"
         and trial["agent"]["error_kind"] is None
         and trial["grader"]["passed"] is True
         and trial["grader"]["error_kind"] is None
         and trial["cleanup"]["complete"] is True
-    )
-
-
-def _scorable(trial: dict[str, Any] | None) -> bool:
-    return bool(
-        trial is not None and type(trial["grader"]["passed"]) is bool
-        and trial["grader"]["error_kind"] is None
     )
 
 
@@ -345,8 +341,8 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
                 left = trials_by_slot.get(left_slot["slot_id"]) if left_slot else None
                 right = trials_by_slot.get(right_slot["slot_id"]) if right_slot else None
                 case_rows[case_id].append((left, right))
-                left_pass = left["grader"]["passed"] if _scorable(left) else None
-                right_pass = right["grader"]["passed"] if _scorable(right) else None
+                left_pass = left["grader"]["passed"] if is_scorable(left) else None
+                right_pass = right["grader"]["passed"] if is_scorable(right) else None
                 pair = {
                     "case_id": case_id, "repetition": repetition,
                     "baseline_slot": left_slot["slot_id"] if left_slot else None,
@@ -355,6 +351,8 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
                     "experiment_slot_status": right_slot["status"] if right_slot else "missing_slot",
                     "baseline_grader_passed": left_pass,
                     "experiment_grader_passed": right_pass,
+                    "baseline_exclusion_reason": trial_eligibility(left)[1],
+                    "experiment_exclusion_reason": trial_eligibility(right)[1],
                     "baseline_strict_success": _strict_success(left),
                     "experiment_strict_success": _strict_success(right),
                     "baseline_evidence": _evidence(left),
@@ -363,7 +361,7 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
                 if (left_slot is None or right_slot is None
                         or left_slot["status"] != "completed"
                         or right_slot["status"] != "completed"
-                        or not _scorable(left) or not _scorable(right)):
+                        or not is_scorable(left) or not is_scorable(right)):
                     any_pair_incomplete = True
                 pairs.append(pair)
                 if left_pass is True and right_pass is False:
@@ -385,31 +383,34 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
                             })
         per_case: dict[str, Any] = {}
         for case_id, paired in case_rows.items():
-            left_scored = [left for left, _right in paired if _scorable(left)]
-            right_scored = [right for _left, right in paired if _scorable(right)]
+            valid_pairs = [(left, right) for left, right in paired
+                           if is_scorable(left) and is_scorable(right)]
+            left_scored = [left for left, _ in valid_pairs]
+            right_scored = [right for _, right in valid_pairs]
             left_passes = sum(item["grader"]["passed"] is True for item in left_scored)
             right_passes = sum(item["grader"]["passed"] is True for item in right_scored)
             left_rate = left_passes / len(left_scored) if left_scored else None
             right_rate = right_passes / len(right_scored) if right_scored else None
             def paired_total(items, field):
                 values = [item["agent"][field] for item in items if type(item["agent"][field]) is int]
-                return sum(values) if values else None
-            left_agent = [left for left, _ in paired if left is not None]
-            right_agent = [right for _, right in paired if right is not None]
+                return sum(values) if values and len(values) == len(items) else None
+            left_agent, right_agent = left_scored, right_scored
             left_durations = [item["agent"]["duration_ms"] for item in left_agent if type(item["agent"]["duration_ms"]) is int]
             right_durations = [item["agent"]["duration_ms"] for item in right_agent if type(item["agent"]["duration_ms"]) is int]
-            left_median = median(left_durations) if left_durations else None
-            right_median = median(right_durations) if right_durations else None
+            durations_complete = bool(valid_pairs) and len(left_durations) == len(right_durations) == len(valid_pairs)
+            left_median = median(left_durations) if durations_complete else None
+            right_median = median(right_durations) if durations_complete else None
             per_case[case_id] = {
                 "baseline_grader": {"passed": left_passes, "denominator": len(left_scored), "planned": spec["repeats"]},
                 "experiment_grader": {"passed": right_passes, "denominator": len(right_scored), "planned": spec["repeats"]},
                 "pass_rate_percentage_point_delta": (right_rate - left_rate) * 100 if left_rate is not None and right_rate is not None else None,
+                "cost_delta_usd": paired_cost_delta(left_agent, right_agent, spec["price_snapshot"]),
                 "input_token_delta": (paired_total(right_agent, "input_tokens") - paired_total(left_agent, "input_tokens")) if paired_total(right_agent, "input_tokens") is not None and paired_total(left_agent, "input_tokens") is not None else None,
                 "output_token_delta": (paired_total(right_agent, "output_tokens") - paired_total(left_agent, "output_tokens")) if paired_total(right_agent, "output_tokens") is not None and paired_total(left_agent, "output_tokens") is not None else None,
                 "agent_median_duration_ms": {"baseline": left_median, "experiment": right_median, "delta": (right_median - left_median) if left_median is not None and right_median is not None else None},
                 "grader_median_duration_ms": {
-                    "baseline": median([item["grader"]["duration_ms"] for item in left_scored]) if left_scored else None,
-                    "experiment": median([item["grader"]["duration_ms"] for item in right_scored]) if right_scored else None,
+                    "baseline": median([item["grader"]["duration_ms"] for item in left_scored]) if left_scored and all(type(item["grader"]["duration_ms"]) is int for item in left_scored) else None,
+                    "experiment": median([item["grader"]["duration_ms"] for item in right_scored]) if right_scored and all(type(item["grader"]["duration_ms"]) is int for item in right_scored) else None,
                 },
             }
         if len(pairs) != planned_pairs:
@@ -423,7 +424,11 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
             "edge_id": f"{baseline_id}->{experiment_id}",
             "baseline_group": baseline_id, "experiment_group": experiment_id,
             "allowed_changes": edge["allowed_changes"],
+            "conditions_match": not [reason for reason in reasons if reason not in {
+                "paired_slot_coverage_mismatch", "one_or_more_paired_samples_not_scorable"}],
             "comparable": not reasons,
+            "scorable_pairs": sum(pair["baseline_grader_passed"] is not None
+                                  and pair["experiment_grader_passed"] is not None for pair in pairs),
             "incomparability_reasons": reasons,
             "planned_pairs": planned_pairs,
             "covered_pairs": sum(pair["baseline_slot"] is not None and pair["experiment_slot"] is not None for pair in pairs),
@@ -436,12 +441,15 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
 
     for slot in run["slots"]:
         trial = trials_by_slot.get(slot["slot_id"])
-        if trial is not None and trial["agent"]["stop_reason"] == "text" and trial["grader"]["passed"] is False:
+        if trial is not None and not is_scorable(trial):
+            review_queue.append({"kind": "excluded_capability_sample", "slot_id": slot["slot_id"],
+                                 "reason": trial_eligibility(trial)[1], "evidence": _evidence(trial)})
+        if is_scorable(trial) and trial["agent"]["stop_reason"] == "text" and trial["grader"]["passed"] is False:
             review_queue.append({"kind": "agent_text_grader_failed", "slot_id": slot["slot_id"], "evidence": _evidence(trial)})
-        if trial is not None and trial["grader"]["passed"] is True and not _strict_success(trial):
+        if is_scorable(trial) and trial["grader"]["passed"] is True and not _strict_success(trial):
             review_queue.append({"kind": "grader_pass_strict_success_failed", "slot_id": slot["slot_id"], "evidence": _evidence(trial)})
 
-    scorable_count = sum(_scorable(trial) for trial in trials_by_slot.values())
+    scorable_count = sum(is_scorable(trial) for trial in trials_by_slot.values())
     complete = (
         run["status"] == "completed"
         and all(slot["status"] == "completed" for slot in run["slots"])
@@ -449,12 +457,20 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
     )
     report = {
         "schema_version": 1,
+        "report_rules_version": REPORT_RULES_VERSION,
+        "frozen_metrics_rules_version": spec["metrics_rules_version"],
+        "source_evidence": {
+            "run_id": run["run_id"],
+            "relative_directory": ".",
+            "files": {name: sha256_bytes(_read_regular(root / name, MAX_COMPARISON_RUN_BYTES))
+                      for name in ("comparison-run.json", "comparison-plan.json", "comparison-spec.json", "suite.json")},
+        },
         "comparison_id": spec["comparison_id"],
         "comparison_version": spec["version"],
         "run_id": run["run_id"],
         "run_kind": run["run_kind"],
         "run_status": run["status"],
-        "batch_complete": complete and run["status"] == "completed",
+        "batch_complete": all(slot["status"] in {"completed", "infrastructure_error", "interrupted"} for slot in run["slots"]),
         "comparison_complete": complete and run["status"] == "completed" and all(edge["comparable"] for edge in edge_reports),
         "suite": plan["suite_summary"],
         "planned_slots": len(run["slots"]),
@@ -468,7 +484,8 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
         "limitations": [
             "固定 coding-benchmark@1.1 四题与本次模型绑定。",
             "Memory 结论仅适用于冻结语义种子的自动摘要检索，不代表跨任务学习或其他记忆能力。",
-            "所有样本均按原顺序保留；不补跑、不替换、不自动剔除条件异常样本。",
+            "所有原始样本均保留；基础设施失败只排除能力分母，不删除证据。",
+            "组用量与耗时含失败尝试，仅作原始观测；能力差异只使用双方均可评分的配对。",
             "缺失值保持 null；价格估算不代表 provider 的精确账单。",
             "每题三次重复仅形成描述性观察，不宣称统计显著。",
         ],
@@ -477,10 +494,17 @@ def build_comparison_report(run_dir: str | Path) -> dict[str, Any]:
 
 
 def render_markdown(report: dict[str, Any]) -> str:
+    def display(value: Any) -> str:
+        return "null" if value is None else str(value)
+
+    source_directory = report["source_evidence"]["relative_directory"]
     lines = [
         f"# 比较报告：{report['comparison_id']}", "",
         f"- 批次：`{report['run_id']}`（{report['run_status']}）",
         f"- 完整槽位：{report['terminal_slots']} / {report['planned_slots']}",
+        f"- 原始证据目录：`{source_directory}`（相对于本报告目录）",
+        f"- 报告规则：{report['report_rules_version']}；能力比较完成：{'是' if report['comparison_complete'] else '否'}",
+        "- 原始 token/失败耗时包含保守估算，只作诊断，不代表正常能力代价或实际账单。",
         f"- 题集：`{report['suite']['suite_id']}@{report['suite']['version']}`",
         "- 恢复成功率：`null`（编码比较不适用）", "",
         "## 组汇总", "",
@@ -493,12 +517,17 @@ def render_markdown(report: dict[str, Any]) -> str:
         lines.append(
             f"| `{group_id}` | {accept['passed']} / {accept['denominator']} | "
             f"{strict['passed']} / {strict['denominator']} | "
-            f"{group['tool_calls']['total']} | {group['input_tokens']['total']} | "
-            f"{group['output_tokens']['total']} | {group['agent_duration_ms']['median']} | "
-            f"{group['grader_duration_ms']['median']} | {group['cost_usd']} |"
+            f"{display(group['tool_calls']['total'])} | {display(group['input_tokens']['total'])} | "
+            f"{display(group['output_tokens']['total'])} | {display(group['agent_duration_ms']['median'])} | "
+            f"{display(group['grader_duration_ms']['median'])} | {display(group['cost_usd'])} |"
         )
+    lines.extend(["", "## 样本资格", "", "| 组 | 原始 grader 通过 | 有效能力样本 | 基础设施异常 |", "|---|---:|---:|---:|"])
+    for group_id, group in report["groups"].items():
+        raw = group["raw_grader"]
+        lines.append(f"| `{group_id}` | {raw['passed']} / {raw['denominator']} | {group['scorable_trials']} | {group['infrastructure_errors']} |")
     for edge in report["edges"]:
         lines.extend(["", f"## {edge['edge_id']}", "", f"可比较：{'是' if edge['comparable'] else '否'}"])
+        lines.append(f"有效配对：{edge['scorable_pairs']} / {edge['planned_pairs']}；合同条件一致：{'是' if edge['conditions_match'] else '否'}")
         if edge["incomparability_reasons"]:
             lines.append("不可比较原因：" + ", ".join(f"`{reason}`" for reason in edge["incomparability_reasons"]))
         lines.extend([
@@ -509,18 +538,20 @@ def render_markdown(report: dict[str, Any]) -> str:
             left, right = item["baseline_grader"], item["experiment_grader"]
             lines.append(
                 f"| `{case_id}` | {left['passed']} / {left['denominator']} | "
-                f"{right['passed']} / {right['denominator']} | {item['pass_rate_percentage_point_delta']} | "
-                f"{item['input_token_delta']} | {item['output_token_delta']} | "
-                f"{item['agent_median_duration_ms']['delta']} |"
+                f"{right['passed']} / {right['denominator']} | {display(item['pass_rate_percentage_point_delta'])} | "
+                f"{display(item['input_token_delta'])} | {display(item['output_token_delta'])} | "
+                f"{display(item['agent_median_duration_ms']['delta'])} |"
             )
         lines.extend(["", "配对槽位证据："])
         for pair in edge["paired_slots"]:
             left_path = pair["baseline_evidence"]["artifacts"]["diff"] if pair["baseline_evidence"] else "缺失"
             right_path = pair["experiment_evidence"]["artifacts"]["diff"] if pair["experiment_evidence"] else "缺失"
+            left_link = f"[diff](<{source_directory}/{left_path}>)" if pair["baseline_evidence"] else left_path
+            right_link = f"[diff](<{source_directory}/{right_path}>)" if pair["experiment_evidence"] else right_path
             lines.append(
                 f"- `{pair['case_id']}` 重复 {pair['repetition']}："
-                f"基线 `{pair['baseline_grader_passed']}`（{left_path}），"
-                f"实验 `{pair['experiment_grader_passed']}`（{right_path}）。"
+                f"基线 `{display(pair['baseline_grader_passed'])}`（{left_link}），"
+                f"实验 `{display(pair['experiment_grader_passed'])}`（{right_link}）。"
             )
         lines.append("\n" + edge["interpretation_limit"])
     lines.extend(["", "## 复核队列", ""])
@@ -534,9 +565,17 @@ def render_markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def write_derived_reports(run_dir: str | Path, report: dict[str, Any]) -> tuple[Path, Path]:
+def write_derived_reports(run_dir: str | Path, report: dict[str, Any], *, output: str | Path | None = None) -> tuple[Path, Path]:
     """Atomically refresh only the reproducible report files, never raw evidence."""
     root = Path(run_dir).expanduser().resolve(strict=True)
+    if output is not None:
+        destination = Path(output).expanduser().absolute()
+        if destination.resolve(strict=False).is_relative_to(root):
+            raise ValueError("derived report output must be outside the source archive")
+        destination.mkdir(mode=0o700, parents=True, exist_ok=False)
+        report = {**report, "source_evidence": {**report["source_evidence"],
+                  "relative_directory": os.path.relpath(root, destination.resolve())}}
+        root = destination
     payloads = {
         root / "report.json": json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2).encode("utf-8") + b"\n",
         root / "report.md": render_markdown(report).encode("utf-8"),

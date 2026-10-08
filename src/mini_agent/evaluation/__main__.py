@@ -132,6 +132,7 @@ def _parser() -> argparse.ArgumentParser:
 
     report_comparison_command = commands.add_parser("report-comparison", help="从比较原始结果重建 JSON/Markdown 报告")
     report_comparison_command.add_argument("run_dir")
+    report_comparison_command.add_argument("--output", help="在源归档外新建独立修正版报告目录")
     return parser
 
 
@@ -327,7 +328,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "report-comparison":
             from mini_agent.evaluation.comparison_report import build_comparison_report, write_derived_reports
             report_value = build_comparison_report(args.run_dir)
-            paths = write_derived_reports(args.run_dir, report_value)
+            paths = write_derived_reports(args.run_dir, report_value, output=args.output)
             print(json.dumps({"report_files": [str(path) for path in paths], "report": report_value}, ensure_ascii=False, indent=2))
             regressions = any(edge["grader_regressions"] for edge in report_value["edges"])
             return 0 if report_value["comparison_complete"] and not regressions else 1

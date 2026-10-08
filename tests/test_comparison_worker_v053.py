@@ -85,3 +85,68 @@ def test_new_structured_state_fact_starts_a_new_repeat_stage(tmp_path):
     snapshot["current_generation_id"] = 2
     observer.observe_round(runtime, (), (call,))
     assert observer.invalid_repeats == 1
+
+
+def test_connection_diagnostics_are_typed_and_content_free():
+    import socket
+    import ssl
+    import errno
+    from mini_agent.evaluation.comparison_worker import _error_diagnostic
+    from mini_agent.evaluation.comparison_schema import validate_error_diagnostic
+    from mini_agent.providers.base import ProviderConnectionError
+    private = 'https://private.invalid/api SECRET_KEY request_body'
+    certificate = ssl.SSLCertVerificationError(1, private)
+    certificate.verify_code = 20
+    for cause, category in [
+        (socket.gaierror(-2, private), 'dns'),
+        (ConnectionRefusedError(errno.ECONNREFUSED, private), 'connection_refused'),
+        (certificate, 'tls_certificate'), (TimeoutError(private), 'timeout'),
+        (RuntimeError(private), 'unknown'),
+    ]:
+        outer = ProviderConnectionError()
+        outer.__cause__ = cause
+        diagnostic = _error_diagnostic(outer)
+        assert diagnostic['category'] == category
+        assert private not in json.dumps(diagnostic)
+        assert validate_error_diagnostic(diagnostic) == diagnostic
+        if category == 'tls_certificate':
+            assert diagnostic['tls_verify_code'] == 20
+
+
+def test_diagnostic_cause_walk_is_bounded_and_cycle_safe():
+    from mini_agent.evaluation.comparison_worker import _error_diagnostic
+    root = RuntimeError('PRIVATE')
+    root.__cause__ = root
+    assert _error_diagnostic(root)['category'] == 'unknown'
+    cause = ConnectionRefusedError(61, 'PRIVATE')
+    for _ in range(4):
+        outer = RuntimeError('PRIVATE')
+        outer.__cause__ = cause
+        cause = outer
+    assert _error_diagnostic(cause)['category'] == 'unknown'
+
+
+def test_runtime_exception_keeps_only_safe_diagnostic(tmp_path, monkeypatch):
+    import socket
+    from mini_agent.runtime import AgentRuntime
+    from mini_agent.providers.base import ProviderConnectionError
+    from mini_agent.evaluation.runner import _copy_fixture
+    case = benchmark.load_suite(SUITE_PATH).cases[0].case
+    workspace = tmp_path / "workspace"
+    _copy_fixture(Path(case.case_dir) / case.fixture_dir, workspace)
+    seeds, digest = _seeds()
+    def fail(_runtime):
+        raise ProviderConnectionError() from socket.gaierror(-2, "PRIVATE_API_KEY https://private.invalid body")
+    monkeypatch.setattr(AgentRuntime, "run", fail)
+    result = run_request({
+        "schema_version": 1, "trial_id": "fixture-trial", "run_kind": "fixture",
+        "case": case.to_dict(), "workspace": str(workspace), "responses": [],
+        "memory_retrieval_enabled": False, "memory_dir": str(tmp_path / "memory"),
+        "memory_seeds": seeds, "memory_material_sha256": digest,
+        "model_profile": "fixture", "max_total_tokens": 64000,
+        "started_marker": str(tmp_path / "started.marker"),
+    })
+    assert result["error_kind"] == "ProviderConnectionError"
+    assert result["error_diagnostic"]["category"] == "dns"
+    assert "PRIVATE" not in json.dumps(result)
+    assert "private.invalid" not in json.dumps(result)

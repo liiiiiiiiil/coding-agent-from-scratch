@@ -11,6 +11,9 @@ from copy import deepcopy
 import hashlib
 import json
 import os
+import socket
+import ssl
+import http.client
 from pathlib import Path
 import sys
 import time
@@ -19,6 +22,44 @@ from typing import Any
 
 
 MAX_WORKER_RESULT_BYTES = 64 * 1024
+
+
+def _error_diagnostic(error: BaseException) -> dict[str, Any]:
+    """Read only typed, content-free facts from a bounded exception chain."""
+    known = (
+        (ssl.SSLCertVerificationError, "tls_certificate", "SSLCertVerificationError"),
+        (socket.gaierror, "dns", "gaierror"),
+        (ConnectionRefusedError, "connection_refused", "ConnectionRefusedError"),
+        (TimeoutError, "timeout", "TimeoutError"),
+        (ssl.SSLError, "tls", "SSLError"),
+        (ConnectionResetError, "connection_reset", "ConnectionResetError"),
+        (http.client.RemoteDisconnected, "remote_disconnect", "RemoteDisconnected"),
+        (http.client.HTTPException, "http_transport", "HTTPException"),
+        (OSError, "os_error", "OSError"),
+    )
+    diagnostic = {"category": "unknown", "cause_type": "unknown", "errno": None, "tls_verify_code": None}
+    current, seen = error, set()
+    for _ in range(4):
+        if id(current) in seen:
+            break
+        seen.add(id(current))
+        for cls, category, name in known:
+            if isinstance(current, cls):
+                diagnostic = {"category": category, "cause_type": name, "errno": None, "tls_verify_code": None}
+                number = getattr(current, "errno", None)
+                if type(number) is int and -(2 ** 31) <= number < 2 ** 31:
+                    diagnostic["errno"] = number
+                code = getattr(current, "verify_code", None)
+                if isinstance(current, ssl.SSLCertVerificationError) and type(code) is int and 0 <= code < 2 ** 31:
+                    diagnostic["tls_verify_code"] = code
+                break
+        following = current.__cause__
+        if following is None and not current.__suppress_context__:
+            following = current.__context__
+        if not isinstance(following, BaseException):
+            break
+        current = following
+    return diagnostic
 
 
 def _hash(value: Any) -> str:
@@ -253,11 +294,13 @@ def run_request(request: dict[str, Any]) -> dict[str, Any]:
     marker.write_text("started\n", encoding="ascii")
     os.chmod(marker, 0o600)
     runtime_error = None
+    error_diagnostic = None
     result = None
     try:
         result = runtime.run()
     except BaseException as error:
         runtime_error = type(error).__name__
+        error_diagnostic = _error_diagnostic(error)
     if result is not None and result.stop_reason == "text" and state.status == "running":
         state.status = "done"
     runtime._refresh_usage()
@@ -273,6 +316,7 @@ def run_request(request: dict[str, Any]) -> dict[str, Any]:
         "stop_reason": result.stop_reason if result is not None else "agent_error",
         "state_status": state.status,
         "error_kind": runtime_error,
+        "error_diagnostic": error_diagnostic,
         "llm_calls": runtime.llm_calls,
         "successful_responses": response_count,
         "tool_calls": runtime.tool_calls,

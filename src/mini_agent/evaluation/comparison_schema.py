@@ -122,9 +122,9 @@ def _require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def _object(value: Any, required: set[str], where: str) -> dict[str, Any]:
+def _object(value: Any, required: set[str], where: str, optional: frozenset[str] = frozenset()) -> dict[str, Any]:
     _require(isinstance(value, dict), f"{where} 必须是 JSON object")
-    _require(set(value) == required, f"{where} 字段不完整或包含未知字段")
+    _require(required <= set(value) <= required | optional, f"{where} 字段不完整或包含未知字段")
     return value
 
 
@@ -312,6 +312,25 @@ def validate_comparison_run(raw: Any) -> ComparisonRun:
     return ComparisonRun(json.loads(json.dumps(run, ensure_ascii=False, sort_keys=True)))
 
 
+def validate_error_diagnostic(raw: Any) -> dict[str, Any] | None:
+    if raw is None:
+        return None
+    diagnostic = _object(raw, {"category", "cause_type", "errno", "tls_verify_code"}, "error_diagnostic")
+    pairs = {
+        "unknown": "unknown", "tls_certificate": "SSLCertVerificationError",
+        "dns": "gaierror", "connection_refused": "ConnectionRefusedError",
+        "timeout": "TimeoutError", "tls": "SSLError", "connection_reset": "ConnectionResetError",
+        "remote_disconnect": "RemoteDisconnected", "http_transport": "HTTPException", "os_error": "OSError",
+    }
+    _require(isinstance(diagnostic["category"], str) and diagnostic["category"] in pairs, "error_diagnostic category 无效")
+    _require(diagnostic["cause_type"] == pairs[diagnostic["category"]], "error_diagnostic cause_type 无效")
+    for field in ("errno", "tls_verify_code"):
+        number = diagnostic[field]
+        _require(number is None or type(number) is int and -(2 ** 31) <= number < 2 ** 31, "error_diagnostic code 无效")
+    _require(diagnostic["tls_verify_code"] is None or diagnostic["category"] == "tls_certificate" and diagnostic["tls_verify_code"] >= 0, "error_diagnostic TLS code 无效")
+    return dict(diagnostic)
+
+
 def validate_comparison_trial(raw: Any) -> ComparisonTrial:
     required = {
         "schema_version", "trial_id", "run_id", "slot_id", "group_id", "case_id",
@@ -355,7 +374,9 @@ def validate_comparison_trial(raw: Any) -> ComparisonTrial:
         "successful_responses", "tool_calls", "tool_outcomes", "permission_denials",
         "input_tokens", "output_tokens", "token_source", "duration_ms",
         "invalid_repeat_count", "subagent_calls",
-    }, "agent")
+    }, "agent", frozenset({"error_diagnostic"}))
+    if "error_diagnostic" in agent:
+        validate_error_diagnostic(agent["error_diagnostic"])
     _require(type(agent["started"]) is bool, "agent.started 无效")
     for field in ("stop_reason", "state_status", "error_kind"):
         _require(agent[field] is None or (isinstance(agent[field], str) and len(agent[field]) <= 120), f"agent.{field} 无效")
@@ -397,5 +418,5 @@ __all__ = [
     "MAX_COMPARISON_TRIAL_BYTES", "PINNED_V052_REVISION", "COMPARISON_SPEC_SCHEMA_V1",
     "ComparisonSpec", "ComparisonRun", "ComparisonTrial", "canonical_json", "sha256_bytes", "comparison_execution_order",
     "sha256_json", "validate_comparison_spec", "validate_comparison_run",
-    "validate_comparison_trial",
+    "validate_comparison_trial", "validate_error_diagnostic",
 ]

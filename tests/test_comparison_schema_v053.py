@@ -84,3 +84,27 @@ def test_price_uses_bounded_decimal_strings_and_full_commit_ids():
     raw["groups"][0]["source_revision"] = "abc123"
     with pytest.raises(ValueError, match="完整 commit ID"):
         validate_comparison_spec(raw)
+
+
+@pytest.mark.parametrize('diagnostic', [
+    {'category': 'dns', 'cause_type': 'gaierror', 'errno': True, 'tls_verify_code': None},
+    {'category': 'secret', 'cause_type': 'unknown', 'errno': None, 'tls_verify_code': None},
+    {'category': 'dns', 'cause_type': 'SECRET', 'errno': None, 'tls_verify_code': None},
+    {'category': 'dns', 'cause_type': 'gaierror', 'errno': None, 'tls_verify_code': 1},
+    {'category': 'dns', 'cause_type': 'gaierror', 'errno': None, 'tls_verify_code': None, 'message': 'PRIVATE'},
+])
+def test_error_diagnostic_rejects_unknown_or_untyped_data(diagnostic):
+    from mini_agent.evaluation.comparison_schema import validate_error_diagnostic
+    with pytest.raises(ValueError):
+        validate_error_diagnostic(diagnostic)
+
+
+def test_old_and_new_trial_diagnostic_compatibility(tmp_path):
+    import json
+    from tests.comparison_helpers_v053 import write_fixture_run
+    from mini_agent.evaluation.comparison_schema import validate_comparison_trial
+    root = write_fixture_run(tmp_path / 'run')
+    trial = json.loads(next((root / 'trials').glob('*/trial.json')).read_text())
+    assert 'error_diagnostic' not in validate_comparison_trial(trial).value['agent']
+    trial['agent']['error_diagnostic'] = {'category': 'dns', 'cause_type': 'gaierror', 'errno': -2, 'tls_verify_code': None}
+    assert validate_comparison_trial(trial).value['agent']['error_diagnostic']['category'] == 'dns'

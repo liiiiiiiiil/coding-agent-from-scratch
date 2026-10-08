@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import uuid
 
@@ -65,7 +66,19 @@ def test_live_runner_refuses_without_explicit_flag_before_touching_paths(tmp_pat
     assert not (tmp_path / "should-not-exist").exists()
 
 
-def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path):
+@pytest.mark.parametrize("diagnostic", [None, {"category": "dns", "cause_type": "gaierror", "errno": -2, "tls_verify_code": None}, {"message": "PRIVATE"}])
+def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path, monkeypatch, diagnostic):
+    from mini_agent.evaluation import comparison
+    original = comparison._run_child
+    def run_child(*args, **kwargs):
+        result = original(*args, **kwargs)
+        if kwargs["stdout_path"].name == "worker.stdout" and diagnostic is not None:
+            path = kwargs["stdout_path"]
+            payload = json.loads(path.read_text())
+            payload["error_diagnostic"] = diagnostic
+            path.write_text(json.dumps(payload))
+        return result
+    monkeypatch.setattr(comparison, "_run_child", run_child)
     spec = _fixture_spec()
     suite = _load_suite(spec)
     seeds, _summary = _load_memory_materials(spec, suite)
@@ -96,3 +109,9 @@ def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path):
     assert relative == f"trials/{slot['slot_id']}/trial.json"
     assert len(digest) == 64
     assert result["grader"]["passed"] is True
+    if diagnostic is not None and "category" in diagnostic:
+        assert result["agent"]["error_diagnostic"] == diagnostic
+    elif diagnostic is not None:
+        assert result["agent"]["error_kind"] == "worker_protocol_error"
+        assert "error_diagnostic" not in result["agent"]
+        assert "PRIVATE" not in json.dumps(result)

@@ -1,0 +1,82 @@
+{
+  "agent": {
+    "duration_ms": 4,
+    "error_kind": "ProviderConnectionError",
+    "input_tokens": 3792,
+    "invalid_repeat_count": 0,
+    "llm_calls": 1,
+    "output_tokens": 1024,
+    "permission_denials": 0,
+    "started": true,
+    "state_status": "running",
+    "stop_reason": "agent_error",
+    "subagent_calls": 0,
+    "successful_responses": 0,
+    "token_source": "estimated",
+    "tool_calls": 0,
+    "tool_outcomes": {
+      "denied": 0,
+      "failed": 0,
+      "invalid": 0,
+      "succeeded": 0,
+      "timeout": 0
+    }
+  },
+  "case_id": "config-priority-investigation",
+  "cleanup": {
+    "complete": true,
+    "issue": null
+  },
+  "evidence": {
+    "artifacts": {
+      "agent_log": {
+        "path": "trials/s-e9ef119a329d6ae4cf191131/agent.log",
+        "sha256": "4ec7d981b10fc5cf4167a41432d4d4bc97460668becb3ffd6ee70cb2cd32506d",
+        "size_bytes": 72
+      },
+      "diff": {
+        "path": "trials/s-e9ef119a329d6ae4cf191131/diff.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "grader_log": {
+        "path": "trials/s-e9ef119a329d6ae4cf191131/grader.log",
+        "sha256": "bbb1e39f621e804b23dec2ce48fde1e47a1a967d9347819677e4854cc186a41d",
+        "size_bytes": 2422
+      }
+    }
+  },
+  "grader": {
+    "duration_ms": 39,
+    "error_kind": null,
+    "exit_code": 0,
+    "passed": false,
+    "result": {
+      "detail": ".FF\n======================================================================\nFAIL: test_higher_priority_sources_win_and_unset_values_survive (__main__.ConfigurationPriority.test_higher_priority_sources_win_and_unset_values_survive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/l2/b2m3pxks37qfyhprp7qjp0c40000gn/T/mini-agent-comparison-trial-nk57rx0i/grader.py\", line 18, in test_higher_priority_sources_win_and_unset_values_survive\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        resolve_settings(defaults, project, environment),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        {\"APP_MODE\": \"production\", \"APP_RETRIES\": \"5\", \"APP_TIMEOUT\": \"7\"},\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: {'APP_MODE': 'development', 'APP_TIMEOUT': '30', 'APP_RETRIES': '3'} != {'APP_MODE': 'production', 'APP_RETRIES': '5', 'APP_TIMEOUT': '7'}\n- {'APP_MODE': 'development', 'APP_RETRIES': '3', 'APP_TIMEOUT': '30'}\n?                ^^^^ --- -                   ^                   ^^\n\n+ {'APP_MODE': 'production', 'APP_RETRIES': '5', 'APP_TIMEOUT': '7'}\n?               +++ ^^^^                     ^                   ^\n\n\n======================================================================\nFAIL: test_project_configuration_overrides_defaults (__main__.ConfigurationPriority.test_project_configuration_overrides_defaults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/l2/b2m3pxks37qfyhprp7qjp0c40000gn/T/mini-agent-comparison-trial-nk57rx0i/grader.py\", line 25, in test_project_configuration_overrides_defaults\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        resolve_settings({\"LOG_LEVEL\": \"warning\"}, {\"LOG_LEVEL\": \"info\"}, {}),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        {\"LOG_LEVEL\": \"info\"},\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: {'LOG_LEVEL': 'warning'} != {'LOG_LEVEL': 'info'}\n- {'LOG_LEVEL': 'warning'}\n?                ----  ^\n\n+ {'LOG_LEVEL': 'info'}\n?                  ^^\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nFAILED (failures=2)\n",
+      "passed": false
+    }
+  },
+  "group_id": "current-off",
+  "memory_evidence": {
+    "failure_categories": [],
+    "material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+    "retrieval_attempts": 0,
+    "retrieval_occurred": false
+  },
+  "memory_material_sha256": "8d8b4bb140aacf585371bd738d91eff638ddaa0ff13fa1fdf767af08aa7a5f33",
+  "memory_retrieval_enabled": false,
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 3,
+  "run_id": "67583764-8595-4c68-ad4d-8f2254f23bdf",
+  "schema_version": 1,
+  "slot_id": "s-e9ef119a329d6ae4cf191131",
+  "source_fingerprint": "410d086ffc5a2d9c26dc08a462d5d85146ef5960e710f4f819fe3a848c172bf7",
+  "source_revision": "807b95bf7b1e51cc6d622a8a519b447c77c7fbb5",
+  "suite_sha256": "73f9d068d7dc19e482a74ab2f674921c4dd2e5467516c4f3a95736cafcd21469",
+  "trial_id": "b1f8d124-4112-47ff-a1ac-7211bc8f594d"
+}
