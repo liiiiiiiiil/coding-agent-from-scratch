@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "case_id": "pagination-boundary",
+  "title": "分页边界检查顺序",
+  "body": "调查分页行为时先检查空输入、页大小非法、恰好整页和末页不足一页。沿着公开函数追踪页数与切片范围，保持参数和返回类型兼容。",
+  "tags": ["pagination", "boundary", "investigation"],
+  "source": "固定比较材料：接口检查方法"
+}

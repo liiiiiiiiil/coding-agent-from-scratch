@@ -1,6 +1,19 @@
 # mini_agent 操作手册
 
-> 本手册跟随最新版本更新。当前对应版本：**v0.52**（冻结故障矩阵和恢复评测；含此前编码基准、Evaluation Harness、计划驱动执行、工具权限、父侧 Memory/References/MCP/Skills 和轻量子代理协作）。
+> 本手册跟随最新版本更新。当前对应版本：**v0.53**（回归比较与 Memory 检索消融；含此前冻结故障矩阵、编码基准、Evaluation Harness、计划驱动执行、工具权限、父侧 Memory/References/MCP/Skills 和轻量子代理协作）。
+
+## v0.53 回归比较与 Memory 检索消融
+
+比较评测冻结 v0.52 与 v0.53 来源、四道编码题、同一模型别名和权限预算。三组是 `old-off`、`current-off`、`current-on`；每题重复三次，合计 36 槽。只比较 v0.52→v0.53 版本变化和 v0.53 内自动 Memory 摘要检索开关变化。Live 尚未运行；必须先生成并审阅完整计划，再由用户明确启动。
+
+```bash
+PYTHONPATH=src python -m mini_agent.evaluation validate-comparison /path/to/filled-spec.json
+PYTHONPATH=src python -m mini_agent.evaluation plan-comparison /path/to/filled-spec.json --output /private/tmp/v053-review-plan
+PYTHONPATH=src python -m mini_agent.evaluation self-test-comparison --output /private/tmp/v053-offline
+PYTHONPATH=src python -m mini_agent.evaluation report-comparison /private/tmp/v053-offline
+```
+
+`self-test-comparison` 用固定响应运行真实 Runtime 装配，不发送 provider 请求，结果标记为 `fixture`。只有审阅计划获明确启动后才执行 `run-comparison <comparison-plan.json> --live --output <new-run-dir>`；不自动重试或补跑。报告会从原始 trial 和相对证据摘要重建逐题配对结果，细节见[比较评测说明](../evaluation/comparison.md)和[v0.53 基线状态](../evaluation/baselines/v0.53/README.md)。
 
 ## v0.52 故障注入与恢复评测
 

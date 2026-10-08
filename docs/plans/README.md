@@ -19,7 +19,8 @@
 阶段十一已完成 v0.40–v0.42：工作区 Memory 支持显式 CRUD 与相关检索，父 Context 可按预算临时注入不可信候选，父 Agent 可按稳定 alias 查阅受权限保护的本地资料。
 - [`mcp-skills-plan.md`](mcp-skills-plan.md) — 阶段十二 MCP 与 Skills 实施计划；v0.43–v0.46 已实现 stdio/受限 HTTP MCP、父侧 MCP Tool、文本 Resource、文本 Prompt 与本地按需 Skills。
 - [`agent-collaboration-plan.md`](agent-collaboration-plan.md) — 阶段十三轻量 Agent Collaboration 实施计划；v0.47–v0.49 已实现，保持单层只读与父 Agent 独占执行权。
-- [`evaluation-regression-plan.md`](evaluation-regression-plan.md) — 阶段十四 Evaluation & Regression 实施计划；v0.50 评测器、离线验收和一次 live 成功试跑已完成；v0.51 编码题保留 suite 1.0 争议成绩、suite 1.1 live 基线未完成；v0.52 suite 1.5 修复后的两个独立 live 批次均无恢复分母（21 个 HTTP 503、20 个连接类错误及 1 个故障未触发 trial），修复前 5/14 单独保留；各历史合同成绩单独保留；v0.53 仍规划回归与能力对比。
+- [`evaluation-regression-plan.md`](evaluation-regression-plan.md) — 阶段十四评测计划；v0.50 live 链路完成，v0.51 suite 1.1 编码基线未完成，v0.52 suite 1.6 可靠性 live 基线未完成；v0.53 比较实现与离线验收单列，live 仍待用户审阅清单并明确启动。
+- [`v053-regression-comparison-plan.md`](v053-regression-comparison-plan.md) — v0.53 回归比较与 Memory 自动检索消融的合同、隔离运行、指标、交付状态和 live 授权边界。
 - [`terminal-output-plan.md`](terminal-output-plan.md) — 终端输出、流式观察、CLI 交互和三种输出模式的实施计划（A–D 已完成）。
 
 ## 文档约定

@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Add an independent schema 1 regression-comparison pipeline with commit-isolated target Runtime workers, frozen 36-slot v0.52/v0.53 and Memory-retrieval plan, per-trial Memory isolation, atomic ledger updates, independent grading, paired reports, and fixture-only offline probes. Live comparison remains unrun pending review and explicit user authorization; existing v0.51/v0.52 live baselines remain incomplete and separate.
+- Update package metadata and both learning paths to v0.53. No Git tag was created.
+
 - Keep invalid recovery requests persistable without inventing causal failure references; report the current failure ID and repair phase on rejection. Supply a separate application-owned final reply prompt, preserving project/user/system constraints and authoritative completion facts while avoiding repeated tool rounds. Freeze suite 1.6 with workspace directory/search tools in verification-repair; retain historical suite 1.5 reports and the 64k parent limit. No paid model request or new live batch was run.
 
 - Estimate budgeted OpenAI Chat input from the complete UTF-8 request structure with an explicit 10% margin, including message roles, JSON keys and tool schemas. Version calibration keys, trim optional tool history to the new allowance, and protect every user correction during trimming. Keep response overrun blocking and all archived live reports unchanged; offline tests cover the 13,748-token shape proxy and 19k/27k late recovery paths. No paid probe or new live batch was run.

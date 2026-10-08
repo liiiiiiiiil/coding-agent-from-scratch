@@ -64,6 +64,7 @@ EXPECTED = {
     "50-evaluation-harness.md": ("v0.50", "v0.49..v0.50"),
     "51-coding-benchmark.md": ("v0.51", "v0.50..v0.51"),
     "52-reliability-evaluation.md": ("v0.52", "v0.51..v0.52"),
+    "53-regression-comparison.md": ("v0.53", "v0.52..v0.53"),
 }
 PATCHES = {
     "16-plan-driven-execution.md": ("v0.16.1", "v0.16..v0.16.1"),

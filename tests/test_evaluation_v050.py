@@ -11,7 +11,7 @@ import pytest
 from mini_agent.evaluation import runner as runner_module
 from mini_agent.evaluation.__main__ import _fixture_responses
 from mini_agent.evaluation.report import build_report
-from mini_agent.evaluation.runner import EvaluationRunner
+from mini_agent.evaluation.runner import EvaluationRunner, run_frozen_grader_source
 from mini_agent.evaluation.schema import (
     CASE_SCHEMA_V1, MAX_FIXTURE_BYTES, case_from_dict, load_case,
     validate_trial_result,
@@ -298,3 +298,20 @@ def test_live_requires_explicit_flag_before_worker_start(tmp_path):
     case = load_case(copied_case(tmp_path))
     with pytest.raises(ValueError, match="--live"):
         EvaluationRunner().run_case(case, tmp_path / "results", run_kind="live", live_confirmed=False)
+
+
+def test_shared_frozen_grader_helper_keeps_legacy_case_contract(tmp_path):
+    case = load_case(copied_case(tmp_path))
+    workspace = tmp_path / "workspace"
+    runner_module._copy_fixture(Path(case.case_dir) / case.fixture_dir, workspace)
+    (workspace / "src" / "scale.py").write_text("def scale(value):\n    return value * 2\n", encoding="utf-8")
+    root = tmp_path / "grader-process"
+    home = root / "home"
+    home.mkdir(parents=True)
+    source = (Path(case.case_dir) / case.grader_script).read_bytes()
+    result, _log = run_frozen_grader_source(
+        case, source, __import__("hashlib").sha256(source).hexdigest(),
+        workspace, Path(case.case_dir), home,
+    )
+    assert result["passed"] is True
+    assert result["error_kind"] is None

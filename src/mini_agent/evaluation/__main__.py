@@ -114,6 +114,24 @@ def _parser() -> argparse.ArgumentParser:
 
     report_reliability = commands.add_parser("report-reliability", help="从可靠性原始结果和证据只读重建报告")
     report_reliability.add_argument("run_dir")
+
+    validate_comparison_command = commands.add_parser("validate-comparison", help="校验 v0.53 冻结比较合同")
+    validate_comparison_command.add_argument("spec_json")
+
+    plan_comparison_command = commands.add_parser("plan-comparison", help="冻结比较条件并生成审阅清单")
+    plan_comparison_command.add_argument("spec_json")
+    plan_comparison_command.add_argument("--output", required=True, help="新的审阅清单目录")
+
+    self_test_comparison_command = commands.add_parser("self-test-comparison", help="用固定响应离线运行 36 槽比较矩阵")
+    self_test_comparison_command.add_argument("--output", required=True, help="新的离线自测目录")
+
+    run_comparison_command = commands.add_parser("run-comparison", help="按审阅清单顺序运行真实比较")
+    run_comparison_command.add_argument("review_plan_json")
+    run_comparison_command.add_argument("--live", action="store_true", help="明确启用真实模型调用")
+    run_comparison_command.add_argument("--output", required=True, help="新的独立比较目录")
+
+    report_comparison_command = commands.add_parser("report-comparison", help="从比较原始结果重建 JSON/Markdown 报告")
+    report_comparison_command.add_argument("run_dir")
     return parser
 
 
@@ -280,6 +298,39 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "report-reliability":
             print(json.dumps(build_reliability_report(args.run_dir), ensure_ascii=False, indent=2))
             return 0
+        if args.command == "validate-comparison":
+            from mini_agent.evaluation.comparison import validate_comparison
+            print(json.dumps(validate_comparison(args.spec_json), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "plan-comparison":
+            from mini_agent.evaluation.comparison import plan_comparison
+            output = plan_comparison(args.spec_json, args.output)
+            print(f"Review plan saved: {output / 'comparison-plan.json'}")
+            return 0
+        if args.command == "self-test-comparison":
+            from mini_agent.evaluation.comparison import self_test_comparison
+            summary = self_test_comparison(args.output)
+            print(json.dumps(summary, ensure_ascii=False, indent=2))
+            return 0 if summary.get("self_test") == "passed" else 1
+        if args.command == "run-comparison":
+            if not args.live:
+                raise ValueError("真实比较运行必须显式传 --live")
+            from mini_agent.evaluation.comparison import run_comparison
+            from mini_agent.evaluation.comparison_report import build_comparison_report, write_derived_reports
+            ledger = run_comparison(args.review_plan_json, args.output, live=True)
+            report_value = build_comparison_report(ledger.parent)
+            write_derived_reports(ledger.parent, report_value)
+            print(f"Comparison run saved: {ledger.parent}")
+            print(json.dumps(report_value, ensure_ascii=False, indent=2))
+            regressions = any(edge["grader_regressions"] for edge in report_value["edges"])
+            return 0 if report_value["comparison_complete"] and not regressions else 1
+        if args.command == "report-comparison":
+            from mini_agent.evaluation.comparison_report import build_comparison_report, write_derived_reports
+            report_value = build_comparison_report(args.run_dir)
+            paths = write_derived_reports(args.run_dir, report_value)
+            print(json.dumps({"report_files": [str(path) for path in paths], "report": report_value}, ensure_ascii=False, indent=2))
+            regressions = any(edge["grader_regressions"] for edge in report_value["edges"])
+            return 0 if report_value["comparison_complete"] and not regressions else 1
     except Exception as error:
         print(f"evaluation error ({type(error).__name__}): {error}", file=sys.stderr)
         return 2

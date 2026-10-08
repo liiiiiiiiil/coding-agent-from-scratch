@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "description": "离线 Runtime 响应夹具。success 写入已知正确公开版本；failure、denied、repeated 专供边界探针。",
+  "cases": {
+    "pagination-boundary": {
+      "success": [
+        {"tool": "write_file", "arguments": {"path": "src/pagination.py", "content": "def paginate(items, page_size):\n    if page_size < 1:\n        raise ValueError(\"page_size must be positive\")\n    return [items[offset:offset + page_size] for offset in range(0, len(items), page_size)]\n"}},
+        {"final": "已完成分页边界修复。"}
+      ],
+      "failure": [
+        {"tool": "read_file", "arguments": {"path": "src/not-present.py"}},
+        {"final": "调查未能继续。"}
+      ],
+      "denied": [
+        {"tool": "read_file", "arguments": {"path": "src/pagination.py"}},
+        {"final": "权限不足，停止读取。"}
+      ],
+      "repeated": [
+        {"tool": "read_file", "arguments": {"path": "src/pagination.py"}},
+        {"tool": "read_file", "arguments": {"path": "src/pagination.py"}},
+        {"final": "已重复读取同一文件。"}
+      ]
+    },
+    "orders-discount-receipt": {
+      "success": [
+        {"tool": "write_file", "arguments": {"path": "src/pricing.py", "content": "def calculate_discount_cents(subtotal_cents, discount_percent):\n    if subtotal_cents < 0 or not 0 <= discount_percent <= 100:\n        raise ValueError(\"invalid order discount\")\n    return (subtotal_cents * discount_percent + 50) // 100\n\n\ndef amount_due_cents(subtotal_cents, discount_percent):\n    return subtotal_cents - calculate_discount_cents(subtotal_cents, discount_percent)\n"}},
+        {"tool": "write_file", "arguments": {"path": "src/receipt.py", "content": "from pricing import amount_due_cents, calculate_discount_cents\n\n\ndef _money(cents):\n    return f\"${cents // 100}.{cents % 100:02d}\"\n\n\ndef render_receipt(subtotal_cents, discount_percent):\n    discount = calculate_discount_cents(subtotal_cents, discount_percent)\n    due = amount_due_cents(subtotal_cents, discount_percent)\n    return (\n        f\"Subtotal: {_money(subtotal_cents)}\\n\"\n        f\"Discount ({discount_percent}%): -{_money(discount)}\\n\"\n        f\"Amount due: {_money(due)}\\n\"\n    )\n"}},
+        {"final": "已完成金额与收据修复。"}
+      ],
+      "failure": [{"tool": "read_file", "arguments": {"path": "src/not-present.py"}}, {"final": "调查未能继续。"}],
+      "denied": [{"tool": "read_file", "arguments": {"path": "src/pricing.py"}}, {"final": "权限不足，停止读取。"}],
+      "repeated": [{"tool": "read_file", "arguments": {"path": "src/pricing.py"}}, {"tool": "read_file", "arguments": {"path": "src/pricing.py"}}, {"final": "已重复读取同一文件。"}]
+    },
+    "cache-expiry-regression": {
+      "success": [
+        {"tool": "write_file", "arguments": {"path": "src/cache.py", "content": "import time\n\n\nclass ExpiringCache:\n    def __init__(self, ttl_seconds, clock=None):\n        if ttl_seconds < 0:\n            raise ValueError(\"ttl_seconds must not be negative\")\n        self.ttl_seconds = ttl_seconds\n        self.clock = clock or time.monotonic\n        self._entries = {}\n\n    def put(self, key, value):\n        self._entries[key] = (value, self.clock())\n\n    def get(self, key):\n        entry = self._entries.get(key)\n        if entry is None:\n            return None\n        value, stored_at = entry\n        if self.clock() - stored_at >= self.ttl_seconds:\n            del self._entries[key]\n            return None\n        return value\n"}},
+        {"tool": "write_file", "arguments": {"path": "tests/test_cache_expiry.py", "content": "from pathlib import Path\nimport sys\nimport unittest\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1] / \"src\"))\n\nfrom cache import ExpiringCache\n\n\nclass CacheExpiryTests(unittest.TestCase):\n    def test_value_is_available_before_ttl(self):\n        now = [10.0]\n        cache = ExpiringCache(5, clock=lambda: now[0])\n        cache.put(\"key\", \"value\")\n        now[0] = 14.999\n        self.assertEqual(cache.get(\"key\"), \"value\")\n\n    def test_value_expires_at_ttl_boundary(self):\n        now = [10.0]\n        cache = ExpiringCache(5, clock=lambda: now[0])\n        cache.put(\"key\", \"value\")\n        now[0] = 15.0\n        self.assertIsNone(cache.get(\"key\"))\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n"}},
+        {"final": "已完成缓存过期修复与公开回归测试。"}
+      ],
+      "failure": [{"tool": "read_file", "arguments": {"path": "src/not-present.py"}}, {"final": "调查未能继续。"}],
+      "denied": [{"tool": "read_file", "arguments": {"path": "src/cache.py"}}, {"final": "权限不足，停止读取。"}],
+      "repeated": [{"tool": "read_file", "arguments": {"path": "src/cache.py"}}, {"tool": "read_file", "arguments": {"path": "src/cache.py"}}, {"final": "已重复读取同一文件。"}]
+    },
+    "config-priority-investigation": {
+      "success": [
+        {"tool": "write_file", "arguments": {"path": "src/bootstrap.py", "content": "def resolve_settings(defaults, project_values, environment):\n    resolved = {}\n    resolved.update(defaults)\n    resolved.update(project_values)\n    resolved.update(environment)\n    return resolved\n"}},
+        {"final": "已修复配置来源优先级。"}
+      ],
+      "failure": [{"tool": "read_file", "arguments": {"path": "src/not-present.py"}}, {"final": "调查未能继续。"}],
+      "denied": [{"tool": "read_file", "arguments": {"path": "src/bootstrap.py"}}, {"final": "权限不足，停止读取。"}],
+      "repeated": [{"tool": "read_file", "arguments": {"path": "src/bootstrap.py"}}, {"tool": "read_file", "arguments": {"path": "src/bootstrap.py"}}, {"final": "已重复读取同一文件。"}]
+    }
+  }
+}

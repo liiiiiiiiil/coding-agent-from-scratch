@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "case_id": "config-priority-investigation",
+  "title": "配置优先级调查方法",
+  "body": "调查配置来源时从解析入口向后追踪默认值、项目配置和环境覆盖的合并顺序。用同一组输入分别改变一个来源，观察最终值来自哪里；不要根据文件名推断优先级。",
+  "tags": ["configuration", "priority", "investigation"],
+  "source": "固定比较材料：配置调查方法"
+}

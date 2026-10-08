@@ -16,7 +16,7 @@
 
 适合想用 Python 标准库理解 LLM agent 如何运行的开发者。每课聚焦一个版本相对上一版新增的核心概念，源码、diff 和设计取舍都可追溯。
 
-**当前状态**：主线已实现 `v0.52`（第 52 课：故障注入与恢复评测）。Suite 1.5 预算定点修复后的两个独立 live 批次未获得可评分恢复样本：第一批 21 个槽位均为 HTTP 503；第二批有 20 个 provider 连接类错误，另 1 个 trial 在故障触发前因 token limit 停止，恢复分母为 0。修复前批次的 5/14 仍单独保留，不代表修复后的结果；suite 1.5 基线未完成。Suite 1.4 及更早合同结果分别保留，v0.51 编码基线也仍未完成。详情见[可靠性基线说明](docs/evaluation/baselines/v0.52/README.md)。教程以默认分支 `docs/tutorials/` 为准；运行某课时再切换该课声明的代码 tag。
+**当前状态**：主线已实现 `v0.53`（第 53 课：回归比较与能力收益验证），比较合同和离线自测已完成；36 槽 live 批次尚未运行，需先审阅冻结清单并由用户明确启动。阶段十四仍未整体完成：v0.51 编码基线和 v0.52 可靠性基线继续单列未完成，历史结果不与新比较合并。详情见[v0.53 比较基线状态](docs/evaluation/baselines/v0.53/README.md)及[阶段十四计划](docs/plans/evaluation-regression-plan.md)。教程以默认分支 `docs/tutorials/` 为准；运行某课时再切换该课声明的代码 tag。
 
 快速入口：[运行](#快速开始) · [学习路径](#学习路径) · [学习指南](./docs/tutorials/README.md) · [完整手册](./docs/operation/manual.md)
 
@@ -93,6 +93,7 @@
     <tr><td><strong>v0.50</strong></td><td><a href="./docs/tutorials/50-evaluation-harness.md">独立评测链路</a></td><td>从固定题目复制干净工作区，运行受限 Agent，再由独立 grader 验收；保存单次结果并分开汇总真实调用与离线自测。</td></tr>
     <tr><td><strong>v0.51</strong></td><td><a href="./docs/tutorials/51-coding-benchmark.md">重复运行编码基准</a></td><td>冻结四道编码题和独立 grader，按固定顺序保留 12 个 live trial 与原始证据；suite 1.0 争议成绩保留，suite 1.1 真实基线未完成。</td></tr>
     <tr><td><strong>v0.52</strong></td><td><a href="./docs/tutorials/52-reliability-evaluation.md">故障注入与恢复评测</a></td><td>冻结 18 类故障并分开评分不变量与恢复；suite 1.5 修复后的两批 live 均未形成恢复分母，第一批全为 HTTP 503，第二批有 20 个连接类错误，基线未完成。</td></tr>
+    <tr><td><strong>v0.53</strong></td><td><a href="./docs/tutorials/53-regression-comparison.md">回归比较与能力收益验证</a></td><td>冻结 v0.52/v0.53 与 Memory 自动检索三组、36 个配对槽位和可重建报告；离线完成，live 尚待用户审阅清单并明确启动。</td></tr>
   </tbody>
 </table>
 

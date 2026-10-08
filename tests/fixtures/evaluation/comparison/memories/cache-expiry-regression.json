@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "case_id": "cache-expiry-regression",
+  "title": "缓存过期调查步骤",
+  "body": "调查缓存时沿写入时间、读取时钟、过期比较和失效清理逐段检查。重点覆盖期限之前、恰好到期和零期限，并运行仓库公开测试确认旧行为没有意外变化。",
+  "tags": ["cache", "expiry", "testing"],
+  "source": "固定比较材料：缓存调查方法"
+}

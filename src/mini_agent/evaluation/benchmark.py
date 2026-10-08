@@ -242,6 +242,37 @@ def suite_plan(suite: Suite, repeats: int | None = None) -> list[dict[str, Any]]
     ]
 
 
+def comparison_suite_summary(suite: Suite) -> dict[str, Any]:
+    """Return the public, content-free-source manifest used by comparisons.
+
+    Task text is included because a review plan must show what every frozen
+    trial asks the Agent to do. Initial code and grader bodies stay represented
+    by their digests and remain in the pinned suite checkout.
+    """
+    return {
+        "suite_id": suite.suite_id,
+        "version": suite.version,
+        "sha256": suite.suite_sha256,
+        "cases": [
+            {
+                "case_id": item.case.case_id,
+                "case_version": item.case.version,
+                "task": item.case.task,
+                "task_sha256": item.task_sha256,
+                "initial_sha256": item.initial_sha256,
+                "grader_sha256": item.grader_sha256,
+                "known_good_sha256": item.known_good_sha256,
+                "allowed_tools": list(item.case.allowed_tools),
+                "authorized_tools": list(item.case.authorized_tools),
+                "max_rounds": item.case.max_rounds,
+                "agent_timeout_seconds": item.case.agent_timeout_seconds,
+                "grader_timeout_seconds": item.case.grader_timeout_seconds,
+            }
+            for item in suite.cases
+        ],
+    }
+
+
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="milliseconds")
 

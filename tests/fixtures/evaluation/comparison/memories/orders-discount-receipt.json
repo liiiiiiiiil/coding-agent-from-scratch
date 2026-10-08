@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "case_id": "orders-discount-receipt",
+  "title": "订单金额与收据调查",
+  "body": "先沿金额数据流区分原价、小计、折扣和应付金额，再检查收据格式化是否重复计算。货币接口通常以整数分避免浮点误差；边界输入应与公开接口约定一致。",
+  "tags": ["orders", "money", "investigation"],
+  "source": "固定比较材料：金额调查方法"
+}

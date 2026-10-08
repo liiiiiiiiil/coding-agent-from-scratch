@@ -11,7 +11,7 @@ import time
 import pytest
 
 from mini_agent.evaluation.benchmark import (
-    PINNED_SUITE_FINGERPRINTS, build_suite_report, load_suite, run_suite,
+    PINNED_SUITE_FINGERPRINTS, build_suite_report, comparison_suite_summary, load_suite, run_suite,
     runtime_fingerprint, validate_suite_baselines,
 )
 from mini_agent.evaluation.runner import EvaluationRunner, _copy_fixture, run_grader_for_workspace
@@ -134,6 +134,16 @@ def test_suite_manifest_and_all_offline_oracles_are_frozen_and_consistent():
     assert SUITE_SCHEMA_V1["properties"]["cases"]["maxItems"] >= 4
     assert TRIAL_RESULT_SCHEMA_V2["properties"]["schema_version"]["const"] == 2
     assert TRIAL_RESULT_SCHEMA_V1["properties"]["schema_version"]["const"] == 1
+
+
+def test_comparison_summary_reuses_frozen_suite_without_changing_legacy_fingerprint():
+    suite = load_suite(SUITE_PATH)
+    summary = comparison_suite_summary(suite)
+    assert summary["suite_id"] == suite.suite_id
+    assert summary["version"] == suite.version
+    assert summary["sha256"] == suite.suite_sha256 == PINNED_SUITE_FINGERPRINTS[(suite.suite_id, suite.version)]
+    assert [item["case_id"] for item in summary["cases"]] == CASE_IDS
+    assert all(item["task_sha256"] and item["grader_sha256"] and item["initial_sha256"] for item in summary["cases"])
 
 
 def test_live_suite_refuses_to_start_without_explicit_confirmation(tmp_path):

@@ -768,3 +768,63 @@ def run_grader_for_workspace(
         return data["passed"], None
     finally:
         shutil.rmtree(home, ignore_errors=True)
+
+
+def run_frozen_grader_source(
+    case: Case,
+    grader_source: bytes,
+    grader_sha256: str,
+    workspace: Path,
+    reference_root: Path,
+    home: Path,
+    redactions: tuple[str, ...] = (),
+    *, include_cleanup: bool = False,
+):
+    """Run one already-frozen grader with the shared isolated-process boundary.
+
+    Comparison runs use this public helper so the new result format shares the
+    Evaluation Harness timeout, redaction, output parsing, and process cleanup
+    behavior without changing legacy ``run_case`` outputs.
+    """
+    if (not isinstance(grader_source, bytes) or len(grader_source) > 64 * 1024
+            or hashlib.sha256(grader_source).hexdigest() != grader_sha256):
+        raise ValueError("frozen grader source digest or size is invalid")
+    grader = home.parent / "grader.py"
+    if grader.exists() or grader.is_symlink():
+        raise FileExistsError("frozen grader path already exists")
+    grader.write_bytes(grader_source)
+    os.chmod(grader, 0o400)
+    stdout, stderr = home / "grader.stdout", home / "grader.stderr"
+    env = _process_environment(home, include_proxy=False)
+    env["MINI_AGENT_EVALUATION_REFERENCE_ROOT"] = str(reference_root)
+    info = _run_child(
+        [sys.executable, str(grader), str(workspace)], cwd=workspace, env=env,
+        timeout=case.grader_timeout_seconds, stdout_path=stdout, stderr_path=stderr,
+    )
+    duration = int(info.get("duration_ms", 0))
+    cleanup = {"complete": info.get("cleanup_complete", True), "issue": info.get("cleanup_issue")}
+    if not cleanup["complete"]:
+        error_kind, result, log = "cleanup_incomplete", None, ""
+    elif info.get("interrupted"):
+        error_kind, result, log = "interrupted", None, ""
+    elif info.get("timed_out"):
+        error_kind, result = "timeout", None
+        log = _redact(_read_limited(stdout, MAX_GRADER_LOG_BYTES), redactions)
+    elif not info.get("started"):
+        error_kind, result = "launch_error", None
+        log = _redact(_read_limited(stderr, MAX_GRADER_LOG_BYTES), redactions)
+    elif info.get("returncode") != 0:
+        error_kind = "nonzero_exit"
+        result, _error, log = _prepare_grader_result(stdout, stderr, redactions)
+    else:
+        result, error_kind, log = _prepare_grader_result(stdout, stderr, redactions)
+    outcome = {
+        "passed": result.get("passed") if error_kind is None and isinstance(result, dict) else None,
+        "error_kind": error_kind,
+        "duration_ms": duration,
+        "exit_code": info.get("returncode"),
+        "result": result,
+    }
+    if include_cleanup:
+        return outcome, log, cleanup
+    return outcome, log
