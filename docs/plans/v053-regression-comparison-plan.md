@@ -43,9 +43,8 @@ PYTHONPATH=src python -m mini_agent.evaluation report-comparison <run-dir>
 - [x] 四题 Memory 种子、36 槽固定响应离线矩阵与拒绝/失败/重复探针。
 - [x] 编码 suite 公共摘要和冻结 grader runner 辅助接口；旧结果格式保持独立。
 - [x] CLI、比较说明、基线状态、教程和版本文档同步。
-- [x] 专项测试、完整测试和离线矩阵验收通过；详细结果记录在 `evaluation-regression-plan.md`。
+- [x] 专项测试、完整测试和固定响应离线矩阵验收通过；完整 pytest 为 849 passed，36/36 fixture trial 均可评分且 grader 通过，两个声明比较边均可比较。固定响应使 Agent 状态为 `blocked`，严格任务成功为 0/36；这些结果只验证 harness，不作为能力成绩。详细记录见 `evaluation-regression-plan.md`。
 - [ ] 教程事实脚本要求的 v0.53 tag 由维护者手动创建；助手不执行 tag 操作。
-- [ ] 生成实际的 36 槽审阅计划并提交给用户审阅。
-- [ ] 用户明确启动后运行 live；本计划本身不授予付费调用。
+- [ ] 用户审阅最终提交后另行生成的 36 槽审阅计划，并明确启动 live；本计划本身不授予付费调用。
 
 阶段十四仍未整体完成：v0.51 suite 1.1 live 编码基线和 v0.52 suite 1.6 live 可靠性基线继续单列，v0.53 live 比较尚未运行。

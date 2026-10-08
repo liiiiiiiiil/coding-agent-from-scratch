@@ -20,6 +20,8 @@ Memory 文件放在 trial workspace 外，且每个 trial 使用新的 workspace
 
 比较 worker 使用目标 checkout 中的 `AgentRuntime.run()`、工具执行器和权限闸门。可见工具沿用编码基准的六个文件/计算工具，不开放 shell、Memory CRUD、MCP、Skills、References 或子代理。Agent 停止后，独立 grader 检查工作区；Agent 自述和 Runtime verification evidence 都不替代独立评分。
 
+题目合同若要求提交回归测试，runner 会在干净副本中预建空的 `tests/` 目录。六工具中没有建目录工具，这个空目录让 Agent 能按合同新增测试文件；不会预放测试代码或答案，所有比较组使用同样的工作区准备规则。
+
 ## 指标和缺失值
 
 - **独立验收通过率**：grader 通过数 / 可评分 trial，同时报告计划槽位、终态、基础设施错误和未运行数。

@@ -301,7 +301,7 @@
 - [x] `v0.50` 有可离线自测、可显式 live 运行的统一 harness，结果 schema 与评分边界稳定。
 - [ ] `v0.51` 有冻结且可重跑的编码任务集，真实 Agent 基线和独立验收报告可复核。
 - [ ] `v0.52` 有可控故障矩阵，明确区分运行时安全不变量与 Agent 恢复能力。
-- [ ] `v0.53` 的回归比较与 Memory 检索消融实现和离线验收完成；36 槽 live 对比仍待用户审阅清单并明确启动，完成数据报告后才能勾选。
+- [x] `v0.53` 的回归比较与 Memory 检索消融实现和离线验收完成；36 槽 live 对比仍待用户审阅清单并明确启动，完成真实结果报告后再结项。
 - [ ] 用户审定代表性任务与成功标准；争议样本人工复核有记录，无需逐次手工验收。
 - [ ] 文档、教程、变更记录与三项完整验证完成；live 评测实际执行，未执行项明确列为未完成。
 
@@ -314,5 +314,8 @@
 - 新增 ComparisonSpec / ComparisonRun / ComparisonTrial、目标版本归档与 Runtime 接口预检、隔离 worker、顺序账本、独立 grader 共享入口、指标与报告重建 CLI。
 - 四份 Memory 种子只包含接口、背景和调查方法；trial 使用目标版本 MemoryStore 和 MemoryRetriever，workspace、HOME、Memory 与临时目录彼此隔离。证据不保存注入正文。
 - 固定响应自测运行实际目标版本 AgentRuntime，不请求 provider；另覆盖失败工具、权限拒绝、无效重复、证据损坏和旧 runner/benchmark 兼容性。
-- Live 比较状态：未运行、36 槽全部未启动。本计划及离线验收不授权付费调用；待生成具体审阅清单后由用户审阅并明确启动。
+- Live 比较状态：未运行、36 槽全部未启动。实现与离线验收不授权付费调用；冻结清单另行生成于本机临时目录，须由用户审阅并明确启动。
 - v0.51 `coding-benchmark@1.1` live 基线、v0.52 `reliability-boundaries@1.6` live 基线继续各自未完成；阶段十四整体不能因 v0.53 离线交付而标为完成。
+- 最终实现 revision `34ef871`；比较自测使用目标 commit checkout 和固定响应，目录 `/private/tmp/mini-agent-v053-comparison-offline-20261008-03/`。36/36 trial 有终态且独立 grader 36/36 通过，两条边都通过可比性校验；三个组的严格任务成功均为 0/12，因为 fixture 回复触发了 `blocked` 终态。这是 harness 结构与证据检查，不是 Agent 能力成绩。固定边界探针分别记录 1 次工具失败、1 次权限拒绝和 1 次无效重复。此前失败自测 `/private/tmp/mini-agent-v053-comparison-offline-20261008-02/` 保留；问题为要求测试文件的题目缺少空 `tests/` 目录，修复后在全新目录重新运行。
+- 完整 pytest：849 passed；`validate-suite` 确认 `coding-benchmark@1.1` 四题的原始实现均被 grader 拒绝、四份 known_good 均通过。教程结构检查、README 检查和 `git diff --check` 通过；教程事实检查全部源码映射通过，唯一失败是用户尚未创建 `v0.53` tag，助手不执行 tag 操作。
+- 同轮额外执行的 v0.52 可靠性 fixture 矩阵保留于 `/private/tmp/mini-agent-v053-reliability-offline/`：50/50 槽位有终态，42 个故障注入触发且 42 组不变量通过；8 个 loopback HTTP MCP 槽位在 probe 中抛出 `RuntimeError`，没有触发故障且对应不变量为 incomplete。该矩阵整体为 incomplete，不覆盖或替换既有 v0.52 基线。
