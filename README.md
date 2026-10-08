@@ -1,8 +1,8 @@
 <div align="center">
 
-# agent-from-scratch
+# coding-agent-from-scratch
 
-### 逐步生长的编程 Agent：从零开始构建一个能干活的 AI Agent
+### 逐步生长的编程 Agent：使用 Python 从零开始构建一个能干活的 AI Agent
 
 从最小的 agent loop 开始，按 Git tag 和能力阶段逐步加入工具、安全、上下文和可靠执行能力。
 
@@ -16,9 +16,44 @@
 
 适合想用 Python 标准库理解 LLM agent 如何运行的开发者。每课聚焦一个版本相对上一版新增的核心概念，源码、diff 和设计取舍都可追溯。
 
-**当前状态**：主线已实现 `v0.53`（第 53 课：回归比较与能力收益验证），比较合同和离线自测已完成；36 槽 live 批次尚未运行，需先审阅冻结清单并由用户明确启动。阶段十四仍未整体完成：v0.51 编码基线和 v0.52 可靠性基线继续单列未完成，历史结果不与新比较合并。详情见[v0.53 比较基线状态](docs/evaluation/baselines/v0.53/README.md)及[阶段十四计划](docs/plans/evaluation-regression-plan.md)。教程以默认分支 `docs/tutorials/` 为准；运行某课时再切换该课声明的代码 tag。
+**当前状态**：主线版本为 `v0.53`，最新课程为[第 53 课：回归比较与能力收益验证](./docs/tutorials/53-regression-comparison.md)。离线自测已完成，真实模型评测尚未完成；详情见[评测状态](./docs/evaluation/baselines/v0.53/README.md)和[阶段十四计划](./docs/plans/evaluation-regression-plan.md)。教程以默认分支 `docs/tutorials/` 为准；运行某课时再切换该课声明的代码 tag。
 
 快速入口：[运行](#快速开始) · [学习路径](#学习路径) · [学习指南](./docs/tutorials/README.md) · [完整手册](./docs/operation/manual.md)
+
+## 快速开始
+
+要求：Python 3.10+、Git，以及支持 OpenAI Chat Completions 协议的模型服务地址、API 密钥和模型名称。以下命令适用于 Bash/zsh。
+
+**1. 获取代码并安装。**
+
+```bash
+git clone https://github.com/liiiiiiiiil/agent-from-scratch.git coding-agent-from-scratch
+cd coding-agent-from-scratch
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+```
+
+**2. 配置一个模型服务。**
+
+新建 `src/mini_agent/config_local.py`，写入下面的最小配置，并替换前三项占位值。该文件已被 Git 忽略，真实配置只保存在本地。
+
+```python
+BASE_URL = "https://gateway.example.invalid/v1"
+API_KEY = "YOUR_API_KEY"
+MODEL = "YOUR_MODEL_NAME"
+MCP_SERVERS = []
+```
+
+`BASE_URL` 填服务的 API 基础地址（通常以 `/v1` 结尾），`API_KEY` 填该服务的密钥，`MODEL` 填服务支持的模型名称。首次体验不需要 MCP（连接外部工具的协议），保持 `MCP_SERVERS = []` 即可；若改用 `config_example.py` 模板，也请先关闭其中的占位 MCP 服务。多模型服务、Anthropic 协议和 MCP 配置见[完整手册](./docs/operation/manual.md)。
+
+**3. 运行第一条任务。**
+
+```bash
+python -m mini_agent "帮我算一下 123 * 456"
+```
+
+可选：`python -m pip install -e '.[interactive]'` 启用多行终端输入。命令行参数只是首条任务，处理后仍进入交互循环；用空行、`exit`、`quit` 或 EOF 退出。PowerShell、免安装运行和配置细节见[完整手册](./docs/operation/manual.md)。
 
 ## 学习路径
 
@@ -98,21 +133,6 @@
 </table>
 
 完成 `v0.10` 后，Agent 已能读取项目、搜索和修改文件、执行命令、运行测试，并通过权限机制控制高风险操作。
-
-## 快速开始
-
-要求：Python 3.10+；准备一个可访问的 LLM 网关。Bash/zsh：
-
-```bash
-git clone https://github.com/liiiiiiiiil/agent-from-scratch.git
-cd agent-from-scratch
-cp src/mini_agent/config_example.py src/mini_agent/config_local.py
-# 编辑 config_local.py，填入多 provider 映射；旧 BASE_URL / API_KEY / MODEL 仍兼容，文件不会进 git
-python -m pip install -e .
-python -m mini_agent "帮我算一下 123 * 456"
-```
-
-可选：`python -m pip install -e '.[interactive]'` 启用多行终端输入。命令行参数只是首条任务，处理后仍进入交互循环；用空行、`exit`、`quit` 或 EOF 退出。PowerShell、免安装运行和配置细节见[完整手册](./docs/operation/manual.md)。
 
 ## 项目结构
 

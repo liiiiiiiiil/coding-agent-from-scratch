@@ -1,6 +1,6 @@
 <div align="center">
 
-# agent-from-scratch
+# coding-agent-from-scratch
 
 ### A coding agent that grows step by step
 
@@ -16,9 +16,44 @@ Build a working AI agent from scratch with the Python standard library, one conc
 
 For developers who want to understand how an LLM agent runs without a framework. Each lesson focuses on one concept added since the previous version, with source, diffs, and design trade-offs kept traceable.
 
-**Current status**: v0.53 implements regression comparison and Memory retrieval ablation, and its offline comparison pipeline is complete. The 36-slot live batch has not run; it requires review of the frozen plan and explicit user authorization. Stage 14 remains incomplete: the v0.51 coding baseline and v0.52 reliability baseline stay separate, and historical results are not merged with the new comparison. See the [v0.53 comparison baseline status](docs/evaluation/baselines/v0.53/README.md) and [Stage 14 plan](docs/plans/evaluation-regression-plan.md). The authoritative tutorials are under `docs/tutorials/`; check out the lesson's declared tag when running its code.
+**Current status**: The mainline version is `v0.53`; the latest lesson covers [regression comparison and capability benefit validation](./docs/tutorials/53-regression-comparison.md). Offline self-tests are complete; evaluation with real models remains incomplete. See the [evaluation status](./docs/evaluation/baselines/v0.53/README.md) and [Stage 14 plan](./docs/plans/evaluation-regression-plan.md). Read the tutorials on the default branch under `docs/tutorials/`; check out the lesson's declared tag when running its code.
 
 Quick links: [run](#quick-start) · [learning path](#learning-path) · [tutorial guide](./docs/tutorials/README.md) · [manual](./docs/operation/manual.md)
+
+## Quick Start
+
+Requirements: Python 3.10+, Git, and a model service supporting the OpenAI Chat Completions protocol, with its API address, API key, and model name. The following commands use Bash/zsh.
+
+**1. Get the code and install.**
+
+```bash
+git clone https://github.com/liiiiiiiiil/agent-from-scratch.git coding-agent-from-scratch
+cd coding-agent-from-scratch
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+```
+
+**2. Configure one model service.**
+
+Create `src/mini_agent/config_local.py` with this minimal configuration and replace the first three placeholder values. Git ignores this file; keep real configuration local.
+
+```python
+BASE_URL = "https://gateway.example.invalid/v1"
+API_KEY = "YOUR_API_KEY"
+MODEL = "YOUR_MODEL_NAME"
+MCP_SERVERS = []
+```
+
+Set `BASE_URL` to the service's API base address (usually ending in `/v1`), `API_KEY` to its key, and `MODEL` to a supported model name. MCP, a protocol for connecting external tools, is optional; keep `MCP_SERVERS = []` for your first run. If you use the `config_example.py` template instead, disable its placeholder MCP service first. See the [manual](./docs/operation/manual.md) for multiple model services, the Anthropic protocol, and MCP configuration.
+
+**3. Run your first task.**
+
+```bash
+python -m mini_agent "calculate 123 * 456"
+```
+
+Optional multiline input: `python -m pip install -e '.[interactive]'`. A command-line argument supplies the first task; the process then enters the interactive loop. Leave with an empty line, `exit`, `quit`, or EOF. See the [manual](./docs/operation/manual.md) for PowerShell, no-install usage, and configuration details.
 
 ## Learning Path
 
@@ -98,21 +133,6 @@ Quick links: [run](#quick-start) · [learning path](#learning-path) · [tutorial
 </table>
 
 After `v0.10`, the Agent can inspect a project, search and modify files, run commands and tests, and control high-risk operations through permissions.
-
-## Quick Start
-
-Requirements: Python 3.10+ and an accessible LLM gateway. Bash/zsh:
-
-```bash
-git clone https://github.com/liiiiiiiiil/agent-from-scratch.git
-cd agent-from-scratch
-cp src/mini_agent/config_example.py src/mini_agent/config_local.py
-# edit config_local.py with the provider mappings; legacy BASE_URL / API_KEY / MODEL still work, and it is not tracked
-python -m pip install -e .
-python -m mini_agent "calculate 123 * 456"
-```
-
-Optional multiline input: `python -m pip install -e '.[interactive]'`. A command-line argument supplies the first task; the process then enters the interactive loop. Leave with an empty line, `exit`, `quit`, or EOF. See the [manual](./docs/operation/manual.md) for PowerShell, no-install usage, and configuration details.
 
 ## Project Structure
 
