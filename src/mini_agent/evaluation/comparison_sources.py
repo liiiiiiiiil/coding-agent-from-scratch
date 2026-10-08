@@ -82,6 +82,20 @@ def environment_snapshot() -> dict[str, str]:
     }
 
 
+def create_private_temp_dir(prefix: str) -> Path:
+    """Create an owned directory below the canonical system temp root.
+
+    On macOS, ``tempfile.gettempdir()`` commonly returns ``/var/folders``;
+    `/var` is a symlink to `/private/var`, which the benchmark's source-path
+    checks correctly reject. Resolve the root before creating any comparison
+    material so the resulting path itself has no symlink ancestors.
+    """
+    temp_root = Path(tempfile.gettempdir()).resolve(strict=True)
+    if not temp_root.is_dir():
+        raise ValueError("canonical system temp root is not a directory")
+    return Path(tempfile.mkdtemp(prefix=prefix, dir=temp_root))
+
+
 def _safe_extract_archive(revision: str, destination: Path) -> None:
     raw = subprocess.run(
         ["git", "archive", "--format=tar", revision, "src/mini_agent", "pyproject.toml", "tests/fixtures/evaluation/benchmark"],
@@ -140,7 +154,7 @@ def _safe_extract_archive(revision: str, destination: Path) -> None:
 def source_checkout(revision: str) -> Iterator[Path]:
     """Materialize only tracked runtime/suite files into an owned temp checkout."""
     resolved = resolve_commit(revision)
-    root = Path(tempfile.mkdtemp(prefix="mini-agent-comparison-source-"))
+    root = create_private_temp_dir("mini-agent-comparison-source-")
     try:
         _safe_extract_archive(resolved, root)
         yield root
@@ -172,7 +186,7 @@ def preflight_source(checkout: Path) -> dict[str, str]:
     source = checkout / "src"
     if not source.is_dir():
         raise ValueError("target checkout has no src directory")
-    home = Path(tempfile.mkdtemp(prefix="mini-agent-comparison-preflight-"))
+    home = create_private_temp_dir("mini-agent-comparison-preflight-")
     try:
         env = {
             "PATH": os.environ.get("PATH", os.defpath), "HOME": str(home),
@@ -210,6 +224,6 @@ def preflight_source(checkout: Path) -> dict[str, str]:
 __all__ = [
     "REPOSITORY_ROOT", "COMPARISON_WORKER", "git", "resolve_commit", "current_commit",
     "require_clean_worktree", "source_tree_fingerprint", "adapter_fingerprint",
-    "environment_snapshot", "source_checkout", "source_snapshot", "preflight_source",
+    "environment_snapshot", "create_private_temp_dir", "source_checkout", "source_snapshot", "preflight_source",
     "PINNED_V052_REVISION",
 ]

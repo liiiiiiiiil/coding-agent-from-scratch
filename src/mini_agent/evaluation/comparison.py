@@ -29,8 +29,9 @@ from mini_agent.evaluation.comparison_schema import (
 )
 from mini_agent.evaluation.comparison_sources import (
     COMPARISON_WORKER, REPOSITORY_ROOT, adapter_fingerprint, current_commit,
-    environment_snapshot, preflight_source, require_clean_worktree, resolve_commit,
-    source_checkout, source_snapshot, source_tree_fingerprint,
+    create_private_temp_dir, environment_snapshot, preflight_source,
+    require_clean_worktree, resolve_commit, source_checkout, source_snapshot,
+    source_tree_fingerprint,
 )
 from mini_agent.evaluation.runner import (
     MAX_AGENT_LOG_BYTES, MAX_DIFF_BYTES, MAX_GRADER_LOG_BYTES, MAX_RESULT_BYTES,
@@ -470,7 +471,7 @@ def _invoke_trial(
     binding_payload: dict[str, Any] | None, redactions: tuple[str, ...],
 ) -> tuple[dict[str, Any], str, str]:
     trial_id = str(uuid.uuid4())
-    temp_root = Path(tempfile.mkdtemp(prefix="mini-agent-comparison-trial-"))
+    temp_root = create_private_temp_dir("mini-agent-comparison-trial-")
     os.chmod(temp_root, 0o700)
     workspace = temp_root / "workspace"
     home = temp_root / "home"
@@ -931,7 +932,7 @@ def self_test_comparison(output: str | os.PathLike[str]) -> dict[str, Any]:
             raise ValueError("responses.json is missing a coding suite case")
         if set(case_fixture[item.case.case_id]) != {"success", "failure", "denied", "repeated"}:
             raise ValueError("responses.json must cover success, failure, denied, and repeated scenarios")
-    plan_parent = Path(tempfile.mkdtemp(prefix="mini-agent-comparison-self-test-plan-"))
+    plan_parent = create_private_temp_dir("mini-agent-comparison-self-test-plan-")
     try:
         spec_path = plan_parent / "comparison-self-test-spec.json"
         _write_json(spec_path, spec.value, limit=MAX_COMPARISON_SPEC_BYTES)
@@ -956,7 +957,7 @@ def self_test_comparison(output: str | os.PathLike[str]) -> dict[str, Any]:
                     probe_suite_case = first_case
                 slot = {"slot_id": f"probe-{name}", "group_id": "current-off", "case_id": first_case.case.case_id, "repetition": 1}
                 # A temporary artifact root is removed after metrics are checked.
-                probe_root = Path(tempfile.mkdtemp(prefix="mini-agent-comparison-probe-"))
+                probe_root = create_private_temp_dir("mini-agent-comparison-probe-")
                 try:
                     result, _relative, _digest = _invoke_trial(
                         run_id=str(uuid.uuid4()), slot=slot, spec=spec,

@@ -40,10 +40,17 @@ def test_v052_is_materialized_from_its_commit_and_preflighted_without_current_mo
     with source_checkout(PINNED_V052_REVISION) as checkout:
         assert (checkout / "src/mini_agent/runtime.py").is_file()
         assert not (checkout / "src/mini_agent/evaluation/comparison.py").exists()
+        assert all(not ancestor.is_symlink() for ancestor in (checkout, *checkout.parents))
+        archived_suite = benchmark.load_suite(
+            checkout / "tests/fixtures/evaluation/benchmark/suite.json",
+            require_pinned=True,
+        )
         result = preflight_source(checkout)
         snapshot = benchmark.runtime_fingerprint()
         assert result["preflight"] == "passed"
         assert result["runtime_fingerprint"] != snapshot
+        assert archived_suite.suite_id == "coding-benchmark"
+        assert archived_suite.version == "1.1"
 
 
 def test_live_runner_refuses_without_explicit_flag_before_touching_paths(tmp_path):
