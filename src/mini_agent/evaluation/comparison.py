@@ -669,7 +669,6 @@ def _invoke_trial(
         "cleanup": {"complete": cleanup_complete, "issue": cleanup_issue},
         "evidence": {"artifacts": {}},
     }
-    trial = validate_comparison_trial(trial).value
     artifact_payloads = {
         "diff": _redact(diff_text, redactions).encode("utf-8"),
         "agent_log": _redact(agent_log, redactions).encode("utf-8"),

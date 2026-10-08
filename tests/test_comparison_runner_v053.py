@@ -2,13 +2,19 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+import uuid
 
 import pytest
 
 from mini_agent.evaluation import benchmark
-from mini_agent.evaluation.comparison import _execution_order, run_comparison
+from mini_agent.evaluation.comparison import (
+    _case_by_id, _execution_order, _fixture_spec, _invoke_trial,
+    _load_memory_materials, _load_suite, load_fixture_responses, run_comparison,
+)
 from mini_agent.evaluation.comparison_schema import PINNED_V052_REVISION
-from mini_agent.evaluation.comparison_sources import preflight_source, source_checkout
+from mini_agent.evaluation.comparison_sources import (
+    REPOSITORY_ROOT, preflight_source, source_checkout, source_tree_fingerprint,
+)
 from tests.comparison_helpers_v053 import comparison_spec
 
 
@@ -57,3 +63,32 @@ def test_live_runner_refuses_without_explicit_flag_before_touching_paths(tmp_pat
     with pytest.raises(ValueError, match="--live"):
         run_comparison(tmp_path / "missing-plan.json", tmp_path / "should-not-exist", live=False)
     assert not (tmp_path / "should-not-exist").exists()
+
+
+def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path):
+    spec = _fixture_spec()
+    suite = _load_suite(spec)
+    seeds, _summary = _load_memory_materials(spec, suite)
+    responses = load_fixture_responses()
+    group = next(item for item in spec.value["groups"] if item["group_id"] == "current-off")
+    slot = next(item for item in _execution_order(suite, spec) if item["group_id"] == "current-off")
+    source = REPOSITORY_ROOT
+    result, relative, digest = _invoke_trial(
+        run_id=str(uuid.uuid4()),
+        slot=slot,
+        spec=spec,
+        suite_case=_case_by_id(suite, slot["case_id"]),
+        group=group,
+        source_root=source,
+        source_fingerprint=source_tree_fingerprint(source / "src"),
+        seeds=seeds,
+        output_root=tmp_path / "run",
+        fixture_actions=responses[slot["case_id"]]["success"],
+        run_kind="fixture",
+        binding_payload=None,
+        redactions=(),
+    )
+
+    assert set(result["evidence"]["artifacts"]) == {"diff", "agent_log", "grader_log"}
+    assert relative == f"trials/{slot['slot_id']}/trial.json"
+    assert len(digest) == 64
