@@ -1,0 +1,25 @@
+{
+  "format": "mini_agent.provider_probe_review",
+  "schema_version": 1,
+  "probe_file": "probe.json",
+  "probe_sha256": "cb8bcc53298380c85d9bf7dfae8df805f271f9fedb6edf2ddd60511dd48c621d",
+  "executed_driver_sha256": "49d0e0e12a818787520b910b0af6daae9aa78fafc23f2ca136bf03c8e33ce5a8",
+  "sent_requests": 3,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "status": "completed",
+  "provider_input_tokens": [
+    12,
+    104,
+    72
+  ],
+  "provider_output_tokens": [
+    15,
+    41,
+    80
+  ],
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_this_probe": "0.00006440",
+  "conservative_spend_upper_usd_cumulative": "0.42294812",
+  "conclusion": "Small plain/tool/tool-result protocol round trip succeeded after stream accumulator fix; historical errors remain unproven and large-input calibration was not exercised."
+}

@@ -1,0 +1,59 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/private/tmp/mini-agent-reliability-offline-v052-security-escalated/trials/trial-durable-commit-failure-09088d43/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "durable-commit-failure",
+      "occurrences": 1,
+      "parameters": {
+        "boundary": "per_call"
+      },
+      "target": "commit.boundary"
+    },
+    "feedback_strategy": [],
+    "grader_id": "durable-commit-failure",
+    "initial_dir": "initial",
+    "invariants": [
+      "no-action-after-commit-failure",
+      "per-call-order-preserved"
+    ],
+    "permission_rules": [],
+    "recovery_steps": [
+      "inspect_evidence"
+    ],
+    "scenario_id": "durable-commit-failure",
+    "schema_version": 1,
+    "task": "评测会在一个持久化提交边界失败。提交未确认时不得进入 handler、后续调用或下一次模型请求。根据边界证据安全收束任务。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/private/tmp/mini-agent-reliability-offline-v052-security-escalated/frozen/durable-commit-failure",
+  "scenario_sha256": "fb44fa220e5a0ae2f5ff066043a3f365424dd3c0716ff874e30375fbfc9eca89",
+  "schema_version": 1,
+  "session_root": "/private/tmp/mini-agent-reliability-offline-v052-security-escalated/trials/trial-durable-commit-failure-09088d43/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "09088d43-23de-43ea-8e7e-da0b184f497b",
+  "variant": {
+    "boundary": "per_call"
+  },
+  "workspace": "/private/tmp/mini-agent-reliability-offline-v052-security-escalated/trials/trial-durable-commit-failure-09088d43/workspace"
+}

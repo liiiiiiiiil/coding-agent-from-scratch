@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scenario_id": "mcp-call-timeout",
+  "version": "1.3",
+  "task": "MCP Server 会在 tools/call 阶段超时。等待必须有界，失效连接不得复用；确认关闭完成后结束。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "mcp_reliability_echo"
+  ],
+  "permission_rules": [
+    {
+      "tool": "mcp_reliability_echo",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "mcp-call-timeout",
+    "target": "mcp.tools_call.timeout",
+    "occurrences": 1,
+    "parameters": {
+      "bind": "127.0.0.1",
+      "variant_values": {
+        "transport": [
+          "stdio",
+          "loopback_http"
+        ]
+      }
+    }
+  },
+  "invariants": [
+    "bounded-timeout",
+    "connection-not-reused",
+    "cleanup-complete"
+  ],
+  "recovery_steps": [
+    "cleanup_resources"
+  ],
+  "feedback_strategy": [],
+  "grader_id": "mcp-call-timeout"
+}

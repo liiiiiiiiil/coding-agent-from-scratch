@@ -1,0 +1,26 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "error_kind": "permission_denied",
+      "handler_admitted": false,
+      "outcome": "denied",
+      "permission": "denied",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "generation": 0,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+  "verification": []
+}

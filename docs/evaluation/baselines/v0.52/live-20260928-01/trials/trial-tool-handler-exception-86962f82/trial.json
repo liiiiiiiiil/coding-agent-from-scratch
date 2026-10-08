@@ -1,0 +1,213 @@
+{
+  "agent_stop_reason": "blocked",
+  "agent_terminal_status": "blocked",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "adc91029839a73b0ee7113d61d17272abc3350fda7aa3b97c7919e5b934eb905",
+        "size": 264
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "d5f0b777dd83b51f385e4fada756f6ab41731c852284c2012e93e4daa908ae11",
+        "size": 2478
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "5dfdbee0dd13dbc9d1f8401d60ba4e2edb8953fd1cdcaebd40caed5bbad97f07",
+        "size": 104
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T08:34:30.239+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "10137f8ce896362e4b5a9ba8c9e68a0fe241926f3145566554735b7ad8620efd",
+      "fault_id": "tool-handler-exception",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "handler.read_file"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "tool-result-replayed",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 18300,
+      "injected_calls": [],
+      "input_tokens": 19691,
+      "llm_calls": 7,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 3204,
+      "token_accounting": "provider",
+      "tool_calls": 12
+    },
+    "grader": {
+      "duration_ms": 0
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "runtime_fingerprint_end": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "scenario_id": "tool-handler-exception",
+  "scenario_sha256": "cf1f9e927b1be68514d44ef5f262364d3c16457bad4cfe77c71a9ef0d01e6752",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T08:34:11.892+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "grep"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 0,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "status": "blocked",
+    "task_id": "task-1",
+    "terminal_reason": "execute_without_progress; fingerprint=06d79fcf9b87; count=3",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "08002f7076b23a717007c506a940ad367d42461f99243fbbc82cf0477df4ea7c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "1f88dc8e9ec5e64300e31aea91b5557a4ecd9660de139a0a301408f1123fd894",
+    "trace_events": 17
+  },
+  "trial_id": "86962f82-96be-47fc-9492-c0aef206ef8d",
+  "variant": {}
+}

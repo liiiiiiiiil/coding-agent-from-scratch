@@ -1,0 +1,137 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-08/trials/trial-mcp-disconnect-a909faa0/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "grep",
+      "list_dir",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "mcp_reliability_echo",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "mcp-disconnect",
+      "occurrences": 1,
+      "parameters": {
+        "bind": "127.0.0.1",
+        "transport": "stdio"
+      },
+      "target": "mcp.tools_call.disconnect"
+    },
+    "feedback_strategy": [],
+    "grader_id": "mcp-disconnect",
+    "initial_dir": "initial",
+    "invariants": [
+      "connection-not-reused",
+      "no-call-retry"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "mcp_reliability_echo"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [
+      "cleanup_resources",
+      "continue_parent_investigation",
+      "verify_current_generation"
+    ],
+    "scenario_id": "mcp-disconnect",
+    "schema_version": 1,
+    "task": "先调用 mcp_reliability_echo 一次；首次 MCP 工具调用会断连。不要重试或复用连接；使用公开本地文件 src/example.py 的材料完成 transform(value)=value*2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.5"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-08/frozen/mcp-disconnect",
+  "scenario_sha256": "a8aa010e20e1905130edeb19d41d30494e6b9ae0be5f947151e2bc8e81d21eed",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-08/trials/trial-mcp-disconnect-a909faa0/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trial_id": "a909faa0-48fc-4e79-8464-e31e9c13f975",
+  "variant": {
+    "transport": "stdio"
+  },
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-08/trials/trial-mcp-disconnect-a909faa0/workspace"
+}

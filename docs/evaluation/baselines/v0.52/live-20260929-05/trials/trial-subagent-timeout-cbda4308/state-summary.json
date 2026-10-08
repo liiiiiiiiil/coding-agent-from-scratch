@@ -1,0 +1,210 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "agent_profile": "general",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "只读调查 src/example.py 中 transform 函数的当前实现，以及 tests/ 下针对 transform 的测试期望，报告两者差异。",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "child_session_id": "0e31b69d-5e0c-46cf-9c3a-b08b1e0d08cd"
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_status"
+    },
+    {
+      "arguments": {
+        "path": "."
+      },
+      "attempt_id": "a-5",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "child_session_id": "0e31b69d-5e0c-46cf-9c3a-b08b1e0d08cd"
+      },
+      "attempt_id": "a-6",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_result"
+    },
+    {
+      "arguments": {
+        "path": "tests"
+      },
+      "attempt_id": "a-7",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_public.py"
+      },
+      "attempt_id": "a-8",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "new_string": "<str:20>",
+        "old_string": "<str:20>",
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-9",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "edit_file"
+    },
+    {
+      "arguments": {
+        "command": "<str:36>",
+        "purpose": "verification"
+      },
+      "attempt_id": "a-10",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [
+    {
+      "abandoned_at": null,
+      "agent_profile": "general",
+      "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+      "cancellation_reason": null,
+      "claimed_at": "2026-09-29T06:55:22.544217+00:00",
+      "committed_at": "2026-09-29T06:55:22.544183+00:00",
+      "contract_summary": {
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "goal": "只读调查 src/example.py 中 transform 函数的当前实现，以及 tests/ 下针对 transform 的测试期望，报告两者差异。",
+        "purpose": "investigation",
+        "requested_tools": [
+          "read_file",
+          "list_dir",
+          "grep"
+        ],
+        "scope": [
+          "src/example.py",
+          "tests/"
+        ]
+      },
+      "created_at": "2026-09-29T06:55:20.158647+00:00",
+      "delegation_id": "2bb020e3-305c-447c-90ad-bc42e5ddf0df",
+      "delivery_status": "committed",
+      "diagnostic_reason": "timeout",
+      "mode": "background",
+      "outcome": "timed_out",
+      "parent_attempt_id": null,
+      "parent_generation_id": 0,
+      "parent_task_id": "task-1",
+      "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+      "reserved_usage": {
+        "elapsed_ms": 0,
+        "input_tokens": 0,
+        "llm_calls": 1,
+        "output_tokens": 32000,
+        "result_bytes": 0,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 1
+      },
+      "result_hash": "cab36aea1d70a859b550bce7032a0a31b4a12172849a0b5a2d58fb5b4a15ca72",
+      "result_id": "ffa5d43b-6bd3-4b2c-85ea-ff7a0e2ecb88",
+      "result_ready_at": "2026-09-29T06:55:21.537156+00:00",
+      "result_summary": "子代理 LLM 请求超时",
+      "started_at": "2026-09-29T06:55:20.159289+00:00",
+      "startup_confirmed": true,
+      "subagent_id": "0e31b69d-5e0c-46cf-9c3a-b08b1e0d08cd",
+      "task_contract_hash": "658b000597e79b37bc085550cd0486153aae9be97152e67ec94587ee9e953d4d",
+      "usage": {
+        "elapsed_ms": 4,
+        "input_tokens": 5140,
+        "llm_calls": 1,
+        "output_tokens": 0,
+        "result_bytes": 950,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 0
+      }
+    }
+  ],
+  "diagnostic": null,
+  "generation": 2,
+  "initial_public_test_passed": null,
+  "injected_calls": [
+    {
+      "component": "subagent_llm",
+      "count": 1,
+      "counted_as_real": false,
+      "source": "injected"
+    }
+  ],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": null,
+  "provider_error_category": null,
+  "status": "done",
+  "task_id": "task-1",
+  "terminal_reason": "",
+  "tool_diagnostics": [],
+  "tool_schema_sha256": "3b1671bd0a846a803920b47c025a50aaf96fbf82c5c4cfd602082820cf3e26a0",
+  "verification": [
+    {
+      "exit_code": 0,
+      "generation_id": 2,
+      "outcome": "passed"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-call-timeout-72c71862/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario": {
+    "allowed_tools": [
+      "mcp_reliability_echo"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "mcp-call-timeout",
+      "occurrences": 1,
+      "parameters": {
+        "bind": "127.0.0.1",
+        "transport": "stdio"
+      },
+      "target": "mcp.tools_call.timeout"
+    },
+    "feedback_strategy": [],
+    "grader_id": "mcp-call-timeout",
+    "initial_dir": "initial",
+    "invariants": [
+      "bounded-timeout",
+      "connection-not-reused",
+      "cleanup-complete"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "mcp_reliability_echo"
+      }
+    ],
+    "recovery_steps": [
+      "cleanup_resources"
+    ],
+    "scenario_id": "mcp-call-timeout",
+    "schema_version": 1,
+    "task": "MCP Server 会在 tools/call 阶段超时。等待必须有界，失效连接不得复用；确认关闭完成后结束。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/frozen/mcp-call-timeout",
+  "scenario_sha256": "8cc50be454d268d03e8d1068077ef49bd36cc1c322b8b5aa6b6dc7e9e30f5a7a",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-call-timeout-72c71862/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trial_id": "72c71862-f4e5-4134-a6d9-94a54c644bf0",
+  "variant": {
+    "transport": "stdio"
+  },
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-call-timeout-72c71862/workspace"
+}

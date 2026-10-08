@@ -10,6 +10,8 @@ from mini_agent.providers.base import (
     MAX_TOOL_ARGUMENT_CHARS,
     ProviderHTTPError,
     ProviderProtocolError,
+    ProviderToolCallShapeError,
+    ProviderToolArgumentsError,
     ProviderResponse,
     ProviderStreamError,
     ProviderTimeoutError,
@@ -87,9 +89,9 @@ def _call_from_delta(acc: dict[Any, dict[str, Any]], item: Any) -> None:
     if not isinstance(function, dict):
         slot["function"] = function
         return
-    if "name" in function:
+    if "name" in function and function["name"] not in (None, ""):
         slot["function"]["name"] = function["name"]
-    if "arguments" in function:
+    if "arguments" in function and function["arguments"] is not None:
         arguments = function["arguments"]
         if isinstance(arguments, str) and isinstance(slot["function"].get("arguments"), str):
             slot["function"]["arguments"] += arguments
@@ -97,7 +99,7 @@ def _call_from_delta(acc: dict[Any, dict[str, Any]], item: Any) -> None:
             slot["function"]["arguments"] = arguments
 
 
-def _validate_calls(calls: list[Any]) -> list[dict[str, Any]]:
+def _validate_calls(calls: list[Any], *, finish_reason=None, response_mode="unknown", usage=None) -> list[dict[str, Any]]:
     result = []
     for call in calls:
         if not isinstance(call, dict) or call.get("type") != "function":
@@ -108,16 +110,23 @@ def _validate_calls(calls: list[Any]) -> list[dict[str, Any]]:
             raise ProviderProtocolError("OpenAI tool call 缺少 ID 或 function")
         name = function.get("name")
         arguments = function.get("arguments")
-        if not isinstance(name, str) or not name.strip() or not isinstance(arguments, str):
-            raise ProviderProtocolError("OpenAI tool call 参数不完整")
+        if not isinstance(name, str) or not name.strip():
+            raise ProviderToolCallShapeError("missing_name", finish_reason=finish_reason,
+                response_mode=response_mode, usage=usage)
+        if not isinstance(arguments, str):
+            raise ProviderToolCallShapeError("invalid_arguments_type", finish_reason=finish_reason,
+                response_mode=response_mode, usage=usage)
         if len(arguments) > MAX_TOOL_ARGUMENT_CHARS:
             raise ProviderProtocolError("OpenAI tool call arguments 超过大小上限")
         try:
             parsed = json.loads(arguments)
         except (TypeError, ValueError, json.JSONDecodeError) as error:
-            raise ProviderProtocolError("OpenAI tool call arguments 未完整闭合") from error
+            raise ProviderToolArgumentsError(argument_chars=len(arguments),
+                json_position=getattr(error, "pos", None), finish_reason=finish_reason,
+                response_mode=response_mode, usage=usage) from error
         if not isinstance(parsed, dict):
-            raise ProviderProtocolError("OpenAI tool call arguments 必须是 JSON object")
+            raise ProviderToolArgumentsError(argument_chars=len(arguments), code="not_object",
+                finish_reason=finish_reason, response_mode=response_mode, usage=usage)
         result.append({
             "id": call_id,
             "type": "function",
@@ -138,9 +147,19 @@ def _message_from_payload(payload: dict[str, Any], *, strict_tool_calls: bool = 
     if content is not None and not isinstance(content, str):
         raise ProviderProtocolError("OpenAI 响应 content 类型非法")
     result: dict[str, Any] = {"role": "assistant", "content": content}
+    if "reasoning_content" in message:
+        reasoning = message["reasoning_content"]
+        if reasoning is not None and not isinstance(reasoning, str):
+            raise ProviderProtocolError("OpenAI 响应 reasoning_content 类型非法")
+        if isinstance(reasoning, str) and len(reasoning) > MAX_CONTENT_CHARS:
+            raise ProviderProtocolError("OpenAI 响应 reasoning_content 超过大小上限")
+        # Provider protocol data: retain verbatim for the next request, without
+        # exposing it through the user-facing content callback.
+        result["reasoning_content"] = reasoning
     calls = message.get("tool_calls") or []
     if calls:
-        result["tool_calls"] = _validate_calls(calls) if strict_tool_calls else calls
+        result["tool_calls"] = _validate_calls(calls, finish_reason=choice.get("finish_reason"),
+                                              response_mode="json", usage=_usage(payload)) if strict_tool_calls else calls
     return ProviderResponse(result, choice.get("finish_reason"), _usage(payload))
 
 
@@ -203,6 +222,9 @@ class OpenAIChatAdapter:
             )
 
         content: list[str] = []
+        reasoning: list[str] = []
+        reasoning_chars = 0
+        saw_reasoning = False
         calls: dict[Any, dict[str, Any]] = {}
         finish_reason = None
         usage = ProviderUsage(0, 0, "estimated")
@@ -235,6 +257,16 @@ class OpenAIChatAdapter:
                     delta = choice.get("delta") or {}
                     if not isinstance(delta, dict):
                         raise ProviderStreamError("OpenAI SSE delta 结构非法")
+                    if "reasoning_content" in delta:
+                        saw_reasoning = True
+                        piece = delta["reasoning_content"]
+                        if piece is not None:
+                            if not isinstance(piece, str):
+                                raise ProviderStreamError("OpenAI SSE reasoning_content 类型非法")
+                            reasoning_chars += len(piece)
+                            if reasoning_chars > MAX_CONTENT_CHARS:
+                                raise ProviderStreamError("OpenAI SSE reasoning_content 超过大小上限")
+                            reasoning.append(piece)
                     piece = delta.get("content")
                     if piece is not None:
                         if not isinstance(piece, str):
@@ -269,8 +301,11 @@ class OpenAIChatAdapter:
 
         normalized_calls = list(calls[index] for index in sorted(calls, key=call_index))
         if strict_tool_calls:
-            normalized_calls = _validate_calls(normalized_calls)
+            normalized_calls = _validate_calls(normalized_calls, finish_reason=finish_reason,
+                                               response_mode="stream", usage=usage)
         result: dict[str, Any] = {"role": "assistant", "content": "".join(content) or None}
+        if saw_reasoning:
+            result["reasoning_content"] = "".join(reasoning)
         if normalized_calls:
             result["tool_calls"] = normalized_calls
         return ProviderResponse(result, finish_reason, usage)

@@ -1,0 +1,10 @@
+{
+  "denied": {
+    "handler_admitted": false,
+    "outcome": "denied",
+    "permission": "denied"
+  },
+  "fallback": {
+    "outcome": "succeeded"
+  }
+}

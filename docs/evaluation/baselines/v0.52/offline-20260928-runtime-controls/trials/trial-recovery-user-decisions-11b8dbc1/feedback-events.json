@@ -1,0 +1,27 @@
+[
+  {
+    "accepted": false,
+    "decision": "continue",
+    "issue_id": "issue-1",
+    "script_sha256": "b327508fe4d6ae6e179c95c07d7a8fd8645b6e55fc6ede7d204eaec9e8be9d47",
+    "source": "simulated_user",
+    "trigger": "before_investigation"
+  },
+  {
+    "accepted": true,
+    "decision": "investigate",
+    "issue_id": "issue-1",
+    "script_sha256": "b327508fe4d6ae6e179c95c07d7a8fd8645b6e55fc6ede7d204eaec9e8be9d47",
+    "source": "simulated_user",
+    "trigger": "unresolved_issue"
+  },
+  {
+    "accepted": true,
+    "decision": "block",
+    "investigation_attempt_id": "a-2",
+    "issue_id": "issue-1",
+    "script_sha256": "b327508fe4d6ae6e179c95c07d7a8fd8645b6e55fc6ede7d204eaec9e8be9d47",
+    "source": "simulated_user",
+    "trigger": "after_investigation"
+  }
+]

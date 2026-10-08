@@ -1,0 +1,8 @@
+{
+  "close_report": {
+    "alias": "reliability",
+    "closed": true
+  },
+  "result_is_error": true,
+  "transport": "loopback_http"
+}

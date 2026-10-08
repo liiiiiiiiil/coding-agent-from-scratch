@@ -1,6 +1,27 @@
 # mini_agent 操作手册
 
-> 本手册跟随最新版本更新。当前对应版本：**v0.51**（编码任务集与真实模型基线；含此前 Evaluation Harness、计划驱动执行、工具权限、父侧 Memory/References/MCP/Skills 和轻量子代理协作）。
+> 本手册跟随最新版本更新。当前对应版本：**v0.52**（冻结故障矩阵和恢复评测；含此前编码基准、Evaluation Harness、计划驱动执行、工具权限、父侧 Memory/References/MCP/Skills 和轻量子代理协作）。
+
+## v0.52 故障注入与恢复评测
+
+`reliability-boundaries@1.6` 冻结 18 类工具、权限、验证、进程、持久化恢复、MCP 和子代理场景。完整任务及标准由 `validate-reliability` 以 JSON 输出，包含可见工具、精确 PermissionGate 规则、预算、故障目标、恢复步骤、模拟用户反馈来源和 grader。离线自测按清单运行全部 50 个参数槽位（每变体两次）；七个代表性场景各计划三次 live，共 21 个槽位；其中权限拒绝只验收安全终止，其余六个验收完整恢复。首次请求前同时校准公开测试和独立行为评分。崩溃任务明确注入前与恢复后的阶段；子代理超时必须使用任务公布的固定预算。未触发故障时相关不变量记为证据不完整。
+
+```bash
+PYTHONPATH=src python -m mini_agent.evaluation validate-reliability tests/fixtures/evaluation/reliability/suite.json
+PYTHONPATH=src python -m mini_agent.evaluation self-test-reliability --output /private/tmp/mini-agent-reliability-offline
+PYTHONPATH=src python -m mini_agent.evaluation report-reliability /private/tmp/mini-agent-reliability-offline
+```
+
+离线探针直接测试运行时边界，不运行 Agent；所以 task grader 和恢复成功率保持 `null`。Live 必须在审阅任务后显式启动；命令在第一次模型请求前核对七个场景的本地 model binding。每个 trial 最多 20 轮、48 次父工具调用、240 秒和 64,000 个父 token；子代理仍受运行时既有限制，场景不会放宽。一次模型请求失败后不自动重试，已产生的槽位继续保留。
+
+```bash
+PYTHONPATH=src python -m mini_agent.evaluation run-reliability tests/fixtures/evaluation/reliability/suite.json --live --repeats 3 --output docs/evaluation/baselines/v0.52/live-<run-id>
+PYTHONPATH=src python -m mini_agent.evaluation report-reliability docs/evaluation/baselines/v0.52/live-<run-id>
+```
+
+`report-reliability` 会从冻结材料、顺序账本和原始 trial 重建结果，并分别报告故障状态、不变量、Agent 终态、grader、恢复步骤、清理、用量和缺失槽位。Fixture 与 live 不混算；未观测 token 不当作零，没有价格快照时成本为 `null`。预算定点修复后的 `live-20260929-08` 有 21/21 个 HTTP 503 槽位；`live-20260929-09` 有 20 个连接类基础设施错误，另 1 个 trial 在故障触发前因 token limit 停止。两批的恢复分母均为 0，suite 1.5 基线未完成。修复前 `live-20260929-07` 的 5/14 保留为历史结果，不与新批次合并。详见[基线目录](../evaluation/baselines/v0.52/README.md)。预算估算不能保证任意 provider 请求绝不超额。
+
+OpenAI Chat 协议兼容：普通和流式响应中的可选 `reasoning_content` 会随 assistant history 保留并回传，字段须为字符串或 null，字符串最多 4 Mi 个字符；它不显示在终端正文，也不进入 State/Trace 摘要。开启 `/save` 后可随 Context 保存到 session。旧历史中已丢失的字段不能恢复，不能保证旧 thinking 会话继续请求成功。
 
 ## v0.51 编码任务集
 
@@ -1245,3 +1266,15 @@ agent loop 不对 LLM 或 CLI 顶层异常做兜底；这是为了保持核心�
 
 ### Q6：后台进程显示 awaiting_process
 这是非终态交接，表示模型已经暂停回复、`wait_process` 超时，或 stdin 写入仍在途，但任务登记的进程尚未完全收束。继续输入即可恢复原任务；恢复前 Runtime 会先同步进程。可用 `read_process` 读取日志、`get_process` 查看 stdin 状态；可用 terminate_process 或 kill_process 控制当前任务的进程；`/new`、`/reset` 和退出 CLI 时会清理当前任务的进程及写入线程。
+
+## 可选父任务累计 token 上限
+
+在本地 `config_local.py` 设置 `PARENT_TASK_TOKEN_BUDGET = 64000` 可给新父任务启用累计模型预算；默认 `None` 保持 CLI 原行为。上限计入父主请求及同模型历史摘要；子代理按原独立和聚合预算管理。评测 suite 1.5 固定显式启用 64,000，不随普通 CLI 的关闭设置取消。
+
+预算开启后，执行/摘要/收尾的输出上限为 1024/512/512，并服从较小的模型配置上限。最近两轮完整工具回合进入请求视图；较老结果可裁剪或整轮省略，入选推理字段保持原文，完整本地 history 和已有会话证据保留。任务给出明确路径时直接读取，避免先重复列目录。
+
+OpenAI Chat 预算准入按实际请求 JSON 的消息、角色字段、工具 schema、键和标点估算 UTF-8 大小，再用 `ceil(bytes × 1.1 ÷ 3)` 得到本地代理值。它不是 provider tokenizer；真实用量仍以 provider 响应为准，校准只吸收同一 estimator 版本、binding、工具 schema 和请求类别的观测。估算值过大时先裁剪可省略的历史工具回合，不删除受保护指令、State 或用户纠正；若这些受保护内容仍放不下，就在请求前拒绝。其他协议保持原有估算路径。对未知 provider 隐藏上下文没有绝对不超额保证，响应超出预留时仍阻止工具执行。
+
+请求前、结算后都提交预算账本。提交失败时停止请求或后续工具；未知调用按预留全额计费，不当作零。已有账本恢复时继续使用保存的上限与用量，修改配置不能为同一任务补预算。旧会话没有该字段时不追补费用、不自动启用新配置；`/new` 创建的新任务可按当前配置启用。
+
+Runtime 将计划推进和验证纳入当前工作请求可用的预算，只单独预留后续无工具最终回复的额度。收尾预留按当前受保护指令、用户约束和完成事实估算，不再次预留一份当前验证请求，也不按未完成步骤数重复扣留。低预算提醒仍要求模型优先验证与收尾；这不保证模型选择正确顺序，也不保证未来 State 增长或任意 provider 响应都在估算内。只有实际无完成阻塞且已有当前代验证或完整计划时才进入无工具收尾；仍须模型真实回复和原完成条件通过。无法容纳受保护内容时会明确 `token_limit`，拒绝诊断保留上下文下限、可用输入额度和收尾预留，不删除约束、取消验证或自动宣布完成。

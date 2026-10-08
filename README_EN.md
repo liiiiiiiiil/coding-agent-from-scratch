@@ -16,7 +16,7 @@ Build a working AI agent from scratch with the Python standard library, one conc
 
 For developers who want to understand how an LLM agent runs without a framework. Each lesson focuses on one concept added since the previous version, with source, diffs, and design trade-offs kept traceable.
 
-**Current status**: the mainline has implemented `v0.51` (lesson 51: Repeated coding benchmark runs). Four standard-library Python tasks and independent success criteria are frozen, with three real-model trials planned per task. The first 12 live calls await user review of the tasks and criteria; there are no coding benchmark results yet. Fixed responses and offline grader checks validate the harness only and do not count as a model baseline. The authoritative tutorials are the current files under `docs/tutorials/`; check out the lesson's declared tag only when running its code.
+**Current status**: after the suite 1.5 budget repair, two independent live batches produced no scorable recovery samples. The first ended with HTTP 503 in all 21 slots; the second had 20 provider connection errors and one trial that stopped at the token limit before triggering its fault, leaving a recovery denominator of zero. The pre-repair 5/14 result remains historical and does not measure the repaired Runtime; the suite 1.5 baseline is incomplete. Suite 1.4 and earlier results remain separate; the v0.51 coding baseline is also incomplete. See the [reliability baseline notes](docs/evaluation/baselines/v0.52/README.md). The authoritative tutorials are under `docs/tutorials/`; check out the lesson's declared tag when running its code.
 
 Quick links: [run](#quick-start) · [learning path](#learning-path) · [tutorial guide](./docs/tutorials/README.md) · [manual](./docs/operation/manual.md)
 
@@ -91,7 +91,8 @@ Quick links: [run](#quick-start) · [learning path](#learning-path) · [tutorial
     <tr><td><strong>v0.49</strong></td><td><a href="./docs/tutorials/49-resumable-child-session.md">Resumable child sessions</a></td><td>Submit a full follow-up contract for a claimed successful child result; schema 4 safe points atomically store bounded child history and recheck role, model, and Skill identities on resume while preserving cumulative budgets.</td></tr>
     <tr><th colspan="3"><a id="stage-14"></a>Stage 14 · Agent task evaluation</th></tr>
     <tr><td><strong>v0.50</strong></td><td><a href="./docs/tutorials/50-evaluation-harness.md">Independent evaluation harness</a></td><td>Copy a clean workspace from a fixed case, run a restricted Agent, and grade it independently; preserve each trial and report live runs separately from offline fixtures.</td></tr>
-    <tr><td><strong>v0.51</strong></td><td><a href="./docs/tutorials/51-coding-benchmark.md">Repeated coding benchmark runs</a></td><td>Freeze four coding tasks and independent graders, plan 12 ordered live trials, and retain unrun slots and raw evidence; the first model results await task review.</td></tr>
+    <tr><td><strong>v0.51</strong></td><td><a href="./docs/tutorials/51-coding-benchmark.md">Repeated coding benchmark runs</a></td><td>Freeze four coding tasks and independent graders and retain 12 ordered live trials with raw evidence; suite 1.0's disputed results remain preserved, while the suite 1.1 baseline is incomplete.</td></tr>
+    <tr><td><strong>v0.52</strong></td><td><a href="./docs/tutorials/52-reliability-evaluation.md">Fault injection and recovery evaluation</a></td><td>Freeze 18 scenarios and separate invariants from recovery; both post-repair suite 1.5 live batches produced no recovery denominator, one with 21 HTTP 503 slots and one with 20 connection errors, leaving the baseline incomplete.</td></tr>
   </tbody>
 </table>
 

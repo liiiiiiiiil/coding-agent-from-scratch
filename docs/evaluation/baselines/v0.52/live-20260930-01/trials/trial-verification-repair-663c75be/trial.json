@@ -1,0 +1,1373 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "1b4dd8afadf787b5897bd535711de104befb54dea61b37c9405c9d88a15c1873",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "b2f81e448586dd28b857fdd2a17e3f411f6be01e9d3554f13008890cfc51dde9",
+        "size": 10801
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "463fd8b136af60ad76ad69ceaa471fe102c03ed78b184d6ad2fe1d176985a02b",
+        "size": 10766
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-30T03:33:18.698+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "f6cdb0696bc42a0914e9eb340135f61cb086b6a5495e129205651eab7b3d8eef",
+      "fault_id": "verification-repair",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "grader.public_test_failure"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "verification-current-generation",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "hidden-grader-passes",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 98817,
+      "injected_calls": [],
+      "input_tokens": 44230,
+      "llm_calls": 7,
+      "model_binding_ref": {
+        "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 3514,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 47744,
+        "estimation": "OpenAI Chat complete UTF-8 request size / 3 + 10%; not an exact provider tokenizer",
+        "input_multiplier_after": 1.1,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "task_binding_schema_request_kind",
+          "cold_input_multiplier": 2,
+          "cold_samples": 2,
+          "final_output_tokens": 512,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "recent_complete_rounds": 2,
+          "summary_output_tokens": 512,
+          "warm_margin_percent": 10,
+          "warm_positive_error_samples": 8,
+          "work_output_tokens": 1024
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10410,
+            "completion_blockers": [],
+            "cumulative_tokens_before": 0,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 26539,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 4801,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 47,
+              "notice": 0,
+              "state": 211,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 2270,
+            "observed_input_to_estimate_ratio": 0.7042,
+            "output_tokens": 70,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 6818,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 13892,
+            "reserved_input_tokens_estimated": 6818,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 6818,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 4871,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 24099,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 5381,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 264,
+              "notice": 0,
+              "state": 544,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 2820,
+            "observed_input_to_estimate_ratio": 0.7138,
+            "output_tokens": 254,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7187,
+            "reasoning_tokens_subset_estimated": 46,
+            "refusal_reason": null,
+            "remaining_tokens_before": 59129,
+            "request_index": 2,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 15332,
+            "reserved_input_tokens_estimated": 7538,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 7538,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 10506,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 38694,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.100086494501421,
+            "input_tokens": 5680,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 671,
+              "notice": 0,
+              "state": 564,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 3247,
+            "observed_input_to_estimate_ratio": 0.7018,
+            "output_tokens": 651,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7208,
+            "reasoning_tokens_subset_estimated": 380,
+            "refusal_reason": null,
+            "remaining_tokens_before": 53494,
+            "request_index": 3,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 9159,
+            "reserved_input_tokens_estimated": 8093,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 8093,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 16837,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 32939,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.100083142797755,
+            "input_tokens": 6797,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 1675,
+              "notice": 0,
+              "state": 867,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 4554,
+            "observed_input_to_estimate_ratio": 0.7064,
+            "output_tokens": 462,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7548,
+            "reasoning_tokens_subset_estimated": 1227,
+            "refusal_reason": null,
+            "remaining_tokens_before": 47163,
+            "request_index": 4,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 10841,
+            "reserved_input_tokens_estimated": 9622,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 9622,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 24096,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 26340,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.1000672236627294,
+            "input_tokens": 7383,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2218,
+              "notice": 0,
+              "state": 964,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 5194,
+            "observed_input_to_estimate_ratio": 0.709,
+            "output_tokens": 1024,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7655,
+            "reasoning_tokens_subset_estimated": 1523,
+            "refusal_reason": null,
+            "remaining_tokens_before": 39904,
+            "request_index": 5,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 11711,
+            "reserved_input_tokens_estimated": 10413,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 10413,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10594,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 32503,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 18537,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.100037257824143,
+            "input_tokens": 6578,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2503,
+              "notice": 62,
+              "state": 964,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 5541,
+            "observed_input_to_estimate_ratio": 0.6127,
+            "output_tokens": 293,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7802,
+            "reasoning_tokens_subset_estimated": 2133,
+            "refusal_reason": null,
+            "remaining_tokens_before": 31497,
+            "request_index": 6,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 12066,
+            "reserved_input_tokens_estimated": 10736,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 10736,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 39374,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 12450,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.100047014574518,
+            "input_tokens": 7610,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2363,
+              "notice": 28,
+              "state": 1032,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 5435,
+            "observed_input_to_estimate_ratio": 0.7156,
+            "output_tokens": 760,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7808,
+            "reasoning_tokens_subset_estimated": 1826,
+            "refusal_reason": null,
+            "remaining_tokens_before": 24626,
+            "request_index": 7,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 11955,
+            "reserved_input_tokens_estimated": 10635,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 10635,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": "protected_context_exceeds_task_budget",
+            "budget_stage": "work",
+            "calibration_key": "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3",
+            "closing_reservation_tokens": 10418,
+            "completion_blockers": [
+              "repair"
+            ],
+            "cumulative_tokens_before": 47744,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 4841,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.1,
+            "input_tokens": null,
+            "max_output_tokens": null,
+            "message_groups": {
+              "history": 0,
+              "notice": 0,
+              "state": 0,
+              "summary": 0,
+              "system": 0
+            },
+            "message_tokens_estimated": 0,
+            "output_tokens": null,
+            "planned_output_limit": 0,
+            "protected_floor_tokens_estimated": 7860,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": "token_limit",
+            "remaining_tokens_before": 16256,
+            "request_index": 8,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 8902,
+            "reserved_input_tokens_estimated": 7860,
+            "status": "refused",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "untrimmed_view_tokens_estimated": 10415,
+            "usage_source": "unobserved"
+          }
+        ],
+        "task_budget_ledger": {
+          "input_tokens": 44230,
+          "last_settled_id": 7,
+          "limit": 64000,
+          "next_request_id": 8,
+          "output_tokens": 3514,
+          "overrun_tokens": 0,
+          "pending": null,
+          "samples": {
+            "605464c27a4a5598407d9a18fcaa708a41fb3b6db25a77cfa815dc8a6b9a61d3": [
+              [
+                6818,
+                4801
+              ],
+              [
+                7538,
+                5381
+              ],
+              [
+                8093,
+                5680
+              ],
+              [
+                9622,
+                6797
+              ],
+              [
+                10413,
+                7383
+              ],
+              [
+                10736,
+                6578
+              ],
+              [
+                10635,
+                7610
+              ]
+            ]
+          },
+          "unknown_requests": 0,
+          "version": 1
+        },
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 14
+    },
+    "grader": {
+      "duration_ms": 56
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "runtime_fingerprint_end": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "scenario_id": "verification-repair",
+  "scenario_sha256": "ef695a18a29f927842ea25a7571d6b215f3cb88f1182e066913db50c57d0123e",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-30T03:31:39.742+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-1",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_example.py"
+        },
+        "attempt_id": "a-2",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "command": "<str:36>",
+          "purpose": "verification"
+        },
+        "attempt_id": "a-3",
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "run_shell"
+      },
+      {
+        "arguments": {
+          "path": "tests/__init__.py"
+        },
+        "attempt_id": "a-4",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_transform.py"
+        },
+        "attempt_id": "a-5",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_src.py"
+        },
+        "attempt_id": "a-6",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "test_example.py"
+        },
+        "attempt_id": "a-7",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test.py"
+        },
+        "attempt_id": "a-8",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_all.py"
+        },
+        "attempt_id": "a-9",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_transform.py"
+        },
+        "attempt_id": "a-10",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_public.py"
+        },
+        "attempt_id": "a-11",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/__init__.py"
+        },
+        "attempt_id": "a-12",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "README.md"
+        },
+        "attempt_id": "a-13",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      }
+    ],
+    "completion_evidence": {
+      "artifact_correct": false,
+      "blockers": [
+        "terminal",
+        "repair"
+      ],
+      "current_generation_verified": false,
+      "model_completed": false
+    },
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 0,
+    "initial_public_test_passed": false,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "protected_context_exceeds_task_budget",
+    "tool_diagnostics": [
+      {
+        "arguments_sha256": "032b8aaa95711bc7fee45299a6060d975f7a1719dcdd559a6aa7df4650e94b66",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "7e13ce9ffefd2a9a99a102227a1014b042fd134fd1772f0af79e8a29ba400fad",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "5296498f5e062fc0371a285971e87a2f5e5b272c666b7a6b703c32aac18d531a",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "ab84722bdc4d9242c374ef9ee361d3ae937f85decd4a0280406b576d79a0761d",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "684d8fca07adda3e1a3fc848cfd7f50595c7d007311ef2ce9b27bd366f2eff85",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "f5b1ac8caa187322c52ca1d6a323fbaf037d1d746b8e2cdd58aae46f8e39f079",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "46dd3d282cbd516dbb4c55bf48b125da70f5fd8b23c61aa1f578570ea1958ca5",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "7d6441497d2a000b8143602a7817c90abe7db88e139f89c062a1c36cfe0ad9d6",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "ab84722bdc4d9242c374ef9ee361d3ae937f85decd4a0280406b576d79a0761d",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      },
+      {
+        "arguments_sha256": "7e13ce9ffefd2a9a99a102227a1014b042fd134fd1772f0af79e8a29ba400fad",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 100
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      }
+    ],
+    "tool_schema_sha256": "30fe3c2b482116f0ddf6589de0a525734936e6f99190d775c48a696f14c27cd2",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-2",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-3",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-6",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-4",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-7",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-5",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-8",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-6",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 15,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-9",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 16,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-7",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 17,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-10",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 18,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-8",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 19,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-11",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 20,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-12",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 21,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-9",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 22,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-13",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 23,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-10",
+        "record_type": "failure",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 24,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "recovery_rejected",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 25,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "595e94adaa5609b7e1597822f1ff87197808f025de07f3b98d5d3b0511d66d62",
+    "trace_events": 25
+  },
+  "trial_id": "663c75be-45ed-4d17-b928-719bd9193b5b",
+  "variant": {}
+}

@@ -14,6 +14,8 @@ import json
 from collections.abc import Mapping
 from typing import Any, Callable, Protocol
 
+from mini_agent.budget import (TaskBudgetController, BudgetUnavailable, BudgetPersistenceError,
+                               request_key, request_input_estimate)
 from mini_agent.context import ContextManager, count_tokens
 from mini_agent.providers.base import ProviderResponse, UsageMeter
 from mini_agent.tools.base import (
@@ -258,6 +260,7 @@ class AgentRuntime:
         session_boundary: Any = None,
         model_binding: Any = None,
         usage_meter: UsageMeter | None = None,
+        token_budget: int | None = None,
     ) -> None:
         if context is None or executor is None:
             raise TypeError("AgentRuntime 需要 context 和 executor")
@@ -293,6 +296,145 @@ class AgentRuntime:
         self.executions: list[ExecutionResult] = []
         self.suppress_next_round_output = False
         self._streamed_content = False
+        state = getattr(context, "state", None)
+        saved = getattr(state, "task_budget", None)
+        enabled = saved is not None or (token_budget is not None and
+                                       not getattr(state, "_budget_legacy_resume", False))
+        self.task_budget = TaskBudgetController(token_budget, snapshot=saved) if enabled else None
+        self._budget_start = self.task_budget.snapshot() if self.task_budget else None
+        self.budget_proposal = None
+        self.finalization = False
+        if self.task_budget is not None:
+            state.task_budget = self.task_budget.snapshot()
+            # Binding-owned summaries share the very same ledger and meter.
+            context.summarizer = self._budgeted_summary if self.model_binding is not None else None
+
+    def _persist_budget(self):
+        state = self.context.state
+        state.task_budget = self.task_budget.snapshot()
+        if self.session_boundary is not None:
+            try:
+                self.session_boundary.persist_request_budget(state, self.context)
+            except Exception as error:
+                raise BudgetPersistenceError("task budget commit failed") from error
+
+    def _settle_budget(self, request_id, before):
+        delta = self.usage_meter.delta(before) if before is not None else {}
+        self.task_budget.settle(request_id, delta.get("input_tokens"), delta.get("output_tokens"),
+                                provider=bool(delta.get("llm_calls") and
+                                              delta.get("token_accounting") == "provider"))
+        self._persist_budget()
+
+    def _budgeted_summary(self, messages, **options):
+        key = self._budget_key([], "summary")
+        raw = self._request_input_estimate(messages, [], 512)
+        proposal = self.task_budget.proposal(raw, key, "summary", self._maximum_output(), self._closing_reservation())
+        # A paid summary must cost less than sending the uncompressed view.
+        # The budget path already has a cheaper two-round view, so usually the
+        # bounded local view wins. Explicit compact still uses this cost gate.
+        local = self.context._task_budget_view(
+            self.task_budget.remaining, False, observe=False,
+        )
+        if (not proposal["admitted"] or proposal["input"] + proposal["output"]
+                + count_tokens(local) >= count_tokens(self.context._build_messages())):
+            raise BudgetUnavailable("summary_is_not_cheaper_than_local_view")
+        request_id = self.task_budget.reserve(proposal)
+        self._persist_budget()
+        before = self.usage_meter.snapshot() if self.usage_meter else None
+        try:
+            response = self.model_binding.complete(messages, include_tools=False,
+                                                   stream_output=False,
+                                                   max_output_tokens=proposal["output"])
+        finally:
+            self._settle_budget(request_id, before)
+        if self.task_budget.data["overrun_tokens"]:
+            raise BudgetUnavailable("provider_usage_exceeded_reservation")
+        return response.message.get("content", "") or ""
+
+    def _maximum_output(self):
+        return getattr(getattr(self.model_binding, "profile", None), "max_output_tokens", 8192)
+
+    def _budget_key(self, schemas, kind):
+        reference = getattr(self.model_binding, "reference", None)
+        return request_key(reference, schemas, kind, estimator=(
+            "openai_chat_utf8_request_v1" if self._budget_estimator_name() ==
+            "openai_chat_utf8_request_v1" else None))
+
+    def _budget_estimator_name(self):
+        reference = getattr(self.model_binding, "reference", None)
+        protocol = (reference.get("protocol", "openai_chat") if isinstance(reference, dict) else
+                    getattr(reference, "protocol", "openai_chat"))
+        return "openai_chat_utf8_request_v1" if protocol == "openai_chat" else "legacy_count_tokens"
+
+    def _request_input_estimate(self, messages, schemas, output_cap):
+        if self._budget_estimator_name() != "openai_chat_utf8_request_v1":
+            return count_tokens(messages) + count_tokens(schemas)
+        profile = getattr(self.model_binding, "profile", None)
+        return request_input_estimate(
+            messages, schemas, model_id=getattr(profile, "model_id", ""),
+            stream=getattr(profile, "supports_streaming", True),
+            max_output_tokens=min(self._maximum_output(), output_cap))
+
+    def _closing_reservation(self):
+        state = self.context.state
+        if state.finalization_ready():
+            return 0
+        # Verification and plan progress are work performed by the CURRENT
+        # request. Reserving them again as future requests makes their funds
+        # inaccessible. Only the later, tool-free final reply is ring-fenced.
+        # Its floor uses actual authoritative facts, never accumulated rounds.
+        floor = self.context._task_budget_view(
+            10**12, True, observe=False, recent_rounds=0,
+        )
+        key = self._budget_key([], "final")
+        return self.task_budget.input_reservation(self._request_input_estimate(floor, [], 512) + 256, key) + min(
+            self._maximum_output(), 512)
+
+    def _prepare_budget_request(self):
+        state = self.context.state
+        self.finalization = state.finalization_ready()
+        schemas = [] if self.finalization else self.executor.registry.schemas()
+        kind = "final" if self.finalization else "work"
+        key = self._budget_key(schemas, kind)
+        minimum = min(self._maximum_output(), 256)
+        blockers = state.completion_blockers()
+        # Reserve the protected goal/instructions and authoritative closing
+        # facts, not another copy of the accumulated tool history.
+        closing = self._closing_reservation()
+        allowance = self.task_budget.input_allowance(key, minimum, closing)
+        if self.task_budget.remaining < self.task_budget.data["limit"] // 2 and not self.finalization:
+            existing_notice = self.context._runtime_notice or ""
+            self.context.set_runtime_notice(
+                existing_notice + ("\n" if existing_notice else "") +
+                f"任务累计 token 预算剩余 {self.task_budget.remaining}，已低于一半。"
+                "复用已确认事实，优先完成当前修复、独立验证和计划步骤；避免重复调查。")
+        try:
+            self.prepared_messages = self.context.prepare_messages(
+                input_allowance=max(0, allowance), finalization=self.finalization,
+                input_estimator=lambda messages: self._request_input_estimate(
+                    messages, schemas, min(self._maximum_output(), 512 if self.finalization else 1024)))
+            proposal = self.task_budget.proposal(self._request_input_estimate(
+                self.prepared_messages, schemas, min(self._maximum_output(), 512 if self.finalization else 1024)),
+                                                key, kind, self._maximum_output(), closing)
+        except BudgetUnavailable as error:
+            self.prepared_messages = []
+            floor = self.context.task_budget_view_diagnostic["protected_floor_tokens_estimated"]
+            proposal = self.task_budget.proposal(floor, key, kind,
+                                                self._maximum_output(), closing)
+            proposal.update(admitted=False, reason=str(error), output=0)
+        proposal.update(self.context.task_budget_view_diagnostic)
+        proposal.update(closing_reservation_tokens=closing,
+                        completion_blockers=list(blockers),
+                        input_estimator=self._budget_estimator_name(),
+                        budget_stage="final" if self.finalization else
+                        "verification_pending" if "verification" in blockers else
+                        "plan_progress" if "plan_steps" in blockers else "work")
+        self.budget_proposal = proposal
+
+    def _budget_stop(self, reason="insufficient_request_budget"):
+        self.context.state.status = "failed"
+        self.context.state.terminal_reason = reason
+        return self._decision_result(RuntimeDecision("finish", reason, "token_limit"))
 
     def invoke(
         self,
@@ -345,14 +487,18 @@ class AgentRuntime:
         return notices
 
     def _refresh_usage(self) -> None:
-        if self.usage_meter is None or self._usage_start is None:
-            self.estimated_tokens = self.input_tokens + self.output_tokens
-            return
-        delta = self.usage_meter.delta(self._usage_start)
-        self.llm_calls = int(delta["llm_calls"])
-        self.input_tokens = int(delta["input_tokens"])
-        self.output_tokens = int(delta["output_tokens"])
-        self.token_accounting = str(delta["token_accounting"])
+        if self.usage_meter is not None and self._usage_start is not None:
+            delta = self.usage_meter.delta(self._usage_start)
+            self.llm_calls = int(delta["llm_calls"])
+            self.input_tokens = int(delta["input_tokens"])
+            self.output_tokens = int(delta["output_tokens"])
+            self.token_accounting = str(delta["token_accounting"])
+        if self.task_budget is not None:
+            ledger = self.task_budget.data
+            self.input_tokens = ledger["input_tokens"] - self._budget_start["input_tokens"]
+            self.output_tokens = ledger["output_tokens"] - self._budget_start["output_tokens"]
+            if ledger["unknown_requests"] > self._budget_start["unknown_requests"]:
+                self.token_accounting = "mixed" if self.token_accounting == "provider" else "estimated"
         self.estimated_tokens = self.input_tokens + self.output_tokens
 
     def _apply_decision(self, decision: RuntimeDecision | None) -> RuntimeResult | None:
@@ -434,7 +580,7 @@ class AgentRuntime:
         name, arguments = self.parsed_calls[index]
         invocation_id = f"r-{self.rounds}-c-{index}"
         structured = hasattr(self.executor, "execute_result")
-        if self.session_boundary is not None and structured:
+        if structured and (self.session_boundary is not None or admission is not None):
             if admission is None:
                 admission = self.executor.admit(name, arguments, self.context.state)
                 if isinstance(admission, ToolAdmission):
@@ -892,12 +1038,26 @@ class AgentRuntime:
             early = self._apply_decision(self.policy.before_prepare(self))
             if early is not None:
                 return early
-            self.prepared_messages = self.context.prepare_messages()
+            if self.task_budget is not None:
+                if self.task_budget.reconcile_pending():
+                    self._persist_budget()
+                self._prepare_budget_request()
+            else:
+                self.prepared_messages = self.context.prepare_messages()
             self._refresh_usage()
             self.request_tokens = count_tokens(self.prepared_messages)
             early = self._apply_decision(self.policy.before_llm(self))
             if early is not None:
                 return early
+            if self.task_budget is not None and not self.budget_proposal["admitted"]:
+                return self._budget_stop(self.budget_proposal.get("reason", "insufficient_request_budget"))
+            options = self.policy.llm_options(self)
+            request_id = None
+            if self.task_budget is not None:
+                request_id = self.task_budget.reserve(self.budget_proposal)
+                self._persist_budget()
+                options = dict(options, max_output_tokens=self.budget_proposal["output"],
+                               include_tools=not self.finalization)
             self.rounds += 1
             self.llm_calls += 1
             if (not self.suppress_next_round_output and self.output is not None
@@ -913,9 +1073,11 @@ class AgentRuntime:
             try:
                 message = self.invoke(
                     self.prepared_messages,
-                    **self.policy.llm_options(self),
+                    **options,
                 )
             except Exception:
+                if request_id is not None:
+                    self._settle_budget(request_id, meter_before)
                 if (self.usage_meter is not None and meter_before is not None
                         and self.usage_meter.snapshot()["llm_calls"] == meter_before["llm_calls"]):
                     self.usage_meter.record(
@@ -923,6 +1085,8 @@ class AgentRuntime:
                     )
                 self._refresh_usage()
                 raise
+            if request_id is not None:
+                self._settle_budget(request_id, meter_before)
             self.response_tokens = count_tokens(message)
             if (self.usage_meter is not None and meter_before is not None
                     and self.usage_meter.snapshot()["llm_calls"] == meter_before["llm_calls"]):
@@ -941,7 +1105,8 @@ class AgentRuntime:
                 self.output.assistant_end()
 
             after_llm = getattr(self.policy, "after_llm", None)
-            if after_llm is not None:
+            budget_overrun = bool(self.task_budget and self.task_budget.data["overrun_tokens"])
+            if after_llm is not None and not budget_overrun:
                 early = self._apply_decision(after_llm(self, message))
                 if early is not None:
                     return early
@@ -954,9 +1119,16 @@ class AgentRuntime:
                 assistant.pop("tool_calls", None)
             self._append_assistant(assistant)
             if not normalized.calls:
+                if budget_overrun:
+                    return self._budget_stop("provider_usage_exceeded_reservation")
                 decision = self.policy.on_text(
                     self, message.get("content", "") or "",
                 )
+                if (self.task_budget is not None and decision.action == "finish"
+                        and decision.stop_reason == "text" and self.context.state.completion_blockers()):
+                    self.context.state.status = "blocked"
+                    self.context.state.terminal_reason = "completion_blocked"
+                    decision = RuntimeDecision("finish", "completion_blocked", "blocked")
                 early = self._apply_decision(decision)
                 if early is not None:
                     return early
@@ -966,7 +1138,22 @@ class AgentRuntime:
             plan = self.policy.prepare_tool_round(self, normalized.calls)
             if not isinstance(plan, ToolRoundPlan):
                 raise TypeError("RuntimePolicy.prepare_tool_round 必须返回 ToolRoundPlan")
+            budget_rejection = budget_overrun or (self.task_budget is not None and self.finalization)
+            if budget_rejection:
+                reason = "provider_usage_exceeded_reservation" if budget_overrun else "finalization_tools_forbidden"
+                rejected = {
+                    index: ExecutionResult(name, arguments, "not_checked", False, "denied", 0,
+                                           self.effects[index], reason, reason, error_kind="budget_exhausted")
+                    for index, (name, arguments) in enumerate(self.parsed_calls)
+                }
+                plan = ToolRoundPlan(serial=True, rejection_by_index=rejected)
             self._run_tool_round(normalized.calls, plan)
+            if budget_rejection:
+                if budget_overrun:
+                    return self._budget_stop("provider_usage_exceeded_reservation")
+                self.context.state.status = "blocked"
+                self.context.state.terminal_reason = "finalization_tools_forbidden"
+                return self._decision_result(RuntimeDecision("finish", reason, "blocked"))
             decision = self.policy.after_tool_round(
                 self, normalized.calls, tuple(self.executions),
             )

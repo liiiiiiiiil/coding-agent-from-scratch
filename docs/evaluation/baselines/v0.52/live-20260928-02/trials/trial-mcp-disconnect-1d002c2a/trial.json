@@ -1,0 +1,141 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "e56bc383cd52607610dd6f4e3c6f3c30aef363f319f20e830559a78aec99195c",
+        "size": 893
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "f8a3efdbd957a60ce13c90f5815d552eaef1cca165a79f8ac481cd98c0f982a8",
+        "size": 103
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:41:36.744+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "connection-not-reused",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "no-call-retry",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 1426,
+      "injected_calls": [],
+      "input_tokens": 4387,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 183,
+      "token_accounting": "provider",
+      "tool_calls": 2
+    },
+    "grader": {
+      "duration_ms": 46
+    }
+  },
+  "recovery_status": "not_triggered",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "runtime_fingerprint_end": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario_id": "mcp-disconnect",
+  "scenario_sha256": "4e07daf92ca63ddf65c57793eaa79ddc4068b867d59e862a42b5feba973c857c",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:41:35.192+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "run_shell"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "b5a7be37b92e99429e2f935db77a780761bccc3d4798ba28a0213b6273e85563",
+    "trace_events": 4
+  },
+  "trial_id": "1d002c2a-5294-4bfb-9e95-3138885e9b60",
+  "variant": {
+    "transport": "stdio"
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "duration_ms": 401543,
+  "format": "mini_agent.reliability_run",
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "planned_trials": 21,
+  "repeats": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "56a2855aad5ac715a2100b2db33da874140190e7afa9bed2fd7a01c6a5c24794",
+  "schema_version": 1,
+  "slots": [
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r01",
+      "status": "completed",
+      "trial_id": "f39bff60-df80-4991-9db3-4e5309e1223c",
+      "trial_path": "trials/trial-tool-handler-exception-f39bff60",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r02",
+      "status": "completed",
+      "trial_id": "ef466571-afa5-4476-bab0-e416ed8b0e30",
+      "trial_path": "trials/trial-tool-handler-exception-ef466571",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r03",
+      "status": "completed",
+      "trial_id": "e32dae93-9520-49b8-b5d7-451c9f1fe257",
+      "trial_path": "trials/trial-tool-handler-exception-e32dae93",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r01",
+      "status": "completed",
+      "trial_id": "16cab87e-1224-42bd-93c1-b427ed12e365",
+      "trial_path": "trials/trial-permission-denied-16cab87e",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r02",
+      "status": "completed",
+      "trial_id": "27535885-68e8-4fa5-8114-0759519ad296",
+      "trial_path": "trials/trial-permission-denied-27535885",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r03",
+      "status": "completed",
+      "trial_id": "4438b3fe-0b7d-4acc-9786-5ff0e7578891",
+      "trial_path": "trials/trial-permission-denied-4438b3fe",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r01",
+      "status": "completed",
+      "trial_id": "b1e96248-1ced-4ba2-a2a6-b7d5d4ddfd65",
+      "trial_path": "trials/trial-verification-repair-b1e96248",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r02",
+      "status": "completed",
+      "trial_id": "a56fc4b1-8949-4146-a279-50df509dd95c",
+      "trial_path": "trials/trial-verification-repair-a56fc4b1",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r03",
+      "status": "completed",
+      "trial_id": "3172d1d7-3944-41c1-9987-ccecddd0e5f2",
+      "trial_path": "trials/trial-verification-repair-3172d1d7",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r01",
+      "status": "completed",
+      "trial_id": "d19722c8-a7a9-4b5e-b247-9061b4778623",
+      "trial_path": "trials/trial-process-wait-timeout-d19722c8",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r02",
+      "status": "completed",
+      "trial_id": "0e3b623f-ef3f-4c6d-831f-c89d8fcb8d99",
+      "trial_path": "trials/trial-process-wait-timeout-0e3b623f",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r03",
+      "status": "completed",
+      "trial_id": "51dcb9d1-3dc8-4de1-9fb0-b50aca061850",
+      "trial_path": "trials/trial-process-wait-timeout-51dcb9d1",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r01",
+      "status": "completed",
+      "trial_id": "560b43f0-f2ed-49bc-afda-c299a9737c6c",
+      "trial_path": "trials/trial-crash-after-handler-560b43f0",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r02",
+      "status": "completed",
+      "trial_id": "817a5f6d-378c-4efd-a68c-2795306f7c68",
+      "trial_path": "trials/trial-crash-after-handler-817a5f6d",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r03",
+      "status": "completed",
+      "trial_id": "bbe43cac-c4bb-4768-a49e-dbb9a53d4856",
+      "trial_path": "trials/trial-crash-after-handler-bbe43cac",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "930e02ea-6bcc-4612-8aca-b5bbf02bdc1f",
+      "trial_path": "trials/trial-mcp-disconnect-930e02ea",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "d3c2640d-bbb0-43a7-85e2-8d0ad14c402e",
+      "trial_path": "trials/trial-mcp-disconnect-d3c2640d",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r03",
+      "status": "completed",
+      "trial_id": "f7eb5e81-2973-44f0-a973-2b72d08900de",
+      "trial_path": "trials/trial-mcp-disconnect-f7eb5e81",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": "provider_http_400",
+      "repetition": 1,
+      "run_kind": "live",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r01",
+      "status": "infrastructure_error",
+      "trial_id": "0ebc2746-7172-437d-a95f-e99661c28ab6",
+      "trial_path": "trials/trial-subagent-timeout-0ebc2746",
+      "variant": {}
+    },
+    {
+      "error_kind": "provider_http_400",
+      "repetition": 2,
+      "run_kind": "live",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r02",
+      "status": "infrastructure_error",
+      "trial_id": "459e8042-eab3-41ce-9fdd-250a2067a5fc",
+      "trial_path": "trials/trial-subagent-timeout-459e8042",
+      "variant": {}
+    },
+    {
+      "error_kind": "provider_http_400",
+      "repetition": 3,
+      "run_kind": "live",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r03",
+      "status": "infrastructure_error",
+      "trial_id": "2a04f43c-afd4-40d6-a0be-e9bafb7b4312",
+      "trial_path": "trials/trial-subagent-timeout-2a04f43c",
+      "variant": {}
+    }
+  ],
+  "started_at": "2026-09-29T02:24:43.845+00:00",
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_run_id": "9e192926-83c6-419f-b203-b6e0464df2f7",
+  "suite_sha256": "53180d91b153c480aa580c433491b361120de3d1f120a5032632b89e8bcb7f05",
+  "suite_version": "1.1",
+  "updated_at": "2026-09-29T02:31:25.421+00:00"
+}

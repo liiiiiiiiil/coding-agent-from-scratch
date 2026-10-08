@@ -1,0 +1,802 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "58e790665d484046cd4bf7ead709ef0e446505c4f0e991c1d19312f454b1eb68",
+        "size": 264
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "4cf7341ddc4a404f1ae444bac0cc8000b869a2454d6295d445dd458a13bd4026",
+        "size": 2769
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "5445e757171ca87b8fc9c828be0318eca101c4dc2d003ad6b52c9ae5e4780452",
+        "size": 6109
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T06:54:34.556+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "9338d46e9f6ec4b9409a8f69bbb02fad0adc42ea3033b2e2c40889473b7b943b",
+      "fault_id": "mcp-disconnect",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "mcp.tools_call.disconnect"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": true,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "connection-not-reused",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "no-call-retry",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 13879,
+      "injected_calls": [],
+      "input_tokens": 55942,
+      "llm_calls": 8,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 2139,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 58081,
+        "estimation": "count_tokens; tool schemas reserved separately; not an exact provider tokenizer",
+        "prior_phase_tokens": 0,
+        "requests": [
+          {
+            "cumulative_tokens_before": 0,
+            "input_tokens": 5160,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 56,
+              "notice": 0,
+              "state": 220,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 2262,
+            "observed_input_to_estimate_ratio": 1.7189,
+            "output_tokens": 177,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "reserved_input_tokens_estimated": 3002,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 5337,
+            "input_tokens": 5599,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 313,
+              "notice": 0,
+              "state": 452,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 2751,
+            "observed_input_to_estimate_ratio": 1.6038,
+            "output_tokens": 519,
+            "reasoning_tokens_subset_estimated": 192,
+            "refusal_reason": null,
+            "remaining_tokens_before": 58663,
+            "request_index": 2,
+            "reserved_input_tokens_estimated": 3491,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 11455,
+            "input_tokens": 6358,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 1040,
+              "notice": 0,
+              "state": 621,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 3647,
+            "observed_input_to_estimate_ratio": 1.4493,
+            "output_tokens": 78,
+            "reasoning_tokens_subset_estimated": 804,
+            "refusal_reason": null,
+            "remaining_tokens_before": 52545,
+            "request_index": 3,
+            "reserved_input_tokens_estimated": 4387,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 17891,
+            "input_tokens": 6783,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 1275,
+              "notice": 0,
+              "state": 784,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 4045,
+            "observed_input_to_estimate_ratio": 1.4176,
+            "output_tokens": 241,
+            "reasoning_tokens_subset_estimated": 810,
+            "refusal_reason": null,
+            "remaining_tokens_before": 46109,
+            "request_index": 4,
+            "reserved_input_tokens_estimated": 4785,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 24915,
+            "input_tokens": 7155,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 1519,
+              "notice": 0,
+              "state": 837,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 4342,
+            "observed_input_to_estimate_ratio": 1.4079,
+            "output_tokens": 662,
+            "reasoning_tokens_subset_estimated": 891,
+            "refusal_reason": null,
+            "remaining_tokens_before": 39085,
+            "request_index": 5,
+            "reserved_input_tokens_estimated": 5082,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 32732,
+            "input_tokens": 7955,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 2210,
+              "notice": 0,
+              "state": 912,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 5108,
+            "observed_input_to_estimate_ratio": 1.3603,
+            "output_tokens": 221,
+            "reasoning_tokens_subset_estimated": 1193,
+            "refusal_reason": null,
+            "remaining_tokens_before": 31268,
+            "request_index": 6,
+            "reserved_input_tokens_estimated": 5848,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 40908,
+            "input_tokens": 8321,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 2510,
+              "notice": 0,
+              "state": 992,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 5488,
+            "observed_input_to_estimate_ratio": 1.3361,
+            "output_tokens": 85,
+            "reasoning_tokens_subset_estimated": 1374,
+            "refusal_reason": null,
+            "remaining_tokens_before": 23092,
+            "request_index": 7,
+            "reserved_input_tokens_estimated": 6228,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 49314,
+            "input_tokens": 8611,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 2632,
+              "notice": 0,
+              "state": 1097,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 5715,
+            "observed_input_to_estimate_ratio": 1.334,
+            "output_tokens": 156,
+            "reasoning_tokens_subset_estimated": 1374,
+            "refusal_reason": null,
+            "remaining_tokens_before": 14686,
+            "request_index": 8,
+            "reserved_input_tokens_estimated": 6455,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "provider"
+          },
+          {
+            "cumulative_tokens_before": 58081,
+            "input_tokens": null,
+            "max_output_tokens": null,
+            "message_groups": {
+              "history": 2882,
+              "notice": 0,
+              "state": 1097,
+              "summary": 0,
+              "system": 1986
+            },
+            "message_tokens_estimated": 5965,
+            "output_tokens": null,
+            "reasoning_tokens_subset_estimated": 1561,
+            "refusal_reason": "token_limit",
+            "remaining_tokens_before": 5919,
+            "request_index": 9,
+            "reserved_input_tokens_estimated": 6705,
+            "status": "refused",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "mcp_reliability_echo": 32,
+              "mcp_reliability_sum": 32,
+              "mcp_reliability_third": 31,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 740,
+            "usage_source": "unobserved"
+          }
+        ],
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 11
+    },
+    "grader": {
+      "duration_ms": 83
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "0ba89466630b8e79d5b3fa5d6b3c6356c0cc80f168f7b8ca666e89b8179b314f",
+  "runtime_fingerprint_end": "0ba89466630b8e79d5b3fa5d6b3c6356c0cc80f168f7b8ca666e89b8179b314f",
+  "scenario_id": "mcp-disconnect",
+  "scenario_sha256": "41ae06c2823d9dc881aa45256bb043bbd34b74f988c0a69879ce270017bf7e74",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T06:54:20.558+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "text": "ping"
+        },
+        "attempt_id": "a-1",
+        "error_kind": "mcp_disconnect",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "mcp_reliability_echo"
+      },
+      {
+        "arguments": {
+          "path": "."
+        },
+        "attempt_id": "a-2",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "src"
+        },
+        "attempt_id": "a-3",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "tests"
+        },
+        "attempt_id": "a-4",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-5",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_public.py"
+        },
+        "attempt_id": "a-6",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:20>",
+          "old_string": "<str:20>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-7",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "edit_file"
+      },
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-8",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 2,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_token_budget_exhausted",
+    "tool_diagnostics": [],
+    "tool_schema_sha256": "feddd068beaa44ab209ecc3f0b39d7ddeb11aac147843416205416496d2574fc",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "38e9a5ffd8aafdf897928bd0c3f51c84797f0a5f1dee4c18f5a9e2521dae4893",
+  "suite_version": "1.3",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-6",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "trigger_created",
+        "planning_phase_after": "exploring",
+        "planning_phase_before": "direct",
+        "record_id": 1,
+        "record_type": "replan_trigger",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "plan_committed",
+        "planning_phase_after": "executing",
+        "planning_phase_before": "exploring",
+        "record_id": 1,
+        "record_type": "plan_revision",
+        "repair_phase_after": "idle",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": 1,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "trigger_resolved",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": 1,
+        "record_type": "replan_trigger",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": 1,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "plan_progress",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": 1,
+        "record_type": "plan_progress",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": 1,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-7",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": 1,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-8",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": 1,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "f4ef5803995bb891cc624fe7a837537477648c31825a49c2e4dd545a42855add",
+    "trace_events": 14
+  },
+  "trial_id": "92879b52-8524-4e13-8969-5cba643612ec",
+  "variant": {
+    "transport": "stdio"
+  }
+}

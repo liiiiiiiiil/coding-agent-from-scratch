@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "189ae4e2fa7e0ef5a1239088d67244cab4b5a5c3b00da8db4c98218d3ea3955c",
+    "fault_id": "subagent-unclaimed",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "subagent.result.unclaimed"
+  }
+]

@@ -1,0 +1,1 @@
+{"agent_started":true,"agent_stop_reason":"text","agent_terminal_status":"done","cleanup_complete":true,"fault_events":[{"detail":"","evidence_sha256":"9338d46e9f6ec4b9409a8f69bbb02fad0adc42ea3033b2e2c40889473b7b943b","fault_id":"mcp-disconnect","occurrence":1,"outcome":"triggered","sequence":1,"target":"mcp.tools_call.disconnect"}],"fault_status":"triggered","stage":"grading"}

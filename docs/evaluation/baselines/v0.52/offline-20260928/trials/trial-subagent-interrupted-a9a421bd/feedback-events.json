@@ -1,0 +1,19 @@
+[
+  {
+    "decision": "investigate",
+    "issue_id": "issue-1",
+    "script_sha256": "922cf7d5d9fa60ea78e8b3356b679fa0710dc5007b09c3995cdd3616b2ba1e7a",
+    "source": "simulated_user",
+    "status": "accepted",
+    "trigger": "interrupted_child_issue"
+  },
+  {
+    "decision": "continue",
+    "investigation_attempt_id": "a-2",
+    "issue_id": "issue-1",
+    "script_sha256": "922cf7d5d9fa60ea78e8b3356b679fa0710dc5007b09c3995cdd3616b2ba1e7a",
+    "source": "simulated_user",
+    "status": "accepted",
+    "trigger": "issue_investigated"
+  }
+]

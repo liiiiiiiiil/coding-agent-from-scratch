@@ -1,0 +1,77 @@
+{
+  "format": "mini_agent.provider_accounting_probe",
+  "schema_version": 1,
+  "started_at": "2026-09-30T02:53:59.024872+00:00",
+  "status": "provider_error",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "binding_ref": {
+    "profile": "legacy-default",
+    "provider": "legacy-default",
+    "protocol": "openai_chat",
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e"
+  },
+  "runtime_fingerprint": "ea9c05ed3919d9969ef1fe3b4ddd515c65d1049ba544b4cefb94a46dcf810217",
+  "price_source": "https://mimo.mi.com/docs/pricing",
+  "rate_usd_per_million": {
+    "input_cache_hit": "0.0028",
+    "input_cache_miss": "0.14",
+    "output": "0.28"
+  },
+  "usd_cap": "0.71941480",
+  "worst_case_usd_per_request": "0.14229376",
+  "worst_case_usd_all_requests": "0.42688128",
+  "requests": [
+    {
+      "request_index": 1,
+      "kind": "plain",
+      "status": "responded",
+      "raw_input_estimate": 46,
+      "reserved_input": 348,
+      "output_cap": 8192,
+      "provider_input": 12,
+      "provider_output": 11,
+      "usage_source": "provider",
+      "usd_upper": "0.00000476"
+    },
+    {
+      "request_index": 2,
+      "kind": "tool_call",
+      "status": "provider_error",
+      "raw_input_estimate": 148,
+      "reserved_input": 552,
+      "output_cap": 8192,
+      "provider_input": null,
+      "provider_output": null,
+      "usage_source": "unobserved",
+      "usd_upper": "0.14229376",
+      "error_kind": "ProviderProtocolError",
+      "diagnostic": {
+        "stage": "provider_probe",
+        "error_kind": "ProviderProtocolError",
+        "frames": [
+          {
+            "file": "mini_agent/providers/catalog.py",
+            "line": 145,
+            "function": "complete"
+          },
+          {
+            "file": "mini_agent/providers/openai_chat.py",
+            "line": 299,
+            "function": "complete"
+          },
+          {
+            "file": "mini_agent/providers/openai_chat.py",
+            "line": 113,
+            "function": "_validate_calls"
+          }
+        ]
+      }
+    }
+  ],
+  "provider_requests_sent": 2,
+  "upper_bound_spend_usd": "0.14229852",
+  "actual_cost_usd_uncached_upper": "0.00000476",
+  "live_slots_consumed": 0,
+  "automatic_retries": 0,
+  "ended_at": "2026-09-30T02:54:02.356506+00:00"
+}

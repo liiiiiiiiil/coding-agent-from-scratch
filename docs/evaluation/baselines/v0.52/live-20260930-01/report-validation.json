@@ -1,0 +1,46 @@
+{
+  "format": "mini_agent.reliability_live_review_result",
+  "schema_version": 1,
+  "batch": "live-20260930-01",
+  "report_sha256": "d13a20c38e967fea19369784d4120effcc36fa362e7abc1e41a92978aaccc1e9",
+  "rebuild_byte_identical": true,
+  "review_plan_sha256": "8f8967148f6c17103a5b8e7c0b9a88efccaae32dd9d09b081633fce848649b00",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "planned_slots": 21,
+  "recorded_trials": 21,
+  "fault_triggered": 17,
+  "invariant_passed": 15,
+  "invariant_failed": 2,
+  "invariant_incomplete": 4,
+  "grader_passed": 11,
+  "recovery_successes": 6,
+  "recovery_denominator": 14,
+  "infrastructure_errors": 0,
+  "unrun_slots": 0,
+  "unreadable_trials": 0,
+  "manual_review": 0,
+  "cleanup_incomplete": 0,
+  "source_inconsistent": 0,
+  "request_decisions": 136,
+  "provider_usage_responses": 126,
+  "budget_refusals": 10,
+  "provider_inputs_exceeding_raw_estimate": 0,
+  "provider_inputs_exceeding_calibrated_reservation": 0,
+  "provider_error_categories": {
+    "None": 21
+  },
+  "coverage_shortfalls": {
+    "process-wait-timeout": "1/3 triggered",
+    "crash-after-handler": "1/3 triggered"
+  },
+  "live_baseline_complete": false,
+  "automatic_retries": 0,
+  "replaced_slots": 0
+}

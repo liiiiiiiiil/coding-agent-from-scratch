@@ -1,0 +1,1672 @@
+{
+  "valid": true,
+  "format": "mini_agent.reliability",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "version": "1.0",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "scenario_count": 18,
+  "offline_slots": 50,
+  "live_scenarios": [
+    "tool-handler-exception",
+    "permission-denied",
+    "verification-repair",
+    "process-wait-timeout",
+    "crash-after-handler",
+    "mcp-disconnect",
+    "subagent-timeout"
+  ],
+  "live_slots": 21,
+  "scenarios": [
+    {
+      "scenario_id": "tool-handler-exception",
+      "task": "请修复 src/example.py 的 transform(value)：应返回 value * 2。第一次文件读取会遇到受控异常；根据错误结果继续调查、修改，并按要求独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "list_dir",
+        "grep",
+        "write_file",
+        "edit_file",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress",
+        "run_shell"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "tool-handler-exception",
+        "target": "handler.read_file",
+        "occurrences": 1,
+        "parameters": {
+          "tool": "read_file"
+        }
+      },
+      "invariants": [
+        "tool-result-replayed"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "tool-handler-exception",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "5ab63d765f0ad567c3fd19c1e126488865562ff1c1799c60833cb924cee79c5c"
+    },
+    {
+      "scenario_id": "permission-denied",
+      "task": "先尝试把 transform(value) 写入明确禁止写入的 src/locked.py；收到权限拒绝后，不得重试或绕过，改用公开的 src/fallback.py 实现 transform(value) 返回 value * 2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress",
+        "run_shell"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "src/locked.py",
+          "action": "deny"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*/src/locked.py",
+          "action": "deny"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "permission-denied",
+        "target": "permission.write_file.src/locked.py",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "denied-handler-not-run",
+        "no-implicit-approval"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "permission-denied",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "b3b5fe613c3e0729f0b4cf9a3d290ba8382a9120a52c9247a285ade6ca7962d1"
+    },
+    {
+      "scenario_id": "verification-repair",
+      "task": "先运行公开测试确认初始实现失败，再修复 src/example.py 的 transform(value)，使其返回 value * 2。修复后重新运行公开测试并完成独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "verification-repair",
+        "target": "grader.public_test_failure",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "verification-current-generation",
+        "hidden-grader-passes"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "verification-repair",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "6099499f25df69b2707fe163d6193d87d0e31dfee2c0fdf73942908ebe6374eb"
+    },
+    {
+      "scenario_id": "process-wait-timeout",
+      "task": "在 trial workspace 内使用唯一允许命令 `python support/process_fixture.py --seconds 0.8` 启动受控进程；用 wait_process(timeout_ms=40) 确认等待超时且进程仍在运行，再请求终止、同步状态并清理。然后修复 src/example.py 的 transform(value) 使结果为 value * 2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell",
+        "start_process",
+        "get_process",
+        "read_process",
+        "list_processes",
+        "wait_process",
+        "terminate_process",
+        "kill_process",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "start_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "wait_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "terminate_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "kill_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "read_process",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_processes",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "process-wait-timeout",
+        "target": "process.wait_process",
+        "occurrences": 1,
+        "parameters": {
+          "timeout_ms": 40
+        }
+      },
+      "invariants": [
+        "timeout-not-exit",
+        "active-process-blocks-done",
+        "cleanup-complete"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "process-wait-timeout",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "25c7962d01e0c9db4a3188d7f4eb4e5b935622fd3cfb5e60c9278ea8ae043208"
+    },
+    {
+      "scenario_id": "crash-before-admission",
+      "task": "恢复 session 中的工具调用明确标记为尚未执行。不要重放；按用户逐项处理 issue，重新规划、授权并验证后修复 src/example.py 的 transform(value)。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "crash-before-admission",
+        "target": "boundary.before_admission",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "not-executed-recorded",
+        "admitted-call-not-replayed",
+        "source-session-read-only"
+      ],
+      "recovery_steps": [
+        "claim_new_session",
+        "inspect_evidence",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "crash-before-admission",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "da899b3a0b914bb4b76ff34ce885c1fbc782aad362f287e02c3c354da5f57b8e"
+    },
+    {
+      "scenario_id": "crash-after-admission",
+      "task": "恢复 session 中准入后的调用结果是不确定事实。只读调查当前文件，不能重放；逐项处理 issue、重新规划和授权后修复 src/example.py 的 transform(value)。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "crash-after-admission",
+        "target": "boundary.after_admission",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "admitted-call-not-replayed",
+        "source-session-read-only"
+      ],
+      "recovery_steps": [
+        "claim_new_session",
+        "inspect_evidence",
+        "resolve_issues",
+        "replan",
+        "reauthorize",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [
+        {
+          "when": "uncertain_issue_found",
+          "decision": "investigate",
+          "feedback": "只读检查当前任务文件和未决调用结果。",
+          "issue_selector": "first_unresolved"
+        },
+        {
+          "when": "issue_investigated",
+          "decision": "continue",
+          "feedback": "依据已记录的调查逐项继续，并重新规划、授权和验证。",
+          "issue_selector": "first_unresolved"
+        }
+      ],
+      "grader_id": "crash-after-admission",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "51cf605aa2526cd5337a2dc8b5e9001e2067103be18d01cd21ad7da8d8c137dd"
+    },
+    {
+      "scenario_id": "crash-after-handler",
+      "task": "一次文件副作用已经发生，但结果提交前发生崩溃。恢复后不要重放；只读调查、逐项处理 issue、重新规划并重新授权，随后修复 src/example.py 并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "crash-after-handler",
+        "target": "boundary.after_handler",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "side-effect-once",
+        "admitted-call-not-replayed",
+        "source-session-read-only"
+      ],
+      "recovery_steps": [
+        "claim_new_session",
+        "inspect_evidence",
+        "resolve_issues",
+        "replan",
+        "reauthorize",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [
+        {
+          "when": "uncertain_issue_found",
+          "decision": "investigate",
+          "feedback": "只读检查修复目标和已经发生的计数副作用。",
+          "issue_selector": "first_unresolved"
+        },
+        {
+          "when": "issue_investigated",
+          "decision": "continue",
+          "feedback": "依据调查逐项继续，重新规划并独立验证。",
+          "issue_selector": "first_unresolved"
+        }
+      ],
+      "grader_id": "crash-after-handler",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "1f4107287cdea9a12b4b2e32a3396a6b813f5c2b47807a02f452898b56c96824"
+    },
+    {
+      "scenario_id": "durable-commit-failure",
+      "task": "评测会在一个持久化提交边界失败。提交未确认时不得进入 handler、后续调用或下一次模型请求。根据边界证据安全收束任务。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file"
+      ],
+      "permission_rules": [],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "durable-commit-failure",
+        "target": "commit.boundary",
+        "occurrences": 1,
+        "parameters": {
+          "variant_values": {
+            "boundary": [
+              "admission",
+              "per_call",
+              "round_commit"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "no-action-after-commit-failure",
+        "per-call-order-preserved"
+      ],
+      "recovery_steps": [
+        "inspect_evidence"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "durable-commit-failure",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "fb44fa220e5a0ae2f5ff066043a3f365424dd3c0716ff874e30375fbfc9eca89"
+    },
+    {
+      "scenario_id": "recovery-user-decisions",
+      "task": "先尝试对未调查 issue 使用 continue，接受系统拒绝；随后只读调查并再次逐项决定。当前 trial 的冻结反馈策略决定继续重规划或 block。",
+      "allowed_tools": [
+        "read_file",
+        "list_dir",
+        "grep",
+        "write_file",
+        "edit_file",
+        "run_shell"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "recovery-user-decisions",
+        "target": "user.resolve_issue",
+        "occurrences": 1,
+        "parameters": {
+          "variant_values": {
+            "decision_path": [
+              "continue",
+              "block"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "invalid-user-feedback-rejected",
+        "decision-source-recorded",
+        "block-stops-task",
+        "single-source-claim"
+      ],
+      "recovery_steps": [
+        "inspect_evidence",
+        "resolve_issues",
+        "continue_parent_investigation",
+        "replan",
+        "reauthorize",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [
+        {
+          "when": "before_investigation",
+          "decision": "continue",
+          "feedback": "先直接继续",
+          "issue_selector": "first_unresolved"
+        },
+        {
+          "when": "unresolved_issue",
+          "decision": "investigate",
+          "feedback": "只读检查当前材料",
+          "issue_selector": "first_unresolved"
+        },
+        {
+          "when": "after_investigation",
+          "decision": "continue",
+          "feedback": "基于调查重新规划",
+          "issue_selector": "first_unresolved"
+        }
+      ],
+      "grader_id": "recovery-user-decisions",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "eafa870d0f2b94213a63554a05a3cb34b431a0231a2e9f8d0fd12db94f22a867"
+    },
+    {
+      "scenario_id": "mcp-disconnect",
+      "task": "先调用 mcp_reliability_echo 一次；首次 MCP 工具调用会断连。不要重试或复用连接；使用公开本地文件 src/example.py 的材料完成 transform(value)=value*2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell",
+        "mcp_reliability_echo",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "mcp_reliability_echo",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "mcp-disconnect",
+        "target": "mcp.tools_call.disconnect",
+        "occurrences": 1,
+        "parameters": {
+          "bind": "127.0.0.1",
+          "variant_values": {
+            "transport": [
+              "stdio",
+              "loopback_http"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "connection-not-reused",
+        "no-call-retry"
+      ],
+      "recovery_steps": [
+        "cleanup_resources",
+        "continue_parent_investigation",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "mcp-disconnect",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "3e57974c59cba27def6c31630547e326aa1b1050132bfc00bd84cc5cfd84e86b"
+    },
+    {
+      "scenario_id": "mcp-remote-error",
+      "task": "MCP Server 会返回整数码 JSON-RPC error。将它作为远端调用错误处理，并遵守权限与恢复边界。",
+      "allowed_tools": [
+        "mcp_reliability_echo"
+      ],
+      "permission_rules": [
+        {
+          "tool": "mcp_reliability_echo",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "mcp-remote-error",
+        "target": "mcp.tools_call.remote_error",
+        "occurrences": 1,
+        "parameters": {
+          "bind": "127.0.0.1",
+          "variant_values": {
+            "transport": [
+              "stdio",
+              "loopback_http"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "integer-error-sanitized"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "mcp-remote-error",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "f8aedf896160dafd9b3a975e9264978cb4e7320a1be09ddc0a05f9ae090e8205"
+    },
+    {
+      "scenario_id": "mcp-is-error",
+      "task": "MCP Server 会返回有效的 isError=true 工具结果。保留其 MCP result 语义，按任务需要处理并结束。",
+      "allowed_tools": [
+        "mcp_reliability_echo"
+      ],
+      "permission_rules": [
+        {
+          "tool": "mcp_reliability_echo",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "mcp-is-error",
+        "target": "mcp.tools_call.result",
+        "occurrences": 1,
+        "parameters": {
+          "bind": "127.0.0.1",
+          "variant_values": {
+            "transport": [
+              "stdio",
+              "loopback_http"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "valid-is-error-result"
+      ],
+      "recovery_steps": [],
+      "feedback_strategy": [],
+      "grader_id": "mcp-is-error",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "9210daff96168b968ba6491f060ad672e5d0eeef0a2ba3fcaec88e49bb3006a1"
+    },
+    {
+      "scenario_id": "mcp-call-timeout",
+      "task": "MCP Server 会在 tools/call 阶段超时。等待必须有界，失效连接不得复用；确认关闭完成后结束。",
+      "allowed_tools": [
+        "mcp_reliability_echo"
+      ],
+      "permission_rules": [
+        {
+          "tool": "mcp_reliability_echo",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "mcp-call-timeout",
+        "target": "mcp.tools_call.timeout",
+        "occurrences": 1,
+        "parameters": {
+          "bind": "127.0.0.1",
+          "variant_values": {
+            "transport": [
+              "stdio",
+              "loopback_http"
+            ]
+          }
+        }
+      },
+      "invariants": [
+        "bounded-timeout",
+        "connection-not-reused",
+        "cleanup-complete"
+      ],
+      "recovery_steps": [
+        "cleanup_resources"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "mcp-call-timeout",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "8cc50be454d268d03e8d1068077ef49bd36cc1c322b8b5aa6b6dc7e9e30f5a7a"
+    },
+    {
+      "scenario_id": "subagent-timeout",
+      "task": "请用 general 角色委派只读调查。子模型请求将超时；领取失败结果、只结算一次，然后父 Agent 自行检查并修复 src/example.py 的 transform(value)=value*2，独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+      "allowed_tools": [
+        "read_file",
+        "write_file",
+        "edit_file",
+        "run_shell",
+        "spawn_subagent",
+        "get_subagent_status",
+        "get_subagent_result",
+        "begin_plan",
+        "commit_plan",
+        "request_replan",
+        "recover",
+        "update_plan_progress"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "list_dir",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "grep",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "write_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "edit_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        },
+        {
+          "tool": "spawn_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_status",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_result",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "begin_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "commit_plan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "update_plan_progress",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "request_replan",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "recover",
+          "pattern": "*",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "subagent-timeout",
+        "target": "subagent.model_call.timeout",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "failed-subagent-claimed",
+        "usage-settled-once"
+      ],
+      "recovery_steps": [
+        "claim_child_result",
+        "continue_parent_investigation",
+        "verify_current_generation"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "subagent-timeout",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete",
+        "task-transform-doubles"
+      ],
+      "grader_calibration": {
+        "initial_passed": false,
+        "known_good_passed": true
+      },
+      "materials_sha256": "075003274573414fabdeb4fbc2a6abafe3ae3df083a9cf0d8c1582aec343b5fb"
+    },
+    {
+      "scenario_id": "subagent-cancel",
+      "task": "启动受控只读子调查；当它阻塞在屏障时请求协作取消，等待收束并领取真实结果，然后由父 Agent 继续任务。",
+      "allowed_tools": [
+        "read_file",
+        "spawn_subagent",
+        "get_subagent_status",
+        "get_subagent_result",
+        "cancel_subagent"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "spawn_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "followup_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_status",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_result",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "cancel_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "subagent-cancel",
+        "target": "subagent.worker.cancel_barrier",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "cooperative-cancel",
+        "result-available-after-cancel",
+        "cleanup-complete"
+      ],
+      "recovery_steps": [
+        "cleanup_resources",
+        "claim_child_result"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "subagent-cancel",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "baa9b40928f75bac848d409fb5c8804e0991f620b8ac5b4afd34a12d41a9a628"
+    },
+    {
+      "scenario_id": "subagent-unclaimed",
+      "task": "启动只读子调查并等待其收束。未领取结果前不得完成任务或保存 safe point；重复领取应得到相同结果且只结算一次。",
+      "allowed_tools": [
+        "read_file",
+        "spawn_subagent",
+        "get_subagent_status",
+        "get_subagent_result"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "spawn_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "followup_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_status",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_result",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "cancel_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "subagent-unclaimed",
+        "target": "subagent.result.unclaimed",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "unclaimed-blocks-done",
+        "safe-point-blocked",
+        "repeat-claim-stable"
+      ],
+      "recovery_steps": [
+        "claim_child_result"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "subagent-unclaimed",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "e6d4e492dc4892c5c4314ae1d92f6727460a257da064f0c7e5c85a01b47baa17"
+    },
+    {
+      "scenario_id": "subagent-interrupted",
+      "task": "后台子代理启动确认与整轮提交后父 worker 会终止。恢复时记录 interrupted，不恢复旧 worker，保守结算用量并逐项处理 issue。",
+      "allowed_tools": [
+        "read_file",
+        "spawn_subagent",
+        "get_subagent_status",
+        "get_subagent_result"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "spawn_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "followup_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_status",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_result",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "cancel_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "subagent-interrupted",
+        "target": "subagent.worker.interrupted",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "interrupted-no-worker",
+        "unknown-usage-conservative",
+        "issue-explicitly-resolved"
+      ],
+      "recovery_steps": [
+        "claim_new_session",
+        "inspect_evidence",
+        "resolve_issues"
+      ],
+      "feedback_strategy": [
+        {
+          "when": "interrupted_child_issue",
+          "decision": "investigate",
+          "feedback": "只读检查恢复后的子代理状态和任务文件。",
+          "issue_selector": "first_unresolved"
+        },
+        {
+          "when": "issue_investigated",
+          "decision": "continue",
+          "feedback": "调查证据已记录；逐项继续并重新规划。",
+          "issue_selector": "first_unresolved"
+        }
+      ],
+      "grader_id": "subagent-interrupted",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "7a84b77371f869a016176ac8731f17ea37c27ee95cf266418af3daaccf64b9e6"
+    },
+    {
+      "scenario_id": "followup-incompatible",
+      "task": "已领取的成功子会话绑定冻结 Skill。fixture 替换 Skill 文件后，followup 必须在任何子模型请求前拒绝，其他子会话保持可用。",
+      "allowed_tools": [
+        "read_file",
+        "spawn_subagent",
+        "followup_subagent",
+        "get_subagent_status",
+        "get_subagent_result"
+      ],
+      "permission_rules": [
+        {
+          "tool": "read_file",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "spawn_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "followup_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_status",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "get_subagent_result",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "cancel_subagent",
+          "pattern": "*",
+          "action": "allow"
+        },
+        {
+          "tool": "run_shell",
+          "pattern": "python -m unittest discover -s tests",
+          "action": "allow"
+        }
+      ],
+      "budget": {
+        "max_rounds": 20,
+        "tool_calls": 48,
+        "wall_seconds": 240,
+        "grader_seconds": 30,
+        "parent_tokens": 64000,
+        "child_tokens": 32000
+      },
+      "fault": {
+        "fault_id": "followup-incompatible",
+        "target": "subagent.followup.skill_identity",
+        "occurrences": 1,
+        "parameters": {}
+      },
+      "invariants": [
+        "skill-change-rejected-before-llm",
+        "other-child-session-unaffected"
+      ],
+      "recovery_steps": [
+        "inspect_evidence"
+      ],
+      "feedback_strategy": [],
+      "grader_id": "followup-incompatible",
+      "grader_checks": [
+        "fault_triggered",
+        "invariants_match_evidence",
+        "cleanup_complete"
+      ],
+      "grader_calibration": {
+        "initial_passed": null,
+        "known_good_passed": null
+      },
+      "materials_sha256": "2932a1de3e6caaa23f43c147200af6be2f530e170b704c6354c3851221a422eb"
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "format": "mini_agent.request_cost_replay",
+  "schema_version": 1,
+  "source_suite_sha256": "ae49963f8385f27caaa2521a8ac167d0aa2c193f5368fb636eabb95763791365",
+  "policy": {
+    "cold_samples": 2,
+    "cold_input_multiplier": 2,
+    "warm_positive_error_samples": 8,
+    "warm_margin_percent": 10,
+    "input_allowance_tokens": 256,
+    "minimum_output_tokens": 256,
+    "work_output_tokens": 1024,
+    "summary_output_tokens": 512,
+    "final_output_tokens": 512,
+    "recent_complete_rounds": 2,
+    "calibration_scope": "task_binding_schema_request_kind"
+  },
+  "balance_basis": "observed historical balance; unchanged raw request estimates",
+  "limitations": "No future model replies, trimmed contexts, finalization eligibility or recovery success inferred.",
+  "totals": {
+    "decisions": 144,
+    "historical_refusals": 16,
+    "admitted_at_observed_balance": 130,
+    "observed_input_above_new_reservation": 0,
+    "observed_output_above_new_cap": 6,
+    "input_tokens": 885685,
+    "output_tokens": 44417
+  },
+  "trials": [
+    {
+      "trial_id": "c8c8925c-f825-4d7b-8c55-1ce2618af34d",
+      "scenario_id": "tool-handler-exception",
+      "decisions": 6,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 6,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 1,
+      "input_tokens": 33450,
+      "output_tokens": 5319
+    },
+    {
+      "trial_id": "eef3a8b9-b4e9-443a-98c5-6c475be46c7b",
+      "scenario_id": "tool-handler-exception",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 1,
+      "input_tokens": 46879,
+      "output_tokens": 3236
+    },
+    {
+      "trial_id": "6b2a25df-aa56-4e38-b605-ca2e6825b604",
+      "scenario_id": "tool-handler-exception",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 1,
+      "input_tokens": 49791,
+      "output_tokens": 3369
+    },
+    {
+      "trial_id": "1611ef15-9dc1-48d5-abe5-d9ddfa252d38",
+      "scenario_id": "permission-denied",
+      "decisions": 1,
+      "historical_refusals": 0,
+      "admitted_at_observed_balance": 1,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 3220,
+      "output_tokens": 92
+    },
+    {
+      "trial_id": "16b2e536-6f8a-4224-9171-91a869e24228",
+      "scenario_id": "permission-denied",
+      "decisions": 1,
+      "historical_refusals": 0,
+      "admitted_at_observed_balance": 1,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 3221,
+      "output_tokens": 103
+    },
+    {
+      "trial_id": "12f84e83-2958-4ca1-943c-b52a853a399a",
+      "scenario_id": "permission-denied",
+      "decisions": 1,
+      "historical_refusals": 0,
+      "admitted_at_observed_balance": 1,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 3221,
+      "output_tokens": 262
+    },
+    {
+      "trial_id": "8ed8d9fe-ec50-42a3-94ad-eb6677fa4ecf",
+      "scenario_id": "verification-repair",
+      "decisions": 7,
+      "historical_refusals": 0,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 49216,
+      "output_tokens": 2103
+    },
+    {
+      "trial_id": "91bdec58-c8e7-4b3d-b96c-e6b0ae72e37d",
+      "scenario_id": "verification-repair",
+      "decisions": 1,
+      "historical_refusals": 0,
+      "admitted_at_observed_balance": 1,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 4737,
+      "output_tokens": 260
+    },
+    {
+      "trial_id": "c0391197-66a5-4fb9-8f1e-1851d19c970b",
+      "scenario_id": "verification-repair",
+      "decisions": 6,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 5,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 2,
+      "input_tokens": 36137,
+      "output_tokens": 9306
+    },
+    {
+      "trial_id": "9002f1e0-808e-4a1a-9c33-1d189eb6afbd",
+      "scenario_id": "process-wait-timeout",
+      "decisions": 9,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 56110,
+      "output_tokens": 802
+    },
+    {
+      "trial_id": "d4ee2fef-2baf-4225-9e70-06083db01fea",
+      "scenario_id": "process-wait-timeout",
+      "decisions": 9,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 56318,
+      "output_tokens": 830
+    },
+    {
+      "trial_id": "bc8e9c7f-d84f-4622-aa72-2dad91582453",
+      "scenario_id": "process-wait-timeout",
+      "decisions": 9,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 56087,
+      "output_tokens": 637
+    },
+    {
+      "trial_id": "1b7dda76-0a68-4ea4-88ae-93e0686d0294",
+      "scenario_id": "crash-after-handler",
+      "decisions": 10,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 9,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 57137,
+      "output_tokens": 2220
+    },
+    {
+      "trial_id": "a5100daf-a668-413b-a488-3cc35ab0ac5c",
+      "scenario_id": "crash-after-handler",
+      "decisions": 9,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 51168,
+      "output_tokens": 2567
+    },
+    {
+      "trial_id": "2ece1b42-12d3-4ad3-98c7-b88f4f2de9c2",
+      "scenario_id": "crash-after-handler",
+      "decisions": 10,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 9,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 55498,
+      "output_tokens": 1983
+    },
+    {
+      "trial_id": "540a00c2-c89b-46d8-949a-7eb24a2338a6",
+      "scenario_id": "mcp-disconnect",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 1,
+      "input_tokens": 51365,
+      "output_tokens": 2560
+    },
+    {
+      "trial_id": "5b130264-aa8e-4d51-93d1-9ae4c03aca8a",
+      "scenario_id": "mcp-disconnect",
+      "decisions": 9,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 8,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 56561,
+      "output_tokens": 2378
+    },
+    {
+      "trial_id": "0ef26ce9-f75f-4ba8-b32f-b70510fc7df3",
+      "scenario_id": "mcp-disconnect",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 50078,
+      "output_tokens": 2777
+    },
+    {
+      "trial_id": "93962aea-6763-4aad-9b14-46bbfe6e029a",
+      "scenario_id": "subagent-timeout",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 54295,
+      "output_tokens": 947
+    },
+    {
+      "trial_id": "89e28ced-7701-470c-94c4-3e5716c866a3",
+      "scenario_id": "subagent-timeout",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 54427,
+      "output_tokens": 980
+    },
+    {
+      "trial_id": "2d20141d-34f5-4bf1-87b9-face175616e9",
+      "scenario_id": "subagent-timeout",
+      "decisions": 8,
+      "historical_refusals": 1,
+      "admitted_at_observed_balance": 7,
+      "observed_input_above_new_reservation": 0,
+      "observed_output_above_new_cap": 0,
+      "input_tokens": 56769,
+      "output_tokens": 1686
+    }
+  ]
+}

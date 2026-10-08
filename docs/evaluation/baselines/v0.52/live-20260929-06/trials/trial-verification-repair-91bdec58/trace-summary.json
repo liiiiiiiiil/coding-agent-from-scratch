@@ -1,0 +1,51 @@
+{
+  "events": [
+    {
+      "generation_id": 0,
+      "kind": "task_started",
+      "planning_phase_after": "direct",
+      "planning_phase_before": null,
+      "record_id": null,
+      "record_type": null,
+      "repair_phase_after": "idle",
+      "repair_phase_before": null,
+      "revision_id": null,
+      "sequence_id": 1,
+      "stagnation_count": null,
+      "stagnation_fingerprint": null,
+      "stagnation_kind": null
+    },
+    {
+      "generation_id": 0,
+      "kind": "execution_result",
+      "planning_phase_after": null,
+      "planning_phase_before": null,
+      "record_id": "a-1",
+      "record_type": "attempt",
+      "repair_phase_after": null,
+      "repair_phase_before": null,
+      "revision_id": null,
+      "sequence_id": 2,
+      "stagnation_count": null,
+      "stagnation_fingerprint": null,
+      "stagnation_kind": null
+    },
+    {
+      "generation_id": 0,
+      "kind": "failure_recorded",
+      "planning_phase_after": null,
+      "planning_phase_before": null,
+      "record_id": "f-1",
+      "record_type": "failure",
+      "repair_phase_after": "diagnosis_required",
+      "repair_phase_before": "idle",
+      "revision_id": null,
+      "sequence_id": 3,
+      "stagnation_count": null,
+      "stagnation_fingerprint": null,
+      "stagnation_kind": null
+    }
+  ],
+  "sha256": "2c1c423dd52317628fece00e34811b8e62d295a354c34e57a8074b97a3de321b",
+  "trace_events": 3
+}

@@ -1,0 +1,114 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "5ee337d9c7d0da46d83a04d371f5bf99be60254b588d580698472fad5d3d39fa",
+        "size": 268
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "3de75412b8d72b4d22587b0c954199f1184c5ea62add397782d656e68a300232",
+        "size": 435
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "1448964bd9e4e3d4a11b5e4f85345a996e89318f545a9cdd21b20c7ec85e1ee7",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:53:31.679+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "28e53e7b2b80754e1139ef6ab4ffc55cb575281df05fdba19b0aa637c9a83606",
+      "fault_id": "subagent-unclaimed",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "subagent.result.unclaimed"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "unclaimed-blocks-done",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "safe-point-blocked",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "repeat-claim-stable",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T10:53:31.678+00:00",
+      "started_at": "2026-09-28T10:53:31.678+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "succeeded",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "runtime_fingerprint_end": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario_id": "subagent-unclaimed",
+  "scenario_sha256": "e6d4e492dc4892c5c4314ae1d92f6727460a257da064f0c7e5c85a01b47baa17",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:53:31.600+00:00",
+  "state_summary": {
+    "result_id": "733d3a57-7e13-4d0a-9fbe-cdb7bbe41f39",
+    "safety_issue_count": 2,
+    "status_before_claim": {
+      "agent_profile": "general",
+      "cancel_requested": false,
+      "child_session_id": "e85f7456-d4e2-40e1-a8c6-4625fd5a4096",
+      "delegation_id": "dce991bc-2892-4025-8623-df1b437a4c98",
+      "result_id": "733d3a57-7e13-4d0a-9fbe-cdb7bbe41f39",
+      "round_index": 1,
+      "status": "result_ready"
+    },
+    "used_llm_calls": 1
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "80b9de6ca50f66cf7f37e365a95b1c3dd667c5197d20fa0efc959d083150409c"
+  },
+  "trial_id": "103987d4-3cd1-4e82-957c-8845c2c05810",
+  "variant": {}
+}

@@ -1,0 +1,104 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "230af48ef26080ebb34f22d5e33bce333148ae1256411de18a72075023279ac0",
+        "size": 278
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "99a07c3d3b898499575ded972cab8204c4faeeafc77cbd9786c4d92a40a4ab88",
+        "size": 140
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "4d9bfa94977868db67ad63739e681731a4fa74bdf75e06831b3764c0ef9fbc72",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:35:49.067+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "e8a3033e3ae4185f6f7b2bdd148624c3e4c379a9fe0289b99c06fbd13bc87576",
+      "fault_id": "followup-incompatible",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "subagent.followup.skill_identity"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "skill-change-rejected-before-llm",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "other-child-session-unaffected",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T10:35:49.066+00:00",
+      "started_at": "2026-09-28T10:35:49.066+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "succeeded",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "runtime_fingerprint_end": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario_id": "followup-incompatible",
+  "scenario_sha256": "2932a1de3e6caaa23f43c147200af6be2f530e170b704c6354c3851221a422eb",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:35:48.954+00:00",
+  "state_summary": {
+    "calls": {
+      "general": 2,
+      "skill": 1
+    },
+    "changed_skill_followup_outcome": "invalid",
+    "unaffected_followup_accepted": true
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "1875396f940e294788f7fafe8d0b7b3581a8616be2f3dea7c2e7094682c3a619"
+  },
+  "trial_id": "c6653b91-85b5-406e-b304-990d1f6e9073",
+  "variant": {}
+}

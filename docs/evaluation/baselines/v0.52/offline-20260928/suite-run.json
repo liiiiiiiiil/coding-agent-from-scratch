@@ -1,0 +1,623 @@
+{
+  "code_revision": null,
+  "duration_ms": 7893,
+  "format": "mini_agent.reliability_run",
+  "manual_review": [],
+  "model_binding_ref": null,
+  "planned_trials": 50,
+  "repeats": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": null,
+  "schema_version": 1,
+  "slots": [
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r01",
+      "status": "completed",
+      "trial_id": "3ae06082-3de3-4ca2-98bd-fc9a3a1773fc",
+      "trial_path": "trials/trial-tool-handler-exception-3ae06082",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r02",
+      "status": "completed",
+      "trial_id": "756d50de-1896-4e5f-b8e1-d62700de63dc",
+      "trial_path": "trials/trial-tool-handler-exception-756d50de",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r01",
+      "status": "completed",
+      "trial_id": "c743bddb-468f-42dc-8856-a697c1d4ec9e",
+      "trial_path": "trials/trial-permission-denied-c743bddb",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r02",
+      "status": "completed",
+      "trial_id": "581749bc-7291-4383-8f74-fc37eb5d62a5",
+      "trial_path": "trials/trial-permission-denied-581749bc",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r01",
+      "status": "completed",
+      "trial_id": "05dd751e-4553-4363-ba55-9d4e0d0e848d",
+      "trial_path": "trials/trial-verification-repair-05dd751e",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r02",
+      "status": "completed",
+      "trial_id": "a72a8c16-6b14-4093-a72a-550e88b2a3ee",
+      "trial_path": "trials/trial-verification-repair-a72a8c16",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r01",
+      "status": "completed",
+      "trial_id": "294a28b5-7084-4d77-82ae-e1c8a1bd6cbc",
+      "trial_path": "trials/trial-process-wait-timeout-294a28b5",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r02",
+      "status": "completed",
+      "trial_id": "7af9cd98-dfee-4e88-9ea8-c52f0e651376",
+      "trial_path": "trials/trial-process-wait-timeout-7af9cd98",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-before-admission",
+      "slot_id": "crash-before-admission-default-r01",
+      "status": "completed",
+      "trial_id": "e8a93fa6-0764-47f6-b01f-fb0e84b0c759",
+      "trial_path": "trials/trial-crash-before-admission-e8a93fa6",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-before-admission",
+      "slot_id": "crash-before-admission-default-r02",
+      "status": "completed",
+      "trial_id": "65f2951c-f62d-4cdc-a6c2-bab77e4c7632",
+      "trial_path": "trials/trial-crash-before-admission-65f2951c",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-admission",
+      "slot_id": "crash-after-admission-default-r01",
+      "status": "completed",
+      "trial_id": "92725da2-cfc0-40d5-96cc-33b499048cd6",
+      "trial_path": "trials/trial-crash-after-admission-92725da2",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-admission",
+      "slot_id": "crash-after-admission-default-r02",
+      "status": "completed",
+      "trial_id": "f29554bb-61b0-4f4f-9366-c8efa9f9e4c8",
+      "trial_path": "trials/trial-crash-after-admission-f29554bb",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r01",
+      "status": "completed",
+      "trial_id": "e27d36bd-ca29-49bf-8495-75dfc43ef4a8",
+      "trial_path": "trials/trial-crash-after-handler-e27d36bd",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r02",
+      "status": "completed",
+      "trial_id": "a0f3dbb8-ae91-4f5b-989f-09537e68c1a1",
+      "trial_path": "trials/trial-crash-after-handler-a0f3dbb8",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-admission-r01",
+      "status": "completed",
+      "trial_id": "4666f5ff-60b8-446d-b9b0-3f526fff6933",
+      "trial_path": "trials/trial-durable-commit-failure-4666f5ff",
+      "variant": {
+        "boundary": "admission"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-admission-r02",
+      "status": "completed",
+      "trial_id": "da34b582-6028-4602-b723-6d8df8e096a3",
+      "trial_path": "trials/trial-durable-commit-failure-da34b582",
+      "variant": {
+        "boundary": "admission"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-per_call-r01",
+      "status": "completed",
+      "trial_id": "6bcae6e3-bdd0-4a30-9236-aa77fc50d815",
+      "trial_path": "trials/trial-durable-commit-failure-6bcae6e3",
+      "variant": {
+        "boundary": "per_call"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-per_call-r02",
+      "status": "completed",
+      "trial_id": "84f6f89f-650e-42e7-95d9-f60475df6dc6",
+      "trial_path": "trials/trial-durable-commit-failure-84f6f89f",
+      "variant": {
+        "boundary": "per_call"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-round_commit-r01",
+      "status": "completed",
+      "trial_id": "14449db8-ed3e-42a8-a000-aac806f9cb0d",
+      "trial_path": "trials/trial-durable-commit-failure-14449db8",
+      "variant": {
+        "boundary": "round_commit"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-round_commit-r02",
+      "status": "completed",
+      "trial_id": "bf086997-b4ec-4605-85e0-6dd280269708",
+      "trial_path": "trials/trial-durable-commit-failure-bf086997",
+      "variant": {
+        "boundary": "round_commit"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-continue-r01",
+      "status": "completed",
+      "trial_id": "b310a363-d48e-416c-a596-78038652eb44",
+      "trial_path": "trials/trial-recovery-user-decisions-b310a363",
+      "variant": {
+        "decision_path": "continue"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-continue-r02",
+      "status": "completed",
+      "trial_id": "dac617e2-d4b6-49ad-b3d4-a410155f11e7",
+      "trial_path": "trials/trial-recovery-user-decisions-dac617e2",
+      "variant": {
+        "decision_path": "continue"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-block-r01",
+      "status": "completed",
+      "trial_id": "f6bbf376-4e7e-42bb-8ccc-3cab4ee2aa35",
+      "trial_path": "trials/trial-recovery-user-decisions-f6bbf376",
+      "variant": {
+        "decision_path": "block"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-block-r02",
+      "status": "completed",
+      "trial_id": "53e677c5-8603-4aa5-8797-df2d403c3fda",
+      "trial_path": "trials/trial-recovery-user-decisions-53e677c5",
+      "variant": {
+        "decision_path": "block"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "06760a19-730e-401e-8baa-f6058faae40a",
+      "trial_path": "trials/trial-mcp-disconnect-06760a19",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "f1a35971-60ed-4fb4-8f17-5a6c7fc45bfb",
+      "trial_path": "trials/trial-mcp-disconnect-f1a35971",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "17c397d1-be12-426d-8879-f4da79c72cb9",
+      "trial_path": "trials/trial-mcp-disconnect-17c397d1",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "abf948fb-e68f-4bcf-945d-04531e09e795",
+      "trial_path": "trials/trial-mcp-disconnect-abf948fb",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "0bce423d-f2ef-45d9-97c7-b4c6e4a6f521",
+      "trial_path": "trials/trial-mcp-remote-error-0bce423d",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "7b870ef0-00ce-4abe-90cd-51896a4c8464",
+      "trial_path": "trials/trial-mcp-remote-error-7b870ef0",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "6c5487b6-175f-4c4f-92db-760a3f9e3974",
+      "trial_path": "trials/trial-mcp-remote-error-6c5487b6",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "690976ef-d396-4b07-87a0-92af9d4f4990",
+      "trial_path": "trials/trial-mcp-remote-error-690976ef",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "71766271-e977-4c1d-9a4e-bfed5ff083e3",
+      "trial_path": "trials/trial-mcp-is-error-71766271",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "fc9d9f9d-c787-44d2-941f-2acc080ee29f",
+      "trial_path": "trials/trial-mcp-is-error-fc9d9f9d",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "6d922153-6884-4275-8519-fc9277255017",
+      "trial_path": "trials/trial-mcp-is-error-6d922153",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "07d7c173-5e46-4033-af79-1b84884ee2df",
+      "trial_path": "trials/trial-mcp-is-error-07d7c173",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "eea9c593-f34c-4f2f-a444-a264af5b26e9",
+      "trial_path": "trials/trial-mcp-call-timeout-eea9c593",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "6883a0f9-3e16-44d7-b0ee-bea449755cda",
+      "trial_path": "trials/trial-mcp-call-timeout-6883a0f9",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "8b8e032d-f4b6-44b4-83ed-d7f93d9610e4",
+      "trial_path": "trials/trial-mcp-call-timeout-8b8e032d",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "fd107661-ab8a-42e2-b322-e45a11d578bd",
+      "trial_path": "trials/trial-mcp-call-timeout-fd107661",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r01",
+      "status": "completed",
+      "trial_id": "61f13cdb-8207-41fb-88e1-ee383dca9ddf",
+      "trial_path": "trials/trial-subagent-timeout-61f13cdb",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r02",
+      "status": "completed",
+      "trial_id": "9e927cd9-b4cd-48bb-91b0-bf357b23a475",
+      "trial_path": "trials/trial-subagent-timeout-9e927cd9",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-cancel",
+      "slot_id": "subagent-cancel-default-r01",
+      "status": "completed",
+      "trial_id": "f6b45536-5da8-4779-bb69-5b95523036e8",
+      "trial_path": "trials/trial-subagent-cancel-f6b45536",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-cancel",
+      "slot_id": "subagent-cancel-default-r02",
+      "status": "completed",
+      "trial_id": "151f08e8-2822-4647-ad5c-b07798b9bd4f",
+      "trial_path": "trials/trial-subagent-cancel-151f08e8",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-unclaimed",
+      "slot_id": "subagent-unclaimed-default-r01",
+      "status": "completed",
+      "trial_id": "6a719a09-bcf9-4065-8a65-9be0c55c841b",
+      "trial_path": "trials/trial-subagent-unclaimed-6a719a09",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-unclaimed",
+      "slot_id": "subagent-unclaimed-default-r02",
+      "status": "completed",
+      "trial_id": "809a5cd2-d76c-499d-b496-757ee6d842f1",
+      "trial_path": "trials/trial-subagent-unclaimed-809a5cd2",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-interrupted",
+      "slot_id": "subagent-interrupted-default-r01",
+      "status": "completed",
+      "trial_id": "a9a421bd-d8a1-4ca1-9d57-2fd748a95bd3",
+      "trial_path": "trials/trial-subagent-interrupted-a9a421bd",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-interrupted",
+      "slot_id": "subagent-interrupted-default-r02",
+      "status": "completed",
+      "trial_id": "a53d10e4-9d78-48b8-a5dd-f5868248af48",
+      "trial_path": "trials/trial-subagent-interrupted-a53d10e4",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "followup-incompatible",
+      "slot_id": "followup-incompatible-default-r01",
+      "status": "completed",
+      "trial_id": "efed9c56-9c72-4997-a63e-75cc48510e2b",
+      "trial_path": "trials/trial-followup-incompatible-efed9c56",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "followup-incompatible",
+      "slot_id": "followup-incompatible-default-r02",
+      "status": "completed",
+      "trial_id": "34bd5a92-80de-4ad2-84b0-9136a96b84ee",
+      "trial_path": "trials/trial-followup-incompatible-34bd5a92",
+      "variant": {}
+    }
+  ],
+  "started_at": "2026-09-28T07:24:28.253+00:00",
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_run_id": "6137037e-3e09-4716-843a-56505d62c273",
+  "suite_sha256": "723faf21cc80dd35fb535d28723774485f513501021eb020c6313638d7f543f3",
+  "suite_version": "1.0",
+  "updated_at": "2026-09-28T07:24:36.148+00:00"
+}

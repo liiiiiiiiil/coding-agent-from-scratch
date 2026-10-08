@@ -1,0 +1,14 @@
+{
+  "crash_issue_count": 0,
+  "derived_session_id": "k1Hblm6oa5yCjLbB8Z-x2vddU8qxwrRQ",
+  "handler_calls": 0,
+  "recovery_invariants": {
+    "admitted-call-not-replayed": true,
+    "not-executed-recorded": true,
+    "source-session-read-only": true
+  },
+  "recovery_process_returncode": 0,
+  "source_session_id": "wLoee1X0mJnzYWqbw5eC0fZRtIGkyEgG",
+  "source_session_unchanged": true,
+  "tool_result_outcome": "invalid"
+}

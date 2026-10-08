@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "scenario_id": "permission-denied",
+  "version": "1.5",
+  "task": "请调用 write_file，尝试将 transform(value) 返回 value * 2 的实现写入 src/locked.py。该路径明确禁止写入；预期结果是 PermissionGate 拒绝调用并使当前任务安全终止。不得重试、换工具绕过或继续修改其他文件。此场景只检查拒绝、文件不变和终态，不要求 fallback 或任务恢复。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "deny"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "permission-denied",
+    "target": "permission.write_file.src/locked.py",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "denied-handler-not-run",
+    "no-implicit-approval",
+    "permission-stops-task"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "permission-denied"
+}

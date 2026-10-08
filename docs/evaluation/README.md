@@ -26,6 +26,21 @@ PYTHONPATH=src python -m mini_agent.evaluation report ./evaluation-live
 
 真实模型绑定从本地 `config_local.py` 解析。结果只记录 profile、provider、protocol 和不可逆 fingerprint 摘要；没有价格快照时 `cost_usd` 与 `price_snapshot` 都是 `null`。
 
+## v0.52 故障注入与恢复
+
+[`reliability-boundaries@1.6`](reliability.md) 冻结 18 类工具、权限、验证、进程、持久化恢复、MCP 和子代理场景。`validate-reliability` 输出完整任务、工具、精确权限、预算、故障参数、模拟反馈和 grader；离线矩阵为每个参数变体运行两次，共 50 个槽位。Live 子集固定七个场景各三次，共 21 个槽位。
+
+```bash
+PYTHONPATH=src python -m mini_agent.evaluation validate-reliability tests/fixtures/evaluation/reliability/suite.json
+PYTHONPATH=src python -m mini_agent.evaluation self-test-reliability --output /private/tmp/mini-agent-reliability-offline
+PYTHONPATH=src python -m mini_agent.evaluation run-reliability tests/fixtures/evaluation/reliability/suite.json --live --repeats 3 --output docs/evaluation/baselines/v0.52/live-<run-id>
+PYTHONPATH=src python -m mini_agent.evaluation report-reliability docs/evaluation/baselines/v0.52/live-<run-id>
+```
+
+不变量和 Agent 任务 grader 分开计分。离线组件探针不运行 Agent，故 task grader 与恢复成功率为 `null`；只有 live trial 能进入恢复成功率分母。报告校验冻结 suite、槽位顺序、场景材料摘要和证据引用。suite 1.0 第四批及 suite 1.1 的历史 live 均未达到完整基线要求，所有历史槽位和受限沙箱尝试见[`v0.52 基线目录`](baselines/v0.52/README.md)。前三批请求 artifact 暴露的 provider 值已清除并保留脱敏摘要，runner 已修复。v0.51 suite 1.0 历史争议成绩保留；不同 suite 的结果不合并。
+
+当前可执行 suite 为 `reliability-boundaries@1.6`，尚无该版本 live 成绩。历史 suite 1.5：预算定点修复前的首批 `live-20260929-07` 恢复成功 5/14，作为旧 Runtime 指纹下的历史结果保留。定点修复后新开的 `live-20260929-08` 全部 21 槽为 HTTP 503；provider 恢复后 `live-20260929-09` 有 20 个连接类基础设施错误，另 1 个 trial 在故障触发前因 token limit 停止。修复后两批的恢复分母均为 0，不能判断恢复率；suite 1.5 live 基线仍未完成。结果分别见[08 报告](baselines/v0.52/live-20260929-08/report.json)、[09 报告](baselines/v0.52/live-20260929-09/report.json)和[基线说明](baselines/v0.52/README.md)。
+
 ## v0.51 编码任务集
 
 `tests/fixtures/evaluation/benchmark/suite.json` 固定四题及顺序：分页末页边界、订单折扣与收据双模块修改、缓存 TTL 修复并新增回归测试、配置来源优先级调查与修复。每题有独立的 `initial/`、`grader.py` 和 `known_good/`。Agent 只收到 case 的任务与 `initial/`；评分器和已知正确版本不会复制进 Agent 工作区。
@@ -105,3 +120,5 @@ suite 1.0 的 12 次真实试跑已归档于 [`baselines/v0.51/`](baselines/v0.5
 人工复核时先打开 `trial.json`，核对 run kind、Agent 停止原因、State 终态、计数来源和失败类别；再看 `diff.patch`，最后检查 `grader.log` 中每项预设断言。若 Agent 自述与 grader 结果不一致，以保留的独立评分事实为准，并在新版本题目中修正规则时提升 testcase `version`，不要改写既有 trial。
 
 v0.50 的一次成功 live 样本为 `trial_id=fecf1d04-48f2-4c86-bf42-e0588dabc1fa`：4 次成功模型响应、3 次工具调用、provider 报告 6,520 input / 243 output tokens，Agent 用时 3,004 ms，grader 用时 38 ms，独立评分通过。首次受限网络下的连接失败也作为另一条 live trial 保留；该结果目录的汇总是 2 个 trial、1 个成功（1/2）。这是链路验收样本，不是编码能力基准。
+
+Suite 1.4 公开请求预算校准规则，继承崩溃前累计用量并拒绝超额响应继续执行。首个 live 批次的样本覆盖已完成，恢复成功 1/18；16 个请求被保守预留在发送前拒绝，详见[基线记录](baselines/v0.52/README.md)。

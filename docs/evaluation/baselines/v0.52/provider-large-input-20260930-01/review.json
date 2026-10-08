@@ -1,0 +1,30 @@
+{
+  "format": "mini_agent.provider_large_input_probe_review",
+  "schema_version": 1,
+  "probe_file": "probe.json",
+  "probe_sha256": "62c00619f99d4ca626ebbd79bd4834bb5d51b86fe859b621addb783eda2eec9a",
+  "executed_driver_sha256": "f5bd6c45de3ce4f684b5f25af1f8d0c8cfff3216be71d89e63f20ecdee649053",
+  "common_driver_sha256": "b03f781186819ca538a6de85e33197bdb2ba5b953b5c3db66d8dee794ea30cde",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "status": "completed",
+  "requests_sent": 1,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "request_shape": {
+    "message_count": 3,
+    "tool_schema_count": 11,
+    "serialized_utf8_bytes": 19320,
+    "raw_input_estimate": 7084,
+    "cold_reserved_input": 14424
+  },
+  "provider_input_tokens": 5124,
+  "provider_output_tokens": 18,
+  "provider_input_within_cold_reservation": true,
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_cumulative": "0.42367052",
+  "limitations": [
+    "Synthetic content is not the unsaved batch 09 request.",
+    "The current binding differs from batch 09.",
+    "One provider response does not establish a universal estimation bound or Agent recovery."
+  ]
+}

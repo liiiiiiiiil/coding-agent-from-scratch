@@ -1,0 +1,149 @@
+{
+  "agent_error_kind": "ProviderProtocolError",
+  "attempts": [
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-1",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "include": "*.py",
+        "path": "src",
+        "pattern": "def transform|return"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "grep"
+    },
+    {
+      "arguments": {
+        "path": "."
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "tests",
+        "pattern": "transform|assert"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "grep"
+    }
+  ],
+  "completion_evidence": {
+    "artifact_correct": false,
+    "blockers": [
+      "terminal",
+      "repair"
+    ],
+    "current_generation_verified": false,
+    "model_completed": false
+  },
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "diagnostic": {
+    "error_kind": "ProviderProtocolError",
+    "frames": [
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke",
+        "line": 412
+      },
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke_llm_once",
+        "line": 131
+      },
+      {
+        "file": "mini_agent/evaluation/reliability_diagnostics.py",
+        "function": "observed",
+        "line": 130
+      },
+      {
+        "file": "mini_agent/evaluation/worker.py",
+        "function": "live_client",
+        "line": 252
+      },
+      {
+        "file": "mini_agent/providers/catalog.py",
+        "function": "complete",
+        "line": 145
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "complete",
+        "line": 210
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "_message_from_payload",
+        "line": 152
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "_validate_calls",
+        "line": 118
+      }
+    ],
+    "provider": {
+      "detail": "",
+      "status": null
+    },
+    "stage": "agent"
+  },
+  "generation": 0,
+  "initial_public_test_passed": null,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": null,
+  "provider_error_category": "provider_protocol_error",
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_agent_error",
+  "tool_diagnostics": [
+    {
+      "arguments_sha256": "c84b5505a9e9a880ada86df8021117c5ffdcffa34b409ad76fe5bca57a58d695",
+      "error_kind": "RuntimeError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/faults.py",
+          "function": "wrapped",
+          "line": 100
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    }
+  ],
+  "tool_schema_sha256": "4c01ca4cabf8062e168252d8de7082bdbec6e1692e625f5d3cec3b5c3371e2cd",
+  "verification": []
+}

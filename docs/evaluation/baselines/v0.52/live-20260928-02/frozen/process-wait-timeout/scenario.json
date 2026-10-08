@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "scenario_id": "process-wait-timeout",
+  "version": "1.0",
+  "task": "在 trial workspace 内启动 support/process_fixture.py，短暂等待并确认它仍在运行；请求终止、同步状态并清理进程。然后修复 src/example.py 的 transform(value) 使结果为 value * 2，并验证。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_shell",
+    "start_process",
+    "get_process",
+    "read_process",
+    "list_processes",
+    "wait_process",
+    "terminate_process",
+    "kill_process",
+    "begin_plan",
+    "commit_plan",
+    "update_plan_progress"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "start_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "wait_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "terminate_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "kill_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    },
+    {
+      "tool": "begin_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "commit_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "update_plan_progress",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "process-wait-timeout",
+    "target": "process.wait_process",
+    "occurrences": 1,
+    "parameters": {
+      "timeout_ms": 40
+    }
+  },
+  "invariants": [
+    "timeout-not-exit",
+    "active-process-blocks-done",
+    "cleanup-complete"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "process-wait-timeout"
+}

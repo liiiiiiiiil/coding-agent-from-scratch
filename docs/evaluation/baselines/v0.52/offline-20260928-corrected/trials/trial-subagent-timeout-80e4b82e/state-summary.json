@@ -1,0 +1,16 @@
+{
+  "injected_calls": [
+    {
+      "component": "subagent_llm",
+      "count": 1,
+      "counted_as_real": false,
+      "source": "injected"
+    }
+  ],
+  "result_outcome": "timed_out",
+  "usage": {
+    "llm_calls": 1,
+    "tokens": 4897,
+    "tool_calls": 0
+  }
+}

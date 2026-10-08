@@ -1,0 +1,476 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "0f04a9bb9526e0c31f4ee49a873ec104589f2541b3055d8ca65c970e80bda590",
+        "size": 265
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "b7d54b91510e6bd5bd0efcf76e74ca6dcb01eacec8502813c7748bce96e91217",
+        "size": 2849
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "9f8e55ea6e82d74a3ba6c9537479aa08f734446d24d9e033c649d36ef2fd272d",
+        "size": 7031
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T02:27:48.716+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "28db934fbfdfe4f2b4a7c7e2b8ebb9f9a1d42c3fb5fbab3d41bcd6db11209345",
+      "fault_id": "process-wait-timeout",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "process.wait_process"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": true,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "timeout-not-exit",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "active-process-blocks-done",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "cleanup-complete",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 34112,
+      "injected_calls": [],
+      "input_tokens": 56023,
+      "llm_calls": 6,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 5760,
+      "token_accounting": "provider",
+      "tool_calls": 8
+    },
+    "grader": {
+      "duration_ms": 78
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "56a2855aad5ac715a2100b2db33da874140190e7afa9bed2fd7a01c6a5c24794",
+  "runtime_fingerprint_end": "56a2855aad5ac715a2100b2db33da874140190e7afa9bed2fd7a01c6a5c24794",
+  "scenario_id": "process-wait-timeout",
+  "scenario_sha256": "775bbba67d7dcaee157cc72fda851cdd5e1d9c362ce968df0eeab26e67ea0c45",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T02:27:14.477+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-1",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "support/process_fixture.py"
+        },
+        "attempt_id": "a-2",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_example.py"
+        },
+        "attempt_id": "a-3",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:16>",
+          "old_string": "<str:16>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-4",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "edit_file"
+      },
+      {
+        "arguments": {
+          "command": "<str:36>",
+          "purpose": "verification"
+        },
+        "attempt_id": "a-5",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "run_shell"
+      },
+      {
+        "arguments": {
+          "command": "<str:49>",
+          "stdin_mode": "closed"
+        },
+        "attempt_id": "a-6",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "start_process"
+      },
+      {
+        "arguments": {
+          "process_id": "proc-1",
+          "timeout_ms": 40
+        },
+        "attempt_id": "a-7",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "wait_process"
+      },
+      {
+        "arguments": {
+          "process_id": "proc-1"
+        },
+        "attempt_id": "a-8",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "get_process"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 3,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_token_budget_exhausted",
+    "tool_schema_sha256": "42980ced53b2eaa46b3385bbafe2149bb4aec8547bb69abf5b482a40bdfc76bc",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "53180d91b153c480aa580c433491b361120de3d1f120a5032632b89e8bcb7f05",
+  "suite_version": "1.1",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "recovery_proposed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_activated",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": "verification_required",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "verification_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": 0,
+        "record_type": "verification_history",
+        "repair_phase_after": "idle",
+        "repair_phase_before": "verification_required",
+        "revision_id": null,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-6",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "process_event",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "pe-1",
+        "record_type": "process_event",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-7",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-8",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 15,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "process_event",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "pe-2",
+        "record_type": "process_event",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 16,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "1e99ca8dc7e007519936ae1199b93251552a028da4e7d89ebb95001d1d0137f3",
+    "trace_events": 16
+  },
+  "trial_id": "0e3b623f-ef3f-4c6d-831f-c89d8fcb8d99",
+  "variant": {}
+}

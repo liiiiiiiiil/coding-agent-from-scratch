@@ -1,0 +1,106 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-crash-after-admission-ef70ce8c/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file",
+      "run_shell"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "crash-after-admission",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "boundary.after_admission"
+    },
+    "feedback_strategy": [
+      {
+        "decision": "investigate",
+        "feedback": "只读检查当前任务文件和未决调用结果。",
+        "issue_selector": "first_unresolved",
+        "when": "uncertain_issue_found"
+      },
+      {
+        "decision": "continue",
+        "feedback": "依据已记录的调查逐项继续，并重新规划、授权和验证。",
+        "issue_selector": "first_unresolved",
+        "when": "issue_investigated"
+      }
+    ],
+    "grader_id": "crash-after-admission",
+    "initial_dir": "initial",
+    "invariants": [
+      "admitted-call-not-replayed",
+      "source-session-read-only"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "claim_new_session",
+      "inspect_evidence",
+      "resolve_issues",
+      "replan",
+      "reauthorize",
+      "verify_current_generation"
+    ],
+    "scenario_id": "crash-after-admission",
+    "schema_version": 1,
+    "task": "恢复 session 中准入后的调用结果是不确定事实。只读调查当前文件，不能重放；逐项处理 issue、重新规划和授权后修复 src/example.py 的 transform(value)。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/frozen/crash-after-admission",
+  "scenario_sha256": "51cf605aa2526cd5337a2dc8b5e9001e2067103be18d01cd21ad7da8d8c137dd",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-crash-after-admission-ef70ce8c/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trial_id": "ef70ce8c-1907-41d9-8c3c-97320e25f868",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-crash-after-admission-ef70ce8c/workspace"
+}

@@ -1,0 +1,62 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-is-error-76c5ff4a/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario": {
+    "allowed_tools": [
+      "mcp_reliability_echo"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "mcp-is-error",
+      "occurrences": 1,
+      "parameters": {
+        "bind": "127.0.0.1",
+        "transport": "loopback_http"
+      },
+      "target": "mcp.tools_call.result"
+    },
+    "feedback_strategy": [],
+    "grader_id": "mcp-is-error",
+    "initial_dir": "initial",
+    "invariants": [
+      "valid-is-error-result"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "mcp_reliability_echo"
+      }
+    ],
+    "recovery_steps": [],
+    "scenario_id": "mcp-is-error",
+    "schema_version": 1,
+    "task": "MCP Server 会返回有效的 isError=true 工具结果。保留其 MCP result 语义，按任务需要处理并结束。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/frozen/mcp-is-error",
+  "scenario_sha256": "9210daff96168b968ba6491f060ad672e5d0eeef0a2ba3fcaec88e49bb3006a1",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-is-error-76c5ff4a/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trial_id": "76c5ff4a-2a63-4a5d-9f4f-0c9e2b1f7224",
+  "variant": {
+    "transport": "loopback_http"
+  },
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-mcp-is-error-76c5ff4a/workspace"
+}

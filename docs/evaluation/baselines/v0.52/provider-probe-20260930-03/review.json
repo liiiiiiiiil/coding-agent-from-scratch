@@ -1,0 +1,15 @@
+{
+  "format": "mini_agent.provider_probe_review",
+  "schema_version": 1,
+  "probe_file": "probe.json",
+  "probe_sha256": "43bc9a5941e58cb0689ad9c91076b1154fc0c92ec7755e270a01bb4cd3d01003",
+  "executed_driver_sha256": "ba03f338ecfa850dedf74f871caa8f3311fe6b71df3b966210ece4417cef4383",
+  "sent_requests": 2,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "error_location": "mini_agent/providers/openai_chat.py:_validate_calls:113",
+  "classification": "streamed_tool_call_name_or_arguments_incomplete_at_8192_output_cap",
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_this_probe": "0.14229852",
+  "conservative_spend_upper_usd_cumulative": "0.42288372"
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "b0bc91276ee3ddfcfeb31c26452929b78fdde1fdf82d6eaf477c27b5e4687dcb",
+    "fault_id": "subagent-timeout",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "subagent.model_call.timeout"
+  }
+]

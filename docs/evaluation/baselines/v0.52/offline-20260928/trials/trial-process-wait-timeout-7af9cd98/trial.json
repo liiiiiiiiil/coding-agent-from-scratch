@@ -1,0 +1,103 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "887611f73379d413361dd87052f1951e7bf420790967a416a81664731a393c24",
+        "size": 265
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "e21994b97e7b4d781d6ffd3eaffcca1c865d241671825c2fd0ee9a5cf28a13c6",
+        "size": 140
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "9a3295ec4acbdd45e5b4c4ec51b68f92b2865774eabc8ad205af6fd3aff99bb7",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "diff_patch": "",
+  "ended_at": "2026-09-28T07:24:29.207+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "a62bcdef81cc75df88029c0160bac19d3b6d87bb61118a7aca9ccebf4882cab5",
+      "fault_id": "process-wait-timeout",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "process.wait_process"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "timeout-not-exit",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "active-process-blocks-done",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "cleanup-complete",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T07:24:29.205+00:00",
+      "started_at": "2026-09-28T07:24:29.205+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "scenario_id": "process-wait-timeout",
+  "scenario_sha256": "9eab7b93b0ff44be66790080188d589e0e8387b63b20785c34a3c7bf8066d318",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T07:24:29.143+00:00",
+  "state_summary": {
+    "agent_decision": "awaiting_process",
+    "wait": {
+      "exit_code": null,
+      "reason": "output_available",
+      "status": "running"
+    }
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "723faf21cc80dd35fb535d28723774485f513501021eb020c6313638d7f543f3",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "eb952fa6cfdf044e9dd670e9d3079eaa1a5bd71bcbcc5936dfff9ffff44cf22c"
+  },
+  "trial_id": "7af9cd98-dfee-4e88-9ea8-c52f0e651376",
+  "variant": {}
+}

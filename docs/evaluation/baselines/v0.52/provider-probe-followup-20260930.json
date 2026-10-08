@@ -1,0 +1,51 @@
+{
+  "format": "mini_agent.provider_probe_followup",
+  "schema_version": 1,
+  "date": "2026-09-30",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_cumulative": "0.42294812",
+  "requests_sent_total": 9,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "probes": [
+    {
+      "id": "01",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14029260",
+      "probe_sha256": "4d3fc53a78251a64613424a402724d92f74448267fd0c3a1244afcd1744a8296",
+      "review_file": "provider-probe-20260930-01/review.json"
+    },
+    {
+      "id": "02",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14029260",
+      "probe_sha256": "40ee77b342e5a44f4380588e074ffb523c9d269b3e3ecd7367d0c4ad82399ba6",
+      "review_file": "provider-probe-20260930-02/review.json"
+    },
+    {
+      "id": "03",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14229852",
+      "probe_sha256": "43bc9a5941e58cb0689ad9c91076b1154fc0c92ec7755e270a01bb4cd3d01003",
+      "review_file": "provider-probe-20260930-03/review.json"
+    },
+    {
+      "id": "04",
+      "status": "completed",
+      "requests_sent": 3,
+      "upper_bound_spend_usd": "0.00006440",
+      "probe_sha256": "cb8bcc53298380c85d9bf7dfae8df805f271f9fedb6edf2ddd60511dd48c621d",
+      "review_file": "provider-probe-20260930-04/review.json"
+    }
+  ],
+  "finding": "Two malformed streamed tool-call responses were localized to name/argument validation; matching the 8192 output cap alone did not eliminate the error. A stream accumulator fix for empty/null overwrites was followed by a successful small tool/result round trip.",
+  "limits": [
+    "Historical response bodies were not archived, so the exact cause of earlier malformed calls is unconfirmed.",
+    "Small probe requests do not test batch 09 large-input token reservation or Agent recovery."
+  ],
+  "live_baseline_complete": false
+}

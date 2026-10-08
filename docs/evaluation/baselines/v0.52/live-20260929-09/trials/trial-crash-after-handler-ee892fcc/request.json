@@ -1,0 +1,143 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-09/trials/trial-crash-after-handler-ee892fcc/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "grep",
+      "list_dir",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "crash-after-handler",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "boundary.after_handler"
+    },
+    "feedback_strategy": [
+      {
+        "decision": "investigate",
+        "feedback": "只读检查修复目标和已经发生的计数副作用。",
+        "issue_selector": "first_unresolved",
+        "when": "uncertain_issue_found"
+      },
+      {
+        "decision": "continue",
+        "feedback": "依据调查逐项继续，重新规划并独立验证。",
+        "issue_selector": "first_unresolved",
+        "when": "issue_investigated"
+      }
+    ],
+    "grader_id": "crash-after-handler",
+    "initial_dir": "initial",
+    "invariants": [
+      "side-effect-once",
+      "admitted-call-not-replayed",
+      "source-session-read-only"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [
+      "claim_new_session",
+      "inspect_evidence",
+      "resolve_issues",
+      "replan",
+      "reauthorize",
+      "verify_current_generation"
+    ],
+    "scenario_id": "crash-after-handler",
+    "schema_version": 1,
+    "task": "当前尚未崩溃。先调查并修复 src/example.py 的 transform(value)，应返回 value * 2；首次 write_file 或 edit_file 的 handler 完成修改后、结果提交前，评测器会停止当前进程并派生恢复会话。进入恢复会话后不要重放不确定调用；只读调查、逐项处理 issue、重新规划并重新授权，随后完成剩余修复和独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.5"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-09/frozen/crash-after-handler",
+  "scenario_sha256": "550ed76f5e87f1b023f89403b7af66c5040995f798eba055f359651fde4d69eb",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-09/trials/trial-crash-after-handler-ee892fcc/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trial_id": "ee892fcc-93bf-40f5-9e1b-51dec020d868",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-09/trials/trial-crash-after-handler-ee892fcc/workspace"
+}

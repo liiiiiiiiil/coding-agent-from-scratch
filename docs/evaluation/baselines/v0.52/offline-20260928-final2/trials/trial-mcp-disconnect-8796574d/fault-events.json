@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "a19a1760f7df6a356aad85ef2d2bcb32b6d321c2cc9429da6a5b40feaf464a3e",
+    "fault_id": "mcp-disconnect",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "mcp.tools_call.disconnect"
+  }
+]

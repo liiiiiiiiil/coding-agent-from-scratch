@@ -1,0 +1,93 @@
+{
+  "format": "mini_agent.provider_validation_summary",
+  "schema_version": 1,
+  "date": "2026-09-30",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "suite_version": "1.5",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_cumulative": "0.42375368",
+  "requests_sent_total": 13,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "archives": [
+    {
+      "archive": "provider-probe-20260930-01",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14029260",
+      "probe_sha256": "4d3fc53a78251a64613424a402724d92f74448267fd0c3a1244afcd1744a8296"
+    },
+    {
+      "archive": "provider-probe-20260930-02",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14029260",
+      "probe_sha256": "40ee77b342e5a44f4380588e074ffb523c9d269b3e3ecd7367d0c4ad82399ba6"
+    },
+    {
+      "archive": "provider-probe-20260930-03",
+      "status": "provider_error",
+      "requests_sent": 2,
+      "upper_bound_spend_usd": "0.14229852",
+      "probe_sha256": "43bc9a5941e58cb0689ad9c91076b1154fc0c92ec7755e270a01bb4cd3d01003"
+    },
+    {
+      "archive": "provider-probe-20260930-04",
+      "status": "completed",
+      "requests_sent": 3,
+      "upper_bound_spend_usd": "0.00006440",
+      "probe_sha256": "cb8bcc53298380c85d9bf7dfae8df805f271f9fedb6edf2ddd60511dd48c621d"
+    },
+    {
+      "archive": "provider-probe-20260930-05",
+      "status": "completed",
+      "requests_sent": 3,
+      "upper_bound_spend_usd": "0.00008316",
+      "probe_sha256": "323a5608bf3ba8d0888acb073913dcee39737e83d3c4cee5cf697c52181f78df"
+    },
+    {
+      "archive": "provider-large-input-20260930-01",
+      "status": "completed",
+      "requests_sent": 1,
+      "upper_bound_spend_usd": "0.0007224",
+      "probe_sha256": "62c00619f99d4ca626ebbd79bd4834bb5d51b86fe859b621addb783eda2eec9a"
+    }
+  ],
+  "small_tool_roundtrip_1024_output_cap": "passed",
+  "synthetic_large_input": {
+    "serialized_utf8_bytes": 19320,
+    "raw_input_estimate": 7084,
+    "cold_reserved_input": 14424,
+    "provider_input": 5124,
+    "provider_output": 18,
+    "within_reservation": true
+  },
+  "offline_matrix": {
+    "planned_slots": 50,
+    "recorded_trials": 50,
+    "fault_triggered": 50,
+    "invariant_passed": 50,
+    "infrastructure_errors": 0,
+    "run_dir": "/private/tmp/mini-agent-reliability-v052-post-probe-20260930"
+  },
+  "limitations": [
+    "Historical batch 09 used another binding and its raw request was not archived.",
+    "These probes do not measure live Agent recovery or prove a universal request-budget bound."
+  ],
+  "live_baseline_complete": false,
+  "suite_preflight": {
+    "valid": true,
+    "scenario_count": 18,
+    "offline_slots": 50,
+    "live_slots": 21
+  },
+  "validation": {
+    "full_tests_passed": 822,
+    "offline_matrix_self_test": "passed",
+    "tutorial_structure": "passed",
+    "readme": "passed",
+    "git_diff_check": "passed"
+  }
+}

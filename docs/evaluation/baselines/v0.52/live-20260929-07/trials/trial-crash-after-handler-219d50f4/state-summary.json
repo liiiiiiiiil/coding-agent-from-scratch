@@ -1,0 +1,134 @@
+{
+  "agent_error_kind": "ProviderProtocolError",
+  "attempts": [
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "crash_recovery_uncertain",
+      "handler_admitted": true,
+      "outcome": "uncertain",
+      "permission": "allowed",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    }
+  ],
+  "completion_evidence": {
+    "artifact_correct": true,
+    "blockers": [
+      "terminal",
+      "planning",
+      "verification"
+    ],
+    "current_generation_verified": false,
+    "model_completed": false
+  },
+  "crash_decisions": 4,
+  "crash_issue_count": 2,
+  "derived_session_id": "susBrYgMm-5TGk5s0Jxh0expjfldr-i1",
+  "diagnostic": {
+    "error_kind": "ProviderProtocolError",
+    "frames": [
+      {
+        "file": "mini_agent/evaluation/reliability_worker.py",
+        "function": "_resume_live_crash",
+        "line": 2256
+      },
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "run",
+        "line": 1039
+      },
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke",
+        "line": 412
+      },
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke_llm_once",
+        "line": 131
+      },
+      {
+        "file": "mini_agent/evaluation/reliability_diagnostics.py",
+        "function": "observed",
+        "line": 130
+      },
+      {
+        "file": "mini_agent/providers/catalog.py",
+        "function": "complete",
+        "line": 145
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "complete",
+        "line": 294
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "_validate_calls",
+        "line": 118
+      }
+    ],
+    "provider": {
+      "detail": "",
+      "status": null
+    },
+    "stage": "recovery_agent"
+  },
+  "pending_call_uncertain": true,
+  "plan_revision_count": 0,
+  "side_effect_count": 1,
+  "source_session_id": "acfi_ghGAtfzWPzbRnXUW-Q-8xmr95Ui",
+  "source_session_unchanged": true,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_recovery_agent_error",
+  "tool_diagnostics": [],
+  "verification_generation": null
+}

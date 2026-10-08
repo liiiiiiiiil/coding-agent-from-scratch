@@ -1,0 +1,90 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-1",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "command": "<str:36>",
+        "purpose": "verification"
+      },
+      "attempt_id": "a-2",
+      "error_kind": "nonzero_exit",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "run_shell"
+    },
+    {
+      "arguments": {
+        "new_string": "<str:20>",
+        "old_string": "<str:20>",
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-3",
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "arguments": {
+        "new_string": "<str:20>",
+        "old_string": "<str:20>",
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "edit_file"
+    },
+    {
+      "arguments": {
+        "command": "<str:36>",
+        "purpose": "verification"
+      },
+      "attempt_id": "a-5",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "diagnostic": null,
+  "generation": 3,
+  "initial_public_test_passed": false,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "provider_error_category": null,
+  "status": "done",
+  "task_id": "task-1",
+  "terminal_reason": "",
+  "tool_schema_sha256": "30fe3c2b482116f0ddf6589de0a525734936e6f99190d775c48a696f14c27cd2",
+  "verification": [
+    {
+      "exit_code": 0,
+      "generation_id": 3,
+      "outcome": "passed"
+    }
+  ]
+}

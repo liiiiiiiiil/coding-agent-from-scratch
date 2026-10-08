@@ -1,0 +1,191 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "1b4dd8afadf787b5897bd535711de104befb54dea61b37c9405c9d88a15c1873",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "029b908f2002828f22cea663787438250f30a612f033afb92b082f8401bbcbcf",
+        "size": 1898
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "2be0bcd4b294a4df01b963c24c69430ce6af7550aff73faa7509c7442c3adf18",
+        "size": 104
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:06:11.838+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "f6cdb0696bc42a0914e9eb340135f61cb086b6a5495e129205651eab7b3d8eef",
+      "fault_id": "verification-repair",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "grader.public_test_failure"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "verification-current-generation",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "hidden-grader-passes",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 33819,
+      "injected_calls": [],
+      "input_tokens": 57731,
+      "llm_calls": 7,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 6290,
+      "token_accounting": "provider",
+      "tool_calls": 10
+    },
+    "grader": {
+      "duration_ms": 61
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "runtime_fingerprint_end": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "scenario_id": "verification-repair",
+  "scenario_sha256": "6099499f25df69b2707fe163d6193d87d0e31dfee2c0fdf73942908ebe6374eb",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:05:37.891+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "nonzero_exit",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "run_shell"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "run_shell"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 1,
+    "initial_public_test_passed": false,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_token_budget_exhausted",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "6c7dccf88a11258ec7ef07d516a57f02b5032c133775c6dd4b1782835f5951bf",
+    "trace_events": 18
+  },
+  "trial_id": "ade835b0-4454-42ef-b32f-d19cf181d5e1",
+  "variant": {}
+}

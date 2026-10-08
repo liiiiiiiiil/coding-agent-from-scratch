@@ -1,0 +1,15 @@
+{
+  "crash_issue_count": 1,
+  "derived_session_id": "w4pxuDw5z6zSWgmp-2xsVv3qp1GlUD_W",
+  "handler_calls": 0,
+  "recovery_invariants": {
+    "admitted-call-not-replayed": true,
+    "all-recovery-issues-explicitly-continued": true,
+    "single-source-claim": true,
+    "source-session-read-only": true
+  },
+  "recovery_process_returncode": 0,
+  "source_session_id": "OhteGliCSVLpTmu0KouqyFQ-oosntrcl",
+  "source_session_unchanged": true,
+  "tool_result_outcome": "uncertain"
+}

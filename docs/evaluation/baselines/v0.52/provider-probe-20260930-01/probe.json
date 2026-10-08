@@ -1,0 +1,56 @@
+{
+  "format": "mini_agent.provider_accounting_probe",
+  "schema_version": 1,
+  "started_at": "2026-09-30T02:38:59.791981+00:00",
+  "status": "provider_error",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "binding_ref": {
+    "profile": "legacy-default",
+    "provider": "legacy-default",
+    "protocol": "openai_chat",
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e"
+  },
+  "runtime_fingerprint": "ea9c05ed3919d9969ef1fe3b4ddd515c65d1049ba544b4cefb94a46dcf810217",
+  "price_source": "https://mimo.mi.com/docs/pricing",
+  "rate_usd_per_million": {
+    "input_cache_hit": "0.0028",
+    "input_cache_miss": "0.14",
+    "output": "0.28"
+  },
+  "usd_cap": "1",
+  "worst_case_usd_per_request": "0.14028672",
+  "worst_case_usd_all_requests": "0.42086016",
+  "requests": [
+    {
+      "request_index": 1,
+      "kind": "plain",
+      "status": "responded",
+      "raw_input_estimate": 46,
+      "reserved_input": 348,
+      "output_cap": 1024,
+      "provider_input": 12,
+      "provider_output": 15,
+      "usage_source": "provider",
+      "usd_upper": "0.00000588"
+    },
+    {
+      "request_index": 2,
+      "kind": "tool_call",
+      "status": "provider_error",
+      "raw_input_estimate": 148,
+      "reserved_input": 552,
+      "output_cap": 1024,
+      "provider_input": null,
+      "provider_output": null,
+      "usage_source": "unobserved",
+      "usd_upper": "0.14028672",
+      "error_kind": "ProviderProtocolError"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "upper_bound_spend_usd": "0.14029260",
+  "actual_cost_usd_uncached_upper": "0.00000588",
+  "live_slots_consumed": 0,
+  "automatic_retries": 0,
+  "ended_at": "2026-09-30T02:39:03.890237+00:00"
+}

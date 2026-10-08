@@ -1,0 +1,91 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-crash-before-admission-5f17c446/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file",
+      "run_shell"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "crash-before-admission",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "boundary.before_admission"
+    },
+    "feedback_strategy": [],
+    "grader_id": "crash-before-admission",
+    "initial_dir": "initial",
+    "invariants": [
+      "not-executed-recorded",
+      "admitted-call-not-replayed",
+      "source-session-read-only"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "claim_new_session",
+      "inspect_evidence",
+      "verify_current_generation"
+    ],
+    "scenario_id": "crash-before-admission",
+    "schema_version": 1,
+    "task": "恢复 session 中的工具调用明确标记为尚未执行。不要重放；按用户逐项处理 issue，重新规划、授权并验证后修复 src/example.py 的 transform(value)。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/frozen/crash-before-admission",
+  "scenario_sha256": "da899b3a0b914bb4b76ff34ce885c1fbc782aad362f287e02c3c354da5f57b8e",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-crash-before-admission-5f17c446/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "5f17c446-4630-481e-9dcb-dea6bc8f240f",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-crash-before-admission-5f17c446/workspace"
+}

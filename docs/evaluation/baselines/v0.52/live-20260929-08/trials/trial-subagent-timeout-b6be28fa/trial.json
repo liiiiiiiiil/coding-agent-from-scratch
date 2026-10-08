@@ -1,0 +1,290 @@
+{
+  "agent_stop_reason": "agent_error",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "3edc4204338d07d6e491db1ccd3b318b03974c23346b16d77a7c45564b9bedca",
+        "size": 2174
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "52795d9f30bdfd41b6af4b849ac9807c90378b2e61db8b3fe5291335c2be7931",
+        "size": 541
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T11:43:43.089+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": "provider_http_503",
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "failed-subagent-claimed",
+      "status": "incomplete"
+    },
+    {
+      "invariant_id": "usage-settled-once",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 296,
+      "injected_calls": [],
+      "input_tokens": 7246,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 1024,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 8270,
+        "estimation": "count_tokens; tool schemas reserved separately; not an exact provider tokenizer",
+        "input_multiplier_after": 2.0,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "task_binding_schema_request_kind",
+          "cold_input_multiplier": 2,
+          "cold_samples": 2,
+          "final_output_tokens": 512,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "recent_complete_rounds": 2,
+          "summary_output_tokens": 512,
+          "warm_margin_percent": 10,
+          "warm_positive_error_samples": 8,
+          "work_output_tokens": 1024
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "c89aa72016dd6b1ce48e99db602c20e8318b270c5fbe0058da9a161f4982658d",
+            "closing_reservation_tokens": 6106,
+            "completion_blockers": [],
+            "cumulative_tokens_before": 0,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 27683,
+            "input_multiplier": 2.0,
+            "input_tokens": 2487,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 156,
+              "notice": 0,
+              "state": 320,
+              "summary": 0,
+              "system": 2011
+            },
+            "message_tokens_estimated": 2487,
+            "output_tokens": 0,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 2487,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 7246,
+            "reserved_input_tokens_estimated": 3495,
+            "status": "provider_error",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "get_subagent_result": 67,
+              "get_subagent_status": 58,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "spawn_subagent": 238,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 1008,
+            "untrimmed_view_tokens_estimated": 2487,
+            "usage_source": "estimated"
+          }
+        ],
+        "task_budget_ledger": {
+          "input_tokens": 7246,
+          "last_settled_id": 1,
+          "limit": 64000,
+          "next_request_id": 2,
+          "output_tokens": 1024,
+          "overrun_tokens": 0,
+          "pending": null,
+          "samples": {
+            "c89aa72016dd6b1ce48e99db602c20e8318b270c5fbe0058da9a161f4982658d": []
+          },
+          "unknown_requests": 1,
+          "version": 1
+        },
+        "token_budget": 64000
+      },
+      "token_accounting": "estimated",
+      "tool_calls": 0
+    },
+    "grader": {
+      "duration_ms": 81
+    }
+  },
+  "recovery_status": "not_triggered",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+  "runtime_fingerprint_end": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+  "scenario_id": "subagent-timeout",
+  "scenario_sha256": "96698832b22388c356b53a09fcec2b5ea2955b084ac86f1061ba1a6b25b2d7c5",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T11:43:42.695+00:00",
+  "state_summary": {
+    "agent_error_kind": "ProviderHTTPError",
+    "attempts": [],
+    "completion_evidence": {
+      "artifact_correct": false,
+      "blockers": [
+        "terminal"
+      ],
+      "current_generation_verified": false,
+      "model_completed": false
+    },
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": {
+      "error_kind": "ProviderHTTPError",
+      "frames": [
+        {
+          "file": "mini_agent/runtime.py",
+          "function": "invoke",
+          "line": 418
+        },
+        {
+          "file": "mini_agent/runtime.py",
+          "function": "invoke_llm_once",
+          "line": 131
+        },
+        {
+          "file": "mini_agent/evaluation/reliability_diagnostics.py",
+          "function": "observed",
+          "line": 134
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "live_client",
+          "line": 252
+        },
+        {
+          "file": "mini_agent/providers/catalog.py",
+          "function": "complete",
+          "line": 145
+        },
+        {
+          "file": "mini_agent/providers/openai_chat.py",
+          "function": "complete",
+          "line": 216
+        },
+        {
+          "file": "mini_agent/providers/http.py",
+          "function": "json",
+          "line": 165
+        },
+        {
+          "file": "mini_agent/providers/http.py",
+          "function": "request",
+          "line": 144
+        }
+      ],
+      "provider": {
+        "detail": "No available channel for model <redacted> under group default (distributor) (request id: 20260929114343057530823v33e8W1M0plFJP1w)",
+        "status": 503
+      },
+      "stage": "agent"
+    },
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": "agent_error",
+    "provider_error_category": "provider_http_503",
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_agent_error",
+    "tool_diagnostics": [],
+    "tool_schema_sha256": "3b1671bd0a846a803920b47c025a50aaf96fbf82c5c4cfd602082820cf3e26a0",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "d7fe5c1b6f0f15f0f3e14de12978f742473bdfa9cc0d4afc98d30f3b0fdd4c00",
+    "trace_events": 1
+  },
+  "trial_id": "b6be28fa-c985-4bfe-9a1d-6b0fcd4e7ab1",
+  "variant": {}
+}

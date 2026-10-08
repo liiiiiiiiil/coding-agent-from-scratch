@@ -1,0 +1,20 @@
+[
+  {
+    "when": "before_investigation",
+    "decision": "continue",
+    "feedback": "先直接继续",
+    "issue_selector": "first_unresolved"
+  },
+  {
+    "when": "unresolved_issue",
+    "decision": "investigate",
+    "feedback": "只读检查当前材料",
+    "issue_selector": "first_unresolved"
+  },
+  {
+    "when": "after_investigation",
+    "decision": "continue",
+    "feedback": "基于调查重新规划",
+    "issue_selector": "first_unresolved"
+  }
+]

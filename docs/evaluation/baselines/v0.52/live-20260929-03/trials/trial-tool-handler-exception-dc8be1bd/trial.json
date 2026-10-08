@@ -1,0 +1,530 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "adc91029839a73b0ee7113d61d17272abc3350fda7aa3b97c7919e5b934eb905",
+        "size": 264
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "d8d4a213191ec61e482bf70f5d08a92a2b45c96b57dbe58ea9f0f15bc55569d8",
+        "size": 3243
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "d1a5ec284242e1551c4f988346c0df87ed63e72fddc38065a25efab2e6da9175",
+        "size": 8373
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T02:40:09.003+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "10137f8ce896362e4b5a9ba8c9e68a0fe241926f3145566554735b7ad8620efd",
+      "fault_id": "tool-handler-exception",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "handler.read_file"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": true,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "tool-result-replayed",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 22264,
+      "injected_calls": [],
+      "input_tokens": 57992,
+      "llm_calls": 8,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 3611,
+      "token_accounting": "provider",
+      "tool_calls": 9
+    },
+    "grader": {
+      "duration_ms": 78
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "56898bac5bc3b98fcd5cba261fde9589c472292c80639863ee82de7512db728c",
+  "runtime_fingerprint_end": "56898bac5bc3b98fcd5cba261fde9589c472292c80639863ee82de7512db728c",
+  "scenario_id": "tool-handler-exception",
+  "scenario_sha256": "bad2d8dc24b32af9e2cd5fa1351a0c805ddf7df64f99b9e56d81f34e5d420212",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T02:39:46.617+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-1",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "."
+        },
+        "attempt_id": "a-2",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "src",
+          "pattern": "."
+        },
+        "attempt_id": "a-3",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "grep"
+      },
+      {
+        "arguments": {
+          "path": "tests",
+          "pattern": "."
+        },
+        "attempt_id": "a-4",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "grep"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:20>",
+          "old_string": "<str:20>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-5",
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      },
+      {
+        "arguments": {
+          "limit": 50,
+          "offset": 0,
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-6",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:20>",
+          "old_string": "<str:20>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-7",
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      },
+      {
+        "arguments": {
+          "command": "<str:36>",
+          "purpose": "verification"
+        },
+        "attempt_id": "a-8",
+        "error_kind": "nonzero_exit",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "run_shell"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:20>",
+          "old_string": "<str:20>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-9",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "edit_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 3,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_token_budget_exhausted",
+    "tool_schema_sha256": "4c01ca4cabf8062e168252d8de7082bdbec6e1692e625f5d3cec3b5c3371e2cd",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "53180d91b153c480aa580c433491b361120de3d1f120a5032632b89e8bcb7f05",
+  "suite_version": "1.1",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "recovery_proposed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_activated",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": "verification_required",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-6",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-7",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-8",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "verification_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": 0,
+        "record_type": "verification_history",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-2",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "verification_required",
+        "revision_id": null,
+        "sequence_id": 15,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "recovery_proposed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 16,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "recovery_activated",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": "verification_required",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": null,
+        "sequence_id": 17,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-9",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 18,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "recovery_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 19,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "a67eb9bef798fe24968d5761ca5edb89990d58271b64ef2b524f6d38109c1de3",
+    "trace_events": 19
+  },
+  "trial_id": "dc8be1bd-e04e-4bba-b0c1-0876a163b513",
+  "variant": {}
+}

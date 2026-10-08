@@ -1,0 +1,124 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "grep"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "write_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "grep"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": "unknown_tool",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "generation": 0,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_token_budget_exhausted",
+  "verification": []
+}

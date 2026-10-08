@@ -1,0 +1,138 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "agent_profile": "general",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "调查 workspace 中 src/example.py 的 transform 实现与 tests/ 下的测试期望，报告 transform(value) ",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>",
+        "source_id": "src-transform-investigation"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "child_session_id": "0a40811d-1539-4ffb-ada0-9dfecbc9e8fe"
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_status"
+    },
+    {
+      "arguments": {
+        "child_session_id": "0a40811d-1539-4ffb-ada0-9dfecbc9e8fe"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_result"
+    },
+    {
+      "arguments": {
+        "command": "<str:52>",
+        "purpose": "execution"
+      },
+      "attempt_id": "a-5",
+      "error_kind": "permission_denied",
+      "handler_admitted": false,
+      "outcome": "denied",
+      "permission": "denied",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [
+    {
+      "abandoned_at": null,
+      "agent_profile": "general",
+      "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+      "cancellation_reason": null,
+      "claimed_at": "2026-09-29T02:45:26.738545+00:00",
+      "committed_at": "2026-09-29T02:45:26.738514+00:00",
+      "contract_summary": {
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "goal": "调查 workspace 中 src/example.py 的 transform 实现与 tests/ 下的测试期望，报告 transform(value) 当前行为与测试期望之间的差异。",
+        "purpose": "investigation",
+        "requested_tools": [
+          "read_file",
+          "list_dir"
+        ],
+        "scope": [
+          "src/example.py",
+          "tests/"
+        ]
+      },
+      "created_at": "2026-09-29T02:45:24.753441+00:00",
+      "delegation_id": "70cac015-b816-442f-b411-6e351469c2cd",
+      "delivery_status": "committed",
+      "diagnostic_reason": "budget_exhausted",
+      "mode": "background",
+      "outcome": "budget_exhausted",
+      "parent_attempt_id": null,
+      "parent_generation_id": 0,
+      "parent_task_id": "task-1",
+      "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+      "reserved_usage": {
+        "elapsed_ms": 0,
+        "input_tokens": 0,
+        "llm_calls": 2,
+        "output_tokens": 4000,
+        "result_bytes": 0,
+        "rounds": 2,
+        "token_accounting": "estimated",
+        "tool_calls": 4
+      },
+      "result_hash": "8d42852e99a0c9251f62717925a4e1a01b254d079fe9d19a2e35ae841209ccb9",
+      "result_id": "1db404fe-2a6f-49f9-b2e6-7752c9425c3f",
+      "result_ready_at": "2026-09-29T02:45:25.819896+00:00",
+      "result_summary": "子代理 token 预算耗尽",
+      "started_at": "2026-09-29T02:45:24.754081+00:00",
+      "startup_confirmed": true,
+      "subagent_id": "0a40811d-1539-4ffb-ada0-9dfecbc9e8fe",
+      "task_contract_hash": "8fed0da78d362cf0bf01b8a850d0abc331cbc518c17ae95f6c9e15bc1c315a4a",
+      "usage": {
+        "elapsed_ms": 2,
+        "input_tokens": 0,
+        "llm_calls": 0,
+        "output_tokens": 0,
+        "result_bytes": 966,
+        "rounds": 0,
+        "token_accounting": "estimated",
+        "tool_calls": 0
+      }
+    }
+  ],
+  "diagnostic": null,
+  "generation": 0,
+  "initial_public_test_passed": null,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "provider_error_category": null,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+  "tool_schema_sha256": "f8c15f80ee7826c6b3c6d93c3818df8c5bd6d46fabd1e36f2468410dd5be693d",
+  "verification": []
+}

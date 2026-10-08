@@ -1,0 +1,115 @@
+{
+  "format": "mini_agent.reliability",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "version": "1.2",
+  "description": "覆盖工具、权限、验证、进程、持久化恢复、MCP 与子代理边界的冻结故障矩阵。",
+  "default_repeats": 3,
+  "offline_repeats": 2,
+  "live_scenario_ids": [
+    "tool-handler-exception",
+    "permission-denied",
+    "verification-repair",
+    "process-wait-timeout",
+    "crash-after-handler",
+    "mcp-disconnect",
+    "subagent-timeout"
+  ],
+  "support": {
+    "path": "support",
+    "materials_sha256": "3bdcb14a16eea3e5dc396d11810983f2313061a24ee0857cae05edddcd86d552"
+  },
+  "scenarios": [
+    {
+      "scenario_id": "tool-handler-exception",
+      "path": "tool-handler-exception",
+      "materials_sha256": "5c1299244ca9e9b6419b7ccc2f071016fff77701e83bf0264b31a12d89cd5576"
+    },
+    {
+      "scenario_id": "permission-denied",
+      "path": "permission-denied",
+      "materials_sha256": "07a4fceba1fabefd1575877c49a3817e14c87dfa897e9c0fc0ce9594037bbc7f"
+    },
+    {
+      "scenario_id": "verification-repair",
+      "path": "verification-repair",
+      "materials_sha256": "33f24c5afc879c6cabe44b27c7b51982416ed2d18a44460e5baba9f81246dbcb"
+    },
+    {
+      "scenario_id": "process-wait-timeout",
+      "path": "process-wait-timeout",
+      "materials_sha256": "4b37820d30efa9ed9b2f44f7f1726d4e5ecada23ec868132cf51d5ceecda7f61"
+    },
+    {
+      "scenario_id": "crash-before-admission",
+      "path": "crash-before-admission",
+      "materials_sha256": "de0274b6f4c764a728fe3c83e3ea5f947f43c61069ad3e07c29028d0c228a2be"
+    },
+    {
+      "scenario_id": "crash-after-admission",
+      "path": "crash-after-admission",
+      "materials_sha256": "ba55628363d2e1c40ecfd194c545b1e7accaec6b66e3e15baaaebc22cfd3c7f7"
+    },
+    {
+      "scenario_id": "crash-after-handler",
+      "path": "crash-after-handler",
+      "materials_sha256": "86a86a11ce58e5e4fda5bafbd75a492d52bcc808388a75b59f47fe7ae396d783"
+    },
+    {
+      "scenario_id": "durable-commit-failure",
+      "path": "durable-commit-failure",
+      "materials_sha256": "a081ca1204fd540fd98030c7a30ec1ec7cb575e6e0535b54685358d62340529c"
+    },
+    {
+      "scenario_id": "recovery-user-decisions",
+      "path": "recovery-user-decisions",
+      "materials_sha256": "cd8e63c6eb79a585e2ac5dba3c12ee2d36e24bb0b36f6491954abf6939babfee"
+    },
+    {
+      "scenario_id": "mcp-disconnect",
+      "path": "mcp-disconnect",
+      "materials_sha256": "28ff7c5ce4b520a163ad378b9f773891f0f37ecf0a134c6ca32b628ebc237691"
+    },
+    {
+      "scenario_id": "mcp-remote-error",
+      "path": "mcp-remote-error",
+      "materials_sha256": "fa3db8b1b8cb6504fd7dabe4e52e22a0a0f4d76daa911a83e1d1b033d4e4caf0"
+    },
+    {
+      "scenario_id": "mcp-is-error",
+      "path": "mcp-is-error",
+      "materials_sha256": "f8bf3e8f5556dd76ce9c89fe8c79ecd2f4d72212155472738e2fbcdf62a4eb9b"
+    },
+    {
+      "scenario_id": "mcp-call-timeout",
+      "path": "mcp-call-timeout",
+      "materials_sha256": "4853484484e33cbac94d6b45b91fa862b27f27c8706d155fb49c5e6055a11fb2"
+    },
+    {
+      "scenario_id": "subagent-timeout",
+      "path": "subagent-timeout",
+      "materials_sha256": "85260eb4d41bf7a2b816df43dec58585da0163d44a76b1fecefb661ddcf817cc"
+    },
+    {
+      "scenario_id": "subagent-cancel",
+      "path": "subagent-cancel",
+      "materials_sha256": "afb53330a8b7ad1f3cb21a9f2c7aa5cfef0ff0e515953fe835141a7f194385c5"
+    },
+    {
+      "scenario_id": "subagent-unclaimed",
+      "path": "subagent-unclaimed",
+      "materials_sha256": "f243d78fca3538ca07866e13098cbb95b3a249727d2d1643f9793a48baef7b79"
+    },
+    {
+      "scenario_id": "subagent-interrupted",
+      "path": "subagent-interrupted",
+      "materials_sha256": "1c152107fe6c9412c333b407b9072e70ec92f57fc12c0cd9a7d20bcf66d47524"
+    },
+    {
+      "scenario_id": "followup-incompatible",
+      "path": "followup-incompatible",
+      "materials_sha256": "c35a1aed6991c78bb6add6b8b4024efc78625b05faaeb34c3c584d32ae671e69"
+    }
+  ],
+  "suite_sha256": "127fc54a543693630e23b602e2d3db460030b54746aa66fc67c0c9d70f7600a4"
+}

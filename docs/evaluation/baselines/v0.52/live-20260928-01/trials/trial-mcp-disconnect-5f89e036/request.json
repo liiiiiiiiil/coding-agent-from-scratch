@@ -1,0 +1,105 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260928-01/trials/trial-mcp-disconnect-5f89e036/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "mcp_reliability_echo"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "mcp-disconnect",
+      "occurrences": 1,
+      "parameters": {
+        "bind": "127.0.0.1",
+        "transport": "stdio"
+      },
+      "target": "mcp.tools_call.disconnect"
+    },
+    "feedback_strategy": [],
+    "grader_id": "mcp-disconnect",
+    "initial_dir": "initial",
+    "invariants": [
+      "connection-not-reused",
+      "no-call-retry"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "mcp_reliability_echo"
+      }
+    ],
+    "recovery_steps": [
+      "cleanup_resources",
+      "continue_parent_investigation",
+      "verify_current_generation"
+    ],
+    "scenario_id": "mcp-disconnect",
+    "schema_version": 1,
+    "task": "首次 MCP 工具调用会断连。不要重试或复用连接；使用公开本地文件 src/example.py 的材料完成 transform(value)=value*2，并独立验证。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260928-01/frozen/mcp-disconnect",
+  "scenario_sha256": "3e3bf8203f9a1845d4bf36b0e87b9d0708771ecce2fd1ba7051f58df22327b59",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260928-01/trials/trial-mcp-disconnect-5f89e036/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "08002f7076b23a717007c506a940ad367d42461f99243fbbc82cf0477df4ea7c",
+  "suite_version": "1.0",
+  "trial_id": "5f89e036-1bf6-4233-a972-07ddca980755",
+  "variant": {
+    "transport": "stdio"
+  },
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260928-01/trials/trial-mcp-disconnect-5f89e036/workspace"
+}

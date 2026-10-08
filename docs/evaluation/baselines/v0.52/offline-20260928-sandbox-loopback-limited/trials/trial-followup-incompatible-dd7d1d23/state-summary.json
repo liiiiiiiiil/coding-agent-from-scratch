@@ -1,0 +1,8 @@
+{
+  "calls": {
+    "general": 2,
+    "skill": 1
+  },
+  "changed_skill_followup_outcome": "invalid",
+  "unaffected_followup_accepted": true
+}

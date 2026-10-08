@@ -1,0 +1,119 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-recovery-user-decisions-bdc78698/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "list_dir",
+      "grep",
+      "write_file",
+      "edit_file",
+      "run_shell"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "recovery-user-decisions",
+      "occurrences": 1,
+      "parameters": {
+        "decision_path": "continue"
+      },
+      "target": "user.resolve_issue"
+    },
+    "feedback_strategy": [
+      {
+        "decision": "continue",
+        "feedback": "先直接继续",
+        "issue_selector": "first_unresolved",
+        "when": "before_investigation"
+      },
+      {
+        "decision": "investigate",
+        "feedback": "只读检查当前材料",
+        "issue_selector": "first_unresolved",
+        "when": "unresolved_issue"
+      },
+      {
+        "decision": "continue",
+        "feedback": "基于调查重新规划",
+        "issue_selector": "first_unresolved",
+        "when": "after_investigation"
+      }
+    ],
+    "grader_id": "recovery-user-decisions",
+    "initial_dir": "initial",
+    "invariants": [
+      "invalid-user-feedback-rejected",
+      "decision-source-recorded",
+      "block-stops-task",
+      "single-source-claim"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "inspect_evidence",
+      "resolve_issues",
+      "continue_parent_investigation",
+      "replan",
+      "reauthorize",
+      "verify_current_generation"
+    ],
+    "scenario_id": "recovery-user-decisions",
+    "schema_version": 1,
+    "task": "先尝试对未调查 issue 使用 continue，接受系统拒绝；随后只读调查并再次逐项决定。当前 trial 的冻结反馈策略决定继续重规划或 block。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/private/tmp/mini-agent-reliability-offline-v052-security/frozen/recovery-user-decisions",
+  "scenario_sha256": "eafa870d0f2b94213a63554a05a3cb34b431a0231a2e9f8d0fd12db94f22a867",
+  "schema_version": 1,
+  "session_root": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-recovery-user-decisions-bdc78698/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "bdc78698-daf8-4151-872b-f82ee8e5d222",
+  "variant": {
+    "decision_path": "continue"
+  },
+  "workspace": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-recovery-user-decisions-bdc78698/workspace"
+}

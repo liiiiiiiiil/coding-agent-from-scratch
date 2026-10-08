@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "dc39f4363d46132058e7205c1990d127f132c661a6bebe01da1fa35e36ae004a",
+    "fault_id": "subagent-cancel",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "subagent.worker.cancel_barrier"
+  }
+]

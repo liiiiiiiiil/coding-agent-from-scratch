@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "scenario_id": "recovery-user-decisions",
+  "version": "1.0",
+  "task": "先尝试对未调查 issue 使用 continue，接受系统拒绝；随后只读调查并再次逐项决定。当前 trial 的冻结反馈策略决定继续重规划或 block。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "list_dir",
+    "grep",
+    "write_file",
+    "edit_file",
+    "run_shell"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "list_dir",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "grep",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "recovery-user-decisions",
+    "target": "user.resolve_issue",
+    "occurrences": 1,
+    "parameters": {
+      "variant_values": {
+        "decision_path": [
+          "continue",
+          "block"
+        ]
+      }
+    }
+  },
+  "invariants": [
+    "invalid-user-feedback-rejected",
+    "decision-source-recorded",
+    "block-stops-task",
+    "single-source-claim"
+  ],
+  "recovery_steps": [
+    "inspect_evidence",
+    "resolve_issues",
+    "continue_parent_investigation",
+    "replan",
+    "reauthorize",
+    "verify_current_generation"
+  ],
+  "feedback_strategy": [
+    {
+      "when": "before_investigation",
+      "decision": "continue",
+      "feedback": "先直接继续",
+      "issue_selector": "first_unresolved"
+    },
+    {
+      "when": "unresolved_issue",
+      "decision": "investigate",
+      "feedback": "只读检查当前材料",
+      "issue_selector": "first_unresolved"
+    },
+    {
+      "when": "after_investigation",
+      "decision": "continue",
+      "feedback": "基于调查重新规划",
+      "issue_selector": "first_unresolved"
+    }
+  ],
+  "grader_id": "recovery-user-decisions"
+}

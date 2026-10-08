@@ -6,6 +6,7 @@ from copy import deepcopy
 from dataclasses import replace
 import json
 from pathlib import Path
+import re
 
 import pytest
 
@@ -104,6 +105,26 @@ def _finish_and_claim(state, context, registry, runtime, child_id: str,
         item["content"] for item in context.history
         if item.get("role") == "tool" and item.get("tool_call_id") == claim_call_id
     )
+
+
+def test_background_child_id_schema_is_portable_while_validator_stays_strict(tmp_path: Path):
+    state = AgentState()
+    state.begin_task("validate provider tool schema")
+    manager = DelegationManager(
+        tmp_path, subagent_llm=lambda *_args, **_kwargs: _report("unused"),
+        parent_state=state, agent_profile_catalog=AgentProfileCatalog({}),
+    )
+    tools = {tool.name: tool for tool in make_background_subagent_tools(state, manager)}
+    child_id = "12345678-1234-abcd-9876-1234567890ab"
+    for name in ("followup_subagent", "get_subagent_status", "get_subagent_result", "cancel_subagent"):
+        tool = tools[name]
+        schema = tool.parameters["properties"]["child_session_id"]
+        pattern = schema["pattern"]
+        assert pattern.startswith("^") and pattern.endswith("$")
+        assert re.fullmatch(pattern, child_id)
+        assert not re.fullmatch(pattern, child_id + "\n")
+        with pytest.raises(ValueError, match="child_session_id 必须是 UUID"):
+            tool.argument_validator({"child_session_id": child_id + "\n"})
 
 
 def test_followup_tool_reuses_child_history_and_keeps_round_results_distinct(tmp_path: Path):

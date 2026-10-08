@@ -1,0 +1,132 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "815ba5e1ecfb1cf2ed5958384c3d6ded35d5b0b003acb53a424907d831f8c05b",
+        "size": 735
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "be5048673a8f1802ff21e167768d56998818369ab00e971a73892ceb6a37efea",
+        "size": 103
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:04:37.081+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "denied-handler-not-run",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "no-implicit-approval",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 1182,
+      "injected_calls": [],
+      "input_tokens": 4731,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 227,
+      "token_accounting": "provider",
+      "tool_calls": 2
+    },
+    "grader": {
+      "duration_ms": 43
+    }
+  },
+  "recovery_status": "not_triggered",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "runtime_fingerprint_end": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "scenario_id": "permission-denied",
+  "scenario_sha256": "b3b5fe613c3e0729f0b4cf9a3d290ba8382a9120a52c9247a285ade6ca7962d1",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:04:35.804+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "run_shell"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "5346f41081798a21f8d795a95ca096428e0446c77dc2295ff0072b915c5816bb",
+    "trace_events": 3
+  },
+  "trial_id": "eee955cf-318e-428c-a799-c7f473db2b04",
+  "variant": {}
+}

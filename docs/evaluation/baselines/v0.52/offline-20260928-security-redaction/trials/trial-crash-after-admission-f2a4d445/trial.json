@@ -1,0 +1,155 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "fbf9ef233dd4a386e8b0c4cb0c95439077f94d6c38d8e0fe8991acfcdb957c53",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "5f9d4e1b2d2a29dc1e42f82ae8f84ebdcb6cffb3b8299334f2340d4556ef5201",
+        "size": 475
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "9c6577fbfb5c18dc9ea73263818a2812814248adc07686327f3cde68b9c10147",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "fe93592e988f31f107048fec54a1258cc9b972956d93c90415de583ae033b54e",
+        "size": 428
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "7b30df7a565c5df05af58485d1793230b949a332aa39b31f293137966e9eef12",
+        "size": 533
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:23:56.492+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "cd5bab5431abbdc781774ab4f98b9195712a359131e49fc9cb158130254ae320",
+      "fault_id": "crash-after-admission",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "boundary.after_admission"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [
+    {
+      "accepted": true,
+      "decision": "investigate",
+      "issue_id": "issue-1",
+      "script_sha256": "314443701ed82e3be38eb5a7eb6d77e193c8bd7b05631a97807bde117ac0f0ce",
+      "source": "simulated_user",
+      "trigger": "uncertain_issue_found"
+    },
+    {
+      "accepted": true,
+      "decision": "continue",
+      "investigation_attempt_id": "a-2",
+      "issue_id": "issue-1",
+      "script_sha256": "314443701ed82e3be38eb5a7eb6d77e193c8bd7b05631a97807bde117ac0f0ce",
+      "source": "simulated_user",
+      "trigger": "issue_investigated"
+    }
+  ],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "admitted-call-not-replayed",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "source-session-read-only",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T11:23:56.491+00:00",
+      "started_at": "2026-09-28T11:23:56.491+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "incomplete",
+  "recovery_steps": [
+    {
+      "process": "new_python_process",
+      "status": "succeeded",
+      "step": "claim_new_session"
+    },
+    {
+      "status": "succeeded",
+      "step": "inspect_evidence"
+    },
+    {
+      "status": "succeeded",
+      "step": "resolve_issues"
+    },
+    {
+      "status": "pending",
+      "step": "replan"
+    },
+    {
+      "status": "pending",
+      "step": "reauthorize"
+    },
+    {
+      "status": "pending",
+      "step": "verify_current_generation"
+    }
+  ],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "runtime_fingerprint_end": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario_id": "crash-after-admission",
+  "scenario_sha256": "51cf605aa2526cd5337a2dc8b5e9001e2067103be18d01cd21ad7da8d8c137dd",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:23:56.384+00:00",
+  "state_summary": {
+    "crash_issue_count": 1,
+    "derived_session_id": "QCqov1ev0Cwk288_Y6_WZVpTLm20Hexw",
+    "handler_calls": 0,
+    "recovery_invariants": {
+      "admitted-call-not-replayed": true,
+      "all-recovery-issues-explicitly-continued": true,
+      "single-source-claim": true,
+      "source-session-read-only": true
+    },
+    "recovery_process_returncode": 0,
+    "source_session_id": "ZWZh8Jq-0jfJztZq2o8sGaQEVINBKBws",
+    "source_session_unchanged": true,
+    "tool_result_outcome": "uncertain"
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "5c680b3a1ccffad89ae934498faad3895b5401f471cef5fa39e4a706559c0247"
+  },
+  "trial_id": "f2a4d445-7763-4a00-a4eb-489c698b3b39",
+  "variant": {}
+}

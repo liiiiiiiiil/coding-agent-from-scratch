@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "scenario_id": "tool-handler-exception",
+  "version": "1.0",
+  "task": "请修复 src/example.py 的 transform(value)：应返回 value * 2。第一次文件读取会遇到受控异常；根据错误结果继续调查、修改，并按要求独立验证。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "list_dir",
+    "grep",
+    "write_file",
+    "edit_file",
+    "begin_plan",
+    "commit_plan",
+    "update_plan_progress",
+    "run_shell"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "list_dir",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "grep",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    },
+    {
+      "tool": "begin_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "commit_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "update_plan_progress",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "tool-handler-exception",
+    "target": "handler.read_file",
+    "occurrences": 1,
+    "parameters": {
+      "tool": "read_file"
+    }
+  },
+  "invariants": [
+    "tool-result-replayed"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "tool-handler-exception"
+}

@@ -143,9 +143,10 @@ class ModelBinding:
         estimated_input = count_tokens(messages)
         try:
             response = self.adapter.complete(messages, **options)
-        except Exception:
+        except Exception as error:
+            from mini_agent.providers.base import ProviderToolArgumentsError
             self.usage_meter.record(
-                None,
+                error.usage if isinstance(error, ProviderToolArgumentsError) else None,
                 estimated_input_tokens=estimated_input,
                 estimated_output_tokens=0,
             )

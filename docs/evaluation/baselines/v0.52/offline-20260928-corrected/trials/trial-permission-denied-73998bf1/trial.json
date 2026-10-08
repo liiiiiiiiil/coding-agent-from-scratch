@@ -1,0 +1,96 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "4a7a2e208ccebb6b4263a4ffb5c9a0e72b93a265ae78ba4391cc7c55b169f118",
+        "size": 152
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "28840bb54050b9b12c1a50283a134a4d07f9cf1345345b4c3773d28ddddcdd26",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:35:40.475+00:00",
+  "fault_events": [],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "denied-handler-not-run",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "no-implicit-approval",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T10:35:40.474+00:00",
+      "started_at": "2026-09-28T10:35:40.474+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "runtime_fingerprint_end": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario_id": "permission-denied",
+  "scenario_sha256": "344658948fbd69da7e7b77b329799899f0212b91f98dc0389eb698bc7e3d8bc4",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:35:40.444+00:00",
+  "state_summary": {
+    "denied": {
+      "handler_admitted": false,
+      "outcome": "denied",
+      "permission": "denied"
+    },
+    "fallback": {
+      "outcome": "succeeded"
+    }
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "99de5f13c8c3f7246905d206f2ab0be61c3668f076daabb47a188c1ebb23dcc6"
+  },
+  "trial_id": "73998bf1-98a7-491d-a40b-68c7e84f9121",
+  "variant": {}
+}

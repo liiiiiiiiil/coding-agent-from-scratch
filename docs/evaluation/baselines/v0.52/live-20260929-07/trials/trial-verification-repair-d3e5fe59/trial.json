@@ -1,0 +1,762 @@
+{
+  "agent_stop_reason": "text",
+  "agent_terminal_status": "done",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "1b4dd8afadf787b5897bd535711de104befb54dea61b37c9405c9d88a15c1873",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "48cf0a3497947dfaee62b1f2e929731e28df3d6eef8f5650ff39670b0c17dc62",
+        "size": 2984
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "7c103aa981e3acd4c1501f4c4f91ea3171983a401706f83ddd87e1ff277dbb8c",
+        "size": 6694
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T10:26:03.469+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "f6cdb0696bc42a0914e9eb340135f61cb086b6a5495e129205651eab7b3d8eef",
+      "fault_id": "verification-repair",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "grader.public_test_failure"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": true,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "verification-current-generation",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "hidden-grader-passes",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 18767,
+      "injected_calls": [],
+      "input_tokens": 34525,
+      "llm_calls": 6,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 3120,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 37645,
+        "estimation": "count_tokens; tool schemas reserved separately; not an exact provider tokenizer",
+        "input_multiplier_after": 2.0,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "task_binding_schema_request_kind",
+          "cold_input_multiplier": 2,
+          "cold_samples": 2,
+          "final_output_tokens": 512,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "recent_complete_rounds": 2,
+          "summary_output_tokens": 512,
+          "warm_margin_percent": 10,
+          "warm_positive_error_samples": 8,
+          "work_output_tokens": 1024
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26",
+            "cumulative_tokens_before": 0,
+            "finalization": false,
+            "input_multiplier": 2.0,
+            "input_tokens": 4785,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 47,
+              "notice": 0,
+              "state": 211,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 2270,
+            "observed_input_to_estimate_ratio": 1.6766,
+            "output_tokens": 284,
+            "planned_output_limit": 1024,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 5964,
+            "reserved_input_tokens_estimated": 2854,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26",
+            "cumulative_tokens_before": 5069,
+            "finalization": false,
+            "input_multiplier": 2.0,
+            "input_tokens": 5544,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 532,
+              "notice": 0,
+              "state": 544,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 3088,
+            "observed_input_to_estimate_ratio": 1.5098,
+            "output_tokens": 1024,
+            "planned_output_limit": 1024,
+            "reasoning_tokens_subset_estimated": 310,
+            "refusal_reason": null,
+            "remaining_tokens_before": 58931,
+            "request_index": 2,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 7600,
+            "reserved_input_tokens_estimated": 3672,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26",
+            "cumulative_tokens_before": 11637,
+            "finalization": false,
+            "input_multiplier": 1.5045696877380046,
+            "input_tokens": 6615,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2071,
+              "notice": 41,
+              "state": 544,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 4668,
+            "observed_input_to_estimate_ratio": 1.2595,
+            "output_tokens": 615,
+            "planned_output_limit": 1024,
+            "reasoning_tokens_subset_estimated": 1846,
+            "refusal_reason": null,
+            "remaining_tokens_before": 52363,
+            "request_index": 3,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 8158,
+            "reserved_input_tokens_estimated": 5252,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26",
+            "cumulative_tokens_before": 18867,
+            "finalization": false,
+            "input_multiplier": 1.4698816155988859,
+            "input_tokens": 7044,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2419,
+              "notice": 0,
+              "state": 729,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 5160,
+            "observed_input_to_estimate_ratio": 1.2263,
+            "output_tokens": 1024,
+            "planned_output_limit": 1024,
+            "reasoning_tokens_subset_estimated": 2092,
+            "refusal_reason": null,
+            "remaining_tokens_before": 45133,
+            "request_index": 4,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 8699,
+            "reserved_input_tokens_estimated": 5744,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26",
+            "cumulative_tokens_before": 26935,
+            "finalization": false,
+            "input_multiplier": 1.4727240834941238,
+            "input_tokens": 7311,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 2255,
+              "notice": 0,
+              "state": 850,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 5117,
+            "observed_input_to_estimate_ratio": 1.2824,
+            "output_tokens": 70,
+            "planned_output_limit": 1024,
+            "reasoning_tokens_subset_estimated": 1643,
+            "refusal_reason": null,
+            "remaining_tokens_before": 37065,
+            "request_index": 5,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 8652,
+            "reserved_input_tokens_estimated": 5701,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "calibration_key": "42149552090c0dd9582d1248852cda45bcac8008a799ea34278fa31ed2b77ba2",
+            "cumulative_tokens_before": 34316,
+            "finalization": true,
+            "input_multiplier": 2.0,
+            "input_tokens": 3226,
+            "max_output_tokens": 512,
+            "message_groups": {
+              "history": 1524,
+              "notice": 20,
+              "state": 135,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 3691,
+            "observed_input_to_estimate_ratio": 0.874,
+            "output_tokens": 103,
+            "planned_output_limit": 512,
+            "reasoning_tokens_subset_estimated": 1099,
+            "refusal_reason": null,
+            "remaining_tokens_before": 29684,
+            "request_index": 6,
+            "request_kind": "final",
+            "reserved_input_tokens_calibrated": 7638,
+            "reserved_input_tokens_estimated": 3691,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {},
+            "tool_schema_tokens_estimated": 0,
+            "usage_source": "provider"
+          }
+        ],
+        "task_budget_ledger": {
+          "input_tokens": 34525,
+          "last_settled_id": 6,
+          "limit": 64000,
+          "next_request_id": 7,
+          "output_tokens": 3120,
+          "overrun_tokens": 0,
+          "pending": null,
+          "samples": {
+            "42149552090c0dd9582d1248852cda45bcac8008a799ea34278fa31ed2b77ba2": [
+              [
+                3691,
+                3226
+              ]
+            ],
+            "8bbd1cd81cb4239b4747e51058132b11c5fff0ea1f9e809b0451207580e6fb26": [
+              [
+                2854,
+                4785
+              ],
+              [
+                3672,
+                5544
+              ],
+              [
+                5252,
+                6615
+              ],
+              [
+                5744,
+                7044
+              ],
+              [
+                5701,
+                7311
+              ]
+            ]
+          },
+          "unknown_requests": 0,
+          "version": 1
+        },
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 5
+    },
+    "grader": {
+      "duration_ms": 69
+    }
+  },
+  "recovery_status": "succeeded",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "6b339d84a818c804eaa64603a6ebc81d8a1f01a2bec06b1d7e66c047ef9b0aa5",
+  "runtime_fingerprint_end": "6b339d84a818c804eaa64603a6ebc81d8a1f01a2bec06b1d7e66c047ef9b0aa5",
+  "scenario_id": "verification-repair",
+  "scenario_sha256": "ef695a18a29f927842ea25a7571d6b215f3cb88f1182e066913db50c57d0123e",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T10:25:44.529+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-1",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_example.py"
+        },
+        "attempt_id": "a-2",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "command": "<str:36>",
+          "purpose": "verification"
+        },
+        "attempt_id": "a-3",
+        "error_kind": "nonzero_exit",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "run_shell"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:20>",
+          "old_string": "<str:20>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-4",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "edit_file"
+      },
+      {
+        "arguments": {
+          "command": "<str:36>",
+          "purpose": "verification"
+        },
+        "attempt_id": "a-5",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "run_shell"
+      }
+    ],
+    "completion_evidence": {
+      "artifact_correct": true,
+      "blockers": [],
+      "current_generation_verified": true,
+      "model_completed": true
+    },
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 3,
+    "initial_public_test_passed": false,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "done",
+    "task_id": "task-1",
+    "terminal_reason": "",
+    "tool_diagnostics": [
+      {
+        "arguments_sha256": "032b8aaa95711bc7fee45299a6060d975f7a1719dcdd559a6aa7df4650e94b66",
+        "errno": 2,
+        "error_kind": "FileNotFoundError",
+        "frames": [
+          {
+            "file": "mini_agent/evaluation/reliability_worker.py",
+            "function": "observed",
+            "line": 94
+          },
+          {
+            "file": "mini_agent/evaluation/worker.py",
+            "function": "handler",
+            "line": 101
+          },
+          {
+            "file": "mini_agent/tools/file.py",
+            "function": "read_file",
+            "line": 25
+          }
+        ],
+        "stage": "tool_handler",
+        "tool": "read_file"
+      }
+    ],
+    "tool_schema_sha256": "30fe3c2b482116f0ddf6589de0a525734936e6f99190d775c48a696f14c27cd2",
+    "verification": [
+      {
+        "exit_code": 0,
+        "generation_id": 3,
+        "outcome": "passed"
+      }
+    ]
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "recovery_proposed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_activated",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": "verification_required",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-1",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-2",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "verification_required",
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 1,
+        "kind": "recovery_proposed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "recovery_activated",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": "verification_required",
+        "repair_phase_before": "diagnosis_required",
+        "revision_id": null,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 2,
+        "kind": "recovery_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "r-2",
+        "record_type": "recovery_action",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 3,
+        "kind": "verification_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": 0,
+        "record_type": "verification_history",
+        "repair_phase_after": "idle",
+        "repair_phase_before": "verification_required",
+        "revision_id": null,
+        "sequence_id": 15,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "5c79ffffa76566ce57699d76701e47cb9b3716288a1b291e3dc32fe98cf95222",
+    "trace_events": 15
+  },
+  "trial_id": "d3e5fe59-3732-4e07-b848-70bd6deb27fe",
+  "variant": {}
+}

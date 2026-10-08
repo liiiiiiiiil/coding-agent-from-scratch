@@ -1,0 +1,520 @@
+{
+  "format": "mini_agent.reliability_report",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "suite_version": "1.5",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_run_id": "4919dd0f-8d45-451d-bbe4-2683af110aff",
+  "run_kind": "live",
+  "status": "completed",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "runtime_fingerprint": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+  "code_revision_consistent": true,
+  "runtime_fingerprint_consistent": true,
+  "model_binding_consistent": true,
+  "source": "read-only reconstruction from frozen suite, ledger, and raw trials",
+  "cohorts": {
+    "fixture": {
+      "planned_slots": 0,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "invariant_passed": 0,
+      "grader_passed": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "recovery_successes": null,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null
+    },
+    "live": {
+      "planned_slots": 21,
+      "recorded_trials": 1,
+      "fault_triggered": 0,
+      "invariant_passed": 0,
+      "grader_passed": 0,
+      "infrastructure_errors": 20,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null,
+      "completion_layers": {
+        "task_trials": 1,
+        "artifact_correct": 0,
+        "current_generation_verified": 0,
+        "model_completed": 0,
+        "artifact_verified_and_completed": 0,
+        "note": "Diagnostic layers only; strict recovery_success_rate remains the acceptance metric."
+      }
+    }
+  },
+  "scenarios": {
+    "crash-after-handler": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    },
+    "mcp-disconnect": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    },
+    "permission-denied": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    },
+    "process-wait-timeout": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    },
+    "subagent-timeout": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    },
+    "tool-handler-exception": {
+      "planned_slots": 3,
+      "recorded_trials": 1,
+      "fault_triggered": 0,
+      "fault_not_triggered": 1,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 1
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 1,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 1,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 1
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 2,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 1,
+        "infrastructure_error": 2,
+        "unrun_slots": 0
+      },
+      "completion_layers": {
+        "task_trials": 1,
+        "artifact_correct": 0,
+        "current_generation_verified": 0,
+        "model_completed": 0,
+        "artifact_verified_and_completed": 0,
+        "note": "Diagnostic layers only; strict recovery_success_rate remains the acceptance metric."
+      }
+    },
+    "verification-repair": {
+      "planned_slots": 3,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 0,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {},
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 3,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 3,
+        "unrun_slots": 0
+      }
+    }
+  },
+  "unreadable_trials": [],
+  "unrun_slots": [
+    {
+      "slot_id": "tool-handler-exception-default-r02",
+      "scenario_id": "tool-handler-exception",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "tool-handler-exception-default-r03",
+      "scenario_id": "tool-handler-exception",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "permission-denied-default-r01",
+      "scenario_id": "permission-denied",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "permission-denied-default-r02",
+      "scenario_id": "permission-denied",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "permission-denied-default-r03",
+      "scenario_id": "permission-denied",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "verification-repair-default-r01",
+      "scenario_id": "verification-repair",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "verification-repair-default-r02",
+      "scenario_id": "verification-repair",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "verification-repair-default-r03",
+      "scenario_id": "verification-repair",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "process-wait-timeout-default-r01",
+      "scenario_id": "process-wait-timeout",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "process-wait-timeout-default-r02",
+      "scenario_id": "process-wait-timeout",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "process-wait-timeout-default-r03",
+      "scenario_id": "process-wait-timeout",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "crash-after-handler-default-r01",
+      "scenario_id": "crash-after-handler",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "crash-after-handler-default-r02",
+      "scenario_id": "crash-after-handler",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "crash-after-handler-default-r03",
+      "scenario_id": "crash-after-handler",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "mcp-disconnect-transport-stdio-r01",
+      "scenario_id": "mcp-disconnect",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "mcp-disconnect-transport-stdio-r02",
+      "scenario_id": "mcp-disconnect",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "mcp-disconnect-transport-stdio-r03",
+      "scenario_id": "mcp-disconnect",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "subagent-timeout-default-r01",
+      "scenario_id": "subagent-timeout",
+      "repetition": 1,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "subagent-timeout-default-r02",
+      "scenario_id": "subagent-timeout",
+      "repetition": 2,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    },
+    {
+      "slot_id": "subagent-timeout-default-r03",
+      "scenario_id": "subagent-timeout",
+      "repetition": 3,
+      "status": "infrastructure_error",
+      "error_kind": "provider_connection_error"
+    }
+  ],
+  "manual_review": []
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "scenario_id": "mcp-is-error",
+  "version": "1.5",
+  "task": "MCP Server 会返回有效的 isError=true 工具结果。保留其 MCP result 语义，按任务需要处理并结束。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "mcp_reliability_echo"
+  ],
+  "permission_rules": [
+    {
+      "tool": "mcp_reliability_echo",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "mcp-is-error",
+    "target": "mcp.tools_call.result",
+    "occurrences": 1,
+    "parameters": {
+      "bind": "127.0.0.1",
+      "variant_values": {
+        "transport": [
+          "stdio",
+          "loopback_http"
+        ]
+      }
+    }
+  },
+  "invariants": [
+    "valid-is-error-result"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "mcp-is-error"
+}

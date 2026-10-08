@@ -1,0 +1,113 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "ce72c033dd63d7681f48043b5526e2433fc575b30fac2669c6ce88d48c550c7c",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "9dfb257e0555ddf91786f0281c8ebc937b17504517ee5a9d738fc0a87a01401a",
+        "size": 401
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "24df58f011b9d75feccb4f39fbbed70940a89c31fbba467f11aff9b8aa6c2d49",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:24:02.570+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "c37186c04151d431dca3fbe6b90805f215c2c22231fe7742c6b048bf07f84984",
+      "fault_id": "subagent-cancel",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "subagent.worker.cancel_barrier"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "cooperative-cancel",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "result-available-after-cancel",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "cleanup-complete",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T11:24:02.569+00:00",
+      "started_at": "2026-09-28T11:24:02.569+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "succeeded",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "runtime_fingerprint_end": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario_id": "subagent-cancel",
+  "scenario_sha256": "baa9b40928f75bac848d409fb5c8804e0991f620b8ac5b4afd34a12d41a9a628",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:24:02.508+00:00",
+  "state_summary": {
+    "result_id": "4a772079-2306-4f8c-b723-1f270376125d",
+    "result_outcome": "cancelled",
+    "status": {
+      "agent_profile": "general",
+      "cancel_requested": true,
+      "child_session_id": "b85b7f80-0617-43c6-8cfc-a3b1e7940f95",
+      "delegation_id": "924254cb-cba7-45e3-b336-8e0b002f00cb",
+      "result_id": "4a772079-2306-4f8c-b723-1f270376125d",
+      "round_index": 1,
+      "status": "cancelled"
+    }
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "5fa2407a79639ecaeb035bb25963b308d96789b163ba46aa89582a85925b8185"
+  },
+  "trial_id": "d2a6c575-94cc-4f55-9cae-8e9ec7534aff",
+  "variant": {}
+}

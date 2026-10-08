@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "773a9c9e77475a3b6b8bf0b37d88c8bcd294ffff86d7afcb0c1877a6842219f1",
+    "fault_id": "mcp-is-error",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "mcp.tools_call.result"
+  }
+]

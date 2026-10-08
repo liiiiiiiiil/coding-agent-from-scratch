@@ -1,0 +1,22 @@
+{
+  "format": "mini_agent.provider_probe_review",
+  "schema_version": 1,
+  "probe_file": "probe.json",
+  "probe_sha256": "4d3fc53a78251a64613424a402724d92f74448267fd0c3a1244afcd1744a8296",
+  "executed_driver_sha256": "1706baaf6eda3b3aa34c6c7e77833a2f9d27dc800ea14a254c89c5e939d69432",
+  "sent_requests": 2,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "first_response": {
+    "input_tokens": 12,
+    "output_tokens": 15
+  },
+  "second_error_kind": "ProviderProtocolError",
+  "second_error_location": "unobserved",
+  "third_request_sent": false,
+  "usd_cap": "1",
+  "conservative_spend_upper_usd": "0.14029260",
+  "classification": "incomplete_provider_protocol_error",
+  "conclusion": "Provider connectivity worked for one plain request. The tool-call round failed before a tool result existed, so this probe cannot validate recovery or historical input accounting.",
+  "historical_batch_09_reclassified": false
+}

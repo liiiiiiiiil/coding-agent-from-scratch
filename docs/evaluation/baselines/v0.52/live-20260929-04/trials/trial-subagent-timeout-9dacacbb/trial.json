@@ -1,0 +1,565 @@
+{
+  "agent_stop_reason": "token_limit",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "756a9f97ad818a4d7bbe564b39f850007a78a75ca3d0792594cead04ceccfd11",
+        "size": 268
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "c711af68b6e6b8029c3bc92120fcd76a06412340f66bd5b8b425713fe83b594e",
+        "size": 5965
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "45ed3ec4374236d40b53708bac1f236ccdfa5181e3b59e12b6be8adbbb1c6bd2",
+        "size": 7160
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T05:58:32.424+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "34e903881b67db56127a0a70f942953035ac44760cb28277b90697651185bc64",
+      "fault_id": "subagent-timeout",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "subagent.model_call.timeout"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "failed-subagent-claimed",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "usage-settled-once",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 15246,
+      "injected_calls": [
+        {
+          "component": "subagent_llm",
+          "count": 1,
+          "counted_as_real": false,
+          "source": "injected"
+        }
+      ],
+      "input_tokens": 64363,
+      "llm_calls": 8,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 2283,
+      "token_accounting": "provider",
+      "tool_calls": 9
+    },
+    "grader": {
+      "duration_ms": 83
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "642e82613b47a4687dedcb1f11e5ea1deea0837abf842aa793bb1b140ebcf6ea",
+  "runtime_fingerprint_end": "642e82613b47a4687dedcb1f11e5ea1deea0837abf842aa793bb1b140ebcf6ea",
+  "scenario_id": "subagent-timeout",
+  "scenario_sha256": "85260eb4d41bf7a2b816df43dec58585da0163d44a76b1fecefb661ddcf817cc",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T05:58:17.049+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "agent_profile": "general",
+          "budget": "<dict>",
+          "constraints": "<list>",
+          "expected_findings": "<list>",
+          "goal": "只读调查 src/example.py 的 transform 实现与 tests/ 下的测试期望，定位 transform(value) 应为 value*2",
+          "purpose": "investigation",
+          "requested_tools": "<list>",
+          "scope": "<list>",
+          "selected_parent_facts": "<list>"
+        },
+        "attempt_id": "a-2",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "spawn_subagent"
+      },
+      {
+        "arguments": {
+          "child_session_id": "6812fef0-1d92-44cc-b4b4-54775d761575"
+        },
+        "attempt_id": "a-3",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "get_subagent_status"
+      },
+      {
+        "arguments": {
+          "child_session_id": "6812fef0-1d92-44cc-b4b4-54775d761575"
+        },
+        "attempt_id": "a-4",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "get_subagent_result"
+      },
+      {
+        "arguments": {
+          "path": "."
+        },
+        "attempt_id": "a-5",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-6",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests"
+        },
+        "attempt_id": "a-7",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_example.py"
+        },
+        "attempt_id": "a-8",
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "path": "tests/test_public.py"
+        },
+        "attempt_id": "a-9",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "arguments": {
+          "new_string": "<str:42>",
+          "old_string": "<str:42>",
+          "path": "src/example.py"
+        },
+        "attempt_id": "a-10",
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "edit_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [
+      {
+        "abandoned_at": null,
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "cancellation_reason": null,
+        "claimed_at": "2026-09-29T05:58:20.724786+00:00",
+        "committed_at": "2026-09-29T05:58:20.724753+00:00",
+        "contract_summary": {
+          "agent_profile": "general",
+          "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+          "goal": "只读调查 src/example.py 的 transform 实现与 tests/ 下的测试期望，定位 transform(value) 应为 value*2 的差异点。",
+          "purpose": "investigation",
+          "requested_tools": [
+            "read_file",
+            "list_dir",
+            "grep"
+          ],
+          "scope": [
+            "src/example.py",
+            "tests/"
+          ]
+        },
+        "created_at": "2026-09-29T05:58:19.030796+00:00",
+        "delegation_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "delivery_status": "committed",
+        "diagnostic_reason": "timeout",
+        "mode": "background",
+        "outcome": "timed_out",
+        "parent_attempt_id": null,
+        "parent_generation_id": 0,
+        "parent_task_id": "task-1",
+        "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+        "reserved_usage": {
+          "elapsed_ms": 0,
+          "input_tokens": 0,
+          "llm_calls": 1,
+          "output_tokens": 32000,
+          "result_bytes": 0,
+          "rounds": 1,
+          "token_accounting": "estimated",
+          "tool_calls": 1
+        },
+        "result_hash": "131ca3d8e99bee380cb4ac925bf63c9e2e589904a21e35bd679bd29b1d4310a3",
+        "result_id": "6626b54a-8142-4059-903f-947fe6d36ae6",
+        "result_ready_at": "2026-09-29T05:58:19.847651+00:00",
+        "result_summary": "子代理 LLM 请求超时",
+        "started_at": "2026-09-29T05:58:19.031279+00:00",
+        "startup_confirmed": true,
+        "subagent_id": "6812fef0-1d92-44cc-b4b4-54775d761575",
+        "task_contract_hash": "c19cd83d5819b33187695cd3af9aa5b4c1f48c1f50b687a2a5463a83600fcc4e",
+        "usage": {
+          "elapsed_ms": 3,
+          "input_tokens": 5104,
+          "llm_calls": 1,
+          "output_tokens": 0,
+          "result_bytes": 950,
+          "rounds": 1,
+          "token_accounting": "estimated",
+          "tool_calls": 0
+        }
+      }
+    ],
+    "diagnostic": null,
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [
+      {
+        "component": "subagent_llm",
+        "count": 1,
+        "counted_as_real": false,
+        "source": "injected"
+      }
+    ],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_token_budget_exhausted",
+    "tool_schema_sha256": "3b1671bd0a846a803920b47c025a50aaf96fbf82c5c4cfd602082820cf3e26a0",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "127fc54a543693630e23b602e2d3db460030b54746aa66fc67c0c9d70f7600a4",
+  "suite_version": "1.2",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "delegation_created",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_accepted",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_started",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_result_ready",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-4",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_claimed",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "2c8892dd-e1fb-4d62-8cff-0c15c6f8ae53",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 9,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-5",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 10,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-6",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 11,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-7",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 12,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-8",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 13,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 14,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-9",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 15,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-10",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 16,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "4c16c9799cc5b47e5d8a3c64cc90dc4976789fb217c3cfd5e9c062eea071bdd4",
+    "trace_events": 16
+  },
+  "trial_id": "9dacacbb-d617-44d1-8969-09a9661e98ec",
+  "variant": {}
+}

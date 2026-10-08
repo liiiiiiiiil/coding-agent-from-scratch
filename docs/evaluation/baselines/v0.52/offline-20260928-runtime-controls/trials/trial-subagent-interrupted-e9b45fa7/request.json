@@ -1,0 +1,109 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-subagent-interrupted-e9b45fa7/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "spawn_subagent",
+      "get_subagent_status",
+      "get_subagent_result"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "subagent-interrupted",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "subagent.worker.interrupted"
+    },
+    "feedback_strategy": [
+      {
+        "decision": "investigate",
+        "feedback": "只读检查恢复后的子代理状态和任务文件。",
+        "issue_selector": "first_unresolved",
+        "when": "interrupted_child_issue"
+      },
+      {
+        "decision": "continue",
+        "feedback": "调查证据已记录；逐项继续并重新规划。",
+        "issue_selector": "first_unresolved",
+        "when": "issue_investigated"
+      }
+    ],
+    "grader_id": "subagent-interrupted",
+    "initial_dir": "initial",
+    "invariants": [
+      "interrupted-no-worker",
+      "unknown-usage-conservative",
+      "issue-explicitly-resolved"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "spawn_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "followup_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_status"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_result"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "cancel_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "claim_new_session",
+      "inspect_evidence",
+      "resolve_issues"
+    ],
+    "scenario_id": "subagent-interrupted",
+    "schema_version": 1,
+    "task": "后台子代理启动确认与整轮提交后父 worker 会终止。恢复时记录 interrupted，不恢复旧 worker，保守结算用量并逐项处理 issue。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/frozen/subagent-interrupted",
+  "scenario_sha256": "7a84b77371f869a016176ac8731f17ea37c27ee95cf266418af3daaccf64b9e6",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-subagent-interrupted-e9b45fa7/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "e9b45fa7-5dcc-44b6-a51e-cd197a1cb73d",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-subagent-interrupted-e9b45fa7/workspace"
+}

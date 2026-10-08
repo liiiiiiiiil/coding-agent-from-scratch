@@ -1,0 +1,21 @@
+{
+  "events": [
+    {
+      "generation_id": 0,
+      "kind": "task_started",
+      "planning_phase_after": "direct",
+      "planning_phase_before": null,
+      "record_id": null,
+      "record_type": null,
+      "repair_phase_after": "idle",
+      "repair_phase_before": null,
+      "revision_id": null,
+      "sequence_id": 1,
+      "stagnation_count": null,
+      "stagnation_fingerprint": null,
+      "stagnation_kind": null
+    }
+  ],
+  "sha256": "e09989869f4a3c01eff1d35077421328f96d87ac876936fc575f5eeefff836d1",
+  "trace_events": 1
+}

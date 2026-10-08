@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "scenario_id": "verification-repair",
+  "version": "1.4",
+  "task": "先运行公开测试确认初始实现失败，再修复 src/example.py 的 transform(value)，使其返回 value * 2。修复后重新运行公开测试并完成独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_shell",
+    "begin_plan",
+    "commit_plan",
+    "request_replan",
+    "recover",
+    "update_plan_progress"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    },
+    {
+      "tool": "begin_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "commit_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "update_plan_progress",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "request_replan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "recover",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "verification-repair",
+    "target": "grader.public_test_failure",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "verification-current-generation",
+    "hidden-grader-passes"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "verification-repair"
+}

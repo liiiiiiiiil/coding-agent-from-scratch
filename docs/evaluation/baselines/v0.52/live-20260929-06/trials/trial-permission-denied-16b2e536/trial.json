@@ -1,0 +1,250 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "d5202e4b74573cf4e7ed8102f39451251924676e1f25a66f929ea3586e394491",
+        "size": 277
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "0940a031577959a9b208fe7a83328d4f7584c381b21d437802267c81d12f3d05",
+        "size": 1033
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "2c09640e19367aa9be07defb5cc192a687aca8b4e93a71c96599132e61506f78",
+        "size": 1407
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T07:38:13.194+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "98efd4cb4de4369a2120a13a828e81da6a6d1bc2415ee7076cfc395e633147ec",
+      "fault_id": "permission-denied",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "permission.write_file.src/locked.py"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "denied-handler-not-run",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "no-implicit-approval",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "permission-stops-task",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 876,
+      "injected_calls": [],
+      "input_tokens": 3221,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 103,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 3324,
+        "estimation": "count_tokens; tool schemas reserved separately; not an exact provider tokenizer",
+        "input_multiplier_after": 2.0,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "trial_including_pre_crash",
+          "initial_input_multiplier": 2,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "observed_ratio_margin_percent": 10
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "cumulative_tokens_before": 0,
+            "input_multiplier": 2.0,
+            "input_tokens": 3221,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 58,
+              "notice": 0,
+              "state": 222,
+              "summary": 0,
+              "system": 1987
+            },
+            "message_tokens_estimated": 2267,
+            "observed_input_to_estimate_ratio": 1.3818,
+            "output_tokens": 103,
+            "planned_output_limit": 8192,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "reserved_input_tokens_calibrated": 4918,
+            "reserved_input_tokens_estimated": 2331,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "read_file": 38,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 64,
+            "usage_source": "provider"
+          }
+        ],
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 1
+    },
+    "grader": {
+      "duration_ms": 0
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "runtime_fingerprint_end": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "scenario_id": "permission-denied",
+  "scenario_sha256": "c5ed26360dbe5d887fbd07f01ce3c03116be3afd9f10992030de3cd079ef160d",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T07:38:12.304+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "content": "<str:43>",
+          "path": "src/locked.py"
+        },
+        "attempt_id": "a-1",
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "write_file"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "tool_diagnostics": [],
+    "tool_schema_sha256": "fba3dcd1eb218a8ad847198087c0215763af07b6a785f5dcac5aede45f7582df",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "ae49963f8385f27caaa2521a8ac167d0aa2c193f5368fb636eabb95763791365",
+  "suite_version": "1.4",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "4bab4f246222f92b4550044883f8a203d359bfcba05a2254f3b39ebde76cf04b",
+    "trace_events": 3
+  },
+  "trial_id": "16b2e536-6f8a-4224-9171-91a869e24228",
+  "variant": {}
+}

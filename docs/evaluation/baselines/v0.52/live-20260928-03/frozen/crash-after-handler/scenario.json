@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "scenario_id": "crash-after-handler",
+  "version": "1.0",
+  "task": "一次文件副作用已经发生，但结果提交前发生崩溃。恢复后不要重放；只读调查、逐项处理 issue、重新规划并重新授权，随后修复 src/example.py 并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_shell",
+    "begin_plan",
+    "commit_plan",
+    "request_replan",
+    "recover",
+    "update_plan_progress"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "list_dir",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "grep",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    },
+    {
+      "tool": "begin_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "commit_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "update_plan_progress",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "request_replan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "recover",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "crash-after-handler",
+    "target": "boundary.after_handler",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "side-effect-once",
+    "admitted-call-not-replayed",
+    "source-session-read-only"
+  ],
+  "recovery_steps": [
+    "claim_new_session",
+    "inspect_evidence",
+    "resolve_issues",
+    "replan",
+    "reauthorize",
+    "verify_current_generation"
+  ],
+  "feedback_strategy": [
+    {
+      "when": "uncertain_issue_found",
+      "decision": "investigate",
+      "feedback": "只读检查修复目标和已经发生的计数副作用。",
+      "issue_selector": "first_unresolved"
+    },
+    {
+      "when": "issue_investigated",
+      "decision": "continue",
+      "feedback": "依据调查逐项继续，重新规划并独立验证。",
+      "issue_selector": "first_unresolved"
+    }
+  ],
+  "grader_id": "crash-after-handler"
+}

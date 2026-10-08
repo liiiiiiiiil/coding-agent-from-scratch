@@ -15,7 +15,7 @@ from mini_agent.context import ContextBudget, ContextManager
 from mini_agent.instructions import InstructionLoader
 from mini_agent.input_session import InputSession
 from mini_agent.config import MEMORY_RETRIEVAL_ENABLED, OUTPUT_MODE
-from mini_agent.prompt import build_system_prompt
+from mini_agent.prompt import build_system_prompt, build_completion_prompt
 from mini_agent.state import AgentState, PlanRejected
 from mini_agent.tools import create_registry, registry
 from mini_agent.tools.base import ToolExecutor
@@ -29,6 +29,12 @@ from mini_agent.session import (
     DurableToolBoundary, SessionCommitUncertainError, SessionError, SessionStore,
 )
 from mini_agent.mcp import McpProtocolError, McpRemoteError, McpTimeoutError, McpTransportError
+from mini_agent.user_actions import (
+    decide_plan as apply_plan_decision,
+    resolve_crash_issue as apply_crash_decision,
+    review_plan as apply_plan_review,
+    save_safe_point,
+)
 
 
 MCP_CLI_MAX_PREVIEW_CHARS = 64 * 1024
@@ -305,6 +311,9 @@ def main():
         context.model_binding = parent_binding
         context.usage_meter = parent_binding.usage_meter
         context.protected_messages = protected_messages
+        context.finalization_protected_messages = [{
+            "role": "system", "content": build_completion_prompt(project_instructions=instructions),
+        }]
         # Bind one parent-side retriever to the current workspace store.  The
         # store is still read afresh by ContextManager before every request.
         context.memory_retriever = MemoryRetriever(run_registry._memory_store)
@@ -593,56 +602,43 @@ def main():
             if manual:
                 cli_notice("用法: /save（当前没有活动任务）")
             return False
-        pending_delegations = getattr(state, "active_delegation_records", [])
-        if pending_delegations:
-            if manual:
-                ids = [
-                    getattr(item, "subagent_id", "-") if getattr(item, "mode", "synchronous") == "background"
-                    else getattr(item, "delegation_id", "-")
-                    for item in pending_delegations
-                ]
-                cli_notice(
-                    "存在活动或未领取的子代理任务，safe point 保存已拒绝；"
-                    "child_session_id/delegation_id=" + ",".join(ids[:16])
-                )
-            return False
-        if sync_before_save:
-            sync_processes()
         manager = getattr(run_registry, "_delegation_manager", None)
-        try:
-            child_sessions = (
-                manager.export_child_sessions(state)
-                if manager is not None and hasattr(manager, "export_child_sessions")
-                else []
-            )
-        except ValueError as error:
-            cli_notice(f"会话保存失败：{_single_line_notice(error, 500)}")
+        prior_session_id = session_id
+        action = save_safe_point(
+            state=state, context=context, store=get_session_store(),
+            session_id=session_id, workspace_root=os.getcwd(),
+            handoff_status=handoff_status, manager=manager,
+            sync_processes=sync_processes if sync_before_save else None,
+        )
+        if action.status == "rejected":
+            if action.error_kind == "active_subagent":
+                if manual:
+                    cli_notice(
+                        "存在活动或未领取的子代理任务，safe point 保存已拒绝；"
+                        "child_session_id/delegation_id=" + ",".join(action.affected_ids[:16])
+                    )
+                return False
+            if manual and action.error_kind == "no_active_task":
+                cli_notice("用法: /save（当前没有活动任务）")
+            elif action.error_kind != "no_active_task":
+                cli_notice(f"会话保存失败：{_single_line_notice(action.detail, 500)}")
             return False
-        try:
-            envelope = get_session_store().save(
-                session_id,
-                state,
-                context,
-                workspace_root=os.getcwd(),
-                handoff_status=handoff_status,
-                save_kind="safe_point",
-                child_sessions=child_sessions,
-            )
-        except SessionCommitUncertainError as error:
-            session_id = error.session_id
+        if action.status == "uncertain":
+            session_id = action.session_id
             persistence_halted = True
             cli_notice(
                 f"会话提交状态未确认（session_id={session_id}）："
-                f"{_single_line_notice(error, 500)}；请检查磁盘文件和独占锁。"
+                f"{_single_line_notice(action.detail, 500)}；请检查磁盘文件和独占锁。"
             )
             return False
-        except SessionError as error:
-            if session_id is not None:
+        if action.status == "failed":
+            if action.session_id is not None:
                 persistence_halted = True
-            cli_notice(f"会话保存失败：{_single_line_notice(error, 500)}")
+            cli_notice(f"会话保存失败：{_single_line_notice(action.detail, 500)}")
             return False
+        envelope = action.envelope
         new_session = envelope["session_id"]
-        first_save = session_id is None
+        first_save = prior_session_id is None
         session_id = new_session
         if manual:
             cli_notice(("已保存会话：" if first_save else "已更新会话：") + new_session)
@@ -872,7 +868,7 @@ def main():
                     continue
                 issue_id, decision, feedback = parts[1], parts[2], parts[3]
                 try:
-                    state.resolve_crash_issue(issue_id, decision, feedback)
+                    apply_crash_decision(state, issue_id, decision, feedback, source="cli")
                     if session_id is not None:
                         save_session("active")
                     if decision == "investigate":
@@ -966,7 +962,7 @@ def main():
                 try:
                     revision_id = int(parts[1])
                     if command == "/review":
-                        state.review_current_plan(revision_id)
+                        apply_plan_review(state, revision_id, source="cli")
                         cli_notice(_render_plan_for_approval(state))
                         if session_id is not None:
                             save_session("active")
@@ -975,8 +971,9 @@ def main():
                             "/approve": "approved", "/reject": "rejected",
                             "/continue": "continue_exploring",
                         }[command]
-                        state.decide_plan(decision, revision_id,
-                                          parts[2] if needs_feedback else None)
+                        apply_plan_decision(state, decision, revision_id,
+                                            parts[2] if needs_feedback else None,
+                                            source="cli")
                         if decision == "approved":
                             run_task(f"用户已批准当前计划 revision {revision_id}，请继续执行。")
                         elif decision == "continue_exploring":

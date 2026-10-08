@@ -1,0 +1,44 @@
+{
+  "format": "mini_agent.budget_repair_validation",
+  "schema_version": 1,
+  "suite_version": "1.5",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "runtime_fingerprint": "6b339d84a818c804eaa64603a6ebc81d8a1f01a2bec06b1d7e66c047ef9b0aa5",
+  "full_tests": {
+    "passed": 799,
+    "log": "/private/tmp/v052-budget-full-escalated.log"
+  },
+  "related_tests": {
+    "passed": 72,
+    "log": "/private/tmp/v052-budget-final-related.log"
+  },
+  "offline_matrix": {
+    "run_dir": "/private/tmp/mini-agent-reliability-v052-suite15-final",
+    "suite_run_id": "a3444921-67a7-4544-8d6d-5c396d30455b",
+    "cohort": {
+      "planned_slots": 50,
+      "recorded_trials": 50,
+      "fault_triggered": 50,
+      "invariant_passed": 50,
+      "grader_passed": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "recovery_successes": null,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null
+    }
+  },
+  "preflight": "passed",
+  "tutorial_structure": "passed",
+  "readme": "passed",
+  "diff_check": "passed",
+  "tutorial_facts": {
+    "status": "blocked",
+    "reason": "v0.52 tag must be created manually by the user"
+  },
+  "archived_live_reports": "byte-identical reconstruction passed",
+  "new_live": "not run"
+}

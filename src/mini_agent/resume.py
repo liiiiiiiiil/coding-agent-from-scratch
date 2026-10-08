@@ -13,7 +13,7 @@ from mini_agent.context import ContextBudget, ContextManager
 from mini_agent.instructions import InstructionLoader
 from mini_agent.permission import PermissionGate
 from mini_agent.processes import ProcessManager
-from mini_agent.prompt import build_system_prompt
+from mini_agent.prompt import build_system_prompt, build_completion_prompt
 from mini_agent.session import (
     SCHEMA_2_VERSION,
     SCHEMA_3_VERSION,
@@ -642,6 +642,9 @@ def prepare_resume(store: SessionStore, session_id: str,
         model_binding=parent_binding,
         usage_meter=parent_binding.usage_meter,
     )
+    context.finalization_protected_messages = [{
+        "role": "system", "content": build_completion_prompt(project_instructions=instructions, cwd=root),
+    }]
     historical_process_ids = [item.process_id for item in state.processes]
     process_manager = ProcessManager(historical_process_ids=historical_process_ids)
     # create_registry preserves the restored metadata-only checkpoint store;

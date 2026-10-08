@@ -1,0 +1,11 @@
+{
+  "boundary": "round_commit",
+  "durable_call_statuses": [
+    "committed",
+    "committed"
+  ],
+  "handler_calls": 2,
+  "model_calls": 1,
+  "runtime_stop": "commit_error",
+  "save_attempts": 6
+}

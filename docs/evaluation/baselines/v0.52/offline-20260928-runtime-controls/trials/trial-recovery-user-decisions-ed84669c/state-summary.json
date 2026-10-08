@@ -1,0 +1,15 @@
+{
+  "crash_issue_count": 1,
+  "derived_session_id": "k0CxZBIEoS1SCpElhp77NtrHqzAsl5dX",
+  "handler_calls": 0,
+  "recovery_invariants": {
+    "block-stops-task": true,
+    "decision-source-recorded": true,
+    "invalid-user-feedback-rejected": true,
+    "single-source-claim": true
+  },
+  "recovery_process_returncode": 0,
+  "source_session_id": "-IPkAMDIIXxzWYxKedZ2sG0Ud69oCx8N",
+  "source_session_unchanged": true,
+  "tool_result_outcome": "uncertain"
+}

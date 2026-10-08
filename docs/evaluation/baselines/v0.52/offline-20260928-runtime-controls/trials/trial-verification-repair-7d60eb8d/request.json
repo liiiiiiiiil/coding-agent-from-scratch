@@ -1,0 +1,106 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-verification-repair-7d60eb8d/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "verification-repair",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "grader.public_test_failure"
+    },
+    "feedback_strategy": [],
+    "grader_id": "verification-repair",
+    "initial_dir": "initial",
+    "invariants": [
+      "verification-current-generation",
+      "hidden-grader-passes"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [],
+    "scenario_id": "verification-repair",
+    "schema_version": 1,
+    "task": "先运行公开测试确认初始实现失败，再修复 src/example.py 的 transform(value)，使其返回 value * 2。修复后重新运行公开测试并完成独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/frozen/verification-repair",
+  "scenario_sha256": "6099499f25df69b2707fe163d6193d87d0e31dfee2c0fdf73942908ebe6374eb",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-verification-repair-7d60eb8d/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "7d60eb8d-3fe2-43fd-bc68-c49f1094c173",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-verification-repair-7d60eb8d/workspace"
+}

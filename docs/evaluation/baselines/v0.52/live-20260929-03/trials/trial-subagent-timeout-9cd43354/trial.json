@@ -1,0 +1,367 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "756a9f97ad818a4d7bbe564b39f850007a78a75ca3d0792594cead04ceccfd11",
+        "size": 268
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "940870311e0ba7bba78ce94fa1b57c5daccf4a6777c74d0ca5d658c6c7c25674",
+        "size": 4109
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "6be12a32ed16f898304e1e94e54d17a15993983b939ef5d7e084822c9b2feec1",
+        "size": 3712
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T02:45:35.336+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "34e903881b67db56127a0a70f942953035ac44760cb28277b90697651185bc64",
+      "fault_id": "subagent-timeout",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "subagent.model_call.timeout"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "failed-subagent-claimed",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "usage-settled-once",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 7180,
+      "injected_calls": [
+        {
+          "component": "subagent_llm",
+          "count": 1,
+          "counted_as_real": false,
+          "source": "injected"
+        }
+      ],
+      "input_tokens": 20054,
+      "llm_calls": 3,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 1614,
+      "token_accounting": "provider",
+      "tool_calls": 5
+    },
+    "grader": {
+      "duration_ms": 80
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "56898bac5bc3b98fcd5cba261fde9589c472292c80639863ee82de7512db728c",
+  "runtime_fingerprint_end": "56898bac5bc3b98fcd5cba261fde9589c472292c80639863ee82de7512db728c",
+  "scenario_id": "subagent-timeout",
+  "scenario_sha256": "c03d4039cdb6b1f16f68e0f6631c4184cb61601186ba71e9c207aaa1739fbd88",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T02:45:28.037+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "agent_profile": "general",
+          "budget": "<dict>",
+          "constraints": "<list>",
+          "expected_findings": "<list>",
+          "goal": "调查工作区中 src/example.py 的 transform 函数实现与 tests/ 下测试期望，确定 transform(value) 是否应为 va",
+          "purpose": "investigation",
+          "requested_tools": "<list>",
+          "scope": "<list>",
+          "selected_parent_facts": "<list>",
+          "source_id": "src-example-transform-investigation"
+        },
+        "attempt_id": "a-2",
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "spawn_subagent"
+      },
+      {
+        "arguments": {
+          "command": "<str:85>",
+          "purpose": "execution"
+        },
+        "attempt_id": "a-3",
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "run_shell"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [
+      {
+        "abandoned_at": null,
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "cancellation_reason": null,
+        "claimed_at": null,
+        "committed_at": null,
+        "contract_summary": {
+          "agent_profile": "general",
+          "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+          "goal": "调查工作区中 src/example.py 的 transform 函数实现与 tests/ 下测试期望，确定 transform(value) 是否应为 value*2，并列出受影响的调用点。",
+          "purpose": "investigation",
+          "requested_tools": [
+            "read_file",
+            "list_dir",
+            "grep"
+          ],
+          "scope": [
+            "src/example.py",
+            "tests/"
+          ]
+        },
+        "created_at": "2026-09-29T02:45:33.913830+00:00",
+        "delegation_id": "b487a84c-2be7-47af-b9e8-11e3edcb2b86",
+        "delivery_status": "result_ready",
+        "diagnostic_reason": "timeout",
+        "mode": "background",
+        "outcome": "timed_out",
+        "parent_attempt_id": null,
+        "parent_generation_id": 0,
+        "parent_task_id": "task-1",
+        "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+        "reserved_usage": {
+          "elapsed_ms": 0,
+          "input_tokens": 0,
+          "llm_calls": 3,
+          "output_tokens": 8000,
+          "result_bytes": 0,
+          "rounds": 3,
+          "token_accounting": "estimated",
+          "tool_calls": 9
+        },
+        "result_hash": "48b4c2f5d229d2040c9ea095335f21fbd6b58b53ffd0c1359a056edbb8fa99f0",
+        "result_id": "15baf62f-41d1-45d3-9077-0746202c55cb",
+        "result_ready_at": "2026-09-29T02:45:35.250839+00:00",
+        "result_summary": "子代理 LLM 请求超时",
+        "started_at": "2026-09-29T02:45:33.914241+00:00",
+        "startup_confirmed": true,
+        "subagent_id": "7c41beb3-7fa5-4ad4-ad93-8c4c1142f8ef",
+        "task_contract_hash": "88bbf471e2628e02a644b45126698945af4cc562419bbc26d85710effa703c41",
+        "usage": {
+          "elapsed_ms": 2,
+          "input_tokens": 5129,
+          "llm_calls": 1,
+          "output_tokens": 0,
+          "result_bytes": 950,
+          "rounds": 1,
+          "token_accounting": "estimated",
+          "tool_calls": 0
+        }
+      }
+    ],
+    "diagnostic": null,
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [
+      {
+        "component": "subagent_llm",
+        "count": 1,
+        "counted_as_real": false,
+        "source": "injected"
+      }
+    ],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "tool_schema_sha256": "f8c15f80ee7826c6b3c6d93c3818df8c5bd6d46fabd1e36f2468410dd5be693d",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "53180d91b153c480aa580c433491b361120de3d1f120a5032632b89e8bcb7f05",
+  "suite_version": "1.1",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "delegation_created",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "b487a84c-2be7-47af-b9e8-11e3edcb2b86",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-2",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_accepted",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "b487a84c-2be7-47af-b9e8-11e3edcb2b86",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 4,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_started",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "b487a84c-2be7-47af-b9e8-11e3edcb2b86",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 5,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "background_subagent_result_ready",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "b487a84c-2be7-47af-b9e8-11e3edcb2b86",
+        "record_type": "delegation",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 6,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-3",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 7,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 8,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "99f1ed4d378e47663df6c62ecef84a411440c2ba38b32d1269e9292c6e3d0a3d",
+    "trace_events": 8
+  },
+  "trial_id": "9cd43354-32fc-4e63-8aea-57b43442a136",
+  "variant": {}
+}

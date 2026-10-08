@@ -1,0 +1,377 @@
+{
+  "format": "mini_agent.reliability_report",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "suite_version": "1.4",
+  "suite_sha256": "ae49963f8385f27caaa2521a8ac167d0aa2c193f5368fb636eabb95763791365",
+  "suite_run_id": "5039acb5-c599-4b85-bfd3-73c327231107",
+  "run_kind": "live",
+  "status": "completed",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "runtime_fingerprint": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "code_revision_consistent": true,
+  "runtime_fingerprint_consistent": true,
+  "model_binding_consistent": true,
+  "source": "read-only reconstruction from frozen suite, ledger, and raw trials",
+  "cohorts": {
+    "fixture": {
+      "planned_slots": 0,
+      "recorded_trials": 0,
+      "fault_triggered": 0,
+      "invariant_passed": 0,
+      "grader_passed": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "recovery_successes": null,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null
+    },
+    "live": {
+      "planned_slots": 21,
+      "recorded_trials": 21,
+      "fault_triggered": 21,
+      "invariant_passed": 19,
+      "grader_passed": 15,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 3,
+      "recovery_successes": 1,
+      "recovery_denominator": 18,
+      "recovery_success_rate": 0.05555555555555555
+    }
+  },
+  "scenarios": {
+    "crash-after-handler": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 3,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 3,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.0,
+      "recovery_successes": 0,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "mcp-disconnect": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 3,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 3,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.0,
+      "recovery_successes": 0,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "permission-denied": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 0,
+        "not_applicable": 3,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 0,
+      "grader_failed": 0,
+      "grader_not_run": 3,
+      "agent_stop_reasons": {
+        "failed": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 3,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 3,
+      "recovery_success_rate": null,
+      "recovery_successes": 0,
+      "recovery_denominator": 0,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 3,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 3,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "process-wait-timeout": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 3,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 2,
+      "grader_failed": 1,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.0,
+      "recovery_successes": 0,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "subagent-timeout": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 3,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 3,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.0,
+      "recovery_successes": 0,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "tool-handler-exception": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 0,
+        "failed": 3,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 3,
+      "grader_failed": 0,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "token_limit": 3
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.0,
+      "recovery_successes": 0,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    },
+    "verification-repair": {
+      "planned_slots": 3,
+      "recorded_trials": 3,
+      "fault_triggered": 3,
+      "fault_not_triggered": 0,
+      "injection_errors": 0,
+      "invariant_status_counts": {
+        "passed": 1,
+        "failed": 2,
+        "incomplete": 0
+      },
+      "recovery_status_counts": {
+        "succeeded": 1,
+        "failed": 2,
+        "not_applicable": 0,
+        "not_triggered": 0,
+        "incomplete": 0
+      },
+      "grader_passed": 1,
+      "grader_failed": 2,
+      "grader_not_run": 0,
+      "agent_stop_reasons": {
+        "text": 1,
+        "failed": 1,
+        "token_limit": 1
+      },
+      "cleanup_incomplete": 0,
+      "source_inconsistent": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "evidence_incomplete": 0,
+      "task_success_assessed": true,
+      "boundary_only_trials": 0,
+      "task_grader_not_run": 0,
+      "task_grader_not_applicable": 0,
+      "recovery_success_rate": 0.3333333333333333,
+      "recovery_successes": 1,
+      "recovery_denominator": 3,
+      "recovery_denominator_exclusions": {
+        "triggered_but_unscorable": 0,
+        "fixture_task_not_assessed": 0,
+        "boundary_only": 0,
+        "not_triggered": 0,
+        "infrastructure_error": 0,
+        "unrun_slots": 0
+      }
+    }
+  },
+  "unreadable_trials": [],
+  "unrun_slots": [],
+  "manual_review": []
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "51e722d6dc82222c75a5fe55d510313211f6ef83df8e054b7915dbf438aec6a3",
+    "fault_id": "crash-after-handler",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "boundary.after_handler"
+  }
+]

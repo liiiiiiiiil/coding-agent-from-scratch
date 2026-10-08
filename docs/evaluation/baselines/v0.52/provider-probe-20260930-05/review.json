@@ -1,0 +1,26 @@
+{
+  "format": "mini_agent.provider_probe_review",
+  "schema_version": 1,
+  "probe_file": "probe.json",
+  "probe_sha256": "323a5608bf3ba8d0888acb073913dcee39737e83d3c4cee5cf697c52181f78df",
+  "executed_driver_sha256": "38249f5374ac4b69cbadbe2256adaf67acfc6f73fc555fd1d9726298cc8df352",
+  "sent_requests": 3,
+  "automatic_retries": 0,
+  "live_slots_consumed": 0,
+  "status": "completed",
+  "requested_output_cap": 1024,
+  "provider_input_tokens": [
+    12,
+    104,
+    70
+  ],
+  "provider_output_tokens": [
+    15,
+    39,
+    150
+  ],
+  "usd_cap_total": "1",
+  "conservative_spend_upper_usd_this_probe": "0.00008316",
+  "conservative_spend_upper_usd_all_probes": "0.42375368",
+  "conclusion": "Small plain/tool/tool-result protocol round trip succeeded with the suite work-call 1024 output cap after stream accumulator fix; historical errors remain unproven."
+}

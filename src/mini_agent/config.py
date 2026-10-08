@@ -26,6 +26,8 @@ PARENT_MODEL_PROFILE = "default"
 SUBAGENT_MODEL_PROFILE = None
 SUBAGENT_ALLOWED_MODEL_PROFILES = ("default",)
 MAX_ITERATIONS = 50
+# Parent main requests and summaries; None preserves the CLI default.
+PARENT_TASK_TOKEN_BUDGET = None
 CONTEXT_WINDOW = 128_000
 CONTEXT_OBSERVABILITY = True
 OUTPUT_MODE = "normal"  # quiet | normal | debug；终端输出级别
@@ -81,6 +83,9 @@ CONFIG_BASE_DIR = os.path.dirname(os.path.abspath(
 
 def validate_runtime_config() -> None:
     """Validate bounded runtime budgets after local configuration overrides."""
+    if (PARENT_TASK_TOKEN_BUDGET is not None
+            and (type(PARENT_TASK_TOKEN_BUDGET) is not int or PARENT_TASK_TOKEN_BUDGET <= 0)):
+        raise ValueError("PARENT_TASK_TOKEN_BUDGET 必须是正整数或 None")
     if not isinstance(MEMORY_DIR, str) or not MEMORY_DIR.strip():
         raise ValueError("MEMORY_DIR 必须是非空字符串")
     if not isinstance(MEMORY_RETRIEVAL_ENABLED, bool):

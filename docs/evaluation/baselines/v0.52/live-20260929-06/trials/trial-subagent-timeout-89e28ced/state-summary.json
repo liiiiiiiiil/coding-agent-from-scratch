@@ -1,0 +1,210 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "agent_profile": "general",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "只读调查 src/example.py 中 transform 的实现与 tests/ 目录下对它的测试期望，确认当前行为与期望行为的差异。",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "child_session_id": "4f9e20ba-1119-4191-acc3-884d5d3501cb"
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_status"
+    },
+    {
+      "arguments": {
+        "child_session_id": "4f9e20ba-1119-4191-acc3-884d5d3501cb"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_result"
+    },
+    {
+      "arguments": {
+        "path": "."
+      },
+      "attempt_id": "a-5",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "tests"
+      },
+      "attempt_id": "a-6",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-7",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_public.py"
+      },
+      "attempt_id": "a-8",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "new_string": "<str:20>",
+        "old_string": "<str:20>",
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-9",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "edit_file"
+    },
+    {
+      "arguments": {
+        "command": "<str:36>",
+        "purpose": "verification"
+      },
+      "attempt_id": "a-10",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [
+    {
+      "abandoned_at": null,
+      "agent_profile": "general",
+      "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+      "cancellation_reason": null,
+      "claimed_at": "2026-09-29T07:41:45.671312+00:00",
+      "committed_at": "2026-09-29T07:41:45.671282+00:00",
+      "contract_summary": {
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "goal": "只读调查 src/example.py 中 transform 的实现与 tests/ 目录下对它的测试期望，确认当前行为与期望行为的差异。",
+        "purpose": "investigation",
+        "requested_tools": [
+          "read_file",
+          "list_dir",
+          "grep"
+        ],
+        "scope": [
+          "src/example.py",
+          "tests/"
+        ]
+      },
+      "created_at": "2026-09-29T07:41:43.371000+00:00",
+      "delegation_id": "23238ce4-fec7-44f9-82f5-c571ea889759",
+      "delivery_status": "committed",
+      "diagnostic_reason": "timeout",
+      "mode": "background",
+      "outcome": "timed_out",
+      "parent_attempt_id": null,
+      "parent_generation_id": 0,
+      "parent_task_id": "task-1",
+      "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+      "reserved_usage": {
+        "elapsed_ms": 0,
+        "input_tokens": 0,
+        "llm_calls": 1,
+        "output_tokens": 32000,
+        "result_bytes": 0,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 1
+      },
+      "result_hash": "4b7c277dbbbe9c62e7b40c2ffbec69b30a5b9d1c55cbc0dfcb8ae08af691348d",
+      "result_id": "eee7d588-80fe-44c7-a87e-e7b0851803f0",
+      "result_ready_at": "2026-09-29T07:41:44.442449+00:00",
+      "result_summary": "子代理 LLM 请求超时",
+      "started_at": "2026-09-29T07:41:43.371875+00:00",
+      "startup_confirmed": true,
+      "subagent_id": "4f9e20ba-1119-4191-acc3-884d5d3501cb",
+      "task_contract_hash": "c263aaa287877b221ab9830406fe7b1499593636b5d743c5412133d8931007d0",
+      "usage": {
+        "elapsed_ms": 6,
+        "input_tokens": 5104,
+        "llm_calls": 1,
+        "output_tokens": 0,
+        "result_bytes": 950,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 0
+      }
+    }
+  ],
+  "diagnostic": null,
+  "generation": 2,
+  "initial_public_test_passed": null,
+  "injected_calls": [
+    {
+      "component": "subagent_llm",
+      "count": 1,
+      "counted_as_real": false,
+      "source": "injected"
+    }
+  ],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": null,
+  "provider_error_category": null,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_token_budget_exhausted",
+  "tool_diagnostics": [],
+  "tool_schema_sha256": "3b1671bd0a846a803920b47c025a50aaf96fbf82c5c4cfd602082820cf3e26a0",
+  "verification": [
+    {
+      "exit_code": 0,
+      "generation_id": 2,
+      "outcome": "passed"
+    }
+  ]
+}

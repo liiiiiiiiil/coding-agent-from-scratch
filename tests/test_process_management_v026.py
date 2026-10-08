@@ -366,6 +366,10 @@ def test_cleanup_cannot_succeed_when_wait_does_not_confirm_exit():
     assert process_id in manager._processes
     assert state.task_id == "task-1"
     assert "未确认结束" in report.render()
+    # The mocked wait bypasses reaping and can leave a child still exiting.
+    # Bound the real wait during teardown; keep the failed-cleanup assertions
+    # above independent of OS signal scheduling and collector timing.
+    manager._processes[process_id].proc.wait(timeout=3)
     _finish_manager(state, manager)
 
 

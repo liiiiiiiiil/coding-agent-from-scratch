@@ -1,0 +1,824 @@
+{
+  "agent_stop_reason": "blocked",
+  "agent_terminal_status": "blocked",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "03f0f5ffa8772020446cd81ded17f0ce06ff20d0544530903aa84f740ac58449",
+        "size": 266
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "b26eb85ef0defa1d1f66dce49bccd8a1499201a552d95759c6d43fae93c2c420",
+        "size": 2564
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "8e89edeaf29517743d296095a927952aea5c70dd526bfdc6e363fa0d9eca7702",
+        "size": 104
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "87b25a93b8ddb90833a9d4973aaf6bb90361c4e6c7fae35613ed6fd42011cb90",
+        "size": 431
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "57ec02f314e8853a8f621832c4e80d36ca87e34deb04ff17398c0bc275cad788",
+        "size": 1064
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-30T03:36:28.191+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "5c939535f3bf1990e4af3b9e1b8e380cfbf63f762e11d390cf669ad45f93a144",
+      "fault_id": "crash-after-handler",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "boundary.after_handler"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [
+    {
+      "accepted": true,
+      "decision": "investigate",
+      "issue_id": "issue-1",
+      "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+      "source": "simulated_user",
+      "trigger": "uncertain_issue_found"
+    },
+    {
+      "accepted": true,
+      "decision": "continue",
+      "investigation_attempt_id": "a-4",
+      "issue_id": "issue-1",
+      "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+      "source": "simulated_user",
+      "trigger": "issue_investigated"
+    },
+    {
+      "accepted": true,
+      "decision": "investigate",
+      "issue_id": "issue-2",
+      "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+      "source": "simulated_user",
+      "trigger": "uncertain_issue_found"
+    },
+    {
+      "accepted": true,
+      "decision": "continue",
+      "investigation_attempt_id": "a-5",
+      "issue_id": "issue-2",
+      "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+      "source": "simulated_user",
+      "trigger": "issue_investigated"
+    }
+  ],
+  "format": "mini_agent.reliability",
+  "grader_passed": true,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "side-effect-once",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "admitted-call-not-replayed",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "source-session-read-only",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "crash_worker": {
+      "cleanup_complete": true,
+      "duration_ms": 11555,
+      "exit_code": 86,
+      "recovery_duration_ms": 44854
+    },
+    "grader": {
+      "duration_ms": 0
+    },
+    "pre_crash": {
+      "input_tokens": 10604,
+      "llm_calls": 2,
+      "output_tokens": 131,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 10735,
+        "estimation": "OpenAI Chat complete UTF-8 request size / 3 + 10%; not an exact provider tokenizer",
+        "input_multiplier_after": 2.0,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "task_binding_schema_request_kind",
+          "cold_input_multiplier": 2,
+          "cold_samples": 2,
+          "final_output_tokens": 512,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "recent_complete_rounds": 2,
+          "summary_output_tokens": 512,
+          "warm_margin_percent": 10,
+          "warm_positive_error_samples": 8,
+          "work_output_tokens": 1024
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "9650bd2e0cf39283865c127ed3af52eca9d8b478a505da91a7f7e970b9605518",
+            "closing_reservation_tokens": 10726,
+            "completion_blockers": [],
+            "cumulative_tokens_before": 0,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 26381,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 5146,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 80,
+              "notice": 0,
+              "state": 244,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 2336,
+            "observed_input_to_estimate_ratio": 0.709,
+            "output_tokens": 42,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7258,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 14772,
+            "reserved_input_tokens_estimated": 7258,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 645,
+            "untrimmed_view_tokens_estimated": 7258,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "work",
+            "calibration_key": "9650bd2e0cf39283865c127ed3af52eca9d8b478a505da91a7f7e970b9605518",
+            "closing_reservation_tokens": 10726,
+            "completion_blockers": [],
+            "cumulative_tokens_before": 5188,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 23787,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 5458,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 182,
+              "notice": 0,
+              "state": 388,
+              "summary": 0,
+              "system": 2012
+            },
+            "message_tokens_estimated": 2582,
+            "observed_input_to_estimate_ratio": 0.714,
+            "output_tokens": 89,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7421,
+            "reasoning_tokens_subset_estimated": 11,
+            "refusal_reason": null,
+            "remaining_tokens_before": 58812,
+            "request_index": 2,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 15544,
+            "reserved_input_tokens_estimated": 7644,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 645,
+            "untrimmed_view_tokens_estimated": 7644,
+            "usage_source": "provider"
+          }
+        ],
+        "task_budget_ledger": {
+          "input_tokens": 10604,
+          "last_settled_id": 2,
+          "limit": 64000,
+          "next_request_id": 3,
+          "output_tokens": 131,
+          "overrun_tokens": 0,
+          "pending": null,
+          "samples": {
+            "9650bd2e0cf39283865c127ed3af52eca9d8b478a505da91a7f7e970b9605518": [
+              [
+                7258,
+                5146
+              ],
+              [
+                7644,
+                5458
+              ]
+            ]
+          },
+          "unknown_requests": 0,
+          "version": 1
+        },
+        "token_budget": 64000
+      },
+      "rounds": 2,
+      "token_accounting": "provider",
+      "tool_calls": 3
+    },
+    "recovery": {
+      "duration_ms": 44602,
+      "input_tokens": 35412,
+      "llm_calls": 6,
+      "model_binding_ref": {
+        "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 1383,
+      "remaining_wall_seconds": 228.564,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 47530,
+        "estimation": "OpenAI Chat complete UTF-8 request size / 3 + 10%; not an exact provider tokenizer",
+        "input_multiplier_after": 1.1000370507595405,
+        "prior_phase_tokens": 10735,
+        "request_budget_policy": {
+          "calibration_scope": "task_binding_schema_request_kind",
+          "cold_input_multiplier": 2,
+          "cold_samples": 2,
+          "final_output_tokens": 512,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "recent_complete_rounds": 2,
+          "summary_output_tokens": 512,
+          "warm_margin_percent": 10,
+          "warm_positive_error_samples": 8,
+          "work_output_tokens": 1024
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 11128,
+            "completion_blockers": [
+              "planning",
+              "verification"
+            ],
+            "cumulative_tokens_before": 10735,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 20812,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 5352,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 279,
+              "notice": 0,
+              "state": 586,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 2934,
+            "observed_input_to_estimate_ratio": 0.7134,
+            "output_tokens": 240,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7205,
+            "reasoning_tokens_subset_estimated": 79,
+            "refusal_reason": null,
+            "remaining_tokens_before": 53265,
+            "request_index": 1,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 15260,
+            "reserved_input_tokens_estimated": 7502,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 7502,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 11128,
+            "completion_blockers": [
+              "planning",
+              "verification"
+            ],
+            "cumulative_tokens_before": 16327,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 18016,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 2.0,
+            "input_tokens": 5536,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 480,
+              "notice": 0,
+              "state": 606,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 3155,
+            "observed_input_to_estimate_ratio": 0.7126,
+            "output_tokens": 164,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7224,
+            "reasoning_tokens_subset_estimated": 289,
+            "refusal_reason": null,
+            "remaining_tokens_before": 47673,
+            "request_index": 2,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 15794,
+            "reserved_input_tokens_estimated": 7769,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 7769,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 11128,
+            "completion_blockers": [
+              "planning",
+              "verification"
+            ],
+            "cumulative_tokens_before": 22027,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 27575,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.1000360273808094,
+            "input_tokens": 5947,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 837,
+              "notice": 0,
+              "state": 681,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 3587,
+            "observed_input_to_estimate_ratio": 0.7142,
+            "output_tokens": 220,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7307,
+            "reasoning_tokens_subset_estimated": 479,
+            "refusal_reason": null,
+            "remaining_tokens_before": 41973,
+            "request_index": 3,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 9416,
+            "reserved_input_tokens_estimated": 8327,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 8327,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 11128,
+            "completion_blockers": [
+              "planning",
+              "verification"
+            ],
+            "cumulative_tokens_before": 28194,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 21969,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.1001066224380998,
+            "input_tokens": 6112,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 907,
+              "notice": 0,
+              "state": 753,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 3729,
+            "observed_input_to_estimate_ratio": 0.7241,
+            "output_tokens": 550,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7384,
+            "reasoning_tokens_subset_estimated": 472,
+            "refusal_reason": null,
+            "remaining_tokens_before": 35806,
+            "request_index": 4,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 9542,
+            "reserved_input_tokens_estimated": 8441,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 8441,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 12162,
+            "completion_blockers": [
+              "plan_steps",
+              "verification"
+            ],
+            "cumulative_tokens_before": 34856,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 14972,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.100075897213488,
+            "input_tokens": 6592,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 1198,
+              "notice": 28,
+              "state": 899,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 4194,
+            "observed_input_to_estimate_ratio": 0.7147,
+            "output_tokens": 115,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7668,
+            "reasoning_tokens_subset_estimated": 576,
+            "refusal_reason": null,
+            "remaining_tokens_before": 29144,
+            "request_index": 5,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 10402,
+            "reserved_input_tokens_estimated": 9223,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 9223,
+            "usage_source": "provider"
+          },
+          {
+            "budget_refusal_reason": null,
+            "budget_stage": "verification_pending",
+            "calibration_key": "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281",
+            "closing_reservation_tokens": 12166,
+            "completion_blockers": [
+              "plan_steps",
+              "verification"
+            ],
+            "cumulative_tokens_before": 41563,
+            "finalization": false,
+            "input_allowance_tokens_estimated": 8871,
+            "input_estimator": "openai_chat_utf8_request_v1",
+            "input_multiplier": 1.1000370507595405,
+            "input_tokens": 5873,
+            "max_output_tokens": 1024,
+            "message_groups": {
+              "history": 291,
+              "notice": 28,
+              "state": 982,
+              "summary": 0,
+              "system": 2069
+            },
+            "message_tokens_estimated": 3370,
+            "observed_input_to_estimate_ratio": 0.7253,
+            "output_tokens": 94,
+            "planned_output_limit": 1024,
+            "protected_floor_tokens_estimated": 7801,
+            "reasoning_tokens_subset_estimated": 94,
+            "refusal_reason": null,
+            "remaining_tokens_before": 22437,
+            "request_index": 6,
+            "request_kind": "work",
+            "reserved_input_tokens_calibrated": 9163,
+            "reserved_input_tokens_estimated": 8097,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "grep": 42,
+              "list_dir": 19,
+              "read_file": 38,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 446,
+            "untrimmed_view_tokens_estimated": 9088,
+            "usage_source": "provider"
+          }
+        ],
+        "task_budget_ledger": {
+          "input_tokens": 46016,
+          "last_settled_id": 8,
+          "limit": 64000,
+          "next_request_id": 9,
+          "output_tokens": 1514,
+          "overrun_tokens": 0,
+          "pending": null,
+          "samples": {
+            "9650bd2e0cf39283865c127ed3af52eca9d8b478a505da91a7f7e970b9605518": [
+              [
+                7258,
+                5146
+              ],
+              [
+                7644,
+                5458
+              ]
+            ],
+            "e06d4ad2d5f56fddbade2943a874e6123248b57a79e5e1146850d4c872aeb281": [
+              [
+                7502,
+                5352
+              ],
+              [
+                7769,
+                5536
+              ],
+              [
+                8327,
+                5947
+              ],
+              [
+                8441,
+                6112
+              ],
+              [
+                9223,
+                6592
+              ],
+              [
+                8097,
+                5873
+              ]
+            ]
+          },
+          "unknown_requests": 0,
+          "version": 1
+        },
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 8
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [
+    {
+      "process": "new_python_process",
+      "status": "succeeded",
+      "step": "claim_new_session"
+    },
+    {
+      "status": "succeeded",
+      "step": "inspect_evidence"
+    },
+    {
+      "status": "succeeded",
+      "step": "resolve_issues"
+    },
+    {
+      "status": "succeeded",
+      "step": "replan"
+    },
+    {
+      "status": "succeeded",
+      "step": "reauthorize"
+    },
+    {
+      "status": "failed",
+      "step": "verify_current_generation"
+    }
+  ],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "runtime_fingerprint_end": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "scenario_id": "crash-after-handler",
+  "scenario_sha256": "550ed76f5e87f1b023f89403b7af66c5040995f798eba055f359651fde4d69eb",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-30T03:35:43.491+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": "crash_recovery_uncertain",
+        "handler_admitted": true,
+        "outcome": "uncertain",
+        "permission": "allowed",
+        "tool": "write_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "list_dir"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "grep"
+      },
+      {
+        "error_kind": "attempt_fingerprint_budget",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      }
+    ],
+    "completion_evidence": {
+      "artifact_correct": true,
+      "blockers": [
+        "terminal",
+        "plan_steps",
+        "verification",
+        "repair"
+      ],
+      "current_generation_verified": false,
+      "model_completed": false
+    },
+    "crash_decisions": 4,
+    "crash_issue_count": 2,
+    "derived_session_id": "c_Ced57Nb9sQU4He3bqZ34tbwKuPmulp",
+    "diagnostic": null,
+    "pending_call_uncertain": true,
+    "plan_revision_count": 1,
+    "side_effect_count": 1,
+    "source_session_id": "WcpJ2kzdrFiT5vtzRfvDxivZc4uPVQhs",
+    "source_session_unchanged": true,
+    "status": "blocked",
+    "task_id": "task-1",
+    "terminal_reason": "同一参数指纹尝试预算已耗尽; last_failure=f-1",
+    "tool_diagnostics": [],
+    "verification_generation": null
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trace_summary": {
+    "sha256": "d5968d2678311547e5d8065e669f707abd9f240c136520d02886b289f0b6d172",
+    "trace_events": 26
+  },
+  "trial_id": "7d463f9d-ed81-4636-9853-1b7470d1f109",
+  "variant": {}
+}

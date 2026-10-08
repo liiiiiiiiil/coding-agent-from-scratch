@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from mini_agent.budget import BudgetPersistenceError, BudgetUnavailable
+
 from copy import deepcopy
 from dataclasses import dataclass
 import json
@@ -242,11 +244,20 @@ class TrimPolicy:
         messages: list[Message],
         budget: ContextBudget,
         observer: Observer | None = None,
+        *, input_allowance: int | None = None,
+        protected_prefix_len: int | None = None,
     ) -> list[Message]:
         """Return a protocol-safe, budgeted copy of ``messages``."""
         prepared = [dict(message) for message in messages]
-        prefix, rounds = _split_rounds(prepared)
+        if protected_prefix_len is None:
+            prefix, rounds = _split_rounds(prepared)
+        else:
+            prefix = prepared[:protected_prefix_len]
+            _, rounds = _split_rounds([{"role": "user", "content": ""}] +
+                                       prepared[protected_prefix_len:])
         target = budget.message_limit(count_tokens(prefix))
+        if input_allowance is not None:
+            target = min(target, input_allowance)
         before = count_tokens(prepared)
         if before <= target:
             return prepared
@@ -323,10 +334,12 @@ class ContextManager:
         memory_retrieval_max_chars: int = 2400,
         skill_catalog: object | None = None,
         permission_policy: object | None = None,
+        finalization_protected_messages: list[Message] | None = None,
     ) -> None:
         self.state = state
         self.history = history
         self.protected_messages = protected_messages
+        self.finalization_protected_messages = finalization_protected_messages
         self.model_binding = model_binding
         self.usage_meter = usage_meter or getattr(model_binding, "usage_meter", None)
         self.budget = budget or ContextBudget()
@@ -1270,8 +1283,10 @@ class ContextManager:
         self,
         result: MemorySearchResult | None,
         base_messages: list[Message],
+        *, input_allowance: int | None = None,
     ) -> Message | None:
         """Fit an already-read result without accessing Memory again."""
+        input_limit = min(self.budget.input_limit, input_allowance) if input_allowance is not None else self.budget.input_limit
         if result is None:
             return None
         if self._memory_retrieval_failed is not None:
@@ -1285,7 +1300,7 @@ class ContextManager:
                 if self._runtime_notice else 0
             )
             if (len(str(message["content"])) > self.memory_retrieval_max_chars
-                    or count_tokens(prefix) + count_tokens(message) + notice_tokens > self.budget.input_limit):
+                    or count_tokens(prefix) + count_tokens(message) + notice_tokens > input_limit):
                 return None
             return message
         candidates = [dict(item) for item in result.memories]
@@ -1299,7 +1314,7 @@ class ContextManager:
             return None
 
         prefix, _ = _split_rounds(base_messages)
-        remaining_tokens = self.budget.input_limit - count_tokens(prefix)
+        remaining_tokens = input_limit - count_tokens(prefix)
         if self._runtime_notice:
             remaining_tokens -= count_tokens("[Runtime Notice]\n" + self._runtime_notice)
         if remaining_tokens <= 0:
@@ -1330,13 +1345,15 @@ class ContextManager:
         })
         return message
 
-    def _fit_skill_message(self, base_messages: list[Message]) -> Message | None:
+    def _fit_skill_message(self, base_messages: list[Message], *,
+                           input_allowance: int | None = None) -> Message | None:
         """Build a fresh, policy-filtered Skill directory within input budget."""
         catalog = self.skill_catalog
         if catalog is None or not hasattr(catalog, "directory_prompt"):
             return None
         prefix, _ = _split_rounds(base_messages)
-        remaining = self.budget.input_limit - count_tokens(prefix)
+        input_limit = min(self.budget.input_limit, input_allowance) if input_allowance is not None else self.budget.input_limit
+        remaining = input_limit - count_tokens(prefix)
         if self._runtime_notice:
             remaining -= count_tokens("[Runtime Notice]\n" + self._runtime_notice)
         if remaining <= 0:
@@ -1367,8 +1384,11 @@ class ContextManager:
         self,
         memory_message: Message | None = None,
         skill_message: Message | None = None,
+        *, finalization: bool = False,
     ) -> list[Message]:
-        source = ([dict(message) for message in self.protected_messages] if self.protected_messages is not None else [])
+        protected = (self.finalization_protected_messages if finalization and
+                     self.finalization_protected_messages is not None else self.protected_messages)
+        source = ([dict(message) for message in protected] if protected is not None else [])
         source.extend(dict(message) for message in self.history)
         if not self._compacted:
             first_user = next((i for i, m in enumerate(source) if m.get("role") == "user"), len(source))
@@ -1425,6 +1445,8 @@ class ContextManager:
             summary = self.summarizer(prompt, **options) if options else self.summarizer(prompt)
             if not isinstance(summary, str) or not summary.strip():
                 return False
+        except BudgetPersistenceError:
+            raise
         except Exception:
             self._emit("compacted", {"failed": True})
             return False
@@ -1441,8 +1463,101 @@ class ContextManager:
         })
         return True
 
-    def prepare_messages(self) -> list[Message]:
+    def _task_budget_view(self, input_allowance: int, finalization: bool, *,
+                          observe: bool = True, recent_rounds: int = 2,
+                          input_estimator: Callable[[list[Message]], int] | None = None) -> list[Message]:
+        """A bounded request view; original history and reasoning are untouched."""
+        messages = self._build_messages(finalization=finalization)
+        prefix, rounds = _split_rounds(messages)
+        # User corrections and actual system constraints survive omitted tool
+        # rounds. Never promote tool or assistant text to protected messages.
+        recent = rounds[-recent_rounds:] if recent_rounds and not finalization else []
+        # Every user correction is protected even if its surrounding recent
+        # round must later be dropped to fit the serialized request.
+        corrections = [dict(m) for m in self.history
+                       if m.get("role") in {"user", "system"} and m not in prefix]
+        prefix.extend(corrections)
+        recent = [[m for m in round_messages if not (
+            m.get("role") in {"user", "system"} and m in corrections)] for round_messages in recent]
+        if finalization:
+            state = self.state
+            facts = {
+                "task": state.task, "completion_blockers": list(state.completion_blockers()),
+                "generation": state.current_generation_id,
+                "verified_generation": state._last_verified_generation,
+                "verification_required": state._verification_required,
+                "files_changed": list(state.files_changed),
+                "plan": state.snapshot().get("active_plan"),
+                "verification": [
+                    {"outcome": i.outcome, "exit_code": i.exit_code,
+                     "generation_id": i.generation_id}
+                    for i in state.verification_evidence[-4:]],
+            }
+            prefix = [m for m in prefix if not (m.get("role") == "system" and
+                      str(m.get("content", "")).startswith(("[Structured State]", "[Historical Summary]")))]
+            prefix.append({"role": "system", "content": "[Structured State]\n" +
+                           json.dumps(facts, ensure_ascii=False)})
+            prefix.append({"role": "system", "content":
+                           "[Runtime Notice]\n当前无完成阻塞，已进入收尾。依据现有验证事实输出最终回复；本次请求不提供工具。"})
+        if self._runtime_notice:
+            prefix.insert(0, {"role": "system", "content": "[Runtime Notice]\n" + self._runtime_notice})
+        if observe:
+            memory_result = self._retrieve_memory_candidates()
+            skill_message = self._fit_skill_message(prefix, input_allowance=input_allowance)
+            if skill_message is not None and (input_estimator is None or
+                    input_estimator(self._insert_skill_message(list(prefix), skill_message)) <= input_allowance):
+                prefix = self._insert_skill_message(prefix, skill_message)
+            memory_message = self._fit_memory_message(memory_result, prefix, input_allowance=input_allowance)
+            if memory_message is not None and (input_estimator is None or
+                    input_estimator(self._insert_memory_message(list(prefix), memory_message)) <= input_allowance):
+                prefix = self._insert_memory_message(prefix, memory_message)
+        estimate = input_estimator or count_tokens
+        protected_floor = estimate(prefix)
+        untrimmed = _flatten(prefix, recent)
+        # Numeric-only diagnostics survive a rejected view. Never retain text.
+        if observe:
+            self.task_budget_view_diagnostic = {
+                "protected_floor_tokens_estimated": protected_floor,
+                "untrimmed_view_tokens_estimated": estimate(untrimmed),
+                "input_allowance_tokens_estimated": input_allowance,
+            }
+        if protected_floor > input_allowance:
+            raise BudgetUnavailable("protected_context_exceeds_task_budget")
+        view = self.trim_policy.trim(untrimmed, self.budget,
+                                     input_allowance=input_allowance,
+                                     protected_prefix_len=len(prefix))
+        if input_estimator is not None and estimate(view) > input_allowance:
+            # The generic Context trim counts content characters. Tighten its
+            # target until the complete serialized request also fits, keeping
+            # the protected prefix and whole tool protocol rounds intact.
+            low, high = count_tokens(prefix), min(input_allowance, count_tokens(untrimmed))
+            chosen = None
+            while low <= high:
+                target = (low + high) // 2
+                candidate = self.trim_policy.trim(untrimmed, self.budget,
+                                                  input_allowance=target,
+                                                  protected_prefix_len=len(prefix))
+                if estimate(candidate) <= input_allowance:
+                    chosen = candidate
+                    low = target + 1
+                else:
+                    high = target - 1
+            if chosen is None:
+                raise BudgetUnavailable("protected_context_exceeds_task_budget")
+            view = chosen
+        if observe:
+            self.last_stats = self._stats(view)
+            self._emit("prepared", {"task_budget_view": True, "finalization": finalization}, self.last_stats)
+            self._runtime_notice = None
+        return view
+
+    def prepare_messages(self, *, input_allowance: int | None = None,
+                         finalization: bool = False,
+                         input_estimator: Callable[[list[Message]], int] | None = None) -> list[Message]:
         """Build the LLM request context without mutating ``history``."""
+        if input_allowance is not None:
+            return self._task_budget_view(input_allowance, finalization,
+                                          input_estimator=input_estimator)
         # Keep the notice local until the final message view is built.  A
         # compaction rebuilds messages, so consuming it before that rebuild
         # would silently drop the correction reminder.

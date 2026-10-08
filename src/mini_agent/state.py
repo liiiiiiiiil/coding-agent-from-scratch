@@ -674,7 +674,7 @@ class RecoveryAction:
     generation_id: int
     action: Literal["retry", "adjust", "ask", "block", "rollback"]
     reason: str
-    caused_by_failure_id: str
+    caused_by_failure_id: str | None
     status: Literal["proposed", "reserved", "executed", "rejected", "terminal"]
     requested_attempt: str | None = None
     requested_tool: str | None = None
@@ -737,6 +737,8 @@ class AgentState:
     process_events: list[ProcessEvent] = field(default_factory=list)
     awaiting_process: ProcessWaitState | None = None
     recovery_notice: str = ""
+    task_budget: dict[str, Any] | None = None
+    _budget_legacy_resume: bool = field(default=False, init=False, repr=False)
     _verification_generation: int = field(default=0, init=False, repr=False)
     _last_verified_generation: int = field(default=-1, init=False, repr=False)
     _verification_required: bool = field(default=False, init=False, repr=False)
@@ -4050,10 +4052,14 @@ class AgentState:
     def _reject_recovery(self, action, failure_id, reason, detail,
                          requested_attempt=None, requested_tool=None,
                          requested_arguments=None, checkpoint_id=None):
+        # A rejected request may name no existing failure. Its original
+        # arguments remain in tool history; never turn them into a causal edge.
+        known_failure = (failure_id if isinstance(failure_id, str) and
+                         any(f.failure_id == failure_id for f in self.failures) else None)
         rid = f"r-{self._next_recovery}"; self._next_recovery += 1
         rec = RecoveryAction(
             rid, self._verification_generation, action if isinstance(action, str) and action else "<missing>",
-            str(reason or "")[:500], failure_id, "rejected", requested_attempt,
+            str(reason or "")[:500], known_failure, "rejected", requested_attempt,
             requested_tool,
             canonical_arguments_hash(requested_arguments) if isinstance(requested_arguments, dict) else None,
             redacted_arguments(requested_arguments) if isinstance(requested_arguments, dict) else None,
@@ -4067,6 +4073,8 @@ class AgentState:
             revision_id=self.planning_state.active_revision_id,
         )
         self.recovery_notice = f"Recovery {rid} rejected: {str(detail)[:500]}."
+        if self._active_failure_id:
+            self.recovery_notice += f" 当前 active_failure_id={self._active_failure_id}；请引用该编号独占调用 recover，或 request_replan。"
         if len(self.recovery_actions) >= MAX_RECOVERY_ACTIONS:
             self._terminal("blocked", "恢复动作预算已耗尽", failure_id)
         return rec, detail
@@ -4406,6 +4414,8 @@ class AgentState:
         if mode not in ("auto", "plan_only"):
             raise ValueError("未知规划模式")
         with self._lock:
+            self.task_budget = None
+            self._budget_legacy_resume = False
             self.task_id = f"task-{self._next_task_id}"
             self._next_task_id += 1
             self.task = task; object.__setattr__(self, "current_goal", ""); self.status = "running"; self.terminal_reason = ""
@@ -4473,7 +4483,46 @@ class AgentState:
         with self._lock:
             return bool(self.verification_evidence) and self._last_verified_generation == self._verification_generation and self.verification_evidence[-1].outcome == "passed"
 
+    def completion_blockers(self) -> tuple[str, ...]:
+        """Read authoritative completion facts without changing State."""
+        with self._lock:
+            blockers = []
+            if self.task_budget and (self.task_budget["pending"] or self.task_budget["overrun_tokens"]):
+                blockers.append("budget")
+            if self.status in {"blocked", "failed"}:
+                blockers.append("terminal")
+            if self.planning_state.phase in {"exploring", "awaiting_approval"}:
+                blockers.append("planning")
+            if any(i.status in {"unresolved", "investigating"} for i in self.crash_issues):
+                blockers.append("crash_issues")
+            if any(i.status == "running" or i.write_pending for i in self.process_records):
+                blockers.append("processes")
+            if any(i.delivery_status not in {"committed", "interrupted", "abandoned"}
+                   for i in self.delegation_records):
+                blockers.append("delegations")
+            active = self._plan_view_locked()
+            if any(i["status"] != "completed" for i in (active or {}).get("steps", [])):
+                blockers.append("plan_steps")
+            if self._verification_required:
+                blockers.append("verification")
+            if self._repair_phase != "idle":
+                blockers.append("repair")
+            if self._pending_attempts:
+                blockers.append("pending_attempts")
+            return tuple(blockers)
+
+    def finalization_ready(self) -> bool:
+        # A fresh Direct Path has no blockers, but has no completion proof.
+        if self.completion_blockers():
+            return False
+        with self._lock:
+            active = self._plan_view_locked()
+            return bool((active and active.get("steps") and
+                         all(i["status"] == "completed" for i in active["steps"]))
+                        or self._last_verified_generation == self._verification_generation)
+
     def completion_reminder(self) -> dict[str, object] | None:
+        blockers = self.completion_blockers()
         with self._lock:
             if self.status in ("blocked", "failed"): return None
             if self.status == "awaiting_process": return None
@@ -4571,9 +4620,9 @@ class AgentState:
             active = self._plan_view_locked()
             missing = [step["content"] for step in (active or {}).get("steps", [])
                        if step["status"] != "completed"]
-            needs_verify = self._verification_required
-            needs_repair = self._repair_phase != "idle"
-            needs_plan = self.planning_state.phase == "exploring"
+            needs_verify = "verification" in blockers
+            needs_repair = "repair" in blockers
+            needs_plan = "planning" in blockers
             if not missing and not needs_verify and not needs_repair and not needs_plan:
                 return None
             # Describe observable completion facts instead of counting
@@ -4770,6 +4819,9 @@ class AgentState:
                 ),
             }
 
+        if self.task_budget is not None:
+            payload["task_budget"] = deepcopy(self.task_budget)
+
         # Dataclass tuples are intentional in the runtime, but session export
         # is a plain JSON value so that canonical hashing is independent of the
         # encoder used by callers.
@@ -4786,6 +4838,12 @@ class AgentState:
         """Validate State references and private counters without restoring it."""
         if not isinstance(payload, dict):
             raise SessionExportError("State 导出必须是 JSON object")
+        if "task_budget" in payload:
+            from mini_agent.budget import validate_snapshot
+            try:
+                validate_snapshot(payload["task_budget"])
+            except ValueError as error:
+                raise SessionExportError(str(error)) from error
         format_version = payload.get("format_version")
         if (payload.get("format") != "mini_agent.state"
                 or isinstance(format_version, bool)
@@ -5160,7 +5218,12 @@ class AgentState:
         unique(recovery_ids, "recovery")
         recovery_set = set(recovery_ids)
         for action in payload["recovery_actions"]:
-            if action.get("generation_id") not in generation_ids or action.get("caused_by_failure_id") not in failure_set:
+            failure_ref = action.get("caused_by_failure_id")
+            no_causal_failure = (action.get("status") == "rejected" and
+                                 "caused_by_failure_id" in action and failure_ref is None)
+            if (action.get("generation_id") not in generation_ids or
+                    (not no_causal_failure and
+                     (not isinstance(failure_ref, str) or failure_ref not in failure_set))):
                 raise SessionExportError("recovery action 引用无效")
             if action.get("result_generation_id") is not None and action["result_generation_id"] not in generation_ids:
                 raise SessionExportError("recovery result generation 引用无效")
@@ -5740,6 +5803,8 @@ class AgentState:
             process_records=process_records, process_events=process_events,
             awaiting_process=awaiting, recovery_notice=payload["recovery_notice"],
         )
+        state.task_budget = deepcopy(payload.get("task_budget"))
+        state._budget_legacy_resume = "task_budget" not in payload
         private = payload["private"]
         for name in (
             "verification_generation", "last_verified_generation", "verification_required",
@@ -5900,6 +5965,7 @@ class AgentState:
                 ),
                 "latest_failure": asdict(self.failures[-1]) if self.failures else None,
                 "recovery_notice": self.recovery_notice,
+                **({"task_budget": deepcopy(self.task_budget)} if self.task_budget is not None else {}),
                 "budgets": {"failure_retries_remaining": max(0, MAX_FAILURE_RETRIES - sum(self._failure_retry_counts.values())),
                             "fingerprint_attempts_limit": MAX_ATTEMPT_FINGERPRINTS,
                             "fingerprint_attempts_remaining": [

@@ -1,0 +1,81 @@
+{
+  "agent_error_kind": "ProviderHTTPError",
+  "attempts": [],
+  "completion_evidence": {
+    "artifact_correct": false,
+    "blockers": [
+      "terminal"
+    ],
+    "current_generation_verified": false,
+    "model_completed": false
+  },
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "diagnostic": {
+    "error_kind": "ProviderHTTPError",
+    "frames": [
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke",
+        "line": 418
+      },
+      {
+        "file": "mini_agent/runtime.py",
+        "function": "invoke_llm_once",
+        "line": 131
+      },
+      {
+        "file": "mini_agent/evaluation/reliability_diagnostics.py",
+        "function": "observed",
+        "line": 134
+      },
+      {
+        "file": "mini_agent/evaluation/worker.py",
+        "function": "live_client",
+        "line": 252
+      },
+      {
+        "file": "mini_agent/providers/catalog.py",
+        "function": "complete",
+        "line": 145
+      },
+      {
+        "file": "mini_agent/providers/openai_chat.py",
+        "function": "complete",
+        "line": 216
+      },
+      {
+        "file": "mini_agent/providers/http.py",
+        "function": "json",
+        "line": 165
+      },
+      {
+        "file": "mini_agent/providers/http.py",
+        "function": "request",
+        "line": 144
+      }
+    ],
+    "provider": {
+      "detail": "No available channel for model <redacted> under group default (distributor) (request id: 20260929114337386643484v33e8W1MiYXxK5lU)",
+      "status": 503
+    },
+    "stage": "agent"
+  },
+  "generation": 0,
+  "initial_public_test_passed": null,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": "agent_error",
+  "provider_error_category": "provider_http_503",
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_agent_error",
+  "tool_diagnostics": [],
+  "tool_schema_sha256": "32a02662ed0d92a0c712d641189451df52b14f5126fcbc77c0e3a6050dc779e4",
+  "verification": []
+}

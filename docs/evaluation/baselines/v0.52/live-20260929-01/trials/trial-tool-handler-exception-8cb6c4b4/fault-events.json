@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "10137f8ce896362e4b5a9ba8c9e68a0fe241926f3145566554735b7ad8620efd",
+    "fault_id": "tool-handler-exception",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "handler.read_file"
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "format": "mini_agent.stage_budget_repair_validation",
+  "schema_version": 1,
+  "historical_suite_version": "1.5",
+  "candidate_suite_frozen": false,
+  "runtime_fingerprint": "8748b7c42a378910b7913fe7262953fbeb9e307567a34a38bf336803aea2ffc3",
+  "full_tests": {
+    "passed": 812,
+    "log": "/private/tmp/v052-stage-full-escalated.log"
+  },
+  "related_tests": {
+    "passed": 95,
+    "log": "/private/tmp/v052-stage-protocol-related.log"
+  },
+  "late_recovery_cases": [
+    {
+      "remaining_tokens": 19000,
+      "path": "verification_then_model_final",
+      "result": "passed"
+    },
+    {
+      "remaining_tokens": 27000,
+      "path": "plan_progress_then_verification_then_model_final",
+      "result": "passed"
+    },
+    {
+      "remaining_tokens": 11000,
+      "path": "protected_floor_refusal_without_model_io",
+      "result": "passed"
+    }
+  ],
+  "offline_matrix": {
+    "run_dir": "/private/tmp/mini-agent-reliability-v052-stage-repair-escalated",
+    "suite_run_id": "831bf1bc-14b9-4886-98e9-344ea8ef4c1b",
+    "cohort": {
+      "planned_slots": 50,
+      "recorded_trials": 50,
+      "fault_triggered": 50,
+      "invariant_passed": 50,
+      "grader_passed": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "recovery_successes": null,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null
+    }
+  },
+  "sandbox_attempts": {
+    "full_tests_log": "/private/tmp/v052-stage-full.log",
+    "offline_log": "/private/tmp/v052-stage-offline.log",
+    "limitation": "loopback HTTP listener denied; escalated offline reruns passed"
+  },
+  "tutorial_structure": "passed",
+  "readme": "passed",
+  "diff_check": "passed",
+  "tutorial_facts": {
+    "status": "blocked",
+    "reason": "missing v0.52 tag; user must create it manually"
+  },
+  "archived_live_reports": "byte-identical reconstruction test passed",
+  "new_live": "not run",
+  "historical_reports_reclassified": false,
+  "limitations": [
+    "Deterministic offline replies do not measure model recovery success.",
+    "Closing reservation is an estimate; future protected state and provider error may grow.",
+    "Historical invalid JSON errors cannot be reclassified without the missing response evidence."
+  ]
+}

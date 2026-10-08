@@ -1,0 +1,13 @@
+{
+  "execution": {
+    "first": {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed"
+    },
+    "subsequent": {
+      "handler_admitted": true,
+      "outcome": "succeeded"
+    }
+  }
+}

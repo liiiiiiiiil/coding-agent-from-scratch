@@ -1,0 +1,105 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "2797c3cb64c8aa3c9d506772d25e2ef378d3d68189796a558f9a2e17dd0cefaa",
+        "size": 264
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "03dee702e070156338623ae8ff9af7d173f377c48bc3983dc7c330c49dcb10da",
+        "size": 232
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "15ad2b73a84ef540c63be9da414259696ceb67271ae5e33a1378907ce292a0a5",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T08:22:12.289+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "bebac0663322e5f044801dcf169fec931ff3aeda6fb61f8fe1658bd9c6eeee4c",
+      "fault_id": "tool-handler-exception",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "handler.read_file"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "tool-result-replayed",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T08:22:12.288+00:00",
+      "started_at": "2026-09-28T08:22:12.288+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "runtime_fingerprint_end": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "scenario_id": "tool-handler-exception",
+  "scenario_sha256": "cf1f9e927b1be68514d44ef5f262364d3c16457bad4cfe77c71a9ef0d01e6752",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T08:22:12.258+00:00",
+  "state_summary": {
+    "execution": {
+      "first": {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed"
+      },
+      "subsequent": {
+        "handler_admitted": true,
+        "outcome": "succeeded"
+      }
+    }
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "08002f7076b23a717007c506a940ad367d42461f99243fbbc82cf0477df4ea7c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "1b5004f6c569e70bdecae12422ac61e76fff1ebbe07a6d9ce60a56114a268924"
+  },
+  "trial_id": "8656c4a7-6558-4da6-9c4a-49a109653374",
+  "variant": {}
+}

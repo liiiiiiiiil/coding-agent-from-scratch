@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "074f46881f38bb6a48d3ac645cb65ce2399f8518ce5724b00268925798bb7ca9",
+    "fault_id": "mcp-call-timeout",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "mcp.tools_call.timeout"
+  }
+]

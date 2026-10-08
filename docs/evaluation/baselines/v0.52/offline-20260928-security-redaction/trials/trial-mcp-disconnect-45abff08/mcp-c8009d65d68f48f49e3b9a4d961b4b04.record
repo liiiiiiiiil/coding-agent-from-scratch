@@ -1,0 +1,4 @@
+{"method":"initialize","protocol":null,"session":null,"authorization":null,"accept":"application/json, text/event-stream"}
+{"method":"notifications/initialized","protocol":"2025-11-25","session":"fixture-session-1","authorization":null,"accept":"application/json, text/event-stream"}
+{"method":"tools/list","protocol":"2025-11-25","session":"fixture-session-1","authorization":null,"accept":"application/json, text/event-stream"}
+{"method":"tools/call","protocol":"2025-11-25","session":"fixture-session-1","authorization":null,"accept":"application/json, text/event-stream"}

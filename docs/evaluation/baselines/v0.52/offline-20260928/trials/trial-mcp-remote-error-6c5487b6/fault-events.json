@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "88d3c9decab2172f375e944437a9d4028aa36014f72c1cbb2a58082cee4c0e95",
+    "fault_id": "mcp-remote-error",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "mcp.tools_call.remote_error"
+  }
+]

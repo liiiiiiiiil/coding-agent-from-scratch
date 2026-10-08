@@ -1,0 +1,19 @@
+[
+  {
+    "accepted": true,
+    "decision": "investigate",
+    "issue_id": "issue-1",
+    "script_sha256": "314443701ed82e3be38eb5a7eb6d77e193c8bd7b05631a97807bde117ac0f0ce",
+    "source": "simulated_user",
+    "trigger": "uncertain_issue_found"
+  },
+  {
+    "accepted": true,
+    "decision": "continue",
+    "investigation_attempt_id": "a-2",
+    "issue_id": "issue-1",
+    "script_sha256": "314443701ed82e3be38eb5a7eb6d77e193c8bd7b05631a97807bde117ac0f0ce",
+    "source": "simulated_user",
+    "trigger": "issue_investigated"
+  }
+]

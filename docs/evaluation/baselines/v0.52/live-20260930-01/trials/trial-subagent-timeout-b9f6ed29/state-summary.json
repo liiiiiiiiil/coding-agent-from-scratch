@@ -1,0 +1,190 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "agent_profile": "general",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "只读调查 src/example.py 与 tests/ 的结构与 transform 实现",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>"
+      },
+      "attempt_id": "a-1",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "child_session_id": "8c608b4d-cc40-4fdc-8bca-a83cb877cc22"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_status"
+    },
+    {
+      "arguments": {
+        "child_session_id": "8c608b4d-cc40-4fdc-8bca-a83cb877cc22"
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_result"
+    },
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-4",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests"
+      },
+      "attempt_id": "a-5",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_public.py"
+      },
+      "attempt_id": "a-6",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "new_string": "<str:20>",
+        "old_string": "<str:20>",
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-7",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "edit_file"
+    }
+  ],
+  "completion_evidence": {
+    "artifact_correct": true,
+    "blockers": [
+      "terminal",
+      "verification"
+    ],
+    "current_generation_verified": false,
+    "model_completed": false
+  },
+  "crash_issue_count": 0,
+  "delegation_records": [
+    {
+      "abandoned_at": null,
+      "agent_profile": "general",
+      "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+      "cancellation_reason": null,
+      "claimed_at": "2026-09-30T03:39:24.351878+00:00",
+      "committed_at": "2026-09-30T03:39:24.351847+00:00",
+      "contract_summary": {
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "goal": "只读调查 src/example.py 与 tests/ 的结构与 transform 实现",
+        "purpose": "investigation",
+        "requested_tools": [
+          "read_file",
+          "list_dir",
+          "grep"
+        ],
+        "scope": [
+          "src/example.py",
+          "tests/"
+        ]
+      },
+      "created_at": "2026-09-30T03:39:14.465851+00:00",
+      "delegation_id": "f3ee16b6-87ff-4b18-aff6-d3e0a8352026",
+      "delivery_status": "committed",
+      "diagnostic_reason": "timeout",
+      "mode": "background",
+      "outcome": "timed_out",
+      "parent_attempt_id": null,
+      "parent_generation_id": 0,
+      "parent_task_id": "task-1",
+      "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+      "reserved_usage": {
+        "elapsed_ms": 0,
+        "input_tokens": 0,
+        "llm_calls": 1,
+        "output_tokens": 32000,
+        "result_bytes": 0,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 1
+      },
+      "result_hash": "48ac6a283a3e0759ad8bbc7e7fba0adf6cb25806024ae50f66659e60f2252c8a",
+      "result_id": "6f9fbe04-1d7c-4089-80ec-6ea0e964bd36",
+      "result_ready_at": "2026-09-30T03:39:22.375527+00:00",
+      "result_summary": "子代理 LLM 请求超时",
+      "started_at": "2026-09-30T03:39:14.466622+00:00",
+      "startup_confirmed": true,
+      "subagent_id": "8c608b4d-cc40-4fdc-8bca-a83cb877cc22",
+      "task_contract_hash": "f239e79ffddb41d5631ea9a5d89f64d600f3364a0b278c087663032b9a56d341",
+      "usage": {
+        "elapsed_ms": 5,
+        "input_tokens": 5067,
+        "llm_calls": 1,
+        "output_tokens": 0,
+        "result_bytes": 950,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 0
+      }
+    }
+  ],
+  "diagnostic": null,
+  "generation": 1,
+  "initial_public_test_passed": null,
+  "injected_calls": [
+    {
+      "component": "subagent_llm",
+      "count": 1,
+      "counted_as_real": false,
+      "source": "injected"
+    }
+  ],
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": null,
+  "provider_error_category": null,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "protected_context_exceeds_task_budget",
+  "tool_diagnostics": [],
+  "tool_schema_sha256": "3b1671bd0a846a803920b47c025a50aaf96fbf82c5c4cfd602082820cf3e26a0",
+  "verification": []
+}

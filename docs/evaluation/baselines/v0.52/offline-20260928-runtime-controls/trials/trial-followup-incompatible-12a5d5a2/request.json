@@ -1,0 +1,94 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-followup-incompatible-12a5d5a2/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "spawn_subagent",
+      "followup_subagent",
+      "get_subagent_status",
+      "get_subagent_result"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "followup-incompatible",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "subagent.followup.skill_identity"
+    },
+    "feedback_strategy": [],
+    "grader_id": "followup-incompatible",
+    "initial_dir": "initial",
+    "invariants": [
+      "skill-change-rejected-before-llm",
+      "other-child-session-unaffected"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "spawn_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "followup_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_status"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_result"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "cancel_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "inspect_evidence"
+    ],
+    "scenario_id": "followup-incompatible",
+    "schema_version": 1,
+    "task": "已领取的成功子会话绑定冻结 Skill。fixture 替换 Skill 文件后，followup 必须在任何子模型请求前拒绝，其他子会话保持可用。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/frozen/followup-incompatible",
+  "scenario_sha256": "2932a1de3e6caaa23f43c147200af6be2f530e170b704c6354c3851221a422eb",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-followup-incompatible-12a5d5a2/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "12a5d5a2-6af5-46de-9227-e84f2dc2d13f",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-runtime-controls/trials/trial-followup-incompatible-12a5d5a2/workspace"
+}

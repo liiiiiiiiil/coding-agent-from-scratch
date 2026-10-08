@@ -1,0 +1,106 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "crash_recovery_uncertain",
+      "handler_admitted": true,
+      "outcome": "uncertain",
+      "permission": "allowed",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "grep"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "list_dir"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    }
+  ],
+  "completion_evidence": {
+    "artifact_correct": true,
+    "blockers": [
+      "terminal",
+      "plan_steps",
+      "verification"
+    ],
+    "current_generation_verified": false,
+    "model_completed": false
+  },
+  "crash_decisions": 4,
+  "crash_issue_count": 2,
+  "derived_session_id": "1B31cxZHQsziaXvJuc2DokDE-b8GrnBF",
+  "diagnostic": null,
+  "pending_call_uncertain": true,
+  "plan_revision_count": 1,
+  "side_effect_count": 1,
+  "source_session_id": "PNCzvktUxSli5OtCKTfWUXI-H2uq5JYX",
+  "source_session_unchanged": true,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "protected_context_exceeds_task_budget",
+  "tool_diagnostics": [],
+  "verification_generation": null
+}

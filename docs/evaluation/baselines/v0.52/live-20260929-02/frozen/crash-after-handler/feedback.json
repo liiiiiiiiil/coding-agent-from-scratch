@@ -1,0 +1,14 @@
+[
+  {
+    "when": "uncertain_issue_found",
+    "decision": "investigate",
+    "feedback": "只读检查修复目标和已经发生的计数副作用。",
+    "issue_selector": "first_unresolved"
+  },
+  {
+    "when": "issue_investigated",
+    "decision": "continue",
+    "feedback": "依据调查逐项继续，重新规划并独立验证。",
+    "issue_selector": "first_unresolved"
+  }
+]

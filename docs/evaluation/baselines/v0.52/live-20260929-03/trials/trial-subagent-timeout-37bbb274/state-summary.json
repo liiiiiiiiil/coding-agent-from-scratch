@@ -1,0 +1,159 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "agent_profile": "general",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "只读调查 src/example.py 中 transform 的实现以及与 tests 下测试用例的期望差异，给出是否存在缺陷的结论。",
+        "model_profile": "legacy-default",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>",
+        "source_id": "subagent-timeout-trial"
+      },
+      "attempt_id": "a-2",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-3",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_example.py"
+      },
+      "attempt_id": "a-4",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "agent_profile": "explorer",
+        "budget": "<dict>",
+        "constraints": "<list>",
+        "expected_findings": "<list>",
+        "goal": "列出 workspace/tests 目录下的所有文件，并给出其中断言 transform 期望输出的测试代码内容（文件路径、类名、断言表达式与期望值）。同时列",
+        "model_profile": "legacy-default",
+        "purpose": "investigation",
+        "requested_tools": "<list>",
+        "scope": "<list>",
+        "selected_parent_facts": "<list>",
+        "source_id": "tests-dir-enumeration"
+      },
+      "attempt_id": "a-5",
+      "error_kind": "invalid_arguments",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "spawn_subagent"
+    },
+    {
+      "arguments": {
+        "child_session_id": "4d6b5450-c2a5-4b0e-a0ae-498d591e46cd"
+      },
+      "attempt_id": "a-6",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "get_subagent_status"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [
+    {
+      "abandoned_at": null,
+      "agent_profile": "general",
+      "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+      "cancellation_reason": null,
+      "claimed_at": null,
+      "committed_at": null,
+      "contract_summary": {
+        "agent_profile": "general",
+        "agent_profile_fingerprint": "4891bf0645cfc65a48f3c2acd1684a1ff3f94488763fad5567bd6c6cfe6d36c4",
+        "goal": "只读调查 src/example.py 中 transform 的实现以及与 tests 下测试用例的期望差异，给出是否存在缺陷的结论。",
+        "purpose": "investigation",
+        "requested_tools": [
+          "read_file",
+          "list_dir"
+        ],
+        "scope": [
+          "src/example.py",
+          "tests/"
+        ]
+      },
+      "created_at": "2026-09-29T02:45:43.553877+00:00",
+      "delegation_id": "2b027e23-21e9-45e8-9338-7f4307d46397",
+      "delivery_status": "result_ready",
+      "diagnostic_reason": "budget_exhausted",
+      "mode": "background",
+      "outcome": "budget_exhausted",
+      "parent_attempt_id": null,
+      "parent_generation_id": 0,
+      "parent_task_id": "task-1",
+      "progress_hash": "2329256b8d11486c73883a7288061fb1acda2d052456224d4b2ce2b631759b05",
+      "reserved_usage": {
+        "elapsed_ms": 0,
+        "input_tokens": 0,
+        "llm_calls": 1,
+        "output_tokens": 2000,
+        "result_bytes": 0,
+        "rounds": 1,
+        "token_accounting": "estimated",
+        "tool_calls": 2
+      },
+      "result_hash": "506530dd161e7b601f9bd25e3f26e9c0c2e67bc62d4ba259941c798e86705892",
+      "result_id": "80df5798-c35a-4346-9d0c-2094f6ba5fbc",
+      "result_ready_at": "2026-09-29T02:45:44.364530+00:00",
+      "result_summary": "子代理 token 预算耗尽",
+      "started_at": "2026-09-29T02:45:43.554403+00:00",
+      "startup_confirmed": true,
+      "subagent_id": "4d6b5450-c2a5-4b0e-a0ae-498d591e46cd",
+      "task_contract_hash": "fa5600ef3b99204c9024d13b2be8837f1b69b258e7e966da57fd8dd28efa02d1",
+      "usage": {
+        "elapsed_ms": 2,
+        "input_tokens": 0,
+        "llm_calls": 0,
+        "output_tokens": 0,
+        "result_bytes": 966,
+        "rounds": 0,
+        "token_accounting": "estimated",
+        "tool_calls": 0
+      }
+    }
+  ],
+  "diagnostic": null,
+  "generation": 0,
+  "initial_public_test_passed": null,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "provider_error_category": null,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_token_budget_exhausted",
+  "tool_schema_sha256": "f8c15f80ee7826c6b3c6d93c3818df8c5bd6d46fabd1e36f2468410dd5be693d",
+  "verification": []
+}

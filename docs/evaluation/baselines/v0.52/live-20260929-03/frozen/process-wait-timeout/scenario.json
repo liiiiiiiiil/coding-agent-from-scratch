@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "scenario_id": "process-wait-timeout",
+  "version": "1.1",
+  "task": "在 trial workspace 内使用唯一允许命令 `python support/process_fixture.py --wait-for-stop` 启动受控进程；用 wait_process(timeout_ms=40) 确认等待超时且进程仍在运行，再请求终止、同步状态并清理。然后修复 src/example.py 的 transform(value) 使结果为 value * 2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_shell",
+    "start_process",
+    "get_process",
+    "read_process",
+    "list_processes",
+    "wait_process",
+    "terminate_process",
+    "kill_process",
+    "begin_plan",
+    "commit_plan",
+    "request_replan",
+    "recover",
+    "update_plan_progress"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "start_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "wait_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "terminate_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "kill_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    },
+    {
+      "tool": "begin_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "commit_plan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "update_plan_progress",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "request_replan",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "recover",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "read_process",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "list_processes",
+      "pattern": "*",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "process-wait-timeout",
+    "target": "process.wait_process",
+    "occurrences": 1,
+    "parameters": {
+      "timeout_ms": 40
+    }
+  },
+  "invariants": [
+    "timeout-not-exit",
+    "active-process-blocks-done",
+    "cleanup-complete"
+  ],
+  "recovery_steps": [],
+  "feedback_strategy": [],
+  "grader_id": "process-wait-timeout"
+}

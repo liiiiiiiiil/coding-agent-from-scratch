@@ -1,0 +1,124 @@
+{
+  "agent_stop_reason": "agent_error",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "9067212399301e9d7b037b3a41a5782a89f42aed2d4bef5ed1fd360eccbcee76",
+        "size": 591
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "fb5ee346d0b38669c3f0863c510ca1bda5b9592091ffc8a636f011917423f511",
+        "size": 103
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:08:52.845+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": "provider_connection_error",
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "failed-subagent-claimed",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "usage-settled-once",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 5,
+      "injected_calls": [],
+      "input_tokens": 2231,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 0,
+      "token_accounting": "estimated",
+      "tool_calls": 0
+    },
+    "grader": {
+      "duration_ms": 24
+    }
+  },
+  "recovery_status": "not_triggered",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "runtime_fingerprint_end": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "scenario_id": "subagent-timeout",
+  "scenario_sha256": "075003274573414fabdeb4fbc2a6abafe3ae3df083a9cf0d8c1582aec343b5fb",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:08:52.779+00:00",
+  "state_summary": {
+    "agent_error_kind": "ProviderConnectionError",
+    "attempts": [],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 0,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": "provider_connection_error",
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "reliability_agent_error",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "0f645b522ae8a43c39742044c9a537b783d5a20aff1f396541c51a0c0cbeb264",
+    "trace_events": 1
+  },
+  "trial_id": "b8c551dc-abf6-4f35-b6a7-1f82d2366b1b",
+  "variant": {}
+}

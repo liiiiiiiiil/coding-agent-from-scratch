@@ -63,6 +63,7 @@ EXPECTED = {
     "49-resumable-child-session.md": ("v0.49", "v0.48..v0.49"),
     "50-evaluation-harness.md": ("v0.50", "v0.49..v0.50"),
     "51-coding-benchmark.md": ("v0.51", "v0.50..v0.51"),
+    "52-reliability-evaluation.md": ("v0.52", "v0.51..v0.52"),
 }
 PATCHES = {
     "16-plan-driven-execution.md": ("v0.16.1", "v0.16..v0.16.1"),

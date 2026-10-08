@@ -1,0 +1,14 @@
+{
+  "result_id": "09c1ced6-bd5a-468e-90b2-a21b2764d3b1",
+  "safety_issue_count": 2,
+  "status_before_claim": {
+    "agent_profile": "general",
+    "cancel_requested": false,
+    "child_session_id": "f9c39c93-5135-44a5-a0f0-60d5cf230c9c",
+    "delegation_id": "3819118f-88b1-4029-801a-d6a8b1d0c099",
+    "result_id": "09c1ced6-bd5a-468e-90b2-a21b2764d3b1",
+    "round_index": 1,
+    "status": "result_ready"
+  },
+  "used_llm_calls": 1
+}

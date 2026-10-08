@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "59e05880a5e30ba524c29f845df06aef61e6666de5b0767e83c5c9883d58f33b",
+    "fault_id": "durable-commit-failure",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "commit.boundary"
+  }
+]

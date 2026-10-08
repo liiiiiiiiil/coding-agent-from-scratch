@@ -1,0 +1,81 @@
+{
+  "format": "mini_agent.live_failure_repair_validation",
+  "schema_version": 1,
+  "date": "2026-10-08",
+  "suite_version": "1.6",
+  "suite_sha256": "376170c1721cf6862c2c9faa3bc99195ff2c7a008afc0e7e89910bcbdd3502db",
+  "runtime_fingerprint": "e1dd28f610ede604e900582b9c30be514c5d578956f4c10783bb14d2745515fe",
+  "paid_model_requests": 0,
+  "new_live_batches": 0,
+  "historical_slots_replaced": 0,
+  "parent_token_limit": 64000,
+  "targeted_tests": {
+    "passed": 112,
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_live_failure_repairs_v052.py tests/test_task_budget_v052.py tests/test_recovery_v018_fix.py tests/test_evaluation_v052.py tests/test_evaluation_worker_v052.py"
+  },
+  "full_tests": {
+    "passed": 832,
+    "command": "PYTHONPATH=src python -m pytest -q",
+    "log": "/private/tmp/v052-live-failure-repair-full-escalated.log",
+    "sandbox_escalated_for_loopback": true
+  },
+  "offline_matrix": {
+    "run_dir": "/private/tmp/v052-suite16-offline-20261008-final",
+    "runtime_fingerprint": "e1dd28f610ede604e900582b9c30be514c5d578956f4c10783bb14d2745515fe",
+    "planned_slots": 50,
+    "recorded_trials": 50,
+    "fault_triggered": 50,
+    "invariant_passed": 50,
+    "grader_passed": 0,
+    "infrastructure_errors": 0,
+    "unrun_slots": 0,
+    "incomplete_slots": 0,
+    "task_success_assessed": false,
+    "boundary_only_trials": 0,
+    "recovery_successes": null,
+    "recovery_denominator": 0,
+    "recovery_success_rate": null
+  },
+  "suite_preflight": {
+    "valid": true,
+    "scenario_count": 18,
+    "offline_slots": 50,
+    "live_slots": 21
+  },
+  "document_checks": {
+    "tutorial_structure": "passed",
+    "readme": "passed",
+    "git_diff_check": "passed",
+    "tutorial_facts": "blocked_missing_user_managed_v0.52_tag"
+  },
+  "historical_reports": [
+    {
+      "batch": "live-20260929-08",
+      "byte_identical": true,
+      "report_sha256": "433594b3c250a0c6d757856ea6db6dc830ff61394b706548d6dffa80adf0b0a0"
+    },
+    {
+      "batch": "live-20260929-09",
+      "byte_identical": true,
+      "report_sha256": "39572ae07c5276ee1e0474c04e589c1a4943b22f527accc2478246464c252551"
+    },
+    {
+      "batch": "live-20260930-01",
+      "byte_identical": true,
+      "report_sha256": "d13a20c38e967fea19369784d4120effcc36fa362e7abc1e41a92978aaccc1e9"
+    }
+  ],
+  "budget_shape_regression": {
+    "remaining_before": 19520,
+    "previous_closing_reservation": 10128,
+    "compact_closing_reservation": 2966,
+    "admitted_input_reservation": 14976,
+    "provider_io": false,
+    "source": "controlled full-prompt late recovery regression; not historical request replay"
+  },
+  "limits": [
+    "No new live recovery rate is established.",
+    "Protected project and user/system constraints are retained; irreducible floors can still cause refusal.",
+    "Provider estimation and output limits remain conservative admission policy, not a tokenizer guarantee."
+  ]
+}

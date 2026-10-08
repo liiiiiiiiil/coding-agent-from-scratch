@@ -1,0 +1,171 @@
+{
+  "agent_stop_reason": "blocked",
+  "agent_terminal_status": "blocked",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "d7c407a544364a80e02f8bfc9de1c52e386ab303adc929ebf7f7f9f8b27a0cf2",
+        "size": 1632
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "2523f0ee09e69ec6372cab3a605c8939647c95224be295f33f43d1d4726d804f",
+        "size": 104
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:40:18.787+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "timeout-not-exit",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "active-process-blocks-done",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "cleanup-complete",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 20744,
+      "injected_calls": [],
+      "input_tokens": 51070,
+      "llm_calls": 7,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 3603,
+      "token_accounting": "provider",
+      "tool_calls": 9
+    },
+    "grader": {
+      "duration_ms": 57
+    }
+  },
+  "recovery_status": "not_triggered",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "631f5793369b2a623f97f78e71df78fae580c00ed7a5ee5208e9b11df98cebe9",
+  "runtime_fingerprint_end": "631f5793369b2a623f97f78e71df78fae580c00ed7a5ee5208e9b11df98cebe9",
+  "scenario_id": "process-wait-timeout",
+  "scenario_sha256": "25c7962d01e0c9db4a3188d7f4eb4e5b935622fd3cfb5e60c9278ea8ae043208",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:39:57.943+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "handler_exception",
+        "handler_admitted": true,
+        "outcome": "failed",
+        "permission": "allowed",
+        "tool": "read_file"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "start_process"
+      },
+      {
+        "error_kind": null,
+        "handler_admitted": true,
+        "outcome": "succeeded",
+        "permission": "allowed",
+        "tool": "start_process"
+      },
+      {
+        "error_kind": "repair_phase_gate",
+        "handler_admitted": false,
+        "outcome": "invalid",
+        "permission": "not_checked",
+        "tool": "wait_process"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 2,
+    "initial_public_test_passed": null,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "blocked",
+    "task_id": "task-1",
+    "terminal_reason": "process_exit_conflict: process_id=proc-1; event=pe-2; active_failure=f-1; strict_verification=true",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "5c8933155258183560688ae75cfd0efb52ed2aa2f57c2ddcd3bad5bf9d137c75",
+    "trace_events": 15
+  },
+  "trial_id": "16d84bc5-d80c-459e-b1cb-1952f8ac99df",
+  "variant": {}
+}

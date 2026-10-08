@@ -1,0 +1,123 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-06/trials/trial-tool-handler-exception-eef3a8b9/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "list_dir",
+      "grep",
+      "write_file",
+      "edit_file",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress",
+      "run_shell"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "tool-handler-exception",
+      "occurrences": 1,
+      "parameters": {
+        "tool": "read_file"
+      },
+      "target": "handler.read_file"
+    },
+    "feedback_strategy": [],
+    "grader_id": "tool-handler-exception",
+    "initial_dir": "initial",
+    "invariants": [
+      "tool-result-replayed"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [],
+    "scenario_id": "tool-handler-exception",
+    "schema_version": 1,
+    "task": "请修复 src/example.py 的 transform(value)：应返回 value * 2。第一次文件读取会遇到受控异常；根据错误结果继续调查、修改，并按要求独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.4"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-06/frozen/tool-handler-exception",
+  "scenario_sha256": "a9d87605b2050d8493a11eb2a9fb9f9e35184d6423acfc77aa61ae847852a70f",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-06/trials/trial-tool-handler-exception-eef3a8b9/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "ae49963f8385f27caaa2521a8ac167d0aa2c193f5368fb636eabb95763791365",
+  "suite_version": "1.4",
+  "trial_id": "eef3a8b9-b4e9-443a-98c5-6c475be46c7b",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-06/trials/trial-tool-handler-exception-eef3a8b9/workspace"
+}

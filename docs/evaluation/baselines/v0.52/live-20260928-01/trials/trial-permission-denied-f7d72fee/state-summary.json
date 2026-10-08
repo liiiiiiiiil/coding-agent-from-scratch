@@ -1,0 +1,96 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    },
+    {
+      "error_kind": "repair_phase_gate",
+      "handler_admitted": false,
+      "outcome": "invalid",
+      "permission": "not_checked",
+      "tool": "edit_file"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "generation": 0,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "status": "blocked",
+  "task_id": "task-1",
+  "terminal_reason": "execute_without_progress; fingerprint=746b270d9795; count=3",
+  "verification": []
+}

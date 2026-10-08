@@ -38,6 +38,8 @@ def _recovery_rejection_content(state, arguments, detail):
         "status": "rejected",
         "recovery_id": record.recovery_id,
         "message": str(detail)[:1200],
+        "active_failure_id": state.active_failure_id,
+        "repair_phase": state.repair_phase,
     }
     if getattr(state, "status", None) in ("blocked", "failed"):
         payload["error_kind"] = "task_terminal"
@@ -513,6 +515,7 @@ class ParentRuntimePolicy:
 
 def agent_loop(context_manager: ContextManager, tool_executor: ToolExecutor):
     """Compatibility entry point assembled through the canonical Runtime."""
+    from mini_agent.config import PARENT_TASK_TOKEN_BUDGET
     output = TerminalOutput(OUTPUT_MODE)
     model_binding = (
         getattr(tool_executor, "model_binding", None)
@@ -529,6 +532,7 @@ def agent_loop(context_manager: ContextManager, tool_executor: ToolExecutor):
         context=context_manager,
         executor=tool_executor,
         policy=ParentRuntimePolicy(),
+        token_budget=PARENT_TASK_TOKEN_BUDGET,
         max_rounds=MAX_ITERATIONS,
         output=output,
         session_boundary=getattr(tool_executor, "session_boundary", None),

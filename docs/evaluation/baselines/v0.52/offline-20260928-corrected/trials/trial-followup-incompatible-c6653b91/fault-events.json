@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "e8a3033e3ae4185f6f7b2bdd148624c3e4c379a9fe0289b99c06fbd13bc87576",
+    "fault_id": "followup-incompatible",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "subagent.followup.skill_identity"
+  }
+]

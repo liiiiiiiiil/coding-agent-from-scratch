@@ -1,0 +1,253 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "1b4dd8afadf787b5897bd535711de104befb54dea61b37c9405c9d88a15c1873",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "0ec9ebe8109c43cc205991f094e67176a4d15bf36724874ff250a6ceb80572ed",
+        "size": 1032
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "4918bd413b4619cd825186afc19433994959f1dbad48198a9cadcc0b28480fa0",
+        "size": 1407
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T07:38:31.878+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "f6cdb0696bc42a0914e9eb340135f61cb086b6a5495e129205651eab7b3d8eef",
+      "fault_id": "verification-repair",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "grader.public_test_failure"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "verification-current-generation",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "hidden-grader-passes",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 1595,
+      "injected_calls": [],
+      "input_tokens": 4737,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 260,
+      "request_diagnostics": {
+        "budget_overrun_tokens": 0,
+        "cumulative_tokens_after": 4997,
+        "estimation": "count_tokens; tool schemas reserved separately; not an exact provider tokenizer",
+        "input_multiplier_after": 2.0,
+        "prior_phase_tokens": 0,
+        "request_budget_policy": {
+          "calibration_scope": "trial_including_pre_crash",
+          "initial_input_multiplier": 2,
+          "input_allowance_tokens": 256,
+          "minimum_output_tokens": 256,
+          "observed_ratio_margin_percent": 10
+        },
+        "requests": [
+          {
+            "budget_refusal_reason": null,
+            "cumulative_tokens_before": 0,
+            "input_multiplier": 2.0,
+            "input_tokens": 4737,
+            "max_output_tokens": 8192,
+            "message_groups": {
+              "history": 47,
+              "notice": 0,
+              "state": 211,
+              "summary": 0,
+              "system": 1987
+            },
+            "message_tokens_estimated": 2245,
+            "observed_input_to_estimate_ratio": 1.6744,
+            "output_tokens": 260,
+            "planned_output_limit": 8192,
+            "reasoning_tokens_subset_estimated": 0,
+            "refusal_reason": null,
+            "remaining_tokens_before": 64000,
+            "request_index": 1,
+            "reserved_input_tokens_calibrated": 5914,
+            "reserved_input_tokens_estimated": 2829,
+            "status": "responded",
+            "tool_schema_tokens_by_tool": {
+              "begin_plan": 18,
+              "commit_plan": 128,
+              "edit_file": 60,
+              "read_file": 38,
+              "recover": 149,
+              "request_replan": 50,
+              "run_shell": 49,
+              "update_plan_progress": 66,
+              "write_file": 26
+            },
+            "tool_schema_tokens_estimated": 584,
+            "usage_source": "provider"
+          }
+        ],
+        "token_budget": 64000
+      },
+      "token_accounting": "provider",
+      "tool_calls": 2
+    },
+    "grader": {
+      "duration_ms": 57
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "runtime_fingerprint_end": "edd025f82426777fc98aef2431bc9f1cde1ee74cb98529ddd935ead3045cd796",
+  "scenario_id": "verification-repair",
+  "scenario_sha256": "60202be477eb07fd1ebedc9f8a5fb9efcd82f93157cb2b8554df99cc0ab286cb",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-29T07:38:30.144+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "arguments": {
+          "command": "<str:25>",
+          "purpose": "execution"
+        },
+        "attempt_id": "a-1",
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "run_shell"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "diagnostic": null,
+    "generation": 0,
+    "initial_public_test_passed": false,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "pre_injection_stop_reason": null,
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "tool_diagnostics": [],
+    "tool_schema_sha256": "30fe3c2b482116f0ddf6589de0a525734936e6f99190d775c48a696f14c27cd2",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "ae49963f8385f27caaa2521a8ac167d0aa2c193f5368fb636eabb95763791365",
+  "suite_version": "1.4",
+  "trace_summary": {
+    "events": [
+      {
+        "generation_id": 0,
+        "kind": "task_started",
+        "planning_phase_after": "direct",
+        "planning_phase_before": null,
+        "record_id": null,
+        "record_type": null,
+        "repair_phase_after": "idle",
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 1,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "execution_result",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "a-1",
+        "record_type": "attempt",
+        "repair_phase_after": null,
+        "repair_phase_before": null,
+        "revision_id": null,
+        "sequence_id": 2,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      },
+      {
+        "generation_id": 0,
+        "kind": "failure_recorded",
+        "planning_phase_after": null,
+        "planning_phase_before": null,
+        "record_id": "f-1",
+        "record_type": "failure",
+        "repair_phase_after": "diagnosis_required",
+        "repair_phase_before": "idle",
+        "revision_id": null,
+        "sequence_id": 3,
+        "stagnation_count": null,
+        "stagnation_fingerprint": null,
+        "stagnation_kind": null
+      }
+    ],
+    "sha256": "2c1c423dd52317628fece00e34811b8e62d295a354c34e57a8074b97a3de321b",
+    "trace_events": 3
+  },
+  "trial_id": "91bdec58-c8e7-4b3d-b96c-e6b0ae72e37d",
+  "variant": {}
+}

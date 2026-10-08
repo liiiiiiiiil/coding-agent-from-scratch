@@ -1,0 +1,36 @@
+[
+  {
+    "accepted": true,
+    "decision": "investigate",
+    "issue_id": "issue-1",
+    "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+    "source": "simulated_user",
+    "trigger": "uncertain_issue_found"
+  },
+  {
+    "accepted": true,
+    "decision": "continue",
+    "investigation_attempt_id": "a-7",
+    "issue_id": "issue-1",
+    "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+    "source": "simulated_user",
+    "trigger": "issue_investigated"
+  },
+  {
+    "accepted": true,
+    "decision": "investigate",
+    "issue_id": "issue-2",
+    "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+    "source": "simulated_user",
+    "trigger": "uncertain_issue_found"
+  },
+  {
+    "accepted": true,
+    "decision": "continue",
+    "investigation_attempt_id": "a-8",
+    "issue_id": "issue-2",
+    "script_sha256": "eb712cfbb794e8fbf616518b7c28c900f7e988158cd2cdea8267ff11a583d846",
+    "source": "simulated_user",
+    "trigger": "issue_investigated"
+  }
+]

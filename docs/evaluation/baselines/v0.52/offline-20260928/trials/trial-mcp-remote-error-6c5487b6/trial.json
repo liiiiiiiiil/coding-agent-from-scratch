@@ -1,0 +1,99 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "75d691272fb84150776149d786b48fa28e300b14af2ee2e0cc657292b2cbcd44",
+        "size": 268
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "0d1611a449ada8e68fa37597efaa63c6f5a4005dcb47f80b4bc49d3afc02b749",
+        "size": 200
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "1dbfcd5638004f0a46f99354805dbc2cbdb26dc873e906c659d21acdd0baa9f4",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "diff_patch": "",
+  "ended_at": "2026-09-28T07:24:32.254+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "88d3c9decab2172f375e944437a9d4028aa36014f72c1cbb2a58082cee4c0e95",
+      "fault_id": "mcp-remote-error",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "mcp.tools_call.remote_error"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "integer-error-sanitized",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T07:24:32.254+00:00",
+      "started_at": "2026-09-28T07:24:32.254+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "scenario_id": "mcp-remote-error",
+  "scenario_sha256": "f8aedf896160dafd9b3a975e9264978cb4e7320a1be09ddc0a05f9ae090e8205",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T07:24:32.205+00:00",
+  "state_summary": {
+    "call_requests": 1,
+    "client_connected_after_fault": true,
+    "close_report": {
+      "alias": "reliability",
+      "closed": true
+    },
+    "error_kind": "remote_error",
+    "transport": "loopback_http"
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "723faf21cc80dd35fb535d28723774485f513501021eb020c6313638d7f543f3",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "6e2d5c95f42bad80dbd305fd301cd4023fa955c6590aadead8dc732813ca68fb"
+  },
+  "trial_id": "6c5487b6-175f-4c4f-92db-760a3f9e3974",
+  "variant": {
+    "transport": "loopback_http"
+  }
+}

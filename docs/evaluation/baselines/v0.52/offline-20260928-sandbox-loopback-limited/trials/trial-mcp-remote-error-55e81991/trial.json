@@ -1,0 +1,88 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "e2d227174b92ebc1c05233586645fa3722aed9a3616c74238f27c21bca86bc01",
+        "size": 66
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "2693d68ce2175b06d59f387f599c3f4a1a48d99de2b6ad08b8b832cb5ea55796",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": false,
+  "cleanup_issue": "RuntimeError",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:21:17.166+00:00",
+  "fault_events": [],
+  "fault_status": "injection_error",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "incomplete",
+  "invariants": [
+    {
+      "invariant_id": "integer-error-sanitized",
+      "status": "incomplete"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T11:21:17.165+00:00",
+      "started_at": "2026-09-28T11:21:17.165+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "not_applicable",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "runtime_fingerprint_end": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario_id": "mcp-remote-error",
+  "scenario_sha256": "f8aedf896160dafd9b3a975e9264978cb4e7320a1be09ddc0a05f9ae090e8205",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T11:21:17.120+00:00",
+  "state_summary": {
+    "error_kind": "RuntimeError",
+    "transport": "loopback_http"
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "b15c4fb60a72b3223f5ec434a32419b206a45100df6579e68faa0dc8d22a7f3d"
+  },
+  "trial_id": "55e81991-609c-42cf-9faa-cfc88fc69d7b",
+  "variant": {
+    "transport": "loopback_http"
+  }
+}

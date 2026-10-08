@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "af609ffc555a535f601929867b3a4105634640fa6f07ddb2dd7633a5d3619e76",
+    "fault_id": "crash-before-admission",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "boundary.before_admission"
+  }
+]

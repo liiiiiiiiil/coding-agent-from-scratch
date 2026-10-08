@@ -1118,6 +1118,8 @@ class SessionStore:
         except (SessionExportError, KeyError, TypeError, ValueError) as error:
             raise SessionValidationError(f"State 导出校验失败: {error}") from error
         if save_kind == "safe_point":
+            if (state.get("task_budget") or {}).get("pending") is not None:
+                raise SessionValidationError("safe_point 不能包含未结算 LLM 请求")
             active_delegations = [
                 item.get("delegation_id", "?")
                 for item in state.get("delegation_records", [])
@@ -1784,6 +1786,9 @@ class SessionStore:
             raise
         except (KeyError, TypeError, ValueError) as error:
             raise SessionValidationError(f"Context 引用校验失败: {error}") from error
+        if ((envelope.get("state", {}).get("task_budget") or {}).get("pending") is not None
+                and (envelope.get("save_kind") != "tool_boundary" or envelope.get("handoff_status") != "active")):
+            raise SessionValidationError("未结算 LLM 请求只能存在于 active tool_boundary session")
         if schema_version in {SCHEMA_3_VERSION, SCHEMA_VERSION}:
             _validate_tool_boundary(
                 envelope.get("tool_boundary"), envelope["state"], envelope["context"],
@@ -1888,6 +1893,11 @@ class DurableToolBoundary:
         )
         self.session_id = envelope["session_id"]
         return envelope
+
+    def persist_request_budget(self, state: Any, context: Any) -> dict[str, Any]:
+        if self.boundary.get("status") != "committed":
+            raise SessionValidationError("LLM 请求预算只能在 committed 工具边界提交")
+        return self._save(state, context)
 
     @staticmethod
     def _result_raw(result: Any) -> tuple[str, str, dict[str, Any]]:

@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "cd5bab5431abbdc781774ab4f98b9195712a359131e49fc9cb158130254ae320",
+    "fault_id": "crash-after-admission",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "boundary.after_admission"
+  }
+]

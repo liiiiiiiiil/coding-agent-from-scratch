@@ -1,0 +1,1 @@
+GRADER = {'grader_id': 'subagent-unclaimed', 'checks': ['fault_triggered', 'invariants_match_evidence', 'cleanup_complete']}

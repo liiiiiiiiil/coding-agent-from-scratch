@@ -1,0 +1,11 @@
+{
+  "boundary": "per_call",
+  "durable_call_statuses": [
+    "committed",
+    "pending"
+  ],
+  "handler_calls": 1,
+  "model_calls": 1,
+  "runtime_stop": "commit_error",
+  "save_attempts": 3
+}

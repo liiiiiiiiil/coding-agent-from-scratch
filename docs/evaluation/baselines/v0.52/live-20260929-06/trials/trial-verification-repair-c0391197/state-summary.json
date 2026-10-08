@@ -1,0 +1,258 @@
+{
+  "agent_error_kind": null,
+  "attempts": [
+    {
+      "arguments": {
+        "path": "src/example.py"
+      },
+      "attempt_id": "a-1",
+      "error_kind": null,
+      "handler_admitted": true,
+      "outcome": "succeeded",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_example.py"
+      },
+      "attempt_id": "a-2",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests"
+      },
+      "attempt_id": "a-3",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "README.md"
+      },
+      "attempt_id": "a-4",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_transform.py"
+      },
+      "attempt_id": "a-5",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_basic.py"
+      },
+      "attempt_id": "a-6",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "path": "tests/test_main.py"
+      },
+      "attempt_id": "a-7",
+      "error_kind": "handler_exception",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "read_file"
+    },
+    {
+      "arguments": {
+        "command": "<str:36>",
+        "purpose": "verification"
+      },
+      "attempt_id": "a-8",
+      "error_kind": "nonzero_exit",
+      "handler_admitted": true,
+      "outcome": "failed",
+      "permission": "allowed",
+      "tool": "run_shell"
+    }
+  ],
+  "crash_issue_count": 0,
+  "delegation_records": [],
+  "diagnostic": null,
+  "generation": 1,
+  "initial_public_test_passed": false,
+  "injected_calls": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "pre_injection_stop_reason": null,
+  "provider_error_category": null,
+  "status": "failed",
+  "task_id": "task-1",
+  "terminal_reason": "reliability_token_budget_exhausted",
+  "tool_diagnostics": [
+    {
+      "arguments_sha256": "032b8aaa95711bc7fee45299a6060d975f7a1719dcdd559a6aa7df4650e94b66",
+      "errno": 2,
+      "error_kind": "FileNotFoundError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 101
+        },
+        {
+          "file": "mini_agent/tools/file.py",
+          "function": "read_file",
+          "line": 25
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    },
+    {
+      "arguments_sha256": "4d94e6687ad87d0a5d267174b492241b3a1dbca91b5602a745ecf138dcf3697e",
+      "error_kind": "ValueError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 98
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "_scoped_path",
+          "line": 84
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    },
+    {
+      "arguments_sha256": "7d6441497d2a000b8143602a7817c90abe7db88e139f89c062a1c36cfe0ad9d6",
+      "errno": 2,
+      "error_kind": "FileNotFoundError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 101
+        },
+        {
+          "file": "mini_agent/tools/file.py",
+          "function": "read_file",
+          "line": 25
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    },
+    {
+      "arguments_sha256": "6d3621f8bc0d13378a797acf86616f9d30aaf636ce953b127a755b0030774f53",
+      "errno": 2,
+      "error_kind": "FileNotFoundError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 101
+        },
+        {
+          "file": "mini_agent/tools/file.py",
+          "function": "read_file",
+          "line": 25
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    },
+    {
+      "arguments_sha256": "7e13ce9ffefd2a9a99a102227a1014b042fd134fd1772f0af79e8a29ba400fad",
+      "errno": 2,
+      "error_kind": "FileNotFoundError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 101
+        },
+        {
+          "file": "mini_agent/tools/file.py",
+          "function": "read_file",
+          "line": 25
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    },
+    {
+      "arguments_sha256": "f252ae0c1631243594ab10d1466a3a9d82adea7d7b1c871326ef509987fae2ac",
+      "errno": 2,
+      "error_kind": "FileNotFoundError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "observed",
+          "line": 94
+        },
+        {
+          "file": "mini_agent/evaluation/worker.py",
+          "function": "handler",
+          "line": 101
+        },
+        {
+          "file": "mini_agent/tools/file.py",
+          "function": "read_file",
+          "line": 25
+        }
+      ],
+      "stage": "tool_handler",
+      "tool": "read_file"
+    }
+  ],
+  "tool_schema_sha256": "30fe3c2b482116f0ddf6589de0a525734936e6f99190d775c48a696f14c27cd2",
+  "verification": []
+}

@@ -17,6 +17,9 @@ from mini_agent.tools.base import Tool
 _CHILD_SESSION_ID = re.compile(
     r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\Z"
 )
+_CHILD_SESSION_ID_SCHEMA_PATTERN = (
+    r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+)
 
 
 def _contract_tool(parent_state: Any, manager: DelegationManager, *, background: bool) -> Tool:
@@ -138,7 +141,7 @@ def make_background_subagent_tools(parent_state: Any, manager: DelegationManager
         "type": "object", "additionalProperties": False,
         "properties": {"child_session_id": {
             "type": "string", "minLength": 36, "maxLength": 36,
-            "pattern": _CHILD_SESSION_ID.pattern,
+            "pattern": _CHILD_SESSION_ID_SCHEMA_PATTERN,
         }},
         "required": ["child_session_id"],
     }
@@ -164,7 +167,7 @@ def make_background_subagent_tools(parent_state: Any, manager: DelegationManager
     followup_parameters["properties"].pop("source_id", None)
     followup_parameters["properties"]["child_session_id"] = {
         "type": "string", "minLength": 36, "maxLength": 36,
-        "pattern": _CHILD_SESSION_ID.pattern,
+        "pattern": _CHILD_SESSION_ID_SCHEMA_PATTERN,
     }
     followup_parameters["required"] = [
         "child_session_id",

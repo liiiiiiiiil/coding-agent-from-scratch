@@ -1,0 +1,152 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260930-01/trials/trial-subagent-timeout-6e931939/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "grep",
+      "list_dir",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "spawn_subagent",
+      "get_subagent_status",
+      "get_subagent_result",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "subagent-timeout",
+      "occurrences": 1,
+      "parameters": {
+        "child_budget": {
+          "max_llm_calls": 1,
+          "max_rounds": 1,
+          "max_tokens": 32000,
+          "max_tool_calls": 1,
+          "timeout_seconds": 30
+        }
+      },
+      "target": "subagent.model_call.timeout"
+    },
+    "feedback_strategy": [],
+    "grader_id": "subagent-timeout",
+    "initial_dir": "initial",
+    "invariants": [
+      "failed-subagent-claimed",
+      "usage-settled-once"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "spawn_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_status"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_result"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [
+      "claim_child_result",
+      "continue_parent_investigation",
+      "verify_current_generation"
+    ],
+    "scenario_id": "subagent-timeout",
+    "schema_version": 1,
+    "task": "请通过 spawn_subagent 用 general 角色启动一次只读调查，purpose=investigation，scope 为 [\"src/example.py\", \"tests/\"]，requested_tools 为 [\"read_file\", \"list_dir\", \"grep\"]。必须显式传入固定 budget={\"max_rounds\": 1, \"max_llm_calls\": 1, \"max_tool_calls\": 1, \"max_tokens\": 32000, \"timeout_seconds\": 30}。该预算用于保证到达子模型请求前的超时注入点，不可缩小。查询状态并用 get_subagent_result 领取超时结果、只结算一次，然后父 Agent 自行调查并修复 src/example.py 的 transform(value)=value*2，独立验证。不再启动第二个子代理。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.5"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260930-01/frozen/subagent-timeout",
+  "scenario_sha256": "96698832b22388c356b53a09fcec2b5ea2955b084ac86f1061ba1a6b25b2d7c5",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260930-01/trials/trial-subagent-timeout-6e931939/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trial_id": "6e931939-84a6-46b3-a067-a7e346a70b7f",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260930-01/trials/trial-subagent-timeout-6e931939/workspace"
+}

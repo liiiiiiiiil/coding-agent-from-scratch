@@ -1,0 +1,109 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "7169ddd5e26520e8f13e35a8eaa7a507c4816f197185528daba7578d1f712fc5",
+        "size": 262
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "c21a8cc5132c89781b83d05d3f30054f87dc9a71568c7a9a2850bd5f23f76b3b",
+        "size": 190
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "a4dc24e593f0d0a09fefdde083eef5d14ba9f9f35d49bd71673cf5191bcc2aaa",
+        "size": 119
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:53:25.133+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "59e05880a5e30ba524c29f845df06aef61e6666de5b0767e83c5c9883d58f33b",
+      "fault_id": "durable-commit-failure",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "commit.boundary"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": null,
+  "invariant_status": "passed",
+  "invariants": [
+    {
+      "invariant_id": "no-action-after-commit-failure",
+      "status": "passed"
+    },
+    {
+      "invariant_id": "per-call-order-preserved",
+      "status": "passed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "offline_probe": {
+      "ended_at": "2026-09-28T10:53:25.132+00:00",
+      "started_at": "2026-09-28T10:53:25.132+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "succeeded",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "runtime_fingerprint_end": "170d58f8239962117eda921c9fa5911bee72dfc173d1c5b55932593f86847d36",
+  "scenario_id": "durable-commit-failure",
+  "scenario_sha256": "fb44fa220e5a0ae2f5ff066043a3f365424dd3c0716ff874e30375fbfc9eca89",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:53:25.095+00:00",
+  "state_summary": {
+    "boundary": "admission",
+    "durable_call_statuses": [
+      "pending",
+      "pending"
+    ],
+    "handler_calls": 0,
+    "model_calls": 1,
+    "runtime_stop": "commit_error",
+    "save_attempts": 2
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "kind": "offline_component_probe",
+    "sha256": "b7c143919e3ea4dc620341fffb3fa8ecfc3c78f1c9c7093c740a434cff67ef1d"
+  },
+  "trial_id": "e89600e2-f9df-467b-b7d9-2e66ca5b6266",
+  "variant": {
+    "boundary": "admission"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "scenario_id": "subagent-cancel",
+  "version": "1.2",
+  "task": "启动受控只读子调查；当它阻塞在屏障时请求协作取消，等待收束并领取真实结果，然后由父 Agent 继续任务。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "spawn_subagent",
+    "get_subagent_status",
+    "get_subagent_result",
+    "cancel_subagent"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "spawn_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "followup_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_status",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_result",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "cancel_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "subagent-cancel",
+    "target": "subagent.worker.cancel_barrier",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "cooperative-cancel",
+    "result-available-after-cancel",
+    "cleanup-complete"
+  ],
+  "recovery_steps": [
+    "cleanup_resources",
+    "claim_child_result"
+  ],
+  "feedback_strategy": [],
+  "grader_id": "subagent-cancel"
+}

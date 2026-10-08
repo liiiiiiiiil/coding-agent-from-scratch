@@ -1,0 +1,120 @@
+{
+  "format": "mini_agent.reliability_security_finding",
+  "schema_version": 1,
+  "finding_id": "REL-ARTIFACT-REDACTION-001",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "observed_at": "2026-09-28T11:33:35+00:00",
+  "severity": "high",
+  "summary": "Persisted live worker request artifacts contained raw local provider values in the redaction list.",
+  "reproduction": "Inspect a pre-fix live trial request artifact and verify that its redactions field contained configuration-derived strings; values are intentionally omitted here.",
+  "affected_artifacts": [
+    {
+      "path": "trials/trial-subagent-timeout-2c2f83d6/request.json",
+      "original_sha256": "e63356147b9f9a76ce88402227f83bd972960df37e55048956addeb505c8dd8c",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-subagent-timeout-c3aa942b/request.json",
+      "original_sha256": "593da8a8ef30f440f8b600a602383fcb4d0ba12e148b73710375ef2d98931f66",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-mcp-disconnect-4ab39cdc/request.json",
+      "original_sha256": "d15ea1f90e3049a51ea0ac943fb871e599302ae2a3417d97af994ebdebe64737",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-crash-after-handler-0f29c7cc/request.json",
+      "original_sha256": "46552b09aebc8c325aa6997fd6b51426d0193b7d8378a28ff4a499e1c14b850c",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-permission-denied-11b8f0f4/request.json",
+      "original_sha256": "93d7686f93c4b6e162b9aa964c66378f6cc2152de8bcee1f4ec1281e004ae2dc",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-verification-repair-b25bc7df/request.json",
+      "original_sha256": "0e997150885817dac4d5fb081398fe3d6d52d7debd5548976ed9e33f72bc584e",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-verification-repair-7de04432/request.json",
+      "original_sha256": "e3798d8474315eb97325447cf2dc27af09433ce9ba8df522586d7fade82a6f61",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-tool-handler-exception-1f777303/request.json",
+      "original_sha256": "3e80f6022b5967b3731fc175b5488b7846db2d3c4f862d471215c4a76d8cd9fa",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-tool-handler-exception-9285228d/request.json",
+      "original_sha256": "15a28320973bc8f4948da3e96b46b7cd5d0b8bf746de6eeb1ed12880d7004c47",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-process-wait-timeout-53424c60/request.json",
+      "original_sha256": "8cb14c72b039585542720d4b9b7da1b3cfd652abeda13f3be91d2b234ae5bc24",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-process-wait-timeout-f534ffbd/request.json",
+      "original_sha256": "2d7a568dd7cff1747e28152f55ee1e7d99e2773d45a6896048e20563572e6ed5",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-subagent-timeout-1ac793fc/request.json",
+      "original_sha256": "939f7c18d2c85265748c2b75a2f4226bd734398c5f3a9ebe2e74cce7861fb943",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-tool-handler-exception-f8d4f9a4/request.json",
+      "original_sha256": "87e43b6dcb33e1e987a2b289eec3570d977a98a3a2191416138f3f32b1a39ee5",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-crash-after-handler-23c868e6/request.json",
+      "original_sha256": "450d018a3237692ed93d2e674e1d9d6e565ad8cb34ca6592bd699e1d330d8f24",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-permission-denied-d5f8759a/request.json",
+      "original_sha256": "8566dfe09dec1b372ae2ca5a1e24bbebeb8e2ace14c44463fe12a2b77a10adab",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-process-wait-timeout-ddd6a9bb/request.json",
+      "original_sha256": "778eda0aff738fe5ccea8230d9f4422d5d60ceee4cabc0bcf02fe9ad9537b5be",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-mcp-disconnect-1d002c2a/request.json",
+      "original_sha256": "914482af718996948c7acda09dc3c4e8ad941c2c85fff6c87259cc9826c26010",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-permission-denied-3f9e2458/request.json",
+      "original_sha256": "9bb90eaa0b1f9a3abc34d1b792da6d8d0d19234d09a9028e5e861a9262f85ed0",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-mcp-disconnect-4115207e/request.json",
+      "original_sha256": "f0279a0dbb15b45cb4578ba1b6a4d79d861f746581b7292335cf8b50220b4754",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-crash-after-handler-b0dbb177/request.json",
+      "original_sha256": "f9f825eeedf547edfc48fc3ab932f1fd615429f4bdbf4010cb385f9eca5300e7",
+      "sensitive_values_removed": 3
+    },
+    {
+      "path": "trials/trial-verification-repair-640dfe3a/request.json",
+      "original_sha256": "e774400ea7f263b0ecde42023e87bb1840d2b9fae3950046b179d6c370c4f4d4",
+      "sensitive_values_removed": 3
+    }
+  ],
+  "unique_sensitive_values_removed": 3,
+  "remediation": "Removed the sensitive redactions field from preserved request artifacts. Original SHA-256 digests retain proof of the pre-scrub files without retaining their contents."
+}

@@ -542,6 +542,8 @@ class ToolExecutor:
         return json.dumps({
             "status": "rejected", "recovery_id": record.recovery_id,
             "message": str(detail)[:RESULT_BRIEF_MAX_LENGTH],
+            "active_failure_id": state.active_failure_id,
+            "repair_phase": state.repair_phase,
         }, ensure_ascii=False)
 
     def _terminal_result(self, name: str, arguments: dict[str, Any], state: Any) -> ExecutionResult:

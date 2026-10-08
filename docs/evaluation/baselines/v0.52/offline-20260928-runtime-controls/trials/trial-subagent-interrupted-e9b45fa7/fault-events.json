@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "cf60adb65dccfd55c39c716f7884c1c19e271ac970e1102940048949d4270957",
+    "fault_id": "subagent-interrupted",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "subagent.worker.interrupted"
+  }
+]

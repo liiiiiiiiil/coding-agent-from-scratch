@@ -1,0 +1,48 @@
+{
+  "format": "mini_agent.provider_large_input_probe",
+  "schema_version": 1,
+  "started_at": "2026-09-30T03:16:40.963515+00:00",
+  "status": "completed",
+  "cohort": "current_binding_independent_from_live_20260929_09",
+  "binding_ref": {
+    "profile": "legacy-default",
+    "provider": "legacy-default",
+    "protocol": "openai_chat",
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e"
+  },
+  "runtime_fingerprint": "90f115c278221bcd42638d2ee0b8aa3640774abaaa25ddb05482f4bd2c34a468",
+  "price_source": "https://mimo.mi.com/docs/pricing",
+  "usd_cap_total": "1",
+  "prior_probe_upper_bound_usd": "0.42294812",
+  "worst_case_usd_this_request": "0.14028672",
+  "request_shape": {
+    "message_count": 3,
+    "tool_schema_count": 11,
+    "serialized_utf8_bytes": 19320,
+    "raw_input_estimate": 7084,
+    "cold_reserved_input": 14424
+  },
+  "requests": [
+    {
+      "request_index": 1,
+      "kind": "synthetic_large_input",
+      "status": "responded",
+      "raw_input_estimate": 7084,
+      "reserved_input": 14424,
+      "output_cap": 1024,
+      "provider_input": 5124,
+      "provider_output": 18,
+      "usage_source": "provider",
+      "usd_upper": "0.0007224"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "upper_bound_spend_usd": "0.0007224",
+  "actual_cost_usd_uncached_upper": "0.0007224",
+  "live_slots_consumed": 0,
+  "automatic_retries": 0,
+  "provider_input_to_raw_ratio": "0.7233201581027667984189723320",
+  "provider_input_within_cold_reservation": true,
+  "cumulative_upper_bound_spend_usd": "0.42367052",
+  "ended_at": "2026-09-30T03:16:44.393729+00:00"
+}

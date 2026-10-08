@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "scenario_id": "followup-incompatible",
+  "version": "1.0",
+  "task": "已领取的成功子会话绑定冻结 Skill。fixture 替换 Skill 文件后，followup 必须在任何子模型请求前拒绝，其他子会话保持可用。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "spawn_subagent",
+    "followup_subagent",
+    "get_subagent_status",
+    "get_subagent_result"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "spawn_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "followup_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_status",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_result",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "cancel_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "followup-incompatible",
+    "target": "subagent.followup.skill_identity",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "skill-change-rejected-before-llm",
+    "other-child-session-unaffected"
+  ],
+  "recovery_steps": [
+    "inspect_evidence"
+  ],
+  "feedback_strategy": [],
+  "grader_id": "followup-incompatible"
+}

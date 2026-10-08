@@ -1,0 +1,58 @@
+{
+  "format": "mini_agent.estimator_offline_validation",
+  "schema_version": 1,
+  "historical_suite_version": "1.5",
+  "candidate_suite_frozen": false,
+  "runtime_fingerprint": "ea9c05ed3919d9969ef1fe3b4ddd515c65d1049ba544b4cefb94a46dcf810217",
+  "related_tests": {
+    "passed": 147,
+    "log": "/private/tmp/v052-estimator-related-final.log"
+  },
+  "full_tests": {
+    "passed": 816,
+    "log": "/private/tmp/v052-estimator-full-escalated.log"
+  },
+  "offline_matrix": {
+    "run_dir": "/private/tmp/mini-agent-reliability-v052-estimator-final",
+    "suite_run_id": "56fae17f-7d6d-4f40-96f9-57d07c144f0a",
+    "cohort": {
+      "planned_slots": 50,
+      "recorded_trials": 50,
+      "fault_triggered": 50,
+      "invariant_passed": 50,
+      "grader_passed": 0,
+      "infrastructure_errors": 0,
+      "unrun_slots": 0,
+      "incomplete_slots": 0,
+      "task_success_assessed": false,
+      "boundary_only_trials": 0,
+      "recovery_successes": null,
+      "recovery_denominator": 0,
+      "recovery_success_rate": null
+    }
+  },
+  "regressions": [
+    "complete OpenAI Chat request JSON shape and UTF-8 estimate",
+    "CJK and tool schema shape proxy reaches 13,748-token cold reservation",
+    "legacy and new estimator calibration keys isolated",
+    "protected user corrections and complete tool result pairs survive trimming",
+    "19k/27k late recovery verification and finalization remain admissible",
+    "response overrun still blocks tool execution",
+    "archived live reports reconstruct byte-identically"
+  ],
+  "network_paid_requests": 0,
+  "new_live_batches": 0,
+  "archived_live_reports_modified": false,
+  "tutorial_structure": "passed",
+  "readme": "passed",
+  "diff_check": "passed",
+  "tutorial_facts": {
+    "status": "blocked",
+    "reason": "missing v0.52 tag; user must create manually"
+  },
+  "limitations": [
+    "The estimate is not a provider tokenizer or an absolute upper bound.",
+    "The proxy is not the unsaved batch #09 request.",
+    "Binding and USD price-cap requirements for a paid probe remain unresolved."
+  ]
+}

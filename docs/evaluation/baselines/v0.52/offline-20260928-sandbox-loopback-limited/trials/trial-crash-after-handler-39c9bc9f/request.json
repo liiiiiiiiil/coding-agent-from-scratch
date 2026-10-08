@@ -1,0 +1,136 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-crash-after-handler-39c9bc9f/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "15b1a02d6d435a3b7c9f306f6c39f1bc67fa3fecdf009a9150e9845aebeeaef4",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "crash-after-handler",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "boundary.after_handler"
+    },
+    "feedback_strategy": [
+      {
+        "decision": "investigate",
+        "feedback": "只读检查修复目标和已经发生的计数副作用。",
+        "issue_selector": "first_unresolved",
+        "when": "uncertain_issue_found"
+      },
+      {
+        "decision": "continue",
+        "feedback": "依据调查逐项继续，重新规划并独立验证。",
+        "issue_selector": "first_unresolved",
+        "when": "issue_investigated"
+      }
+    ],
+    "grader_id": "crash-after-handler",
+    "initial_dir": "initial",
+    "invariants": [
+      "side-effect-once",
+      "admitted-call-not-replayed",
+      "source-session-read-only"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      }
+    ],
+    "recovery_steps": [
+      "claim_new_session",
+      "inspect_evidence",
+      "resolve_issues",
+      "replan",
+      "reauthorize",
+      "verify_current_generation"
+    ],
+    "scenario_id": "crash-after-handler",
+    "schema_version": 1,
+    "task": "一次文件副作用已经发生，但结果提交前发生崩溃。恢复后不要重放；只读调查、逐项处理 issue、重新规划并重新授权，随后修复 src/example.py 并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/private/tmp/mini-agent-reliability-offline-v052-security/frozen/crash-after-handler",
+  "scenario_sha256": "1f4107287cdea9a12b4b2e32a3396a6b813f5c2b47807a02f452898b56c96824",
+  "schema_version": 1,
+  "session_root": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-crash-after-handler-39c9bc9f/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trial_id": "39c9bc9f-c178-4c6a-b1ca-f20dabd071a4",
+  "variant": {},
+  "workspace": "/private/tmp/mini-agent-reliability-offline-v052-security/trials/trial-crash-after-handler-39c9bc9f/workspace"
+}

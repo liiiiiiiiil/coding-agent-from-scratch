@@ -1,0 +1,128 @@
+{
+  "format": "mini_agent.reliability",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "version": "1.6",
+  "description": "覆盖工具、权限、验证、进程、持久化恢复、MCP 与子代理边界的冻结故障矩阵。",
+  "default_repeats": 3,
+  "offline_repeats": 2,
+  "live_scenario_ids": [
+    "tool-handler-exception",
+    "permission-denied",
+    "verification-repair",
+    "process-wait-timeout",
+    "crash-after-handler",
+    "mcp-disconnect",
+    "subagent-timeout"
+  ],
+  "support": {
+    "path": "support",
+    "materials_sha256": "3bdcb14a16eea3e5dc396d11810983f2313061a24ee0857cae05edddcd86d552"
+  },
+  "scenarios": [
+    {
+      "scenario_id": "tool-handler-exception",
+      "path": "tool-handler-exception",
+      "materials_sha256": "551a982df87dbbf423e5c1271ae5df49648caed2c5303a07ff298c7f502567c8"
+    },
+    {
+      "scenario_id": "permission-denied",
+      "path": "permission-denied",
+      "materials_sha256": "f80d321b45239d3af2cb5ac2872aa2099441815d78b93fe02f166937655068a5"
+    },
+    {
+      "scenario_id": "verification-repair",
+      "path": "verification-repair",
+      "materials_sha256": "2b17f47ea515556b0cba644351c875a75e495dbe81865be4059849b95546403f"
+    },
+    {
+      "scenario_id": "process-wait-timeout",
+      "path": "process-wait-timeout",
+      "materials_sha256": "8e8eee1bb31dbe83f2d47a18bab5bca867e8195a3bbe1173543501ca39c86415"
+    },
+    {
+      "scenario_id": "crash-before-admission",
+      "path": "crash-before-admission",
+      "materials_sha256": "1812ca22cee6dbeb5a03e3d5ca271792e8d2a48378e31873220689f245b71cbc"
+    },
+    {
+      "scenario_id": "crash-after-admission",
+      "path": "crash-after-admission",
+      "materials_sha256": "4e9413b030d005a2d394ee87abbc3e2a6240f724da6cafdd98ec9c4dca88a965"
+    },
+    {
+      "scenario_id": "crash-after-handler",
+      "path": "crash-after-handler",
+      "materials_sha256": "550ed76f5e87f1b023f89403b7af66c5040995f798eba055f359651fde4d69eb"
+    },
+    {
+      "scenario_id": "durable-commit-failure",
+      "path": "durable-commit-failure",
+      "materials_sha256": "03a6d9b2ab0c61ad6fb5bc810463ea3bac2077b85eb3a1616f59974286e31603"
+    },
+    {
+      "scenario_id": "recovery-user-decisions",
+      "path": "recovery-user-decisions",
+      "materials_sha256": "b13ed1b18d73838b2f45c6bc2b69b3cf85512fb8d8a7e3547cb0e7d8c585f024"
+    },
+    {
+      "scenario_id": "mcp-disconnect",
+      "path": "mcp-disconnect",
+      "materials_sha256": "a8aa010e20e1905130edeb19d41d30494e6b9ae0be5f947151e2bc8e81d21eed"
+    },
+    {
+      "scenario_id": "mcp-remote-error",
+      "path": "mcp-remote-error",
+      "materials_sha256": "3d4e885c1011c4dbf590f1f6f4383be23a8ce99a7b7fb8551551de26752c401b"
+    },
+    {
+      "scenario_id": "mcp-is-error",
+      "path": "mcp-is-error",
+      "materials_sha256": "4385888d99820bf3d4de10b5020c93a29cf20a4d0957f55c4d4e7d966216306b"
+    },
+    {
+      "scenario_id": "mcp-call-timeout",
+      "path": "mcp-call-timeout",
+      "materials_sha256": "4593cdeea73adc6d4a9dfde6135d46e26c9a173d7f8db98362f64771ec0dd064"
+    },
+    {
+      "scenario_id": "subagent-timeout",
+      "path": "subagent-timeout",
+      "materials_sha256": "96698832b22388c356b53a09fcec2b5ea2955b084ac86f1061ba1a6b25b2d7c5"
+    },
+    {
+      "scenario_id": "subagent-cancel",
+      "path": "subagent-cancel",
+      "materials_sha256": "8e3bf51f6823df4cd9e63eaf90fba770ebadb6019f83536586e7db58a63d0174"
+    },
+    {
+      "scenario_id": "subagent-unclaimed",
+      "path": "subagent-unclaimed",
+      "materials_sha256": "9ada10215c1829dd4e7716e855155f5c251ca8ecefb5efc2f23f645d93bd3a9a"
+    },
+    {
+      "scenario_id": "subagent-interrupted",
+      "path": "subagent-interrupted",
+      "materials_sha256": "feb8480ad4f24d292bb99a0d67569138af33fe59b339fbfe41af9e1c668dc868"
+    },
+    {
+      "scenario_id": "followup-incompatible",
+      "path": "followup-incompatible",
+      "materials_sha256": "18122f5982286875646415e453ddf1c527df3fb958905d40c24e924ec493048b"
+    }
+  ],
+  "request_budget_policy": {
+    "cold_samples": 2,
+    "cold_input_multiplier": 2,
+    "warm_positive_error_samples": 8,
+    "warm_margin_percent": 10,
+    "input_allowance_tokens": 256,
+    "minimum_output_tokens": 256,
+    "work_output_tokens": 1024,
+    "summary_output_tokens": 512,
+    "final_output_tokens": 512,
+    "recent_complete_rounds": 2,
+    "calibration_scope": "task_binding_schema_request_kind"
+  },
+  "suite_sha256": "376170c1721cf6862c2c9faa3bc99195ff2c7a008afc0e7e89910bcbdd3502db"
+}

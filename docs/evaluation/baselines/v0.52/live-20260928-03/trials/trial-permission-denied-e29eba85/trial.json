@@ -1,0 +1,49 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": []
+  },
+  "cleanup_complete": false,
+  "cleanup_issue": "worker_not_started",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T11:04:35.723+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": "AttributeError",
+  "invariant_status": "incomplete",
+  "invariants": [],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "preflight": {
+      "ended_at": "2026-09-28T11:04:35.723+00:00",
+      "started_at": "2026-09-28T11:04:35.723+00:00",
+      "usage": null
+    }
+  },
+  "recovery_status": "incomplete",
+  "recovery_steps": [],
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "runtime_fingerprint_end": "9eefba9dc53b9a96ffabe6ef1537db178f32ddfd0e161450c4dbd63bf201cf25",
+  "scenario_id": "permission-denied",
+  "scenario_sha256": "b3b5fe613c3e0729f0b4cf9a3d290ba8382a9120a52c9247a285ade6ca7962d1",
+  "schema_version": 1,
+  "source_consistent": false,
+  "started_at": "2026-09-28T11:04:35.723+00:00",
+  "state_summary": {},
+  "status": "infrastructure_error",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "suite_version": "1.0",
+  "trace_summary": {},
+  "trial_id": "e29eba85-1352-4761-9f17-d00fbe6c973b",
+  "variant": {}
+}

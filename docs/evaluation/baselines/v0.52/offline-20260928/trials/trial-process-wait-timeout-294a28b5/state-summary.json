@@ -1,0 +1,8 @@
+{
+  "agent_decision": "awaiting_process",
+  "wait": {
+    "exit_code": null,
+    "reason": "output_available",
+    "status": "running"
+  }
+}

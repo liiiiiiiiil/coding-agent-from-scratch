@@ -16,6 +16,11 @@ from mini_agent.evaluation.runner import (
 )
 from mini_agent.evaluation.schema import load_case, validate_fixture_directory
 from mini_agent.evaluation.benchmark import load_suite, run_suite, suite_plan, validate_suite_baselines
+from mini_agent.evaluation.reliability import (
+    reliability_plan, run_reliability, validate_reliability,
+)
+from mini_agent.evaluation.reliability_report import build_reliability_report
+from mini_agent.evaluation.reliability_schema import load_suite as load_reliability_suite
 
 
 def _default_case() -> Path:
@@ -94,6 +99,21 @@ def _parser() -> argparse.ArgumentParser:
 
     report_suite = commands.add_parser("report-suite", help="从 suite-run 和原始 trial 重建报告")
     report_suite.add_argument("suite_run_dir")
+
+    validate_reliability_command = commands.add_parser("validate-reliability", help="校验冻结可靠性矩阵、任务、注入和 grader")
+    validate_reliability_command.add_argument("suite_json")
+
+    self_test_reliability = commands.add_parser("self-test-reliability", help="运行全部离线故障边界，每个参数变体两次")
+    self_test_reliability.add_argument("--output", required=True, help="新的独立可靠性 run 目录")
+
+    run_reliability_command = commands.add_parser("run-reliability", help="按冻结顺序运行 21 个 live reliability trial")
+    run_reliability_command.add_argument("suite_json")
+    run_reliability_command.add_argument("--live", action="store_true", help="明确启用真实模型调用")
+    run_reliability_command.add_argument("--repeats", type=int, default=None, help="v1.0 固定为 3")
+    run_reliability_command.add_argument("--output", required=True, help="新的独立 run 目录")
+
+    report_reliability = commands.add_parser("report-reliability", help="从可靠性原始结果和证据只读重建报告")
+    report_reliability.add_argument("run_dir")
     return parser
 
 
@@ -211,6 +231,54 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "report-suite":
             print(json.dumps(build_suite_report(args.suite_run_dir), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "validate-reliability":
+            print(json.dumps(validate_reliability(args.suite_json), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "self-test-reliability":
+            suite_path = Path(__file__).resolve().parents[3] / "tests" / "fixtures" / "evaluation" / "reliability" / "suite.json"
+            suite = load_reliability_suite(suite_path)
+            output = run_reliability(suite, args.output, run_kind="fixture")
+            report_value = build_reliability_report(output)
+            fixture = report_value["cohorts"]["fixture"]
+            passed = (
+                report_value["status"] == "completed"
+                and fixture["recorded_trials"] == fixture["planned_slots"]
+                and fixture["invariant_passed"] == fixture["recorded_trials"]
+                and all(item["injection_errors"] == 0 and item["fault_not_triggered"] == 0
+                        and item["evidence_incomplete"] == 0
+                        for item in report_value["scenarios"].values())
+            )
+            print(json.dumps({"self_test": "passed" if passed else "incomplete_or_failed",
+                              "run_dir": str(output), "report": report_value}, ensure_ascii=False, indent=2))
+            return 0 if passed else 1
+        if args.command == "run-reliability":
+            if not args.live:
+                raise ValueError("可靠性真实运行必须显式传 --live")
+            suite = load_reliability_suite(args.suite_json)
+            plan = reliability_plan(suite, run_kind="live", repeats=args.repeats)
+            print(
+                f"LIVE reliability suite: {suite.suite_id}@{suite.version}; "
+                f"suite_sha256={suite.suite_sha256}; planned_trials={len(plan)}; repeats=3"
+            )
+            for scenario_id in suite.live_scenario_ids:
+                scenario = next(item for item in suite.scenarios if item.scenario_id == scenario_id)
+                scenario_slots = [item for item in plan if item["scenario_id"] == scenario_id]
+                print(f"- {scenario_id}: {len(scenario_slots)} trial(s); rounds<={scenario.budget['max_rounds']}; "
+                      f"tools<={scenario.budget['tool_calls']}; wall<={scenario.budget['wall_seconds']}s; "
+                      f"parent_tokens<={scenario.budget['parent_tokens']}; child_tokens<={scenario.budget['child_tokens']}; "
+                      f"tools={','.join(scenario.allowed_tools)}")
+                print("  Task: " + scenario.task)
+                print("  Permission rules: " + json.dumps(scenario.permission_rules, ensure_ascii=False))
+                print("  Simulated user feedback: " + json.dumps(scenario.feedback_strategy, ensure_ascii=False))
+            output = run_reliability(suite, args.output, run_kind="live", live_confirmed=True,
+                                     repeats=args.repeats)
+            report_value = build_reliability_report(output)
+            print(f"Reliability run saved: {output}")
+            print(json.dumps(report_value, ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "report-reliability":
+            print(json.dumps(build_reliability_report(args.run_dir), ensure_ascii=False, indent=2))
             return 0
     except Exception as error:
         print(f"evaluation error ({type(error).__name__}): {error}", file=sys.stderr)

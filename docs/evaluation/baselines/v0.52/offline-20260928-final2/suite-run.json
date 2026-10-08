@@ -1,0 +1,623 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "duration_ms": 8847,
+  "format": "mini_agent.reliability_run",
+  "manual_review": [],
+  "model_binding_ref": null,
+  "planned_trials": 50,
+  "repeats": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "f38c69381a47aea3f886adb1f7034fd56b14f9e7a4701280d75ea706a41a4ee7",
+  "schema_version": 1,
+  "slots": [
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r01",
+      "status": "completed",
+      "trial_id": "13b18ca8-eae9-406f-973b-704f2ff9dfd8",
+      "trial_path": "trials/trial-tool-handler-exception-13b18ca8",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "tool-handler-exception",
+      "slot_id": "tool-handler-exception-default-r02",
+      "status": "completed",
+      "trial_id": "8656c4a7-6558-4da6-9c4a-49a109653374",
+      "trial_path": "trials/trial-tool-handler-exception-8656c4a7",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r01",
+      "status": "completed",
+      "trial_id": "99ff65d2-732e-4011-bca5-5089ed4df28d",
+      "trial_path": "trials/trial-permission-denied-99ff65d2",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "permission-denied",
+      "slot_id": "permission-denied-default-r02",
+      "status": "completed",
+      "trial_id": "f626c63b-d2c9-4e67-a02a-c35faf7612a6",
+      "trial_path": "trials/trial-permission-denied-f626c63b",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r01",
+      "status": "completed",
+      "trial_id": "35185bcc-9e28-481d-a61d-39df7be13561",
+      "trial_path": "trials/trial-verification-repair-35185bcc",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "verification-repair",
+      "slot_id": "verification-repair-default-r02",
+      "status": "completed",
+      "trial_id": "59d44bd0-abaf-4884-a04d-c341dd3363bb",
+      "trial_path": "trials/trial-verification-repair-59d44bd0",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r01",
+      "status": "completed",
+      "trial_id": "6c86cddc-41e0-414a-9d06-88fef8eff67c",
+      "trial_path": "trials/trial-process-wait-timeout-6c86cddc",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "process-wait-timeout",
+      "slot_id": "process-wait-timeout-default-r02",
+      "status": "completed",
+      "trial_id": "ade71dda-0737-491c-9ef1-29a990fd1f64",
+      "trial_path": "trials/trial-process-wait-timeout-ade71dda",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-before-admission",
+      "slot_id": "crash-before-admission-default-r01",
+      "status": "completed",
+      "trial_id": "9f3bf5e5-5cff-4111-bb87-e6c14d6f2635",
+      "trial_path": "trials/trial-crash-before-admission-9f3bf5e5",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-before-admission",
+      "slot_id": "crash-before-admission-default-r02",
+      "status": "completed",
+      "trial_id": "2a31d8e1-8d10-4f9e-b6dd-d42869b13afd",
+      "trial_path": "trials/trial-crash-before-admission-2a31d8e1",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-admission",
+      "slot_id": "crash-after-admission-default-r01",
+      "status": "completed",
+      "trial_id": "1b045898-a4f3-4342-8a1e-98a488e6eca3",
+      "trial_path": "trials/trial-crash-after-admission-1b045898",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-admission",
+      "slot_id": "crash-after-admission-default-r02",
+      "status": "completed",
+      "trial_id": "049b224c-1d3f-4d25-8293-72759ecf97ac",
+      "trial_path": "trials/trial-crash-after-admission-049b224c",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r01",
+      "status": "completed",
+      "trial_id": "58fecd59-437f-453c-8fce-b455a855a816",
+      "trial_path": "trials/trial-crash-after-handler-58fecd59",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "crash-after-handler",
+      "slot_id": "crash-after-handler-default-r02",
+      "status": "completed",
+      "trial_id": "5111a5ce-8831-4887-927b-95af4872372a",
+      "trial_path": "trials/trial-crash-after-handler-5111a5ce",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-admission-r01",
+      "status": "completed",
+      "trial_id": "b4bd4f09-1a2e-4156-a6b0-ffc8029379e1",
+      "trial_path": "trials/trial-durable-commit-failure-b4bd4f09",
+      "variant": {
+        "boundary": "admission"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-admission-r02",
+      "status": "completed",
+      "trial_id": "776872fc-c242-4995-884c-e701d1ac0175",
+      "trial_path": "trials/trial-durable-commit-failure-776872fc",
+      "variant": {
+        "boundary": "admission"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-per_call-r01",
+      "status": "completed",
+      "trial_id": "7522b4e4-e423-4ba3-9078-e12bde0e6a11",
+      "trial_path": "trials/trial-durable-commit-failure-7522b4e4",
+      "variant": {
+        "boundary": "per_call"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-per_call-r02",
+      "status": "completed",
+      "trial_id": "12440e6e-f69d-4f25-ba73-255c8eec6e61",
+      "trial_path": "trials/trial-durable-commit-failure-12440e6e",
+      "variant": {
+        "boundary": "per_call"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-round_commit-r01",
+      "status": "completed",
+      "trial_id": "a330b2c1-c81f-4f0c-83ed-ac4c0d2df0a2",
+      "trial_path": "trials/trial-durable-commit-failure-a330b2c1",
+      "variant": {
+        "boundary": "round_commit"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "durable-commit-failure",
+      "slot_id": "durable-commit-failure-boundary-round_commit-r02",
+      "status": "completed",
+      "trial_id": "843b5390-337c-4ed3-93da-b2700d2e2490",
+      "trial_path": "trials/trial-durable-commit-failure-843b5390",
+      "variant": {
+        "boundary": "round_commit"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-continue-r01",
+      "status": "completed",
+      "trial_id": "7bf6ba51-9b5a-4fbf-a9af-024fc3543261",
+      "trial_path": "trials/trial-recovery-user-decisions-7bf6ba51",
+      "variant": {
+        "decision_path": "continue"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-continue-r02",
+      "status": "completed",
+      "trial_id": "7b322905-d96f-4f3f-b4a7-8fa49fa66d8e",
+      "trial_path": "trials/trial-recovery-user-decisions-7b322905",
+      "variant": {
+        "decision_path": "continue"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-block-r01",
+      "status": "completed",
+      "trial_id": "7e50450d-55a4-445b-9118-31c4fbfe7251",
+      "trial_path": "trials/trial-recovery-user-decisions-7e50450d",
+      "variant": {
+        "decision_path": "block"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "recovery-user-decisions",
+      "slot_id": "recovery-user-decisions-decision_path-block-r02",
+      "status": "completed",
+      "trial_id": "e8aceee6-02fe-4e89-a820-16797505a723",
+      "trial_path": "trials/trial-recovery-user-decisions-e8aceee6",
+      "variant": {
+        "decision_path": "block"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "949d225c-2332-4bd4-8a1d-ddb2703569ed",
+      "trial_path": "trials/trial-mcp-disconnect-949d225c",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "8796574d-d571-4783-91ef-0b0bef27edfc",
+      "trial_path": "trials/trial-mcp-disconnect-8796574d",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "d39c865b-c9a9-42e3-b114-c464f761d19e",
+      "trial_path": "trials/trial-mcp-disconnect-d39c865b",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-disconnect",
+      "slot_id": "mcp-disconnect-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "dceced06-5e04-42f8-852e-cdd1c0b7452b",
+      "trial_path": "trials/trial-mcp-disconnect-dceced06",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "97728399-1b70-49d5-a32a-8e77e96a7174",
+      "trial_path": "trials/trial-mcp-remote-error-97728399",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "b11dd611-4dde-4e8e-a903-12893740f810",
+      "trial_path": "trials/trial-mcp-remote-error-b11dd611",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "9009070c-a64f-4a47-8e15-e09724925abe",
+      "trial_path": "trials/trial-mcp-remote-error-9009070c",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-remote-error",
+      "slot_id": "mcp-remote-error-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "0d9247cc-e6ad-4491-82d4-64dbb1dad9e0",
+      "trial_path": "trials/trial-mcp-remote-error-0d9247cc",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "86fedca2-5107-4ecf-a831-6835e324a93a",
+      "trial_path": "trials/trial-mcp-is-error-86fedca2",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "a9c0e22b-c790-4e2a-967e-aa32495d64eb",
+      "trial_path": "trials/trial-mcp-is-error-a9c0e22b",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "bb7c70ad-b64c-494b-8b92-06579eac2511",
+      "trial_path": "trials/trial-mcp-is-error-bb7c70ad",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-is-error",
+      "slot_id": "mcp-is-error-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "6be964b1-f7fb-4e01-94ab-bf8c8b829d82",
+      "trial_path": "trials/trial-mcp-is-error-6be964b1",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-stdio-r01",
+      "status": "completed",
+      "trial_id": "8a8034e1-fca6-430c-885a-46d48f47386a",
+      "trial_path": "trials/trial-mcp-call-timeout-8a8034e1",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-stdio-r02",
+      "status": "completed",
+      "trial_id": "ad150c64-42d3-4455-9d0a-21425264d537",
+      "trial_path": "trials/trial-mcp-call-timeout-ad150c64",
+      "variant": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-loopback_http-r01",
+      "status": "completed",
+      "trial_id": "c469aebf-a8f5-49bd-bcfc-a379aa060ca3",
+      "trial_path": "trials/trial-mcp-call-timeout-c469aebf",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "mcp-call-timeout",
+      "slot_id": "mcp-call-timeout-transport-loopback_http-r02",
+      "status": "completed",
+      "trial_id": "5f163354-dd78-4966-8acb-a5fbf82dd712",
+      "trial_path": "trials/trial-mcp-call-timeout-5f163354",
+      "variant": {
+        "transport": "loopback_http"
+      }
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r01",
+      "status": "completed",
+      "trial_id": "cbe4bcfc-628d-438a-be13-9a9e18c6ba38",
+      "trial_path": "trials/trial-subagent-timeout-cbe4bcfc",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-timeout",
+      "slot_id": "subagent-timeout-default-r02",
+      "status": "completed",
+      "trial_id": "e6d2e83a-26c4-4da7-9aba-8977b07da631",
+      "trial_path": "trials/trial-subagent-timeout-e6d2e83a",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-cancel",
+      "slot_id": "subagent-cancel-default-r01",
+      "status": "completed",
+      "trial_id": "0ab0f1ed-3cd5-4fb8-b042-7c60c954605d",
+      "trial_path": "trials/trial-subagent-cancel-0ab0f1ed",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-cancel",
+      "slot_id": "subagent-cancel-default-r02",
+      "status": "completed",
+      "trial_id": "12d9dc9f-52fb-42f4-ac1c-e1eaac549eb0",
+      "trial_path": "trials/trial-subagent-cancel-12d9dc9f",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-unclaimed",
+      "slot_id": "subagent-unclaimed-default-r01",
+      "status": "completed",
+      "trial_id": "2d4cff70-10b5-4b08-b07f-b22cd8234097",
+      "trial_path": "trials/trial-subagent-unclaimed-2d4cff70",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-unclaimed",
+      "slot_id": "subagent-unclaimed-default-r02",
+      "status": "completed",
+      "trial_id": "7b455a4d-00ed-4a1e-a983-f65643099120",
+      "trial_path": "trials/trial-subagent-unclaimed-7b455a4d",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-interrupted",
+      "slot_id": "subagent-interrupted-default-r01",
+      "status": "completed",
+      "trial_id": "b50fed69-b0a5-4131-934d-cbfe64b90dc5",
+      "trial_path": "trials/trial-subagent-interrupted-b50fed69",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "subagent-interrupted",
+      "slot_id": "subagent-interrupted-default-r02",
+      "status": "completed",
+      "trial_id": "1c60ee87-2d9e-4e21-aabe-df914ef89f77",
+      "trial_path": "trials/trial-subagent-interrupted-1c60ee87",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 1,
+      "run_kind": "fixture",
+      "scenario_id": "followup-incompatible",
+      "slot_id": "followup-incompatible-default-r01",
+      "status": "completed",
+      "trial_id": "48bc52ed-4a28-46db-8477-e9d24703198b",
+      "trial_path": "trials/trial-followup-incompatible-48bc52ed",
+      "variant": {}
+    },
+    {
+      "error_kind": null,
+      "repetition": 2,
+      "run_kind": "fixture",
+      "scenario_id": "followup-incompatible",
+      "slot_id": "followup-incompatible-default-r02",
+      "status": "completed",
+      "trial_id": "a9c99354-2521-4723-8ced-3352d1f2372d",
+      "trial_path": "trials/trial-followup-incompatible-a9c99354",
+      "variant": {}
+    }
+  ],
+  "started_at": "2026-09-28T08:22:12.076+00:00",
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_run_id": "099db82e-23ec-4d0f-9c7e-ffac9f585bcb",
+  "suite_sha256": "08002f7076b23a717007c506a940ad367d42461f99243fbbc82cf0477df4ea7c",
+  "suite_version": "1.0",
+  "updated_at": "2026-09-28T08:22:20.925+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "agent_stop_reason": null,
+  "agent_terminal_status": null,
+  "artifacts": {
+    "evidence": []
+  },
+  "cleanup_complete": false,
+  "cleanup_issue": "worker_cleanup_unconfirmed",
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-29T02:17:23.202+00:00",
+  "fault_events": [],
+  "fault_status": "not_triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": null,
+  "infrastructure_error": "AttributeError",
+  "invariant_status": "incomplete",
+  "invariants": [],
+  "manual_review": [],
+  "model_binding_ref": null,
+  "phases": {
+    "preflight": {
+      "ended_at": "2026-09-29T02:17:23.202+00:00",
+      "started_at": "2026-09-29T02:17:23.202+00:00",
+      "usage": null
+    },
+    "worker": {
+      "agent_started": true,
+      "stage": "agent"
+    }
+  },
+  "recovery_status": "incomplete",
+  "recovery_steps": [],
+  "repetition": 3,
+  "run_kind": "live",
+  "runtime_fingerprint": "6fe742d403c2e6d8b2467ea468ced90bfc3fe00742554b16503caa5432c5f4ae",
+  "runtime_fingerprint_end": "6fe742d403c2e6d8b2467ea468ced90bfc3fe00742554b16503caa5432c5f4ae",
+  "scenario_id": "subagent-timeout",
+  "scenario_sha256": "c03d4039cdb6b1f16f68e0f6631c4184cb61601186ba71e9c207aaa1739fbd88",
+  "schema_version": 1,
+  "source_consistent": false,
+  "started_at": "2026-09-29T02:17:23.202+00:00",
+  "state_summary": {
+    "diagnostic": {
+      "error_kind": "AttributeError",
+      "frames": [
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "main",
+          "line": 2420
+        },
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "run_request",
+          "line": 2269
+        },
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "_run_live",
+          "line": 1718
+        },
+        {
+          "file": "mini_agent/evaluation/reliability_worker.py",
+          "function": "_exception_diagnostic",
+          "line": 47
+        }
+      ],
+      "stage": "worker"
+    },
+    "worker_started": true
+  },
+  "status": "infrastructure_error",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "53180d91b153c480aa580c433491b361120de3d1f120a5032632b89e8bcb7f05",
+  "suite_version": "1.1",
+  "trace_summary": {},
+  "trial_id": "3d8008fa-67a9-4631-9be1-be6e95d3a083",
+  "variant": {}
+}

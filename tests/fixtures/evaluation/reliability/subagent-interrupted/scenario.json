@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "scenario_id": "subagent-interrupted",
+  "version": "1.5",
+  "task": "后台子代理启动确认与整轮提交后父 worker 会终止。恢复时记录 interrupted，不恢复旧 worker，保守结算用量并逐项处理 issue。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "spawn_subagent",
+    "get_subagent_status",
+    "get_subagent_result"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "spawn_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "followup_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_status",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "get_subagent_result",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "cancel_subagent",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "subagent-interrupted",
+    "target": "subagent.worker.interrupted",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "interrupted-no-worker",
+    "unknown-usage-conservative",
+    "issue-explicitly-resolved"
+  ],
+  "recovery_steps": [
+    "claim_new_session",
+    "inspect_evidence",
+    "resolve_issues"
+  ],
+  "feedback_strategy": [
+    {
+      "when": "interrupted_child_issue",
+      "decision": "investigate",
+      "feedback": "只读检查恢复后的子代理状态和任务文件。",
+      "issue_selector": "first_unresolved"
+    },
+    {
+      "when": "issue_investigated",
+      "decision": "continue",
+      "feedback": "调查证据已记录；逐项继续并重新规划。",
+      "issue_selector": "first_unresolved"
+    }
+  ],
+  "grader_id": "subagent-interrupted"
+}

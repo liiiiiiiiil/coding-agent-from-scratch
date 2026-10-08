@@ -96,6 +96,7 @@ def build_report(output_dir: str | Path) -> dict[str, Any]:
         raise ValueError("report 路径必须是目录")
     rows: list[dict[str, Any]] = []
     unreadable: list[str] = []
+    reliability_trials_skipped = 0
     for trial_dir in sorted(root.glob("trial-*")):
         result_path = trial_dir / "trial.json"
         if trial_dir.is_symlink() or not result_path.is_file() or result_path.is_symlink():
@@ -104,7 +105,11 @@ def build_report(output_dir: str | Path) -> dict[str, Any]:
         try:
             if result_path.stat().st_size > 256 * 1024:
                 raise ValueError("result_too_large")
-            row = validate_trial_result(json.loads(result_path.read_text(encoding="utf-8")))
+            raw = json.loads(result_path.read_text(encoding="utf-8"))
+            if isinstance(raw, dict) and raw.get("format") == "mini_agent.reliability":
+                reliability_trials_skipped += 1
+                continue
+            row = validate_trial_result(raw)
         except Exception:
             unreadable.append(trial_dir.name)
             continue
@@ -117,6 +122,11 @@ def build_report(output_dir: str | Path) -> dict[str, Any]:
         "source": "raw TrialResult JSON; source files are not modified",
         "total_trials": len(rows),
         "unreadable_trial_directories": unreadable,
+        "reliability_trials_skipped": reliability_trials_skipped,
+        "reliability_report_hint": (
+            "检测到独立可靠性结果格式；请使用 report-reliability。"
+            if reliability_trials_skipped or (root / "suite-run.json").is_file() else None
+        ),
         "live": _cohort(groups["live"]),
         "fixture": _cohort(groups["fixture"]),
         "trials": [

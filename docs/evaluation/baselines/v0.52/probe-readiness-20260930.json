@@ -1,0 +1,60 @@
+{
+  "format": "mini_agent.provider_probe_readiness",
+  "schema_version": 1,
+  "date": "2026-09-30",
+  "status": "probe_incomplete_provider_protocol_error",
+  "selected_cohort": "current_binding_independent_from_live_20260929_09",
+  "binding_ref": {
+    "profile": "legacy-default",
+    "provider": "legacy-default",
+    "protocol": "openai_chat",
+    "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e"
+  },
+  "runtime_fingerprint": "ea9c05ed3919d9969ef1fe3b4ddd515c65d1049ba544b4cefb94a46dcf810217",
+  "suite_id": "reliability-boundaries",
+  "suite_version": "1.5",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "preflight_valid": true,
+  "live_scenarios": 7,
+  "planned_probe": {
+    "maximum_requests": 3,
+    "automatic_retries": 0,
+    "sequence": [
+      "plain_chat_request",
+      "tool_call_request",
+      "tool_result_followup_request"
+    ],
+    "baseline_slots_consumed": 0,
+    "separate_archive": true
+  },
+  "cost_gate": {
+    "total_usd_cap": "1",
+    "input_cache_hit_usd_per_million": "0.0028",
+    "input_cache_miss_usd_per_million": "0.14",
+    "output_usd_per_million": "0.28",
+    "source": "https://mimo.mi.com/docs/pricing",
+    "billing_assumption": "official first-party overseas real-time API; all input charged as cache misses",
+    "model_context_ceiling_tokens": 1000000,
+    "output_cap_tokens_per_request": 1024,
+    "maximum_requests": 3,
+    "worst_case_usd_for_three_requests": "0.42086016",
+    "executable": true
+  },
+  "network_requests_sent": 2,
+  "paid_probe_started": true,
+  "live_started": false,
+  "limitations": [
+    "The current binding is an independent cohort, not an exact reproduction of batch #09.",
+    "No applicable rate table or provider hard billing limit is available locally.",
+    "The offline input estimate is not provider-reported token usage."
+  ],
+  "binding_checks": {
+    "official_first_party_endpoint": true,
+    "model_matches_mimo_v26_flash": true,
+    "runtime_matches_offline_validation": true,
+    "current_binding_is_batch09_binding": false
+  },
+  "probe_archive": "provider-probe-20260930-01/probe.json",
+  "observed_spend_upper_usd": "0.14029260",
+  "result": "One plain response succeeded; the tool request raised ProviderProtocolError; no paired follow-up or retry."
+}

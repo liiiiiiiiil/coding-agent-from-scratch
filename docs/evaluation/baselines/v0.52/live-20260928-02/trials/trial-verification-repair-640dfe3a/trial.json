@@ -1,0 +1,142 @@
+{
+  "agent_stop_reason": "failed",
+  "agent_terminal_status": "failed",
+  "artifacts": {
+    "evidence": [
+      {
+        "path": "fault-events.json",
+        "sha256": "1b4dd8afadf787b5897bd535711de104befb54dea61b37c9405c9d88a15c1873",
+        "size": 270
+      },
+      {
+        "path": "state-summary.json",
+        "sha256": "c1d51abbacebabeca03f3069cc8e14e075e9b86e8f65c2267328c967bebd67c2",
+        "size": 736
+      },
+      {
+        "path": "trace-summary.json",
+        "sha256": "7b166437d300fbf1b46c59d1b12f0170198ecd25f366e9f1094a4f57419c180a",
+        "size": 103
+      },
+      {
+        "path": "recovery-steps.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      },
+      {
+        "path": "feedback-events.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "size": 2
+      }
+    ]
+  },
+  "cleanup_complete": true,
+  "cleanup_issue": null,
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "code_revision_end": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "diff_patch": "",
+  "ended_at": "2026-09-28T10:38:58.087+00:00",
+  "fault_events": [
+    {
+      "detail": "",
+      "evidence_sha256": "f6cdb0696bc42a0914e9eb340135f61cb086b6a5495e129205651eab7b3d8eef",
+      "fault_id": "verification-repair",
+      "occurrence": 1,
+      "outcome": "triggered",
+      "sequence": 1,
+      "target": "grader.public_test_failure"
+    }
+  ],
+  "fault_status": "triggered",
+  "feedback_events": [],
+  "format": "mini_agent.reliability",
+  "grader_passed": false,
+  "infrastructure_error": null,
+  "invariant_status": "failed",
+  "invariants": [
+    {
+      "invariant_id": "verification-current-generation",
+      "status": "failed"
+    },
+    {
+      "invariant_id": "hidden-grader-passes",
+      "status": "failed"
+    }
+  ],
+  "manual_review": [],
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "phases": {
+    "agent": {
+      "duration_ms": 792,
+      "injected_calls": [],
+      "input_tokens": 4192,
+      "llm_calls": 1,
+      "model_binding_ref": {
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "profile": "legacy-default",
+        "protocol": "openai_chat",
+        "provider": "legacy-default"
+      },
+      "output_tokens": 116,
+      "token_accounting": "provider",
+      "tool_calls": 2
+    },
+    "grader": {
+      "duration_ms": 62
+    }
+  },
+  "recovery_status": "failed",
+  "recovery_steps": [],
+  "repetition": 2,
+  "run_kind": "live",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "runtime_fingerprint_end": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario_id": "verification-repair",
+  "scenario_sha256": "7291c54cac9fbb24e16916d03c8e3697d2e64661082d73f206757a42bdcd4bc2",
+  "schema_version": 1,
+  "source_consistent": true,
+  "started_at": "2026-09-28T10:38:57.167+00:00",
+  "state_summary": {
+    "agent_error_kind": null,
+    "attempts": [
+      {
+        "error_kind": "permission_denied",
+        "handler_admitted": false,
+        "outcome": "denied",
+        "permission": "denied",
+        "tool": "run_shell"
+      }
+    ],
+    "crash_issue_count": 0,
+    "delegation_records": [],
+    "generation": 0,
+    "initial_public_test_passed": false,
+    "injected_calls": [],
+    "model_binding_ref": {
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+      "profile": "legacy-default",
+      "protocol": "openai_chat",
+      "provider": "legacy-default"
+    },
+    "provider_error_category": null,
+    "status": "failed",
+    "task_id": "task-1",
+    "terminal_reason": "权限被明确拒绝; last_failure=f-1",
+    "verification": []
+  },
+  "status": "completed",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trace_summary": {
+    "sha256": "22d8d7d6b9641e445f0c21b298df6c4d54e310e6a9215ebc29774ec558673781",
+    "trace_events": 3
+  },
+  "trial_id": "640dfe3a-958f-4d24-87bf-7de3f9c391af",
+  "variant": {}
+}

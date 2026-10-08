@@ -1,0 +1,14 @@
+[
+  {
+    "when": "interrupted_child_issue",
+    "decision": "investigate",
+    "feedback": "只读检查恢复后的子代理状态和任务文件。",
+    "issue_selector": "first_unresolved"
+  },
+  {
+    "when": "issue_investigated",
+    "decision": "continue",
+    "feedback": "调查证据已记录；逐项继续并重新规划。",
+    "issue_selector": "first_unresolved"
+  }
+]

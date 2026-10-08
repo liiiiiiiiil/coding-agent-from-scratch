@@ -1,0 +1,14 @@
+[
+  {
+    "when": "uncertain_issue_found",
+    "decision": "investigate",
+    "feedback": "只读检查当前任务文件和未决调用结果。",
+    "issue_selector": "first_unresolved"
+  },
+  {
+    "when": "issue_investigated",
+    "decision": "continue",
+    "feedback": "依据已记录的调查逐项继续，并重新规划、授权和验证。",
+    "issue_selector": "first_unresolved"
+  }
+]

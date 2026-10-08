@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "scenario_id": "crash-before-admission",
+  "version": "1.2",
+  "task": "恢复 session 中的工具调用明确标记为尚未执行。不要重放；按用户逐项处理 issue，重新规划、授权并验证后修复 src/example.py 的 transform(value)。",
+  "initial_dir": "initial",
+  "allowed_tools": [
+    "read_file",
+    "write_file",
+    "edit_file",
+    "run_shell"
+  ],
+  "permission_rules": [
+    {
+      "tool": "read_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "list_dir",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "grep",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "write_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "edit_file",
+      "pattern": "*",
+      "action": "allow"
+    },
+    {
+      "tool": "run_shell",
+      "pattern": "python -m unittest discover -s tests",
+      "action": "allow"
+    }
+  ],
+  "budget": {
+    "max_rounds": 20,
+    "tool_calls": 48,
+    "wall_seconds": 240,
+    "grader_seconds": 30,
+    "parent_tokens": 64000,
+    "child_tokens": 32000
+  },
+  "fault": {
+    "fault_id": "crash-before-admission",
+    "target": "boundary.before_admission",
+    "occurrences": 1,
+    "parameters": {}
+  },
+  "invariants": [
+    "not-executed-recorded",
+    "admitted-call-not-replayed",
+    "source-session-read-only"
+  ],
+  "recovery_steps": [
+    "claim_new_session",
+    "inspect_evidence",
+    "verify_current_generation"
+  ],
+  "feedback_strategy": [],
+  "grader_id": "crash-before-admission"
+}

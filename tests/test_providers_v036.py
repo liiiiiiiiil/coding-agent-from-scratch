@@ -14,11 +14,12 @@ import pytest
 
 from mini_agent.providers.anthropic_messages import AnthropicMessagesAdapter
 from mini_agent.providers.base import (
-    ProviderProtocolError, ProviderResponse, ProviderStreamError,
+    ProviderProtocolError, ProviderResponse, ProviderStreamError, ProviderToolCallShapeError,
     ProviderTimeoutError, ProviderUsage, UsageMeter,
 )
 from mini_agent.providers.catalog import ProviderCatalog
 from mini_agent.providers.openai_chat import OpenAIChatAdapter
+from mini_agent.providers.openai_chat import _call_from_delta, _validate_calls
 from mini_agent.agent import agent_loop
 from mini_agent.context import ContextManager
 from mini_agent.state import AgentState
@@ -152,6 +153,32 @@ def test_openai_stream_reassembles_parallel_tool_calls_and_rejects_incomplete():
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_openai_stream_null_tool_fields_do_not_erase_prior_fragments():
+    calls = {}
+    _call_from_delta(calls, {"index": 0, "id": "call-1", "function": {
+        "name": "calculate", "arguments": '{"a":'}})
+    _call_from_delta(calls, {"index": 0, "function": {
+        "name": "", "arguments": None}})
+    _call_from_delta(calls, {"index": 0, "function": {"arguments": "1}"}})
+    result = _validate_calls(list(calls.values()), finish_reason="tool_calls",
+                             response_mode="stream")
+    assert result[0]["function"] == {"name": "calculate", "arguments": '{"a":1}'}
+
+
+def test_openai_tool_shape_error_reports_only_structure():
+    with pytest.raises(ProviderToolCallShapeError) as caught:
+        _validate_calls([{"id": "private-call-id", "type": "function", "function": {
+            "name": "", "arguments": "private arguments"}}],
+            finish_reason="length", response_mode="stream")
+    assert caught.value.diagnostic == {
+        "code": "missing_name", "finish_reason": "length", "response_mode": "stream"}
+    assert "private" not in str(caught.value.diagnostic)
+    from mini_agent.evaluation.reliability_worker import _exception_diagnostic
+    diagnostic = _exception_diagnostic(caught.value, stage="provider_probe")
+    assert diagnostic["tool_call_shape"] == caught.value.diagnostic
+    assert "private" not in str(diagnostic)
 
 
 def test_anthropic_system_tool_result_merge_and_stream_input_json():

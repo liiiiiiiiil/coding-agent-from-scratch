@@ -1,0 +1,1 @@
+GRADER = {'grader_id': 'mcp-disconnect', 'checks': ['fault_triggered', 'invariants_match_evidence', 'cleanup_complete']}

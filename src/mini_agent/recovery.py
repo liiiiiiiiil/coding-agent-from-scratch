@@ -134,6 +134,9 @@ class RecoveryRuntime:
 
     def _result(self, status, message, recovery_id=None, generation_id=None, attempt_id=None):
         payload = {"status": status, "message": str(message)[:MAX_RECOVERY_RESULT_LENGTH]}
+        if status == "rejected":
+            payload["active_failure_id"] = self.state.active_failure_id
+            payload["repair_phase"] = self.state.repair_phase
         if recovery_id: payload["recovery_id"] = recovery_id
         if generation_id is not None: payload["generation_id"] = generation_id
         if attempt_id: payload["result_attempt"] = attempt_id

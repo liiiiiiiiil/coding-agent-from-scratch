@@ -1,0 +1,1 @@
+GRADER = {'grader_id': 'followup-incompatible', 'checks': ['fault_triggered', 'invariants_match_evidence', 'cleanup_complete']}

@@ -1,0 +1,13 @@
+{
+  "result_id": "6e7293bb-90e3-42af-bf5f-9bbca4c08c54",
+  "result_outcome": "cancelled",
+  "status": {
+    "agent_profile": "general",
+    "cancel_requested": true,
+    "child_session_id": "d982d506-09bc-4dd2-83a5-11e5d52d0cae",
+    "delegation_id": "a3821ddc-bfe1-4c61-944b-d8c18e609a77",
+    "result_id": "6e7293bb-90e3-42af-bf5f-9bbca4c08c54",
+    "round_index": 1,
+    "status": "cancelled"
+  }
+}

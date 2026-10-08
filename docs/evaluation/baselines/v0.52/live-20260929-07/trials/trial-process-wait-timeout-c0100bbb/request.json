@@ -1,0 +1,167 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-07/trials/trial-process-wait-timeout-c0100bbb/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": {
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "profile": "legacy-default",
+    "protocol": "openai_chat",
+    "provider": "legacy-default"
+  },
+  "repetition": 1,
+  "run_kind": "live",
+  "runtime_fingerprint": "6b339d84a818c804eaa64603a6ebc81d8a1f01a2bec06b1d7e66c047ef9b0aa5",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "grep",
+      "list_dir",
+      "write_file",
+      "edit_file",
+      "run_shell",
+      "start_process",
+      "get_process",
+      "read_process",
+      "list_processes",
+      "wait_process",
+      "terminate_process",
+      "kill_process",
+      "begin_plan",
+      "commit_plan",
+      "request_replan",
+      "recover",
+      "update_plan_progress"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "process-wait-timeout",
+      "occurrences": 1,
+      "parameters": {
+        "timeout_ms": 40
+      },
+      "target": "process.wait_process"
+    },
+    "feedback_strategy": [],
+    "grader_id": "process-wait-timeout",
+    "initial_dir": "initial",
+    "invariants": [
+      "timeout-not-exit",
+      "active-process-blocks-done",
+      "cleanup-complete"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "write_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "edit_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "start_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "wait_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "terminate_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "kill_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "begin_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "commit_plan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "update_plan_progress"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "request_replan"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "recover"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_process"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_processes"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "list_dir"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "grep"
+      }
+    ],
+    "recovery_steps": [],
+    "scenario_id": "process-wait-timeout",
+    "schema_version": 1,
+    "task": "在 trial workspace 内使用唯一允许命令 `python support/process_fixture.py --wait-for-stop` 启动受控进程；用 wait_process(timeout_ms=40) 确认等待超时且进程仍在运行，再请求终止、同步状态并清理。然后修复 src/example.py 的 transform(value) 使结果为 value * 2，并独立验证。唯一可用的公开验证命令是 `python -m unittest discover -s tests`。 start_process 的 cwd 可省略，或使用相对 trial 工作区的 \".\"；仅允许工作区根目录，禁止越界。",
+    "version": "1.5"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-07/frozen/process-wait-timeout",
+  "scenario_sha256": "8e8eee1bb31dbe83f2d47a18bab5bca867e8195a3bbe1173543501ca39c86415",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-07/trials/trial-process-wait-timeout-c0100bbb/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "833eefa4cb6e108439fb407c0981383fcd8b04724887e42c40ba9bcd65baa3a7",
+  "suite_version": "1.5",
+  "trial_id": "c0100bbb-c8a4-4ebb-9e03-2ba89fba0778",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/live-20260929-07/trials/trial-process-wait-timeout-c0100bbb/workspace"
+}

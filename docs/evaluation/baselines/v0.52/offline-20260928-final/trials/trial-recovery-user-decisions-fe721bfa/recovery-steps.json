@@ -1,0 +1,31 @@
+[
+  {
+    "process": "new_python_process",
+    "status": "succeeded",
+    "step": "claim_new_session"
+  },
+  {
+    "status": "succeeded",
+    "step": "inspect_evidence"
+  },
+  {
+    "status": "succeeded",
+    "step": "resolve_issues"
+  },
+  {
+    "status": "succeeded",
+    "step": "continue_parent_investigation"
+  },
+  {
+    "status": "succeeded",
+    "step": "replan"
+  },
+  {
+    "status": "pending",
+    "step": "reauthorize"
+  },
+  {
+    "status": "pending",
+    "step": "verify_current_generation"
+  }
+]

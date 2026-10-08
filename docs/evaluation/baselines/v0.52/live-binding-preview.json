@@ -1,0 +1,80 @@
+{
+  "format": "mini_agent.reliability_live_preflight",
+  "schema_version": 1,
+  "suite_id": "reliability-boundaries",
+  "suite_version": "1.0",
+  "suite_sha256": "8ea1fab57ec079a86b22fab140614dada88cc1e22e8e37f527e5c36b9d08904f",
+  "live_slots": 21,
+  "source": "current local config preview; run command re-resolves before any trial request",
+  "binding_ref": {
+    "protocol": "openai_chat",
+    "profile": "legacy-default",
+    "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+    "provider": "legacy-default"
+  },
+  "scenarios": [
+    {
+      "scenario_id": "tool-handler-exception",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "permission-denied",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "verification-repair",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "process-wait-timeout",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "crash-after-handler",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "mcp-disconnect",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    },
+    {
+      "scenario_id": "subagent-timeout",
+      "binding_ref": {
+        "protocol": "openai_chat",
+        "profile": "legacy-default",
+        "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6",
+        "provider": "legacy-default"
+      }
+    }
+  ]
+}

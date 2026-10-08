@@ -1,0 +1,10 @@
+{
+  "call_requests": 1,
+  "client_connected_after_fault": false,
+  "close_report": {
+    "alias": "reliability",
+    "closed": true
+  },
+  "error_kind": "timeout",
+  "transport": "stdio"
+}

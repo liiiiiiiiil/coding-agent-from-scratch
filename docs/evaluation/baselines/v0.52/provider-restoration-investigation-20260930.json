@@ -1,0 +1,151 @@
+{
+  "format": "mini_agent.reliability_preflight_investigation",
+  "date": "2026-09-30",
+  "suite_id": "reliability-boundaries",
+  "suite_version": "1.5",
+  "decision": "defer_live_pending_binding_and_cost_limits",
+  "probe_execution": {
+    "started": false,
+    "network_requests": 0,
+    "baseline_slots_consumed": 0,
+    "automatic_retries": 0,
+    "reason": "The current binding fingerprint differs from live-20260929-09, and no enforceable USD price cap is available."
+  },
+  "reviewed_batches": {
+    "live-20260929-08": {
+      "planned_slots": 21,
+      "infrastructure_errors": {
+        "provider_http_503": 21
+      },
+      "provider_responses": 0,
+      "cleanup_incomplete": 0
+    },
+    "live-20260929-09": {
+      "planned_slots": 21,
+      "infrastructure_errors": {
+        "provider_connection_error": 20
+      },
+      "provider_responses": 1,
+      "provider_response_scenario": "tool-handler-exception",
+      "provider_response_trial_id": "5ac97319-e3bc-4a38-8268-56e17b3826f7",
+      "provider_response_fault_status": "not_triggered",
+      "provider_response_stop_reason": "token_limit",
+      "cleanup_incomplete": 0
+    }
+  },
+  "overrun_trial": {
+    "trial_id": "5ac97319-e3bc-4a38-8268-56e17b3826f7",
+    "scenario_id": "tool-handler-exception",
+    "frozen_binding_ref": {
+      "profile": "legacy-default",
+      "provider": "legacy-default",
+      "protocol": "openai_chat",
+      "fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5"
+    },
+    "token_budget": 64000,
+    "cumulative_provider_usage": 13812,
+    "remaining_after_response": 50188,
+    "request": {
+      "message_group_estimates": {
+        "system": 2013,
+        "state": 212,
+        "history": 48,
+        "notice": 0,
+        "summary": 0
+      },
+      "tool_schema_estimate": 645,
+      "raw_input_estimate": 2918,
+      "calibrated_input_reservation": 6092,
+      "provider_input_tokens": 13748,
+      "provider_output_tokens": 64,
+      "planned_output_limit": 1024,
+      "provider_input_to_raw_estimate_ratio": 4.7114,
+      "input_over_reservation_tokens": 7656,
+      "task_budget_exhausted": false
+    },
+    "interpretation": "One request exceeded its calibrated input reservation. The task's 64k cumulative token budget was not exhausted; the runtime correctly stopped before executing the returned tool call."
+  },
+  "offline_request_reconstruction": {
+    "performed": true,
+    "network_requests": 0,
+    "historical_raw_request_body_saved": false,
+    "reconstruction_binding_matches_historical": false,
+    "current_binding_ref": {
+      "profile": "legacy-default",
+      "provider": "legacy-default",
+      "protocol": "openai_chat",
+      "fingerprint": "f5d29d7d52439c419e672fd0a4d7007a8197e4afe7b24083d4d0116fb4fc4cf6"
+    },
+    "same_scenario_reconstruction": {
+      "message_count": 3,
+      "tool_schema_count": 11,
+      "message_character_count": 6745,
+      "tool_schema_character_count": 5804,
+      "message_characters_by_role": {
+        "system": 6603,
+        "user": 142
+      },
+      "cjk_characters_in_messages": 2502,
+      "serialized_payload_character_count": 12807,
+      "serialized_payload_utf8_bytes": 19315,
+      "count_tokens_message_estimate": 2252,
+      "count_tokens_schema_estimate": 645
+    },
+    "interpretation": "The local estimator divides character counts by three and omits JSON object keys. The offline reconstruction makes this a plausible contributor to the large under-estimate, but it is not the historical request body and cannot determine whether the provider also adds hidden prompt tokens."
+  },
+  "environment_recheck_20260930": {
+    "network_requests": 0,
+    "current_binding_ref": {
+      "profile": "legacy-default",
+      "provider": "legacy-default",
+      "protocol": "openai_chat",
+      "fingerprint": "fbfec44601e7b2c8677e7e01055d8cb63871c1a591454fba9058f97272d68e8e"
+    },
+    "required_batch_09_binding_fingerprint": "2c7e1654ac038ff570f6cafed33cac7b4294033fbd03875021e645894ccf88c5",
+    "binding_matches": false,
+    "historical_runtime_fingerprint": "a32092e178ce86eb106f46a082801dca8b44c9b80d03d69d06661d2aee592a72",
+    "current_runtime_fingerprint": "8ef329a9b6f2bb4d855232d8f56ea515bf705e1e3b7301506988f57dcceaeebf",
+    "runtime_matches": false,
+    "code_revision_matches": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+    "runtime_match_limitation": "The Git revision matches the trial metadata, but the runtime fingerprint covers the working source tree, including uncommitted and untracked Python files; therefore the historical runtime is not reproduced."
+  },
+  "estimator_analysis": {
+    "historical_code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+    "confirmed_method": "count_tokens uses len(text) // 3 for strings, recursively sums list items and dict values, and does not count dict keys or JSON punctuation.",
+    "observed_request": {
+      "message_estimate": 2273,
+      "tool_schema_estimate": 645,
+      "raw_input_estimate": 2918,
+      "cold_calibrated_reservation": 6092,
+      "provider_input_usage": 13748,
+      "provider_to_estimate_ratio": 4.7114,
+      "provider_usage_above_reservation": 7656
+    },
+    "finding": "The estimator's treatment of mixed Chinese/English text and omission of schema object keys are confirmed weaknesses. The archived request body is absent, so the contribution of each weakness, provider-side prompt additions, and tokenizer-specific differences cannot be quantified separately.",
+    "serialized_size_is_not_token_count": "The prior offline reconstruction measured 12807 serialized characters and 19315 UTF-8 bytes under a different binding/runtime. Those byte counts establish request-shape scale only; they are not provider token counts and are not historical request evidence.",
+    "change_status": "No estimator change retained. The provisional serialized-size admission experiment failed the existing 19k/27k late-recovery budget regressions."
+  },
+  "cost_limit": {
+    "price_snapshot": null,
+    "configured_provider_rates": false,
+    "usd_cap_enforceable": false,
+    "note": "The archived batches do not contain a price snapshot; the local provider configuration contract exposes no rate fields. A request-count or token ceiling alone cannot guarantee a monetary ceiling for this binding."
+  },
+  "implementation_change": {
+    "applied": false,
+    "note": "A provisional serialized-size admission change was exercised locally and rejected: it broke the existing 19k/27k late-recovery budget regressions. No estimator change was retained without a same-binding probe that can measure provider usage and guide a narrower policy."
+  },
+  "validation": {
+    "suite_preflight": "passed",
+    "scenario_count": 18,
+    "offline_slot_count": 50,
+    "planned_live_slot_count": 21,
+    "focused_tests_after_reverting_provisional_change": "95 passed",
+    "full_test_suite_rerun": false
+  },
+  "next_requirements": [
+    "Restore the exact live-20260929-09 binding fingerprint locally, or explicitly authorize the current fingerprint as a separate probe cohort.",
+    "Provide an enforceable USD cap and the applicable provider pricing, or explicitly replace the monetary cap requirement with a provider-side hard billing limit.",
+    "Then run at most three no-retry requests: one plain request and a two-request tool round, archive separately, and compare provider usage with the request payload before freezing the next candidate."
+  ]
+}

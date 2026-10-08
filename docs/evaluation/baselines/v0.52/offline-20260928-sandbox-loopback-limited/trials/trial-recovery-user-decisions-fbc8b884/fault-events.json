@@ -1,0 +1,11 @@
+[
+  {
+    "detail": "",
+    "evidence_sha256": "0a763f949a04027e91169277deafd318abd8820b84fb942d813af73491e856bb",
+    "fault_id": "recovery-user-decisions",
+    "occurrence": 1,
+    "outcome": "triggered",
+    "sequence": 1,
+    "target": "user.resolve_issue"
+  }
+]

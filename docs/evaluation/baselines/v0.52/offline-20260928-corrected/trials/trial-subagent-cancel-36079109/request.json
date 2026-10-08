@@ -1,0 +1,96 @@
+{
+  "code_revision": "cd7ec0ee2031d1723e1d38593d43385778fd5d30",
+  "crash_meta_path": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-subagent-cancel-36079109/crash-meta.json",
+  "format": "mini_agent.reliability_request",
+  "model_binding_ref": null,
+  "redactions": [],
+  "repetition": 2,
+  "run_kind": "fixture",
+  "runtime_fingerprint": "cea79a8afceee61bccd58fcfccaa1d74586e55b20451fd12e57bdc0446dfa970",
+  "scenario": {
+    "allowed_tools": [
+      "read_file",
+      "spawn_subagent",
+      "get_subagent_status",
+      "get_subagent_result",
+      "cancel_subagent"
+    ],
+    "budget": {
+      "child_tokens": 32000,
+      "grader_seconds": 30,
+      "max_rounds": 20,
+      "parent_tokens": 64000,
+      "tool_calls": 48,
+      "wall_seconds": 240
+    },
+    "fault": {
+      "fault_id": "subagent-cancel",
+      "occurrences": 1,
+      "parameters": {},
+      "target": "subagent.worker.cancel_barrier"
+    },
+    "feedback_strategy": [],
+    "grader_id": "subagent-cancel",
+    "initial_dir": "initial",
+    "invariants": [
+      "cooperative-cancel",
+      "result-available-after-cancel",
+      "cleanup-complete"
+    ],
+    "permission_rules": [
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "read_file"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "spawn_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "followup_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_status"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "get_subagent_result"
+      },
+      {
+        "action": "allow",
+        "pattern": "*",
+        "tool": "cancel_subagent"
+      },
+      {
+        "action": "allow",
+        "pattern": "python -m unittest discover -s tests",
+        "tool": "run_shell"
+      }
+    ],
+    "recovery_steps": [
+      "cleanup_resources",
+      "claim_child_result"
+    ],
+    "scenario_id": "subagent-cancel",
+    "schema_version": 1,
+    "task": "启动受控只读子调查；当它阻塞在屏障时请求协作取消，等待收束并领取真实结果，然后由父 Agent 继续任务。",
+    "version": "1.0"
+  },
+  "scenario_directory": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/frozen/subagent-cancel",
+  "scenario_sha256": "baa9b40928f75bac848d409fb5c8804e0991f620b8ac5b4afd34a12d41a9a628",
+  "schema_version": 1,
+  "session_root": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-subagent-cancel-36079109/sessions",
+  "suite_id": "reliability-boundaries",
+  "suite_sha256": "b0db616459d53b613334d907d1ba585380aba2b8248cc8be51230132d0125a3c",
+  "suite_version": "1.0",
+  "trial_id": "36079109-3dd4-44df-9ea2-20ef0bd9f33b",
+  "variant": {},
+  "workspace": "/Users/lihao/Public/Projects/codes/agent-from-scratch/docs/evaluation/baselines/v0.52/offline-20260928-corrected/trials/trial-subagent-cancel-36079109/workspace"
+}

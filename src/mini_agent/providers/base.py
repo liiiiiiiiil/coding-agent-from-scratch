@@ -24,6 +24,43 @@ class ProviderProtocolError(RuntimeError):
     """The provider returned a structurally unusable response."""
 
 
+class ProviderToolCallShapeError(ProviderProtocolError):
+    """An incomplete tool call with bounded, content-free diagnostics."""
+
+    def __init__(self, code: str, *, finish_reason=None, response_mode="unknown", usage=None):
+        super().__init__("OpenAI tool call 结构不完整")
+        self.diagnostic = {
+            "code": code,
+            "finish_reason": finish_reason if finish_reason in {
+                "stop", "tool_calls", "length", "content_filter"} else "unknown",
+            "response_mode": response_mode if response_mode in {"json", "stream"} else "unknown",
+        }
+        if usage is not None and usage.source == "provider":
+            self.diagnostic["reported_input_tokens"] = usage.input_tokens
+            self.diagnostic["reported_output_tokens"] = usage.output_tokens
+
+
+class ProviderToolArgumentsError(ProviderProtocolError):
+    """Completed response with unusable JSON arguments; no raw text retained."""
+
+    def __init__(self, *, argument_chars, json_position=None, finish_reason=None,
+                 response_mode="unknown", code="invalid_json", usage=None):
+        super().__init__("OpenAI tool call arguments 不是合法 JSON object")
+        finish = finish_reason if isinstance(finish_reason, str) and finish_reason in {
+            "stop", "tool_calls", "length", "content_filter"} else "unknown"
+        self.usage = usage
+        self.diagnostic = dict(code=code, argument_chars=argument_chars,
+                               json_position=json_position, finish_reason=finish,
+                               response_mode=response_mode)
+        if usage is not None and usage.source == "provider":
+            self.diagnostic["reported_input_tokens"] = usage.input_tokens
+            self.diagnostic["reported_output_tokens"] = usage.output_tokens
+        # Completed non-stream arguments originate in the returned message.
+        # Stream assembly without a length stop remains an unconfirmed origin.
+        self.model_output_failure = (finish == "length" or
+                                     response_mode == "json" and finish in {"stop", "tool_calls"})
+
+
 class ProviderHTTPError(RuntimeError):
     """A bounded, credential-free provider HTTP failure."""
 
