@@ -71,7 +71,10 @@ def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path):
     seeds, _summary = _load_memory_materials(spec, suite)
     responses = load_fixture_responses()
     group = next(item for item in spec.value["groups"] if item["group_id"] == "current-off")
-    slot = next(item for item in _execution_order(suite, spec) if item["group_id"] == "current-off")
+    slot = next(
+        item for item in _execution_order(suite, spec)
+        if item["group_id"] == "current-off" and item["case_id"] == "cache-expiry-regression"
+    )
     source = REPOSITORY_ROOT
     result, relative, digest = _invoke_trial(
         run_id=str(uuid.uuid4()),
@@ -92,3 +95,4 @@ def test_trial_publishes_complete_artifact_contract_before_validation(tmp_path):
     assert set(result["evidence"]["artifacts"]) == {"diff", "agent_log", "grader_log"}
     assert relative == f"trials/{slot['slot_id']}/trial.json"
     assert len(digest) == 64
+    assert result["grader"]["passed"] is True

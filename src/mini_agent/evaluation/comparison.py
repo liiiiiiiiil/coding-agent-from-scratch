@@ -495,6 +495,16 @@ def _invoke_trial(
     try:
         case = suite_case.case
         _copy_fixture(Path(case.case_dir) / case.fixture_dir, workspace)
+        if suite_case.regression_test_required:
+            test_directory = workspace / "tests"
+            if test_directory.exists():
+                if test_directory.is_symlink() or not test_directory.is_dir():
+                    raise ValueError("regression_test_scaffold_invalid")
+            else:
+                # The fixed six-tool coding harness has no mkdir tool. Provide
+                # the empty conventional test directory only for cases whose
+                # frozen contract requires the agent to submit a regression test.
+                test_directory.mkdir(mode=0o700)
         before, _file_count, _total_bytes = _snapshot(workspace)
         reference = _make_grader_reference(suite_case, temp_root)
         request = {
