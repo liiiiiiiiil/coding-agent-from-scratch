@@ -2,6 +2,10 @@
 
 # coding-agent-from-scratch
 
+<!-- yarkr:badges:start -->
+[![Indexed on Yarkr](https://api.yarkr.com/functions/v1/api/api/v1/badges/repos/liiiiiiiiil/coding-agent-from-scratch/version.svg)](https://yarkr.com/arks/liiiiiiiiil/coding-agent-from-scratch)
+<!-- yarkr:badges:end -->
+
 ### 逐步生长的编程 Agent：使用 Python 从零开始构建一个能干活的 AI Agent
 
 从最小的 agent loop 开始，按 Git tag 和能力阶段逐步加入工具、安全、上下文和可靠执行能力。
@@ -156,6 +160,39 @@ examples/          示例输入输出文件
 ## 贡献
 
 欢迎提交 Issue / PR。新增课程前请读[教程作者规范](./docs/governance/tutorial-authoring.md)、[主 README 编写规范](./docs/governance/readme-authoring.md)和 `AGENTS.md`；作者入口与模板见[学习指南](./docs/tutorials/README.md)。
+
+<!-- yarkr:install:start -->
+## Install with Yarkr
+
+This repo is indexed on [Yarkr](https://yarkr.com/arks/liiiiiiiiil/coding-agent-from-scratch) as the ark [liiiiiiiiil/coding-agent-from-scratch](https://yarkr.com/arks/liiiiiiiiil/coding-agent-from-scratch), so its skills install into Claude Code, Codex, Cursor and other agent harnesses with one command.
+
+### CLI
+
+Install the whole ark, which Yarkr keeps equal to this repo:
+
+```bash
+npx yarkr-cli sync liiiiiiiiil/coding-agent-from-scratch
+```
+
+Or add individual skills:
+
+```bash
+npx yarkr-cli add skill:liiiiiiiiil/coding-agent-from-scratch/reliability-skill
+npx yarkr-cli add skill:liiiiiiiiil/coding-agent-from-scratch/verify-change
+```
+
+No Node.js? `curl -fsSL https://yarkr.com/install.sh | sh` (macOS, Linux) or `irm https://yarkr.com/install.ps1 | iex` (Windows PowerShell) installs `yarkr` as a standalone binary; then type `yarkr` in place of `npx yarkr-cli`.
+
+### MCP
+
+Connect your agent to the ark over MCP:
+
+```bash
+npx yarkr-cli mcp add liiiiiiiiil/coding-agent-from-scratch
+```
+
+Or point any MCP client at `https://api.yarkr.com/functions/v1/api/mcp/o/liiiiiiiiil/coding-agent-from-scratch`.
+<!-- yarkr:install:end -->
 
 ## License
 
